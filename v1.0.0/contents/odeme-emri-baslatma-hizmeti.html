@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>6.	Ödeme Emri Başlatma Hizmeti | (ÖHVPS) API İLKE VE KURALLARI</title>
+    <meta name="generator" content="VuePress 1.9.5">
+    
+    <meta name="description" content=" ">
+    
+    <link rel="preload" href="/assets/css/0.styles.f040b2fd.css" as="style"><link rel="preload" href="/assets/js/app.1484581c.js" as="script"><link rel="preload" href="/assets/js/3.3a615694.js" as="script"><link rel="preload" href="/assets/js/7.3eaaad70.js" as="script"><link rel="prefetch" href="/assets/js/10.ea22174e.js"><link rel="prefetch" href="/assets/js/11.9346275f.js"><link rel="prefetch" href="/assets/js/12.54a327f8.js"><link rel="prefetch" href="/assets/js/13.eafd7de5.js"><link rel="prefetch" href="/assets/js/4.5f5cdb23.js"><link rel="prefetch" href="/assets/js/5.d8cf9be1.js"><link rel="prefetch" href="/assets/js/6.d9177838.js"><link rel="prefetch" href="/assets/js/8.2c6c60c1.js"><link rel="prefetch" href="/assets/js/9.ebb51d71.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.cc126f98.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.f040b2fd.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/assets/TCMB_logo.svg.png" alt="(ÖHVPS) API İLKE VE KURALLARI" class="logo"> <span class="site-name can-hide">(ÖHVPS) API İLKE VE KURALLARI</span></a> <div class="links"><form id="search-form" role="search" class="algolia-search-wrapper search-box"><input id="algolia-search-input" class="search-query"></form> <nav class="nav-links can-hide"><div class="nav-item"><a href="/pages/about_me.html" class="nav-link">
+  Hakkımda
+</a></div><div class="nav-item"><a href="/pages/contact.html" class="nav-link">
+  İletişim
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/pages/about_me.html" class="nav-link">
+  Hakkımda
+</a></div><div class="nav-item"><a href="/pages/contact.html" class="nav-link">
+  İletişim
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><a href="/v1.0.0/contents/tanim-ve-kisitlamalar" class="sidebar-heading clickable open"><span>Version 1.0.0</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/v1.0.0/contents/tanim-ve-kisitlamalar.html" class="sidebar-link">1. Tanımlar ve Kısıtlamalar</a></li><li><a href="/v1.0.0/contents/tanim-ve-kisitlamalar.html" class="sidebar-link">2. Kapsam ve Dayanak</a></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><a href="/v1.0.0/contents/tanim-ve-kisitlamalar" class="sidebar-heading clickable"><span>3. Temel Prensipler</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><a href="/v1.0.0/contents/tanim-ve-kisitlamalar" class="sidebar-heading clickable"><span>4. Rıza Durumları</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><a href="/v1.0.0/contents/tanim-ve-kisitlamalar" class="sidebar-heading clickable"><span>4. Rıza Durumları</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><a href="/v1.0.0/contents/tanim-ve-kisitlamalar" class="sidebar-heading clickable"><span>5. Güçlü Kimlik Doğrulama</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><a href="/v1.0.0/contents/odeme-emri-baslatma-hizmeti" class="sidebar-heading clickable open active"><span>6. 6.	Ödeme Emri Başlatma Hizmeti</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/v1.0.0/contents/tanim-ve-kisitlamalar.html" class="sidebar-link">6.1. ADIM 0 - Ödeme Emri Başlatma Isteği</a></li><li><a href="/v1.0.0/contents/tanim-ve-kisitlamalar.html" class="sidebar-link">6.2. ADIM 1 - Ödeme Emri Rızasının Hazırlanması</a></li><li><a href="/v1.0.0/contents/tanim-ve-kisitlamalar.html" class="sidebar-link">6.3. ADIM 2- Ödeme Emri Rızasının Yetkilendirilmesi</a></li><li><a href="/v1.0.0/contents/tanim-ve-kisitlamalar.html" class="sidebar-link">6.4. ADIM 2.1 – Ödeme Emri Rızasının Sorgulanması</a></li><li><a href="/v1.0.0/contents/tanim-ve-kisitlamalar.html" class="sidebar-link">6.5. ADIM 3- Ödeme Emrinin Oluşturulması</a></li><li><a href="/v1.0.0/contents/tanim-ve-kisitlamalar.html" class="sidebar-link">6.6. ADIM 3.1- Ödeme Emri Sorgusu </a></li></ul></section></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="_6-odeme-emri-baslatma-hizmeti"><a href="#_6-odeme-emri-baslatma-hizmeti" class="header-anchor">#</a> 6.	Ödeme Emri Başlatma Hizmeti</h2> <p>Ödeme emri başlatma işlemi havale, FAST ya da PÖS ödemesiyle sonuçlanabilir. Ödeme işleminin amacı kişiden kişiye para transferi, e-ticaret ödemesi gibi farklı ödeme türleri olabilir. Ödemenin amacına göre ÖBHS’nin ileteceği veri setinde farklılaşmalar olabilir.</p> <p>Ödeme Emri Başlatma Hizmeti 5 temel akışdan oluşur:
+0.	Ödeme Emri Başlatma İsteğinin tetiklenmesi: ÖHK ÖBHS mobil uygulama ya da websitesinden ödeme emrini başlatır.</p> <ol><li>Ödeme Emri Rıza Hazırlanması: ÖBHS, “Ödeme Emri Başlatma” işlemi için izin oluşturulması isteğini HHS’ye iletir.</li> <li>Ödeme Emri Rızasının Yetkilendirilmesi: HHS, gerekli gördüğü durumlarda ÖHK’yı GKD ile doğrular ve ödeme emri rızasına erişim için erişim belirteci tanımlanmasını temin eder.</li> <li>Ödeme Emrinin Başlatılması: ÖBHS, “ödeme emri”ni HHS’ye iletir.</li> <li>Ödeme Emri Rıza Durumu, Ödeme Emri Durumu, Ödeme Emri Detayı Sorguları: ÖBHS, Ödeme Emri Rıza Durumu, Ödeme Emri Durumu, Ödeme Emri Detayı bilgilerini isteğe bağlı olarak sorgulayabilir.</li></ol> <p><img src="/assets/img/OdmemeEmriBaslatmaHizmetiUstDuzeyIsAkisi.0d3f6ca3.png" alt="Odeme Emri Baslatma Hizmeti Ust Düzey İş Akışı"></p> <p>Şekil 4: Ödeme Emri Başlatma Hizmeti Üst Düzey İş Akışı</p> <h4 id="odeme-emri-baslatma-hizmeti-icin-erisim-adresleri-endpoints"><a href="#odeme-emri-baslatma-hizmeti-icin-erisim-adresleri-endpoints" class="header-anchor">#</a> Ödeme Emri Başlatma Hizmeti için Erişim Adresleri (Endpoints)</h4> <table><thead><tr><th>No</th> <th>Kaynak</th> <th>HTTP işlemi</th> <th>Erişim Adresi</th> <th>Zorunlu / İsteğe Bağlı</th> <th>Yetkilendirme Türü</th> <th>İmzalama</th> <th>İstem Nesnesi</th> <th>Yanıt Nesnesi</th></tr></thead> <tbody><tr><td>1</td> <td>odeme-emri-rizasi</td> <td>POST</td> <td>POST /odeme-emri-rizasi</td> <td>Z</td> <td>İstemci Kimlik Bilgileri</td> <td>İmzalı İstek ve Yanıt</td> <td>OdemeEmriRizasiIstegi</td> <td>OdemeEmriRizasi</td></tr> <tr><td>2</td> <td>erisim-belirteci (GKD için)</td> <td>POST</td> <td>POST/erisim-belirteci /odeme-emri-rizasi</td> <td>Z</td> <td>İstemci Kimlik Bilgileri</td> <td>İmzalı İstek ve Yanıt</td> <td>ErisimBelirteciIstegi</td> <td>ErisimBelirteci</td></tr> <tr><td>2.1</td> <td>odeme-emri-rizasi</td> <td>GET</td> <td>GET /odeme-emri-rizasi/{rizaNo}</td> <td>Z</td> <td>İstemci Kimlik Bilgileri</td> <td>İmzalı Yanıt</td> <td>-</td> <td>OdemeEmriRizaYaniti</td></tr> <tr><td>3</td> <td>odeme-emri</td> <td>POST</td> <td>POST /odeme-emri</td> <td>Z</td> <td>İstemci Kimlik Bilgileri &amp; Yetkilendirme Kodu (GKD)</td> <td>İmzalı Yanıt</td> <td>OdemeEmriIstegi</td> <td>OdemeEmri</td></tr> <tr><td>4</td> <td>odeme-emri</td> <td>GET</td> <td>GET /odeme-emri/{odemeEmriNo}</td> <td>Z</td> <td>İstemci Kimlik Bilgileri &amp; Yetkilendirme Kodu (GKD)</td> <td>İmzalı Yanıt</td> <td>-</td> <td>OdemeEmri</td></tr></tbody></table> <h3 id="post-odeme-emri-rizasi"><a href="#post-odeme-emri-rizasi" class="header-anchor">#</a> POST /odeme-emri-rizasi</h3> <h4 id="request"><a href="#request" class="header-anchor">#</a> Request</h4> <div class="language- extra-class"><pre class="language-text"><code>:method: POST
+:path: /yos-simulator-service/api/odeme-emri-rizasi/
+Authorization: Bearer 2YotnFZFEjr1zCsicMWpAA
+x-aspsp-code: 8000
+x-group-id: f18e683a-aa60-40f9-830f-1896f26fea5f
+x-request-id: 45d5efd1-b0ca-4c53-88ef-b1994c328841
+x-tpp-code: 8000
+x-xsrf-token: CfDJ8F4tcYI0Y1BPi1GNm73SibeeI2zX8LUcvsnOPfS_8OE4GRZ7hD9OcyMLOHlZxHLdIDbytMPGa-a3Cr51KG8hM3B4b51IV6FRSWEKexyqCwSCh1Hc02MmHk2GL8CF4gOSvhnwwaXB52my_JRr_nhLqCGuUzeyuUY5qYCdgTx3p1Yu-vMY_DNdY7l_HyydJ_2PK
+psu-initiated: E
+psu-ip-adress: 127.0.0.1
+psu-ip-port: 443
+Content-Type: application/json
+Accept: application/json
+</code></pre></div><div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;gkd&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;yetYntm&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Y&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;yonAdr&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://boss-test.bkm.com.tr/boss/ab/yosSimulator/8000/odeme-emri-rizasi/onay&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;odmBsltm&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;kmlk&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;kmlkTur&quot;</span><span class="token operator">:</span> <span class="token string">&quot;K&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;kmlkVrs&quot;</span><span class="token operator">:</span> <span class="token string">&quot;77121323400&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;ohkTur&quot;</span><span class="token operator">:</span> <span class="token string">&quot;B&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;islTtr&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;prBrm&quot;</span><span class="token operator">:</span> <span class="token string">&quot;TRY&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;ttr&quot;</span><span class="token operator">:</span> <span class="token number">1321</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;gon&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;unv&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AHMET YILMAZ&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;hspNo&quot;</span><span class="token operator">:</span> <span class="token string">&quot;TR1000010XP9UDWM4Z6LVJKS45&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;alc&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;unv&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AHMET YILMAZ&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;hspNo&quot;</span><span class="token operator">:</span> <span class="token string">&quot;TR1000010XP9UDWM4Z6LVJKS45&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;odmAyr&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;odmKynk&quot;</span><span class="token operator">:</span> <span class="token string">&quot;A&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;odmAmc&quot;</span><span class="token operator">:</span> <span class="token string">&quot;01&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;yosKod&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0010&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;refBlg&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Y-2701852-202011&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;odmAcklm&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Kira bedeli&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;obhsMsrfTtr&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;prBrm&quot;</span><span class="token operator">:</span> <span class="token string">&quot;TRY&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;ttr&quot;</span><span class="token operator">:</span> <span class="token number">100</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="response"><a href="#response" class="header-anchor">#</a> Response</h4> <div class="language- extra-class"><pre class="language-text"><code>HTTP/1.1 201 Created
+x-aspsp-code: 8000
+x-content-type-options: nosniff
+x-frame-options: DENY
+x-group-id: f18e683a-aa60-40f9-830f-1896f26fea5f
+x-jws-signature: eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaWd3LmJrbS5jb20udHIiLCJleHAiOjE2NDE5MTA0NzUsImlhdCI6MTY0MTgyNDA3NSwiYm9keSI6IjFkMjRlYzdkOWRhODdiYjczNzc2M2NhNjdjMGY3OTBlNTQyZTU4NTdhMWI2NjA4NDM1YWNmMGQwMmYzOTIxMDUifQ.ZcqrmH-HvBu9I-islB1vN6TExAhJfMRDbRX8Eil4VO7NuoO1NiHS0W8Sc28BZthqhjpygaAfvf3F6wpyIPKf8VXsusc_9PRpeSdWyvQIhrrmYFPVTIgTt3F8XpLZMPkB2eoPB7gMnKxe2iWdQN8Wrji7ZEJTSKQ5d2QkGSsH96N68Al_1cg8cixaTlw3k29bjWt_wzmf75VjsOiPpn9SNWw_LFErd21onnPITEEMwTmPFBYf0Rs4gpj59UzwYyy0sWkfiOF1gLJi3nke_J1jGO5_oqlhB5P4tP_FS8CAYxLyNnl2WI_-dYvw8kIHo7LszDeKGEK9Xhd3X2kncA4H-w
+x-request-id: 45d5efd1-b0ca-4c53-88ef-b1994c328841
+x-tpp-code: 8000
+Content-Type: application/json
+</code></pre></div><div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;rzBlg&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;rizaNo&quot;</span><span class="token operator">:</span> <span class="token string">&quot;58af49355aee43e08c1b4e5aaca7d726&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;olusZmn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2021-07-09T15:19:12+03:00&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;gnclZmn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2021-07-09T16:19:12+03:00&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;rizaDrm&quot;</span><span class="token operator">:</span> <span class="token string">&quot;B&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;gkd&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;yetYntm&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Y&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;yonAdr&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://boss-test.bkm.com.tr/boss/ab/yosSimulator/8000/odeme-emri-rizasi/onay&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;yetTmmZmn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2021-07-09T12:42:44+03:00&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;hhsYonAdr&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://boss-test.bkm.com.tr/boss/ab/hhsSimulator/8000/odeme-emri-rizasi/58af49355aee43e08c1b4e5aaca7d726/goruntule&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;odmBsltm&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;kmlk&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;kmlkTur&quot;</span><span class="token operator">:</span> <span class="token string">&quot;K&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;kmlkVrs&quot;</span><span class="token operator">:</span> <span class="token string">&quot;77121323400&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;ohkTur&quot;</span><span class="token operator">:</span> <span class="token string">&quot;B&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;islTtr&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;prBrm&quot;</span><span class="token operator">:</span> <span class="token string">&quot;TRY&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;ttr&quot;</span><span class="token operator">:</span> <span class="token number">1321</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;gon&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;unv&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AHMET YILMAZ&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;hspNo&quot;</span><span class="token operator">:</span> <span class="token string">&quot;TR1000010XP9UDWM4Z6LVJKS45&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;alc&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;unv&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AHMET YILMAZ&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;hspNo&quot;</span><span class="token operator">:</span> <span class="token string">&quot;TR1000010XP9UDWM4Z6LVJKS45&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;odmAyr&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;odmKynk&quot;</span><span class="token operator">:</span> <span class="token string">&quot;A&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;odmAmc&quot;</span><span class="token operator">:</span> <span class="token string">&quot;01&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;yosKod&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0010&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;refBlg&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Y-2701852-202011&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;odmAcklm&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Kira bedeli&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;ohkMsj&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Ödeme rızası talebi alındı&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;odmStm&quot;</span><span class="token operator">:</span> <span class="token string">&quot;H&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;bekOdmZmn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2021-01-28T12:42:44+03:00&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;obhsMsrfTtr&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;prBrm&quot;</span><span class="token operator">:</span> <span class="token string">&quot;TRY&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;ttr&quot;</span><span class="token operator">:</span> <span class="token number">100</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;hhsMsrfTtr&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;prBrm&quot;</span><span class="token operator">:</span> <span class="token string">&quot;TRY&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;ttr&quot;</span><span class="token operator">:</span> <span class="token number">100</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language- extra-class"><pre class="language-text"><code>HTTP/1.1 400 Bad Request
+Content-Type: application/json
+</code></pre></div><div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;path&quot;</span><span class="token operator">:</span> <span class="token string">&quot;/obh/odeme-emri&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;timestamp&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2021-08-13T09:55:23+03:00&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;httpCode&quot;</span><span class="token operator">:</span> <span class="token number">401</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;httpMessage&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Not Found&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;moreInformation&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Resource Schema validation error&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;moreInformationTr&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Alan doğrulama hatası&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;errorCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;TR.OBHS.Resource.InvalidFormat&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;fieldErrors&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;objectName&quot;</span><span class="token operator">:</span> <span class="token string">&quot;odemeEmriRizasi&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;field&quot;</span><span class="token operator">:</span> <span class="token string">&quot;rizaNo&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;messageTr&quot;</span><span class="token operator">:</span> <span class="token string">&quot;boyut '1' ile '128' arasında olmalı&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;message&quot;</span><span class="token operator">:</span> <span class="token string">&quot;size must be between '1' and '128'&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token string">&quot;TR.OBHS.Field.Invalid&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language- extra-class"><pre class="language-text"><code>HTTP/1.1 401 Unauthorized
+Content-Type: application/json
+</code></pre></div><div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;path&quot;</span><span class="token operator">:</span> <span class="token string">&quot;/obh/odeme-emri&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;timestamp&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2021-08-13T09:55:23+03:00&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;httpCode&quot;</span><span class="token operator">:</span> <span class="token number">401</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;httpMessage&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Not Found&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;moreInformation&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Resource Schema validation error&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;moreInformationTr&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Alan doğrulama hatası&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;errorCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;TR.OBHS.Resource.InvalidFormat&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;fieldErrors&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;objectName&quot;</span><span class="token operator">:</span> <span class="token string">&quot;odemeEmriRizasi&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;field&quot;</span><span class="token operator">:</span> <span class="token string">&quot;rizaNo&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;messageTr&quot;</span><span class="token operator">:</span> <span class="token string">&quot;boyut '1' ile '128' arasında olmalı&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;message&quot;</span><span class="token operator">:</span> <span class="token string">&quot;size must be between '1' and '128'&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token string">&quot;TR.OBHS.Field.Invalid&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language- extra-class"><pre class="language-text"><code>HTTP/1.1 403 Forbidden
+Content-Type: application/json
+</code></pre></div><div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;path&quot;</span><span class="token operator">:</span> <span class="token string">&quot;/obh/odeme-emri&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;timestamp&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2021-08-13T09:55:23+03:00&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;httpCode&quot;</span><span class="token operator">:</span> <span class="token number">401</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;httpMessage&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Not Found&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;moreInformation&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Resource Schema validation error&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;moreInformationTr&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Alan doğrulama hatası&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;errorCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;TR.OBHS.Resource.InvalidFormat&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;fieldErrors&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;objectName&quot;</span><span class="token operator">:</span> <span class="token string">&quot;odemeEmriRizasi&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;field&quot;</span><span class="token operator">:</span> <span class="token string">&quot;rizaNo&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;messageTr&quot;</span><span class="token operator">:</span> <span class="token string">&quot;boyut '1' ile '128' arasında olmalı&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;message&quot;</span><span class="token operator">:</span> <span class="token string">&quot;size must be between '1' and '128'&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token string">&quot;TR.OBHS.Field.Invalid&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.1484581c.js" defer></script><script src="/assets/js/3.3a615694.js" defer></script><script src="/assets/js/7.3eaaad70.js" defer></script>
+  </body>
+</html>
