@@ -1,0 +1,23 @@
+name: Deploy to GitHub pages
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - run: npm ci
+      - run: npm run docs:build
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@3.6.2
+        with:
+          GITHUB_TOKEN: ${{ secrets.ACIK_BANKACILIK_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: docs/.vuepress/dist
+
