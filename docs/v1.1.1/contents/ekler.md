@@ -140,4 +140,4 @@ HHS/YÖS API Uygulama Mimarisinde Test ve Üretim ortamlarında aşağıdaki ala
 <img src="./images/HhsYosApiMimarisi2.png" width="50%" >
 
 
-Şekil 15: HHS/YÖS API Mimarisi
+Şekil 15: HHS/YÖS API Mimarisi  
