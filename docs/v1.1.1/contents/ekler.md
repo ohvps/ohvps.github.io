@@ -137,7 +137,7 @@ Bir YÖS üzerinden başlayan akış örnek olarak paylaşılmıştır.
 
 HHS/YÖS API Uygulama Mimarisinde Test ve Üretim ortamlarında aşağıdaki alanda yer almaktadır.  
 
-<img src="./images/HhsYosApiMimarisi2.png" width="50%" >
+<img src="./images/HhsYosApiMimarisiv2.png" width="50%" >
 
 
 Şekil 15: HHS/YÖS API Mimarisi  
