@@ -57,6 +57,11 @@ YÖS API yanıtında, listelenen yönlendirme ve bildirim adresleri bulunmaktad�
 
 ## YOS API
 
+YÖS API içerisinde yer alan YÖS rol bilgileri ve aktiflik/pasiflik durumları birbiriyle ilişkili değildir.  
+
+YÖS'ün sahip olduğu öbhs,hbhs rolleri için herhangi bir fraud ya da teknik sebeplerden ötürü geçici süreyle geri alınabilir.  
+
+YÖS aktifliğini korurken problem çözülene kadar geçici olarak alınan roller(öbhs,hbhs) tekrardan aktif hale getirilir.   
 
 **GET /yos/{yosKod}**  
 

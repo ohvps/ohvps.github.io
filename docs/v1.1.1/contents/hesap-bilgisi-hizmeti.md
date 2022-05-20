@@ -67,7 +67,7 @@ Hesap bilgisi için müşteri rızasına ilişkin temel ilkeler şunlardır:
 |No  |Kaynak |HTTP işlemi|Erişim Adresi |Zorunlu / İsteğe Bağlı|Yetkilendirme Türü |İmzalama |Parametre |İstem Nesnesi |Yanıt Nesnesi |
 | --- |--- |--- |--- |--- |--- |--- |--- |--- |--- |
 | 1 |hesap-bilgisi-rizasi |POST |/hesap-bilgisi-rizasi | Z |İstemci Kimlik Bilgileri |İmzalı İstek ve Yanıt | |HesapBilgisiRizasiIstegi | HesapBilgisiRizasi|
-| 2 |erisim-belirteci  (GKD için) |POST |POST/erisim-belirteci | Z |İstemci Kimlik Bilgileri |İmzalı İstek ve Yanıt | |ErisimBelirteciIstegi | ErisimBelirteci|
+| 2 |erisim-belirteci  (GKD için) |POST |/erisim-belirteci | Z |İstemci Kimlik Bilgileri |İmzalı İstek ve Yanıt | |ErisimBelirteciIstegi | ErisimBelirteci|
 | 2.1 |hesap-bilgisi-rizasi |GET |/hesap-bilgisi-rizasi/{RizaNo} | Z |İstemci Kimlik Bilgileri |İmzalı Yanıt | | | HesapBilgisiRizasi|
 | 2.2 |hesap-bilgisi-rizasi |DELETE |/hesap-bilgisi-rizasi/{RizaNo} | Z |İstemci Kimlik Bilgileri |  | | | |
 | 3.1 |hesaplar |GET |/hesaplar | Z |İstemci Kimlik Bilgileri ve Yetkilendirme Kodu (GKD) |  | Sayfalama | |HesapBilgileri(birden çok hesap) |
@@ -406,6 +406,9 @@ bireysel ÖHK’lar  için en fazla 1 aylık,
 kurumsal ÖHK’lar için ise en fazla 1 haftalık bir pencere aralığında sorgulama yapılabilir.
 
 YÖS, otomatik yapacağı sorgularda hem bireysel hem de kurumsal ÖHK’lar için 24 saatlik bir pencere aralığında sorgulama yapabilir.   
+
+Hesap kapalı olduğu durumda hesap hareketlerini iletmek istemeyen HHS'lerin **TR.OHVPS.Business.InvalidAccount** hatası vermeleri beklenir.
+
 
 İşlem Sorgu Örneği (Belirli Bir Hesap)=  /hesaplar/{hspRef}/islemler?
 hesapIslemBslTrh=2020-06-01T00:00:00+03:00&

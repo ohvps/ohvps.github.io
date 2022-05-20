@@ -24,11 +24,11 @@
 
 | No | Kaynak|HTTP işlemi |Erişim Adresi |Zorunlu / İsteğe Bağlı |Yetkilendirme Türü |İmzalama|İstem Nesnesi |Yanıt Nesnesi |
 | --- |--- |--- |--- |--- |--- |--- |--- |--- |
-| 1|odeme-emri-rizasi|POST |POST /odeme-emri-rizasi |Z |İstemci Kimlik Bilgileri |İmzalı İstek ve Yanıt |OdemeEmriRizasiIstegi |OdemeEmriRizasi |
-| 2|erisim-belirteci (GKD için)|POST |POST/erisim-belirteci /odeme-emri-rizasi |Z |İstemci Kimlik Bilgileri |İmzalı İstek ve Yanıt |ErisimBelirteciIstegi |ErisimBelirteci |
-| 2.1 |odeme-emri-rizasi |GET |GET /odeme-emri-rizasi/{rizaNo} |Z |İstemci Kimlik Bilgileri  |İmzalı Yanıt |- |OdemeEmriRizaYaniti |
-| 3 |odeme-emri |POST |POST /odeme-emri |Z |İstemci Kimlik Bilgileri & Yetkilendirme Kodu (GKD) |İmzalı Yanıt |OdemeEmriIstegi |OdemeEmri |
-| 3.1 |odeme-emri |GET |GET /odeme-emri/{odemeEmriNo}|Z |İstemci Kimlik Bilgileri & Yetkilendirme Kodu (GKD) |İmzalı Yanıt |- |OdemeEmri |
+| 1|odeme-emri-rizasi|POST |/odeme-emri-rizasi |Z |İstemci Kimlik Bilgileri |İmzalı İstek ve Yanıt |OdemeEmriRizasiIstegi |OdemeEmriRizasi |
+| 2|erisim-belirteci (GKD için)|POST | /erisim-belirteci /odeme-emri-rizasi |Z |İstemci Kimlik Bilgileri |İmzalı İstek ve Yanıt |ErisimBelirteciIstegi |ErisimBelirteci |
+| 2.1 |odeme-emri-rizasi |GET | /odeme-emri-rizasi/{rizaNo} |Z |İstemci Kimlik Bilgileri  |İmzalı Yanıt |- |OdemeEmriRizaYaniti |
+| 3 |odeme-emri |POST | /odeme-emri |Z |İstemci Kimlik Bilgileri & Yetkilendirme Kodu (GKD) |İmzalı Yanıt |OdemeEmriIstegi |OdemeEmri |
+| 3.1 |odeme-emri |GET | /odeme-emri/{odemeEmriNo}|Z |İstemci Kimlik Bilgileri & Yetkilendirme Kodu (GKD) |İmzalı Yanıt |- |OdemeEmri |
 
 ## 6.1.	ADIM 0 - Ödeme Emri Başlatma Isteği
 
@@ -430,12 +430,13 @@ POST işleminin RESPONSE gövdesini (BODY) oluşturan “OdemeEmri” nesnesi Ta
 | **>> Üretici Kodu**	  |  kkodUrtcKod   |   AN4  |Z   | Karekod üreticisinin kodu.<br> Ödeme Hizmeti Sağlayıcıları ve TCMB tarafından uygun görülen ödeme sistemi işleticisi TR Karekod üretebilmek için BKM’ye kayıt başvurusu yaparak karekod üretici kodu alabileceklerdir. Bankalar EFT kodlarını kullanacak olup ayrıca kayıt yaptırmalarına gerek bulunmamaktadır. 4 haneden kısa değerlerin sol tarafı ’0’ karakteri ile tamamlanmalıdır.|
 | **> Ödeme Ayrıntıları**	| odmAyr |  Kompleks: OdemeAyrintilari | Z    |  |
 | **>> Ödeme Kaynağı** |odmKynk   |  AN1   |Z   |  Ödemenin başlatıldığı kaynağı belirtir. **TR.OHVPS.DataCode.OdemeKaynak** sıralı veri değerlerinden birini alır.  |
+| **>> Ödeme Durumu** |odmDrm   |  AN2   |Z   |  **TR.OHVPS.DataCode.OdemeDurumu** sıralı veri değerlerinden birini alır.  <br> <br> Ödeme Durumu alanı ile ilgili olarak HHS’ler tarafından YÖS’lere  OdemeEmri servisi yanıtında 02:Gönderildi, 04:Onayda Bekliyor,05:İşleme Alındı yanıtları gönderilebilir.<br> <br>**05:İşleme Alındı** durumu YÖS tarafından müşteriye gösterilmeyen bir koddur. Bu kod dönüldüğünde YÖS uygulamasında ÖHK’ya ödeme durumu **02:Gönderildi** olarak gösterilir. İşlemin son durumunun teyidi için YÖS ödeme emri sorgulaması yapmalıdır.<br> <br>**02:Gönderildi** durumu oluştuktan sonra YÖS tarafından ödeme emri sorgulaması yapılarak ödeme durumunun güncel değeri öğrenilir. Güncel değerler **01:Gerçekleşti,03:Gerçekleşmedi** durumları olabilir.|
 | **>> Ödeme Amacı** |  odmAmc   |   AN2  | Z  |  **TR.OHVPS.DataCode.OdemeAmaci** sıralı veri değerlerinden birini alır.  | 
 | **>> Referans Bilgisi**	|  refBlg   |  AN1..140   | K  |  Ödemeye özel **Referans Bilgisi** alanıdır. Karekod işlemi değil ise zorunludur.<br> -	Kişiden kişiye fon aktarımlarda: Gün içerisinde ÖHK için biricik olarak oluşturan referans bilgisi<br> -	E-ticaret işlemlerinde sipariş/takip numarası/müşteri/abone numarası<br> -	Karekod akışında, FAST Karekod Veri Organizasyonundaki<br> -	62-01: alanında tanımlı Fatura Numarası <br> -	62-06: alanında tanımlı Müşteri Numarası <br> verilerinden biri kullanılır. | 
 | **>> Açıklama**	|  odmAcklm   | AN1..50    | İ  | ÖBHS’nin ÖHK’dan aldığı ya da kendisinin atadığı işlem açıklaması bilgisi.|
 | **>> ÖHK Mesaj Alanı**	|  ohkMsj   | AN1..200    | İ  | HHS’nin ÖHK’ya göstermek üzere ilettiği mesaj.|
 | **>> Ödeme Sistemi**	|  odmStm   | AN1    | Z  | **TR.OHVPS.DataCode.OdemeSistemi** sıralı veri değerlerinden birini alır. |
-| **>> Ödeme Sistem Numarası**	|  odmStmNo   | AN10..50    | K  | Ödeme başarılı başlatıldıysa, ödemenin başlatıldığı sistemdeki referans numarası. FAST işlemleri için MesRefBlg değeri atanır. Ödeme Hizmeti kullancısına işlemin takibi için gösterilebilir. |
+| **>> Ödeme Sistem Numarası**	|  odmStmNo   | AN10..50    | K  | Ödeme başarılı başlatıldıysa, ödemenin başlatıldığı sistemdeki referans numarası. FAST işlemleri için MesRefBlg değeri atanır. MesRefBlg alanı 3 değer içermektedir ; Tarih, GönderenKatilimKodu ve SorguNumarasi. Bu 3 alan aralarına dikey çizgi (Unicode U+2223) işareti koyularak, birleştirmeli ve iletilmelidir. Ödeme Hizmeti kullancısına işlemin takibi için gösterilebilir. |
 | **>> Beklenen Ödeme Zamanı**	|  bekOdmZmn   | ISODateTime   | K  | İşlemin yönlendirildiği ödeme sistemi PÖS ise ve PÖS işlem saatleri dışında ise işlemin yapılabileceği ilk zaman bilgisi|
 | **> ÖBHS Masraf Tutarı**	 |  obhsMsrfTtr   |   Kompleks:Tutar  | İ  |  |
 | **>> Para Birimi** | prBrm  | AN3   | Z  | Para birimi (TRY, USD, EUR vb.).|
