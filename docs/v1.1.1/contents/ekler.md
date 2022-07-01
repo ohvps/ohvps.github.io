@@ -34,15 +34,8 @@ Açık Bankacılık simülatör uygulaması üzerinde swagger dökümanlarının
 
 ## EK-3: İstemci Sertifikalarının Tanım ve Yönetimi
 
-YÖS rolü ile gelen katılımcılar BKM API Geçidi erişimlerini kendileri ile BKM tarafından önden paylaşılacak olan istemci sertifikalarını kullanarak sağlayacaklardır.  
-
-Bu sertifikalar BKM bünyesinde oluşturulacak ve erişimde bulunacak olan kuruma özel olarak hazırlanacaktır. Hazırlanan istemci sertifikaları güvenli FTP veya e-posta aracılığı ile önden ilgili kişiler ile paylaşılacaktır.  
-
-Sertifika doğrulama işlemi API Geçidi üzerinde yapılacak olup, istemci tarafında web isteğinin ilgili sertifika ile ilişkilendirilerek oluşturulması gerekecektir.  
-
-Uzun dönemli olarak hazırlanacak olan sertifikalar test, sertifikasyon ve üretim ortamlarında kullanılacaktır. Sertifikaların işlevselliği ve geçerliliği bu aşamalarda  sınanacaktır.  
-
-BKM API Geçidi çözümünün test ve üretim ortamları ayrımında istemci sertifikaları, HHS Listeleme API erişimleri ve  Sertifikasyon bağlantıları Şekil 15-HHS/YÖS API Mimarisi Diagramında resmedilmiştir.   
+Tüm katılımcıların BKM API Geçidine erişebilmesi için, BKM tarafından yapılan istemci sertifika doğrulamasından geçmesi gerekmektedir. İstemci sertifikası üretilmeden önce katılımcıların csr üretme akışını tamamlaması gerekmektedir.
+  
 
 OpenSSL ile CSR (Certificate Signing Request) Oluşturma   
 Aşağıdaki komut ile 2048-bit RSA private key ve CSR oluşturulur.  
@@ -53,7 +46,15 @@ Organization Unit Name (OU) olarak BKM tarafından size iletilen clientId değer
 Common Name (CN) olarak 4 karakterli yosKod değeri,  
 Diğer alanlar için de kurum bilgilerinize göre giriş yapılır.   
 
-Tüm bilgilerin girilmesinden sonra CSR dosyası imzalanmak üzere BKM ye iletilir. 
+Tüm bilgilerin girilmesinden sonra oluşan private key dosyası kurumunuzda saklanır. 
+CSR dosyası ise istemci sertifika üretmek üzere kullanılır. Bu aşamada takip edilmesi gereken adımlar şu şekildedir: 
+
+Katılımcıların, TRIP ortamı üzerinden, BKM Tarafından yetki verilmiş kullanıcılarının görebileceği "İstemci Sertifika Talebi" menü adımına giriş yapmaları beklenir. Açılan ekranda,"CSR Dosyası Yükleme" alanı içerisine, katılımcının üretmiş olduğu csr dosyası yüklenir. Yaklaşık 1 dakika içerisinde kuruma özel olarak üretilmiş olan client sertifikası indirilmeye hazır hale gelecektir. "İndir" butonu ile client sertifika indirilir. İstemci tarafında web isteğinin ilgili sertifika ile ilişkilendirilerek oluşturulması gerekmektedir.
+
+
+Uzun dönemli olarak hazırlanacak olan sertifikalar sertifikasyon ve üretim ortamlarında kullanılacaktır. Sertifikaların işlevselliği ve geçerliliği bu aşamalarda sınanacaktır. 
+
+BKM API Geçidi çözümünün test ve üretim ortamları ayrımında istemci sertifikaları, HHS Listeleme API erişimleri ve Sertifikasyon bağlantıları Şekil 15-HHS/YÖS API Mimarisi Diagramında resmedilmiştir.
 
 
 ## EK-4: Sunucu Sertifikaları
