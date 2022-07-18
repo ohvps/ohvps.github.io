@@ -26,11 +26,10 @@ Rıza iptal durumu ise gerek raporlama gerekse müşteri deneyimi perspektifinde
 >>**‘09’ :	GKD iptali : Uygun ürünü bulunmuyor**  
 >>**‘10’ :	GKD iptali : HHS Açık Bankacılık kanalı işleme kapalı**  
 >>**’11’ :	GKD iptali : Hesap Yetki Sorunu**  
->>**‘12’ :	GKD iptali : ÖHK HHS müşterisi değil**  
->>**‘13’ :	GKD iptali : ÖHK HHS kontrollerini aşamadı**  
->>**‘14’ :	GKD iptali : Başarısız GKD**  
->>**‘15’ :	GKD iptali : ÖHK isteği ile GKD’den vazgeçildi**  
->>**‘16’ :	GKD iptali : Diğer**  
+>>**‘12’ :	GKD iptali : ÖHK HHS kontrollerini aşamadı**  
+>>**‘13’ :	GKD iptali : ÖHK isteği ile GKD’den vazgeçildi**  
+>>**‘14’ :	GKD iptali : Fraud Şüphesi**  
+>>**‘99’ :	GKD iptali : Diğer**  
 
 4.1 ve 4.2 bölümlerinde detaylandırılan rıza durum değişikliklerinde rıza iptal detay kodları kullanılmıştır.
 
@@ -75,21 +74,19 @@ Bir ÖHK hem kişisel olarak hem de bir kurumun kullanıcısı olabilir. Bu duru
    
       - Rızano ile kimlik bilgileri uyuşmazlığı.  Yetki Bekleniyor &#8680; Yetki İptal **B &#8680; I / 08**
 
-      - ÖHK'nın HHS'de ilgili ürününün olmadığı durum (hesap/kart) Yetki Bekleniyor &#8680; Yetki İptal  **B &#8680;I / 09**   
+      - ÖHK'nın HHS'de ilgili ürününün olmadığı durum (hesap/kart) Yetki Bekleniyor &#8680; Yetki İptal  **B &#8680; I / 09**   
 
-      - Açık bankacılık kanalınız işleme kapalıdır.Yetki Bekleniyor &#8680; Yetki İptal **B &#8680;I / 10**  
+      - Açık bankacılık kanalınız işleme kapalıdır.Yetki Bekleniyor &#8680; Yetki İptal **B &#8680; I / 10**  
 
       - Kullanıcının HHS'deki hesaplarında yeterli yetkisinin olmama durumu  Yetki Bekleniyor &#8680; Yetki İptal **B &#8680; I / 11**  
 
-      - ÖHK'nın ilgili HHS müşterisi olmadığı durum Yetki Bekleniyor &#8680; Yetki İptal **B &#8680; I / 12**  
+      - HHS’nin ÖHK için yaptığı kontrollerin başarısız olduğu durum Yetki Bekleniyor &#8680; Yetki İptal  **B &#8680; I / 12**
 
-      - HHS’nin ÖHK için yaptığı kontrollerin başarısız olduğu durum Yetki Bekleniyor &#8680; Yetki İptal  **B &#8680; I / 13**
+      - ÖHK isteği ile GKD’den vazgeçildiği durum Yetki Bekleniyor &#8680; Yetki İptal **B &#8680; I / 13**  
 
-      - ÖHK kendini doğrulayamamış olabilir. Başarısız GKD Yetki Bekleniyor &#8680; Yetki İptal **B &#8680; I / 14**
+      - Fraud Şüphesi Yetki Bekleniyor &#8680; Yetki İptal **B &#8680; I / 14**  
 
-      - ÖHK isteği ile GKD’den vazgeçildiği durum Yetki Bekleniyor &#8680; Yetki İptal **B &#8680; I / 15**  
-
-      - Diğer Yetki Bekleniyor &#8680;  Yetki İptal  **B &#8680;  I / 16**  
+      - Diğer Yetki Bekleniyor &#8680;  Yetki İptal  **B &#8680;  I / 99**  
 
 
 3.	ÖHK, hesaplarında/izin türlerinde/Erişimin Geçerli Olduğu Son Tarih bilgilerinden bir ya da birden fazlasında güncelleme yapmak için YÖS ekranına girer.   
@@ -138,7 +135,7 @@ Bir ÖHK hem kişisel olarak hem de bir kurumun kullanıcısı olabilir. Bu duru
     **K &#8680; I / 03**  
 
 
-      Rıza durumu Yetki Sonlandırıldı - S  ise iptal gerçekleşmez. “Rıza durumunuz iptal etmeye uygun değildir.” hatası ÖHK'ya yansıtılır. **TR.OHVPS.Resource.ConsentMismatch**  
+      Rıza durumu Yetki Sonlandırıldı - S  ise iptal gerçekleşmez. “Rıza durumunuz iptal etmeye uygun değildir.” hatası ÖHK'ya yansıtılır. **TR.OHVPS.Resource.ConsentRevoked**  
 
 
 7.	ÖHK’nın verdiği rıza süresi dolmuş olabilir. 
@@ -188,21 +185,19 @@ Kurum ve kişisel rıza aynı anda mevcut olabilmelidir. Rıza nesneleri, HHS ta
    
       - Rızano ile kimlik bilgileri uyuşmazlığı.  Yetki Bekleniyor &#8680; Yetki İptal **B &#8680; I / 08**
 
-      - ÖHK'nın HHS'de ilgili ürününün olmadığı durum (hesap/kart) Yetki Bekleniyor &#8680; Yetki İptal  **B &#8680;I / 09**   
+      - ÖHK'nın HHS'de ilgili ürününün olmadığı durum (hesap/kart) Yetki Bekleniyor &#8680; Yetki İptal  **B &#8680; I / 09**   
 
-      - Açık bankacılık kanalınız işleme kapalıdır.Yetki Bekleniyor &#8680; Yetki İptal **B &#8680;I / 10**  
+      - Açık bankacılık kanalınız işleme kapalıdır.Yetki Bekleniyor &#8680; Yetki İptal **B &#8680; I / 10**  
 
       - Kullanıcının HHS'deki hesaplarında yeterli yetkisinin olmama durumu  Yetki Bekleniyor &#8680; Yetki İptal **B &#8680; I / 11**  
 
-      - ÖHK'nın ilgili HHS müşterisi olmadığı durum Yetki Bekleniyor &#8680; Yetki İptal **B &#8680; I / 12**  
+      - HHS’nin ÖHK için yaptığı kontrollerin başarısız olduğu durum Yetki Bekleniyor &#8680; Yetki İptal  **B &#8680; I / 12**
 
-      - HHS’nin ÖHK için yaptığı kontrollerin başarısız olduğu durum Yetki Bekleniyor &#8680; Yetki İptal  **B &#8680; I / 13**
+      - ÖHK isteği ile GKD’den vazgeçildiği durum Yetki Bekleniyor &#8680; Yetki İptal **B &#8680; I / 13**  
 
-      - ÖHK, kendini doğrulayamamış olabilir. Başarısız GKD Yetki Bekleniyor &#8680; Yetki İptal **B &#8680; I / 14**
+      - Fraud Şüphesi Yetki Bekleniyor &#8680; Yetki İptal **B &#8680; I / 14**  
 
-      - ÖHK isteği ile GKD’den vazgeçildiği durum Yetki Bekleniyor &#8680; Yetki İptal **B &#8680; I / 15**  
-
-      - Diğer Yetki Bekleniyor &#8680;  Yetki İptal  **B &#8680;  I / 16** 
+      - Diğer Yetki Bekleniyor &#8680;  Yetki İptal  **B &#8680;  I / 99** 
 
 
 3.	GKD muafiyeti olduğunda YÖS HHS’den arka planda onay alır. Bu onay sırasında rıza durumu **Yetkilendirildi** yapılır. **B &#8680; Y**    

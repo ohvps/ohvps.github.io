@@ -43,7 +43,7 @@ openssl req -new -newkey rsa:2048 -nodes -keyout PRIVATEKEY.key -out CSR.csr
 
 CSR ile ilgili detay bilgilerin girişinde;   
 Organization Unit Name (OU) olarak BKM tarafından size iletilen clientId değeri,   
-Common Name (CN) olarak 4 karakterli yosKod değeri,  
+Common Name (CN) olarak 4 karakterli hhsKod ya da yosKod değeri,  
 Diğer alanlar için de kurum bilgilerinize göre giriş yapılır.   
 
 Tüm bilgilerin girilmesinden sonra oluşan private key dosyası kurumunuzda saklanır. 

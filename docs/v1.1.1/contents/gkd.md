@@ -103,28 +103,35 @@ Başarılı Yanıt:
 
 ## 5.5  Güçlü Kimlik Doğrulama Kontrolleri 
 
-ÖHK, GKD için HHS uygulamasına yönlendirildiğinde, HHS’nin çeşitli kontroller yaparak işlemin doğruluğunu teyit etmesi gerekmektedir. Yapılması gereken kontrollere ait temel senaryolar aşağıdaki tabloda belirtilmiştir. Bu senaryolar baz alınarak HHS’ler tarafından zenginleştirilebilir.   
+ÖHK, GKD için HHS uygulamasına yönlendirildiğinde, HHS’nin çeşitli kontroller yaparak işlemin doğruluğunu teyit etmesi gerekmektedir.
+Yapılması gereken kontrollere ait temel senaryolar aşağıdaki tabloda belirtilmiştir. Bu senaryolar baz alınarak HHS’ler tarafından zenginleştirilebilir.   
 
-Zorunlu olarak belirtilen hata durumlarının HHS’ler tarafından gerçeklenmesini ve uygun hata kodlarının YÖS’e iletilmesi; ileride oluşabilecek mutabakatlaşma sorunlarını ortadan kaldırabilecek, yapılacak raporlamalar kapsamında sistem ve süreç iyileştirmelerine katkı sağlayacak, son kullanıcı açısından da alınan hataya yönelik bilgilendirici içerik sağlayacaktır.  
+Aşağıdaki tabloda yer alan 07-13 arası Rıza İptal Detay Kodlarının oluştuğu senaryolar, HHS uygulamasında yapılan kullanıcı doğrulama öncesi ve sonrası olarak iki adımda incelenmelidir.  
+
+HHS tarafında, kullanıcı doğrulama öncesinde yapılan kontroller neticesinde verilemeyen rızalar için ‘04’ : Süre Aşımı : Yetki Bekleniyor iptal kodu atanır. HHS'nin YÖS uygulamasına 04 kodunu iletmesi beklenmez. YÖS zaman aşımı neticesinde rıza statüsünü sorgulayarak öğrenir.   
+Kullanıcı doğrulandıktan sonra rıza verilemiyorsa ilgili hata kodunun YÖS'e iletilmesi beklenmektedir. Kullanıcı doğrulama sonrası YÖS'e iletilen rıza iptal detay kodu ile HHS veri modelinde tutulan rıza ile ilişkili rıza iptal detay kodu, aynı değeri alacak şekilde güncellenmelidir. YÖS, HHS tarafından kendine iletilen rıza iptal detay kodunu kendi veri modelinde güncellemelidir.
+ 
+
+Zorunlu olarak belirtilen hata durumlarının HHS’ler tarafından gerçeklenmesi ve uygun hata kodlarının YÖS’e iletilmesi; ileride oluşabilecek mutabakatlaşma sorunlarını ortadan kaldırabilecek, yapılacak raporlamalar kapsamında sistem ve süreç iyileştirmelerine katkı sağlayacak, son kullanıcı açısından da alınan hataya yönelik bilgilendirici içerik sağlayacaktır.  
+
 
 Hata açıklamaları; hata koduna uygun ya da uyumlu olmak kaydıyla, HHS ve YÖS tarafından farklı şekillerde sunulabilir.  
+
 
 
 **GKD Sırasında yapılması gereken kontroller**
 
 | Rıza İptal Detay Kodu  | HHS hata açıklaması* | Yös ekranında listelenecek örnek mesaj metni* | Örnek Senaryo | Zorunlu / Opsiyonel |
 | --- | --- | --- | --- |--- |
-| 07 | Rıza durumunun "Yetkilendirildi" , "Yetki Kullanıldı" olduğu durum | Yetki Hatası | ÖHK, **GKD işlemi tamamlandıktan sonra** YÖS ekranında ileri- geri yaparak ya da ÖHK'nın yönlendirme adresini kopyalayarak tarayıcıya yapıştırması ile tekrar HHS'ye yönlendirir. Bu durumda HHS bu hata mesajını iletir. | Zorunlu |
-| 08 | Rızano ile kimlik bilgileri uyuşmazlığı. | İşleminiz gerçekleştirilememiştir. | YÖS tarafından başlatılan rıza içerisinde yer alan kimlik bilgisi (TCKN) ile HHS'de GKD yapılan ÖHK'nın bilgilerinin uyuşmadığı durumda |Zorunlu|
-| 09 | ÖHK'nın HHS'de ilgili ürününün olmadığı durum (hesap/kart) | Gösterilebilecek hesap/kart bulunamamıştır. | ÖHK'nın uygun statülü hesabının olmadığı durumda | Zorunlu |
-| 10 | Açık bankacılık kanalınız işleme kapalıdır. | Açık bankacılık kanalınız işleme kapalıdır. | Açık bankacılığı ayrı bir kanal olarak tanımlamış HHS'lerde, ÖHK'nın işlemlerini AB kanalına kapatması durumunda  | Opsiyonel |
-| 11 | Kullanıcının HHS'deki hesaplarında yeterli yetkisinin olmama durumu | Yetkiniz bulunmamaktadır. | 1- Kurumsal firma kullanıcılarının hesaplar üzerinde işlem yetkisinin olmaması durumunda 2- Bireysel ortak hesaplarda hesap kısıtı bulunuyorsa (para çıkışına izin verilmediği durum) | Zorunlu |
-| 12 | ÖHK'nın ilgili HHS müşterisi olmadığı durum | Yetkiniz bulunmamaktadır. | Tek seferlik ödemelerde rıza isteğinde ÖHK kimlik bilgileri bulunmamaktadır. Diğer akışlarda rıza isteğinde müşteri olma kontrolü yapılabilir. | Zorunlu |
-| 13 | HHS’nin ÖHK için yaptığı kontrollerin başarısız olduğu durum | Yetkiniz bulunmamaktadır | HHS'nin, ÖHK için iç sistemlerinde yaptığı kontrollerin başarısız olması. Örneğin: Müşterinin henüz bankacılık hizmet sözleşmesi gibi Internet şubesi üzerinde işlem yapmasını engelleyen eksikleri olması durumunda veya kurumsal kullanıcıda vekalet süresinin dolması/eksik doküman olması durumunda kanal üzerinde işlem yapamadığı durum | Zorunlu |
-| 14 | Başarısız GKD | Yetkiniz bulunmamaktadır | 1-ÖHK'nın GKD için gerekli 2FA bilgilerini sağlayamaması <br> 2- HHS risk algısına göre 12 nolu hata kodunu dönmek yerine 14 nolu hata kodunu da YÖS’e dönebilir. | Zorunlu |
-| 15 | ÖHK isteği ile GKD’den vazgeçildiği durum (Ör: HHS ekranında yer alan VAZGEÇ butonuna basmış olabilir. ) | Müşteri işlemden vazgeçmiştir. | 1- HHS ekranında yer alan VAZGEÇ butonuna basılması durumu (Hem ÖHK login olmadan önce hem de GKD sonrası (rıza verme öncesi) VAZGEÇ butonu olabilir.) <br>2-Müşteri Banka login ekranında herhangi bir aksiyon almadan beklemiştir ve HHS GKD zaman aşımı süresi 5 dakikadan kısadır.  | Zorunlu |
-| 16 | Diğer | İşleminiz gerçekleştirilememiştir. | - | Opsiyonel |
-
+| 07 | Rıza mevcut ve durumu "Yetkilendirildi" veya "Yetki Kullanıldı" | Yetki Hatası | ÖHK, **kullanıcı doğrulama işlemi tamamlandıktan sonra** YÖS ekranında ileri - geri yaparak ya da ÖHK'nın yönlendirme adresini kopyalayarak tarayıcıya yapıştırması ile tekrar HHS'ye yönlendirir. Bu durumda HHS bu rıza iptal detay kodunu iletir.<br><br>HHS ve YÖS'ler veri modellerini bu bilgi doğrultusunda güncellemelidir.   | Zorunlu |
+| 08 | Rızano ile kimlik bilgileri uyuşmazlığı. | İşlem gerçekleştirilememiştir. | YÖS tarafından başlatılan rıza içerisinde yer alan kimlik bilgisi (örn:TCKN) ile HHS'de başarılı kimlik doğrulama yapılan ÖHK'nın bilgilerinin uyuşmadığı durumda <br><br>HHS ve YÖS'ler veri modellerini bu bilgi doğrultusunda güncellemelidir.  |Zorunlu |
+| 09 | ÖHK'nın HHS'de ilgili ürününün olmadığı durum (hesap/kart) | Gösterilebilecek hesap/kart bulunamamıştır. | HHS, kullanıcı doğrulama yaptıktan sonra, ÖHK'nın uygun statülü hesabının olmadığı durumda <br><br>HHS ve YÖS'ler veri modellerini bu bilgi doğrultusunda güncellemelidir.  | Zorunlu|
+| 10 | ÖHK'nın Açık Bankacılık kanalı işleme kapalı | ÖHK'nın Açık Bankacılık kanalı işleme kapalı | Açık bankacılığı ayrı bir kanal olarak tanımlamış HHS'lerde, <br>ÖHK kullanıcı doğrulama yaptıktan sonra yapılan kontrollerde, ÖHK'nın işlemlerini AB kanalına kapatmış olması durumunda  <br><br>HHS ve YÖS'ler veri modellerini bu bilgi doğrultusunda güncellemelidir.   | Opsiyonel |
+| 11 | ÖHK'nın HHS'deki hesaplarında yeterli yetkisinin olmaması | Yetki hatası | 1- Kurumsal firma kullanıcılarının hesaplar üzerinde işlem yetkisinin olmaması durumunda <br> 2- Bireysel ortak hesaplarda hesap kısıtı bulunuyorsa (para çıkışına izin verilmediği durum) <br><br>HHS ve YÖS'ler veri modellerini bu bilgi doğrultusunda güncellemelidir.  | Zorunlu |
+| 12 | HHS’nin,  ÖHK özelinde yaptığı kontrollerin başarısız olması | Yetki hatası | HHS'nin, kullanıcı doğrulama sonrası ÖHK için iç sistemlerinde yaptığı kontrollerin başarısız olması. Örneğin: Müşterinin henüz bankacılık hizmet sözleşmesi gibi Internet şubesi üzerinde işlem yapmasını engelleyen eksikleri olması durumunda veya kurumsal kullanıcıda vekalet süresinin dolması/eksik doküman olması durumunda kanal üzerinde işlem yapamadığı durum <br><br>HHS ve YÖS'ler veri modellerini bu bilgi doğrultusunda güncellemelidir. | Zorunlu |
+| 13 | ÖHK isteği ile GKD’den vazgeçilmesi  | Müşteri işlemden vazgeçmiştir. |  HHS ekranında yer alan VAZGEÇ butonuna basılması durumu (ÖHK,HHS uygulamasında kullanıcı doğrulama yaptıktan sonra VAZGEÇ butonu olabilir.)  | Zorunlu |
+| 14 | GKD İptali: Fraud Şüphesi| İşlem gerçekleştirilememiştir. | HHS Fraud şüphesi nedeniyle işlemin devamına izin vermez. | Zorunlu |
+| 99 | Diğer | İşlem gerçekleştirilememiştir. | Oluşabilecek diğer senaryolar. | Zorunlu |
 
 GKD sırasında iletilen rıza no eğer HHS’nin sisteminde bulunamazsa durumu güncellenecek bir rıza no da olmayacaktır. HHS kendi önyüzünde bu duruma uygun bir mesaj gösterebilir. YÖS’e de Diğer hata kodu ile bu durumu iletebilir. 
 

@@ -27,7 +27,7 @@
 | 1|odeme-emri-rizasi|POST |/odeme-emri-rizasi |Z |İstemci Kimlik Bilgileri |İmzalı İstek ve Yanıt |OdemeEmriRizasiIstegi |OdemeEmriRizasi |
 | 2|erisim-belirteci (GKD için)|POST | /erisim-belirteci /odeme-emri-rizasi |Z |İstemci Kimlik Bilgileri |İmzalı İstek ve Yanıt |ErisimBelirteciIstegi |ErisimBelirteci |
 | 2.1 |odeme-emri-rizasi |GET | /odeme-emri-rizasi/{rizaNo} |Z |İstemci Kimlik Bilgileri  |İmzalı Yanıt |- |OdemeEmriRizaYaniti |
-| 3 |odeme-emri |POST | /odeme-emri |Z |İstemci Kimlik Bilgileri & Yetkilendirme Kodu (GKD) |İmzalı Yanıt |OdemeEmriIstegi |OdemeEmri |
+| 3 |odeme-emri |POST | /odeme-emri |Z |İstemci Kimlik Bilgileri & Yetkilendirme Kodu (GKD) |İmzalı İstek ve Yanıt |OdemeEmriIstegi |OdemeEmri |
 | 3.1 |odeme-emri |GET | /odeme-emri/{odemeEmriNo}|Z |İstemci Kimlik Bilgileri & Yetkilendirme Kodu (GKD) |İmzalı Yanıt |- |OdemeEmri |
 
 ## 6.1.	ADIM 0 - Ödeme Emri Başlatma Isteği
