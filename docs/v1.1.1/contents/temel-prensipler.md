@@ -7,7 +7,7 @@ Bu bölümde Ödeme Hizmetleri Veri Paylaşım Servisleri (Hesap Bilgisi Hizmeti
 - [3.2.	İstem ve Oturum](#_3-2-istem-ve-oturum)
 - [3.3.	RESTful API](#_3-3-restful-api)
 - [3.4.	Sürüm Yönetimi](#_3-4-surum-yonetimi)
-- [3.5.	Kaynak URI Yol Yapısı](#_3-5-kaynak-uri-yol-yapısı)
+- [3.5.	Kaynak URI Yol Yapısı](#_3-5-kaynak-uri-yol-yapisi)
 - [3.6.	Karakter Kodlama](#_3-6-karakter-kodlama)
 - [3.7.	Veri Formatı](#_3-7-veri-formatı)
 - [3.8.	İstemci Sertifika Yönetimi](#_3-8-istemci-sertifika-yonetimi)
@@ -103,37 +103,37 @@ HHS, tüm kaynakları için aynı katılımcı yolu ön ekini ve sistem adını 
 BKM API’lerine erişmek isteyen uygulamaların yetkilerine göre aşağıdaki API’lere abone olmaları gerekmektedir:  
 
 OBH:  
-[https://apigw-prod.bkm.com.tr/api/main/ohvps/obh/s1.0/odeme-emri-rizasi]()  
-[https://apigw-prod.bkm.com.tr/api/main/ohvps/obh/s1.0/odeme-emri]()  
+[https://secure.api-preprod.bkm.com.tr/ohvps/obh/s1.0/odeme-emri-rizasi]()  
+[https://secure.api-preprod.bkm.com.tr/ohvps/obh/s1.0/odeme-emri]()  
 HBH:  
-[https://apigw-prod.bkm.com.tr/api/main/ohvps/hbh/s1.0/hesap-bilgisi-rizasi]()  
-[https://apigw-prod.bkm.com.tr/api/main/ohvps/hbh/s1.0/hesaplar]()  
-[https://apigw-prod.bkm.com.tr/api/main/ohvps/hbh/s1.0/hesaplar/1234/islemler]()  
-[https://apigw-prod.bkm.com.tr/api/main/ohvps/hbh/s1.0/hesaplar/1234/bakiye]()  
+[https://secure.api-preprod.bkm.com.tr/ohvps/hbh/s1.0/hesap-bilgisi-rizasi]()  
+[https://secure.api-preprod.bkm.com.tr/ohvps/hbh/s1.0/hesaplar]()  
+[https://secure.api-preprod.bkm.com.tr/ohvps/hbh/s1.0/hesaplar/1234/islemler]()  
+[https://secure.api-preprod.bkm.com.tr/ohvps/hbh/s1.0/hesaplar/1234/bakiye]()  
 GKD  
-[https://apigw-prod.bkm.com.tr/api/main/ohvps/gkd/s1.0/erisim-belirteci]()  
+[https://secure.api-preprod.bkm.com.tr/ohvps/gkd/s1.0/erisim-belirteci]()  
 HHS – YÖS API  
-[https://apigw-prod.bkm.com.tr/api/main/hhs-api/s1.0/hhs]()  
-[https://apigw-prod.bkm.com.tr/api/main/hhs-api/s1.0/hhs/1234]()  
-[https://apigw-prod.bkm.com.tr/api/main/yos-api/s1.0/yos]()  
-[https://apigw-prod.bkm.com.tr/api/main/yos-api/s1.0/yos/1234]()  
+[https://secure.api-preprod.bkm.com.tr/hhs-api/s1.0/hhs]()  
+[https://secure.api-preprod.bkm.com.tr/hhs-api/s1.0/hhs/1234]()  
+[https://secure.api-preprod.bkm.com.tr/yos-api/s1.0/yos]()  
+[https://secure.api-preprod.bkm.com.tr/yos-api/s1.0/yos/1234]()  
 
   
 HHS’lerin sağlayacakları API’lerdeki URI çevrimi örnekleri aşağıdaki gibidir.  
 
 - [https://xbank.com.tr/api-portal/ohvps/obh/s1.0/odeme-emri]() 
-- [https://apigw-prod.bkm.com.tr/api/main/ohvps/obh/s1.0/odeme-emri]() (BKM API) 
+- [https://secure.api-preprod.bkm.com.tr/ohvps/obh/s1.0/odeme-emri]() (BKM API) 
 - [https://xbank.com.tr/api-portal/ohvps/hbh/s1.0/hesap-bilgisi-rizasi]() 
-- [https://apigw-prod.bkm.com.tr/api/main/ohvps/hbh/s1.0/hesap-bilgisi-rizasi]() (BKM API) 
+- [https://secure.api-preprod.bkm.com.tr/ohvps/hbh/s1.0/hesap-bilgisi-rizasi]() (BKM API) 
 - [https://xbank.com.tr/api-portal/ohvps/hbh/s1.1/hesaplar]() 
-- [https://apigw-prod.bkm.com.tr/api/main/ohvps/hbh/s1.1/hesaplar]()  (BKM API)  
+- [https://secure.api-preprod.bkm.com.tr/ohvps/hbh/s1.1/hesaplar]()  (BKM API)  
 - [https://xbank.com.tr/api-portal/ohvps/hbh/s1.1/hesaplar/1234]() 
-- [https://apigw-prod.bkm.com.tr/api/main/ohvps/hbh/s1.1/hesaplar/1234]() (BKM API)
+- [https://secure.api-preprod.bkm.com.tr/ohvps/hbh/s1.1/hesaplar/1234]() (BKM API)
 
 BKM API Geçidi üzerinden yapılan çağrılarda, istek başlığında bulunan “x-aspsp-code” (isteğin iletildiği Hesap Hizmeti Sağlayıcısının kodu) değerine göre HHS API’de standart olarak tanımlanmış olan “basePath” bilgisine servis uzantısı eklenerek HHS’ye yönlendirme yapılır.
 
 Örneğin, istek başlığında **xbank**’ın kodu varsa, YÖS tarafından yapılan   
-[https://apigw-prod.bkm.com.tr/api/main/ohvps/hbh/s1.0/hesap-bilgisi-rizasi]()  
+[https://secure.api-preprod.bkm.com.tr/ohvps/hbh/s1.0/hesap-bilgisi-rizasi]()  
 çağrısı BKM API Geçidi tarafından karşılanarak  
 [https://xbank.com.tr/api-portal/ohvps/hbh/s1.0/hesap-bilgisi-rizasi]()  
 adresine yönlendirilir.   
@@ -269,6 +269,7 @@ Erişim adreslerinin ve alanların kullanımı Zorunlu(Z), İsteğe Bağlı(İ) 
 |PSU-Timestamp|ISODateTime|	ÖHK’nın işlemi başlattığı cihazın tarih saat içeren zaman bilgisi.|İ|İ|İ|
 |PSU-Device-ID|AN5..40|ÖHK işlemi mobil uygulama aracılığıyla başlattıysa, kullanılan mobil uygulama ilk yüklendiğinde oluşturulan tekil cihaz veya uygulama belirteci. ÖHK cihazının UUID değeri kullanılabilir.|İ|İ|İ|
 |PSU-Device-Data|AN1..1024|ÖHK’nın işlemi başlattığı mobil cihaza ait veriler. <br>Örnek alanlar: <br> - Platform - (Android, iOS, Windows 10 Mobile)<br> - Device Model <br> - OS Name <br> - OS Version<br>- Locale<br>- Time zone|İ|İ|İ|
+|PSU-Fraud-Check | AN1..4096 | YÖS'lerin çeşitli güvenlik kontrollerini gerçekleştirerek, önemli görülen aşağıdaki bilgileri HHS'ler ile paylaşmaları gerekmektedir.<br> <br> Paylaşılacak bilgiler şu şekildedir.<br> <b>FirstLoginFlag</b> : ÖHK'nın, müşterilik ömründe ilgili YÖS sistemine ilk login olma süresini (gün bazında) ifade eden değer. Gönderilmesi Zorunlu alandır.<br> <b>DeviceFirstLoginFlag</b> : ÖHK'nın, müşterilik ömründe ilgili YÖS sistemine, mevcut işleme ait cihazla ilk login olma süresini (gün bazında) ifade eden değer. ÖHK cihaz değişikliği yaparsa FirstLoginFlag değeri sabit kalacak ancak DeviceFirstLoginFlag değeri değişecektir gibi düşünülebilir. Gönderilmesi Zorunlu alandır.<br> <b>LastPasswordChangeFlag</b> : ÖHK'nın, YÖS uygulamasına login olduğu şifre bilgisinin en son değiştirildiği süreyi (gün bazında) ifade eden değer.  Gönderilmesi Zorunlu alandır.<br> <b>BlacklistFlag</b> : ÖHK'nın herhangi bir sebeple YÖS'ün sakıncalı müşteriler listesinde bulunup bulunmadığını ifade eden değer. (kısıtlı hesap/alıcı veya cihaz gibi) Gönderilmesi Opsiyonel alandır.<br> <b>MalwareFlag</b> : YÖS uygulamasının çalıştığı cihaz üzerindeki son 7 güne ait zararlı yazılım tespit bilgisini ifade eden değer.  Maksimum son 7 güne ait tespitleri gösterir. Örn: Zararlı şüphesi oluşan bir müşterinin, 8 gün ve sonrasında yeni bir tespit bulunmuyorsa bu alandaki değeri '0' olarak gösterilmelidir. Gönderilmesi Opsiyonel alandır.<br> <b>AnomallyFlag</b> : Diğer şüpheli durumların varlığını ifade eden değer. Gönderilmesi Opsiyonel alandır.<br> <b>UnsafeAccountFlag</b>: HHS tarafından aktarılan bilgi ile son 14 gün içinde ÖHK'nın dolandırıcılık mağduru olması durumunu ifade eden değer. Maksimum son 14 güne ait tespitleri gösterir. Örn: Bugün hesabı ele geçirilen bir müşterinin, 15 gün ve sonrasında yeni bir tespit bulunmuyorsa bu alandaki değeri '0' olarak gösterilmelidir. Gönderilmesi Opsiyonel alandır.<br><br> <br> Flaglar JWT claims içine key value şeklinde eklenerek gönderilecektir. EK-5: Mesaj İmzalama Akışı'nda belirtilen yöntemle imzalanarak oluşturulan JWT PSU-Fraud-Check alanına konularak YÖS'ler tarafından HHS'ye iletilmelidir.  | Z | Z | Z |
 |PSU-Initiated|AN1|İşlemin ÖHK tarafından başlatılması durumunda E , sistem tarafından başlatıldığı durumda H değerini alması beklenir. <br> İşlemler servisinde yapılacak sistemsel sorgulardaki işlem limitlerini kontrol amacıyla kullanılır. |Z|Z|Z|
 |Authorization|AN1..4096|YÖS ile BKM API Gateway arasındaki otorizasyon için kullanılan token bilgisidir. <br>Yekilendirme türlerinden İstemci Kimlik Bilgileri’ni adresler.|Z  |Z |Z  |
 | X-Access-Token |AN1..4096|ÖHK’nın GKD sürecinde doğrulanması sonrasında kullanılan erişim simgesi. Yetkilendirme türlerinden Yetkilendirme Kodu (GKD)’nu adresler. |İ|İ|İ|
@@ -285,7 +286,7 @@ Erişim adreslerinin ve alanların kullanımı Zorunlu(Z), İsteğe Bağlı(İ) 
 |X-ASPSP-Code  | AN4| İsteğin iletildiği Hesap Hizmeti Sağlayıcısının kodudur. (Nezdinde ÖH bulunduran kuruluş kodu. Örneğin, Banka, Elektronik Para Kuruluşu ve Ödeme Kuruluşu)|Z|
 |X-TPP-Code |AN4| İsteği gönderen Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur|Z|
 |Content-Type |AN1..20|Standart HTTP Başlığı; Talepte sağlanan payload’ın biçimini temsil eder: **application/json**|İ|
-|X-JWS-Signature |AN1..4096|JWS imzasını içeren üstbilgi. Bu başlığın hangi yanıtlar için kullanılması gerektiği ilgili endpoint için belirtilmiştir. <br>Hata durumlarında, yanıt gövdesi değeri dönülüyor ise imzalalanmalı ve imza bilgisi x-jws-signature alanında iletilmelidir.|K|
+|X-JWS-Signature |AN1..4096|JWS imzasını içeren üstbilgi. Bu başlığın hangi yanıtlar için kullanılması gerektiği ilgili endpoint için belirtilmiştir. <br>Hata durumlarında, yanıt gövdesi değeri dönülüyor ise imzalalanmalı ve imza bilgisi x-jws-signature alanında iletilmelidir.<br> Ancak uygulama katmanı tarafından yakalanamayan dolayısı ile imzalanamayan hata durumlarında x-jws-signature alanı HHS'ler tarafından boş gönderilebilir. |K|
 | X-RateLimit-Limit | N 1..18 | İstek kısıtı uygulanan servislerde en fazla kaç adet istek yapılabileceğini gösterir. Kısıt uygulanan servislerde bu başlığın dönmesi zorunludur. | K |
 | X-RateLimit-Remaining  | N 1..18 | İstek kısıtı uygulanan servislerde kaç adet istek hakkı kaldığını gösterir. Kısıt uygulanan servislerde bu başlığın dönmesi zorunludur. | K |
 |X-RateLimit-Reset |AN 1..255|İstek kısıtı uygulanan servislerde çağrım hakkı bittikten sonra yeniden denemeden önce beklemesi gereken süreyi (saniye cinsinden) gösterir. HTTP 429 durum kodu (Too Many Requests) ile dönülen yanıtların başlığında dönülmesi zorunludur. |K|

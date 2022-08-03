@@ -27,10 +27,12 @@ Açık Bankacılık simülatör uygulaması üzerinde swagger dökümanlarının
 | TR.OHVPS.DataCode.HspDrm | Hesabın durumunu belirtir:<br>AKTIF<br>PASIF<br>KAPALI|
 | TR.OHVPS.DataCode.YetTip | Alabileceği değerlere göre hangi belirtecin döneceğine karar verilir.<br>yet_kod<br>yenileme_belirteci |
 | TR.OHVPS.DataCode.BrcAlc | İşlemin hesabı borçlandırdığı ya da alacaklandırdığı bilgisidir.<br>B : Borç<br>A : Alacak |
-| TR.OHVPS.DataCode.RizaIptDtyKod | ‘01’ :Yeni Rıza Talebi ile İptal<br>‘02’ :Kullanıcı İsteği ile HHS üzerinden İptal<br>‘03’ :Kullanıcı İsteği ile YÖS üzerinden İptal<br>‘04’ :Süre Aşımı : Yetki Bekleniyor<br>‘05’ :Süre Aşımı : Yetkilendirildi<br>‘06’ :Süre Aşımı : Yetki Ödemeye Dönüşmedi<br>‘07’ :GKD iptali : Aynı rıza no ile mükerrer çağrımı<br>‘08’ :GKD iptali : Rızano ile TCKN uyuşmaması<br>‘09’ :GKD iptali : Uygun ürünü bulunmuyor<br>‘10’ :GKD iptali : HHS Açık Bankacılık kanalı işleme kapalı<br>’11’ :GKD iptali : Hesap Yetki Sorunu<br>‘12’ :GKD iptali : ÖHK HHS müşterisi değil<br>‘13’ :GKD iptali : ÖHK HHS kontrollerini aşamadı<br>‘14’ :GKD iptali : Başarısız GKD<br>‘15’ :GKD iptali : ÖHK isteği ile GKD’den vazgeçildi<br>‘16’ :GKD iptali : Diğer<br> |
+| TR.OHVPS.DataCode.RizaIptDtyKod | ‘01’ :Yeni Rıza Talebi ile İptal<br>‘02’ :Kullanıcı İsteği ile HHS üzerinden İptal<br>‘03’ :Kullanıcı İsteği ile YÖS üzerinden İptal<br>‘04’ :Süre Aşımı : Yetki Bekleniyor<br>‘05’ :Süre Aşımı : Yetkilendirildi<br>‘06’ :Süre Aşımı : Yetki Ödemeye Dönüşmedi<br>‘07’ :GKD iptali : Aynı rıza no ile mükerrer çağrımı<br>‘08’ :GKD iptali : Rızano ile TCKN uyuşmaması<br>‘09’ :GKD iptali : Uygun ürünü bulunmuyor<br>‘10’ :GKD iptali : HHS Açık Bankacılık kanalı işleme kapalı<br>’11’ :GKD iptali : Hesap Yetki Sorunu<br>‘12’ :GKD iptali : ÖHK HHS kontrollerini aşamadı<br>‘13’ :GKD iptali : ÖHK isteği ile GKD’den vazgeçildi<br>‘14’ :GKD iptali : Fraud Şüphesi<br>‘99’ :GKD iptali : Diğer<br>|
 | TR.OHVPS.DataCode.PSUInitiated | ‘E’ : Evet<br>‘H’ : Hayır |
 | TR.OHVPS.DataCode.HHSYOSSrlmKrtr | ‘kod’ : Kod,‘unv’ : Unvan |
-| TR.OHVPS.DataCode. SrlmYon | ‘A’: Azalan değerle sıralama<br>‘Y’: Artan değerle sıralama |
+| TR.OHVPS.DataCode.SrlmYon | ‘A’: Azalan değerle sıralama<br>‘Y’: Artan değerle sıralama |
+| TR.OHVPS.DataCode.ZmnAralik | 0 : Kayıt Yok <br>1 : 0-2 saat<br>2 : 2-24 saat<br> 3 : 1-3 gün <br> 4 : 3-15 gün	<br> 5 : 15 gün ve üstü |
+| TR.OHVPS.DataCode.VarYok | 0 : Kayıt Yok <br> 1 : Kayıt Var |
 
 ## EK-3: İstemci Sertifikalarının Tanım ve Yönetimi
 
@@ -61,6 +63,8 @@ BKM API Geçidi çözümünün test ve üretim ortamları ayrımında istemci se
 
 Sunucu sertifikalarının endpoint bilgisini (Fqdn) içerecek ve global bir Certification Authority tarafından imzalanmış olarak sunulması gerekmektedir. 
 Örneğin; entegrasyon formu içerinde yer alan URL bilgisinin (test.xbank.com.tr) sertifika içerisinde tanımlı olması ve bu sertifikanın global bir CA örneğin Verisign tarafından imzalanmış olarak sunulması gerekmektedir.
+
+Hizmet sağlayıcı olan HHS'ler tarafından sunucu sertifikaları uygulanmalıdır.
 
 
 ## EK-5: Mesaj İmzalama Akışı

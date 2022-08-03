@@ -2,8 +2,10 @@
 
 **<font size=6>API İLKE VE KURALLARI  </font>**  
 
-<font size=4><b>Sertifikasyon için geçerli olan SÜRÜM 1.1.0'dır.<br>
- Menü ağacında yer alan Taslak Sürüm 1.1.1 üzerinde aktif değişiklik yapılan sürümdür.</b></font>
+<font size=4><b>Taslak Sürüm 1.1.1 olarak menü ağacında yer alan sürüm numarası 1.0.2 olarak güncellenmiştir ve aktif sürüm haline gelmiştir.<br>
+Endpoint'lerde yer alan sürüm bilgisinin güncellenmemesi için sürüm numaraları 1.0.X olarak yayınlanmaktadır.<br>
+Sertifikasyon için geçerli olan SÜRÜM 1.0.2 olacaktır.<br>
+ <https://github.com/ohvps/> adresi üzerinden sürüm farkları incelenebilir.<br></b></font>
 
 <br/>
 <br/>

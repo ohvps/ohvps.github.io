@@ -124,6 +124,10 @@ Bugün : 31.08.2019
 Bugün + 6 Ay : 29.02.2020  
 Bugün : 30.08.2020  
 Bugün + 6 Ay : 28.02.2021
+Bugün : 30.09.2022  
+Bugün + 3 Ay : 30.12.2022
+Bugün : 14.07.2022  
+Bugün + 3 Ay : 14.10.2022
 
 **Tablo 12: “HesapBilgisiRizasiIstegi” nesnesi**
 |Alan Adı |JSON Alan Adı	|Format	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|HHS tarafından yapılması gereken kontrol ve işlemler|
