@@ -12,6 +12,8 @@ YÖS erisim-belirteci erişim adresini 2 amaçla kullanır:
 
 POST /erisim-belirteci isteğinin (REQUEST) gövdesinde (BODY)  “ErisimBelirteciIstegi” nesnesi (Tablo-23) kullanılır. İstek başarıyla sonuçlanırsa HHS kaynak sunucusunda “ErisimBelirteci” nesnesi (Tablo 24) oluşturulur veya (Yenileme Belirteci için) güncellenir. Rıza durumu “Yetki Kullanıldı” olarak güncellenir.
 
+Erişim Belirteci POST işlemi sonucunda HTTP 200 dönülmesi gerekmektedir. 
+
 
 **Tablo 23: “ErisimBelirteciIstegi” nesnesi**
 
@@ -35,7 +37,7 @@ POST işleminin RESPONSE gövdesini (BODY) oluşturan “erisimBelirteci” nesn
 |Alan Adı |JSON Alan Adı	|Format:Veri modeli İsmi	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|
 | --- | --- | --- | --- | --- | 
 | Erişim Belirteci | erisimBelirteci | AN1..4096 | Z | Yetkilendirme Kodu karşılığında HHS tarafından dönülen ve sonraki hesap bilgisi ve ödeme emri servislerine erişimde kullanılan bilgidir.  | 
-| Geçerlilik Süresi | gecerlilikSuresi | N1..9 | Z | Erişim Belirtecini saniye cinsinden geçerlilik süresidir.<br> Erişim belirteci geçerli olduğu son tarih ;<br>Hesap Bilgisi Rızası için 30 gün olmalıdır. Erişimin Geçerli Olduğu Son Tarih 30’dan küçük ise bu süre değeri ile sınırlıdır.<br>Ödeme Başlatma Rızası için 5 dakika olmalıdır. | 
+| Geçerlilik Süresi | gecerlilikSuresi | N1..9 | Z | Erişim Belirtecini saniye cinsinden geçerlilik süresidir.<br> Erişim belirteci geçerli olduğu son tarih ;<br>Hesap Bilgisi Rızası için en fazla 30 gün olmalıdır. Erişimin Geçerli Olduğu Son Tarih(erisimIzniSonTrh); Erişim Belirteci Geçerlilik Süresi'nden küçük ise Erişimin Geçerli Olduğu Son Tarih değeri ile sınırlıdır.<br>Ödeme Başlatma Rızası için 5 dakika olmalıdır. | 
 | Yenileme Belirteci | yenilemeBelirteci | AN1..4096 | Z | Erişim belirtecinin yenilenmesi amacıyla kullanılır. | 
 | Yenileme Belirteci Geçerlik Süresi | yenilemeBelirteciGecerlilikSuresi | N1..9 | Z | Yenileme belirtecinin saniye cinsinden geçerlilik süresidir.<br>Yenileme belirtecinin geçerli olduğu son tarih ;<br>Hesap Bilgisi için Erişimin Geçerli Olduğu Son Tarih ile sınırlı olmalıdır.<br>Bu tarih geldiği zaman Hesap Bilgisi Rıza Durumunu ”Yetki Sonlandırıldı” statüsüne çekilmesi gerekir.<br>Ödeme Başlatma için Rıza Oluşturma Zamanından 15 gün sonrası olmalıdır.<br><br>15 gün süresi sorgulama servislerinin çağrımını destekleyecek şekilde uzun tutulmuştur. İleri vadeli işlemler bu kapsamda değildir. <br>Ödeme emri 5 dakika içinde gerçekleştirilmelidir. Gerçekleşmediğinde 4.2.8 bölümünde aktarılan rıza statü güncellemesi yapılmalıdır. | 
 
