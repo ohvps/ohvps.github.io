@@ -380,13 +380,13 @@ srlmYon=A
 | --- | --- | --- | --- | --- | 
 |Hesap Referansı|	hspRef|	AN5..40	|Z|	HHS tarafından hesap için atanan biricik tanımlıyıcıdır (uuid). YÖS bazında farklılaşması gerekmez.|
 | Bakiye|	bky	|Kompleks:Bakiye|	Z	||
-|> Hesap Bakiye Tutarı	|bkyTtr	|N1..18|	Z	|Hesabın bakiyesi.  Örneğin 1,20 TRY için tutar alanında “120” değeri iletilir|
-|> Blokeli Tutar	|blkTtr	|N1..18|	K	|Varsa hesapta blokeli tutar bilgisi.  Örneğin 1,20 TRY için tutar alanında “120” değeri iletilir|
+|> Hesap Bakiye Tutarı	|bkyTtr	| AN1..24 |	Z	|Hesabın bakiyesi.  <br> Tutar alanı regex patterni şu şekildedir: '^\d{1,18}$\|^\d{1,18}\\.\d{1,5}$'  |
+|> Blokeli Tutar	|blkTtr	| AN1..24 |	K	|Varsa hesapta blokeli tutar bilgisi.   <br> Tutar alanı regex patterni şu şekildedir: '^\d{1,18}$\|^\d{1,18}\\.\d{1,5}$' |
 |> Para Birimi|	prBrm|	AN3	|Z|	Para birimi. |
 |> Bakiye İletilme Zamanı	|bkyZmn|	ISODateTime	|Z|	Bakiyenin iletildiği zaman bilgisi.|
 |> KrediliHesap|	krdHsp|	Kompleks: KrediliHesap|	K	||
-|>> Kredili Mevduat Hesabı Bakiyesi	|kulKrdTtr	|N1..18|	Z	|Kullanılabilir kredili mevduat tutarı. Kredili bir hesap ise zorunlu. Örneğin 1,20 TRY için tutar alanında “120” değeri iletilir|
-|>> Kredi Dahil Göstergesi|	krdDhlGstr	|AN1|	Z	|Kredili bir hesap ise zorunlu. Bakiye tutarının kullanılabilir kredi tutarı dahil edilerek ya da edilmeden iletildiğini gösterir.  0: Kredi tutarı dahil edilmeden bakiye bilgisi iletilmesi durumu 1: Kredi tutarı dahil edilerek bakiye bilgisi iletilmesi durumu|  
+|>> Kredili Mevduat Hesabı Bakiyesi	|kulKrdTtr	|AN1..25|	Z	|Kullanılabilir kredili mevduat tutarı. Kredili bir hesap ise zorunlu. <br> Tutar alanı regex patterni şu şekildedir: '^-?\d{1,18}$\|^-?\d{1,18}\\.\d{1,5}$'|
+|>> Kredi Dahil Göstergesi|	krdDhlGstr	|AN1|	Z	|Kredili bir hesap ise zorunlu. Bakiye tutarının kullanılabilir kredi tutarı dahil edilerek ya da edilmeden iletildiğini gösterir. <br> 0: Kredi tutarı dahil edilmeden bakiye bilgisi iletilmesi durumu <br> 1: Kredi tutarı dahil edilerek bakiye bilgisi iletilmesi durumu|  
 
 ## 7.8 ADIM 3.5 ve 3.6: İşlemlerin Sorgulanması  
 
@@ -431,8 +431,8 @@ srlmYon=A
 | --- | --- | --- | --- | --- | --- |
 |İşlem Sorgulama Başlangıç Zamanı	|hesapIslemBslTrh	|ISODateTime|	Z	|Sorgulanacak işlemlerin başlangıç tarihi.|	HHS işlemler listesi dönüşünü bu kritere göre filtreleyerek iletmek zorundadır.<br><br>ÖHK tarafından tetiklenen sorgularda;hesapIslemBslTrh ve hesapIslemBtsTrh arası fark bireysel ÖHK’lar için en fazla 1 ay,kurumsal ÖHK’lar için ise en fazla 1 hafta olabilir.<br><br>YÖS tarafından sistemsel yapılan sorgulamalarda hem bireysel, hem de kurumsal ÖHK’lar için;son 24 saat sorgulanabilir. Bu yüzden hesapIslemBtsTrh-24 saat’ten daha uzun bir aralık sorgulanamaz olmalıdır.<br><br>İstek başlığında yer alan PSU-Initiated alanı “E” ise ÖHK’lı, “H” ise sistemsel yapılmış bir sorgu anlamına gelmektedir.|
 |İşlem Sorgulama Bitiş Zamanı|	hesapIslemBtsTrh	|ISODateTime|	Z	|Sorgulanacak işlemlerin bitiş tarihi.|	HHS işlemler listesi dönüşünü bu kritere göre filtreleyerek iletmek zorundadır.<br>YÖS tarafından sistemsel yapılan sorgulamalarda hem bireysel, hem de kurumsal ÖHK’lar için;İleri vadeli işlem emirleri dahil olmadığı için; İşlem Sorgulama Bitiş Zamanı, her zaman, sorgulama zaman damgasını iletecek şekilde (datetime (now)) iletilmelidir. |
-|En Düşük İşlem Tutarı|	minIslTtr	|N1..18	|İ	|Sorgulanacak işlemlerin alabileceği en düşük işlem tutarı.Örneğin 1,20 TRY için tutar alanında “120” değeri iletilir.|	Bu veri gönderildiği durumda HHS işlemler listesi dönüşünü bu kritere göre filtreleyerek iletmek zorundadır.|
-|En Yüksek İşlem Tutarı	|mksIslTtr|	N1..18|	İ|	Sorgulanacak işlemlerin alabileceği en yüksek işlem tutarı.Örneğin 1,20 TRY için tutar alanında “120” değeri iletilir. |	Bu veri gönderildiği durumda HHS işlemler listesi dönüşünü bu kritere göre filtreleyerek iletmek zorundadır.|
+|En Düşük İşlem Tutarı|	minIslTtr	|AN1..24	|İ	|Sorgulanacak işlemlerin alabileceği en düşük işlem tutarı. <br>  <br> Tutar alanı regex patterni şu şekildedir: '^\d{1,18}$\|^\d{1,18}\\.\d{1,5}$' |	Bu veri gönderildiği durumda HHS işlemler listesi dönüşünü bu kritere göre filtreleyerek iletmek zorundadır.|
+|En Yüksek İşlem Tutarı	|mksIslTtr|	AN1..24|	İ|	Sorgulanacak işlemlerin alabileceği en yüksek işlem tutarı.  <br> Tutar alanı regex patterni şu şekildedir: '^\d{1,18}$\|^\d{1,18}\\.\d{1,5}$'  |	Bu veri gönderildiği durumda HHS işlemler listesi dönüşünü bu kritere göre filtreleyerek iletmek zorundadır.|
 |Borç Alacak Göstergesi	|brcAlc	|AN1|	İ|	TR.OHVPS.DataCode.BrcAlc sıralı veri tipi değerlerinden birini alır. Sorgulanacak işlemlerin borç / alacak kriteri B: Hesaba borç yaratan işlem.A: Hesaba alacak yaratan işlem.{“B”,”A”}	|Bu veri gönderildiği durumda HHS işlemler listesi dönüşünü bu kritere göre filtreleyerek iletmek zorundadır.|
 |Sayfa Başına İstenen Kayıt Sayısı|	syfKytSayi|	N3|	İ	|Sayfa başına istenen kayıt sayısı. Bu alanda iletilen değer 100’den büyük olamaz. |Bu veri gönderildiği durumda, HHS işlemler listesini bu sayı kadar gruplandırarak gönderir. Bu veri gönderilmediğinde sayfadaki kayıt sayısı 100 olarak kullanılır. |
 |İstenen Sayfa Numarasi|	syfNo|	N3|	İ	|Cevapta dönecek sayfa numarası 1’den başlayarak artan değerlerle iletilmelidir.|	Bu veri gönderildiği durumda, HHS işlemler listesini bu sayfadaki kayıtları gönderir. Gönderilmediğinde, HHS ilk sayfadaki kayıtları gönderir. |
@@ -448,7 +448,7 @@ srlmYon=A
 |> Temel İşlem Bilgileri|	islTml	|Kompleks:IslemTemel|	Z	|Temel İşlem Bilgileri varsayılan olarak dönülür. |
 |>> İşlem Numarası	|islNo|	AN3..50|	Z|	Hesap hareketinin oluşturulması sırasında atanan ve borç (veya alacak) hareketini tekilleştiren HHS bazında tekil tanımlayıcıdır. Bu değer tek başına tekil olabileceği gibi birden fazla değerin bir araya getirilmesiyle de tekilliği sağlanmış olabilir. Bu değerin en azından hesap numarası (hesNo) bazında tekil olması beklenir. Genellikle kullanılan örnekleri; Instance_Id, Transaction_Id, Transaction_Num, Transaction_TimeStamp,dekont numarası|
 |>> İşlem Referans Numarası	|refNo|	AN3..50	|Z|	İşlemi uçtan uca tanımlayan tekil tanımlayıcıdır. Borç ve alacak hareketinden oluşan bir veya birden fazla işlemler bütünü için atanmış olan ve bu bütünü tekilleştiren (bir biri ile ilişkisini tutan) değerdir.Bu değer hem YÖS’ten gelen değer olabilir (ödeme işlemlerinde kullanılan kkodRef ya da refBlg alanı) hem de HHS içinde takip edilmek için üretilmiş bir değer olabilir. HHS sisteminde 2 değerin de bulunması durumunda;refNo alanını doldurmak için, HHS’nin YÖS’ten gelen değere öncelik vermesi beklenmektedir. YÖS’ten gelen veri örneği: Sipariş Numarası, Fatura Numarası, Karekod Referansı vb. HHS’te üretilen veri örneği: Masraflı havale işleminde hem havale işleminin hem de masraf işleminin aynı referans numarasına sahip olması da örnek olarak gösterilebilir.|
-|>> İşlem Tutarı |	islTtr|	N1..18|	Z	|İşlem tutarı. Örneğin 1,20 TRY için tutar alanında “120” değeri iletilir.|
+|>> İşlem Tutarı |	islTtr|	AN1..25|	Z	|İşlem tutarı.  <br> Tutar alanı regex patterni şu şekildedir: '^-?\d{1,18}$\|^-?\d{1,18}\\.\d{1,5}$'|
 |>> Para Birimi	|prBrm|	AN3|	Z|	Para birimi.|
 |>> İşlem Gerçekleşme Zamanı|	islGrckZaman|	ISODateTime|	Z|	İşlemin gerçekleşme zamanı.|
 |>> İşlem Kanalı|	kanal|	AN1|	Z	|TR.OHVPS.DataCode.OdemeKaynak sıralı veri türü değerlerinden birini alır.|
