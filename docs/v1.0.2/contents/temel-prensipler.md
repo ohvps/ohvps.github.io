@@ -168,12 +168,15 @@ XXX : ISO 8601 Time zone
 - Bir HHS, tarihi yanlış biçimlendirilmiş bir istek aldığında, 400 (Hatalı İstek) durum kodu ve ilgili hata kodu ile yanıt vermelidir.
 
 - ISO 4217 Standartında para birimleri ve kaç basamak ondalık değer içerebilecekleri belirlenmiştir.  
+[https://www.iso.org/iso-4217-currency-codes.html](https://www.iso.org/iso-4217-currency-codes.html)  adresinden ücretsiz olarak listeye erişilebilir. <br>
 API Standartlarında da para birimleri  ISO 4217’de tanımlanmış olan 3 harfli kodlarla iletilir. <br> Tüm tutar alanları ISO 4217'de tanımlanmış para birimlerinin ondalık basamak değerleri de göz önünde bulundurularak iletilmelidir. Tutar alanları artı ya da eksi değer alabileceği için API deseninde tanımlanmış regular expressionlar dikkate alınmalıdır.   
 Örneğin; Bakiye API'sindeki "Kredili Mevduat Hesabı Bakiyesi" alanı "-100.25" ve "Para Birimi" alanı "TRY" olarak iletildiğinde 25 değerinin kuruş olduğu anlaşılmalıdır.<br>
 Ödeme Emri Rızası API'sinde yer alan "İşlem Tutarı" alanı "104.75" TRY olarak iletildiğinde "75" değerinin kuruş olduğu anlaşılmalıdır.   
 "12000" Japon Yeni için, ISO 4217’de JPY para biriminin ondalık kısmı olmadığından "İşlem Tutarı" alanında "12000" ve "Para Birimi" alanında "JPY" değeri  iletilmelidir.
 
-- Altın para birimi ISO 4217’ye uygun olarak “XAU” cinsinde ve 2 basamak ondalık rakam içerecek şekilde iletilmelidir. Diğer madenlerde ondalık basamak referansı ISO 4217 standartı olmalıdır.
+- Altın para birimi özelinde ISO 4217’ye uygun olarak "XAU" cinsinde ve 2 basamak ondalık rakam içerecek şekilde iletilmelidir. Örneğin içerisinde "13,50 gr" altın olan hesap için bakiye "13.50", para birimi "XAU" olarak gönderilmelidir.  
+
+- Diğer madenlerde ondalık basamak ISO 4217 standartında tanımlandığı gibi olmalıdır.
 
 - Sıralı veri tipleri büyük küçük harfe duyarlı olmalıdır.
 
