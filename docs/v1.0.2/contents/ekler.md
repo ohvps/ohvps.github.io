@@ -23,7 +23,7 @@ Açık Bankacılık simülatör uygulaması üzerinde swagger dökümanlarının
 | TR.OHVPS.DataCode.IslemTuru | Hesap hareketleri (işlemler) sorgusunda dönülen İşlem Türü (islTur) parametresi aşağıdaki değerlerden birini alabilir:<br>HAVALE<br>EFT<br>FAST<br>PARA_YATIRMA<br>PARA_CEKME<br>YABANCI_PARA_HAVALE<br>YATIRIM_HESABINA_AKTARIM<br>YATIRIM_HESABINDAN_AKTARIM<br>KURUM_FATURA_ODEMESI<br>CEK<br>SENET<br>SIGORTA_ODEMESI<br>UCRET_KOMISYON_FAIZ<br>SGK_ODEMESI<br>VERGI_ODEMESI<br>DOVIZ_ALIM<br>DOVIZ_SATIM<br>KREDI_ODEMESI<br>KREDI_KULLANIM<br>KK_ODEMESI<br>KK_NAKIT_AVANS<br>SANS_OYUNU<br>UYE_ISYERI_ISLEMLERI<br>HGS_OGS_ISLEMLERI<br>DOGRUDAN_BORCLANDIRMA_SISTEMI<br>DIGER<br>|
 | TR.OHVPS.DataCode.HspTur | Hesabın bireysel veya ticari nitelikte olduğunu belirtir:<br>B: Bireysel<br>T: Ticari |
 | TR.OHVPS.DataCode.KolasHspTur | Hesabın bireysel veya ticari nitelikte olduğunu belirtir:<br>B: Bireysel<br>T: Ticari |
-| TR.OHVPS.DataCode.HspTip | Hesap çeşidini belirtir:<br>VADESIZ<br>VADELI<br>KREDILI MEVDUAT HESABI<br>POS<br>CEK<br>YATIRIM |
+| TR.OHVPS.DataCode.HspTip | Hesap çeşidini belirtir:<br>VADESIZ<br>VADELI<br>KREDILI_MEVDUAT_HESABI<br>POS<br>CEK<br>YATIRIM |
 | TR.OHVPS.DataCode.HspDrm | Hesabın durumunu belirtir:<br>AKTIF<br>PASIF<br>KAPALI|
 | TR.OHVPS.DataCode.YetTip | Alabileceği değerlere göre hangi belirtecin döneceğine karar verilir.<br>yet_kod<br>yenileme_belirteci |
 | TR.OHVPS.DataCode.BrcAlc | İşlemin hesabı borçlandırdığı ya da alacaklandırdığı bilgisidir.<br>B : Borç<br>A : Alacak |
