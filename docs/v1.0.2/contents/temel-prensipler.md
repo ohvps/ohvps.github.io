@@ -268,7 +268,7 @@ Erişim adreslerinin ve alanların kullanımı Zorunlu(Z), İsteğe Bağlı(İ) 
 | --- | --- | --- | --- | --- | --- |
 | X-Request-ID  | AN1..36 | İsteği başlatan YÖS tarafından belirlenen çağrıya özgü talep kimliği. İstek numarası. <br> Örnek: Ödeme emri başlatma iş akışının her adımda farklı “x-request-id” değeri kullanılır. <br> Çağrıların aynı yanıtı dönmesinin beklendiği durumlarda (idempotent işlemlerde) aynı değer ile çağrı yapılır.   | Z |Z |Z  |
 | X-Group-ID |AN1..36 |	İsteği başlatan YÖS tarafından belirlenen işlem akışına özgü talep kimliği. İşlem grup numarası.<br> Aynı rıza no’ya ait tüm isteklerde aynı x-group-id bilgisi değeri gönderilmelidir.<br>Örnek: Ödeme emri başlatma/hesap bilgisi iş akışının her adımında aynı “x-group-id” değeri kullanılır.|	Z|	Z|	Z|
-|Content-Type | AN1..20| Standart HTTP Başlığı; Talepte sağlanan payload’ın biçimini temsil eder: application/json<br> (Başka bir değere ayarlanırsa, HHS, 415 Desteklenmeyen Ortam Türü (Unsupported Media Type) ile yanıt vermelidir)|İ|-|-|
+|Content-Type | AN1..20| Standart HTTP Başlığı; Talepte sağlanan payload’ın biçimini temsil eder. Bu değerin application/json olarak gönderilmesi gerekmektedir.<br> (Başka bir değere ayarlanırsa, HHS, 415 Desteklenmeyen Ortam Türü (Unsupported Media Type) ile yanıt vermelidir)|Z|-|-|
 | X-ASPSP-Code |AN4| İsteğin iletildiği Hesap Hizmeti Sağlayıcısının kodudur. (Nezdinde ÖH bulunduran kuruluş kodu. Örneğin, Banka, Elektronik Para Kuruluşu ve Ödeme Kuruluşu)|Z |Z|Z| 
 |X-TPP-Code|AN4|İsteği gönderen Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur	|Z|Z|Z|
 |PSU-Auth-Date|ISODateTime|ÖHK’nın YÖS üzerinde en son oturum açtığı saat. [RFC7231] Örneğin:  auth-date: Tue, 11 Sep 2012 19:43:31 GMT	|İ|İ|İ|
@@ -295,7 +295,7 @@ Erişim adreslerinin ve alanların kullanımı Zorunlu(Z), İsteğe Bağlı(İ) 
 | X-Group-ID |AN1..36 |İsteği başlatan YÖS tarafından belirlenen işlem akışına özgü talep kimliği. İşlem grup numarası.<br>**İlgili istek başlığındaki bu değer geri dönülür.**|	Z|	
 |X-ASPSP-Code  | AN4| İsteğin iletildiği Hesap Hizmeti Sağlayıcısının kodudur. (Nezdinde ÖH bulunduran kuruluş kodu. Örneğin, Banka, Elektronik Para Kuruluşu ve Ödeme Kuruluşu)|Z|
 |X-TPP-Code |AN4| İsteği gönderen Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur|Z|
-|Content-Type |AN1..20|Standart HTTP Başlığı; Talepte sağlanan payload’ın biçimini temsil eder: **application/json**|İ|
+|Content-Type |AN1..20|Standart HTTP Başlığı; Talepte sağlanan payload’ın biçimini temsil eder: **application/json**|Z|
 |X-JWS-Signature |AN1..4096|JWS imzasını içeren üstbilgi. Bu başlığın hangi yanıtlar için kullanılması gerektiği ilgili endpoint için belirtilmiştir. <br>Hata durumlarında, yanıt gövdesi değeri dönülüyor ise imzalalanmalı ve imza bilgisi x-jws-signature alanında iletilmelidir.<br> Ancak uygulama katmanı tarafından yakalanamayan dolayısı ile imzalanamayan hata durumlarında x-jws-signature alanı HHS'ler tarafından boş gönderilebilir. |K|
 | X-RateLimit-Limit | N 1..18 | İstek kısıtı uygulanan servislerde en fazla kaç adet istek yapılabileceğini gösterir. Kısıt uygulanan servislerde bu başlığın dönmesi zorunludur. | K |
 | X-RateLimit-Remaining  | N 1..18 | İstek kısıtı uygulanan servislerde kaç adet istek hakkı kaldığını gösterir. Kısıt uygulanan servislerde bu başlığın dönmesi zorunludur. | K |
