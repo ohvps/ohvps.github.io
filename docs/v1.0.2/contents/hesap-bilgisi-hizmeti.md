@@ -360,6 +360,18 @@ srlmYon=A
 **GET /bakiye ve GET /hesaplar/{hspRef}/bakiye**  
 Bu erişim noktalarından tüm hesapların veya belirli bir hesabın bakiyesi sorgulanır.   
 İstek çağrısına dönülen “BakiyeBilgileri” nesnesi Tablo 17’de verilmiştir.  
+
+Hesap bakiyelerinin gösterilmesi sırasında aşağıda verilen örnekler gözönünde bulundurulmalıdır.  
+
+Örnek 1 : ÖHK **Hesap Bakiye Tutarı** 0 TL, **Kredili Mevduat Hesabı Bakiyesi** 3000 TL. ÖHK 1000 TL para çıkışı gerçekleştirdi. Bakiye API'si yanıtı içerisinde iletilen **Kredi Dahil Göstergesi** 0 değerini içeriyorsa, **Hesap Bakiye Tutarı** -1000 TL, **Kredili Mevduat Hesabı Bakiyesi** 3000 TL olmalıdır.
+
+
+Örnek 2 : ÖHK **Hesap Bakiye Tutarı** 0 TL, **Kredili Mevduat Hesabı Bakiyesi** 3000 TL. ÖHK 1000 TL para çıkışı gerçekleştirdi. Bakiye API'si yanıtı içerisinde iletilen **Kredi Dahil Göstergesi** 1 değerini içeriyorsa, **Hesap Bakiye Tutarı** 2000 TL, **Kredili Mevduat Hesabı Bakiyesi** 3000 TL olmalıdır.
+
+Örnek 3 : ÖHK **Hesap Bakiye Tutarı** 1000 TL, **Kredili Mevduat Hesabı Bakiyesi** 3000 TL. ÖHK 1000 TL para çıkışı gerçekleştirdi. Bakiye API'si yanıtı içerisinde iletilen **Kredi Dahil Göstergesi** 0 değerini içeriyorsa, **Hesap Bakiye Tutarı** 0 TL, **Kredili Mevduat Hesabı Bakiyesi** 3000 TL olmalıdır.
+
+Örnek 4 : ÖHK **Hesap Bakiye Tutarı** 1000 TL, **Kredili Mevduat Hesabı Bakiyesi** 3000 TL. ÖHK 1000 TL para çıkışı gerçekleştirdi. Bakiye API'si yanıtı içerisinde iletilen **Kredi Dahil Göstergesi** 1 değerini içeriyorsa, **Hesap Bakiye Tutarı** 3000 TL, **Kredili Mevduat Hesabı Bakiyesi** 3000 TL olmalıdır.
+
 İşlem Sorgu Örneği (Belirli Bir Hesap)=  /bakiye?
 syfKytSayi=25&
 syfNo=1&
@@ -380,12 +392,12 @@ srlmYon=A
 | --- | --- | --- | --- | --- | 
 |Hesap Referansı|	hspRef|	AN5..40	|Z|	HHS tarafından hesap için atanan biricik tanımlıyıcıdır (uuid). YÖS bazında farklılaşması gerekmez.|
 | Bakiye|	bky	|Kompleks:Bakiye|	Z	||
-|> Hesap Bakiye Tutarı	|bkyTtr	| AN1..24 |	Z	|Hesabın bakiyesi.  <br> Tutar alanı regex patterni şu şekildedir: '^\d{1,18}$\|^\d{1,18}\\.\d{1,5}$'  |
+|> Hesap Bakiye Tutarı	|bkyTtr	| AN1..25 |	Z	|Hesabın bakiyesi.  <br> Tutar alanı regex patterni şu şekildedir:  '^-?\d{1,18}$\|^-?\d{1,18}\\.\d{1,5}$'  |
 |> Blokeli Tutar	|blkTtr	| AN1..24 |	K	|Varsa hesapta blokeli tutar bilgisi.   <br> Tutar alanı regex patterni şu şekildedir: '^\d{1,18}$\|^\d{1,18}\\.\d{1,5}$' |
 |> Para Birimi|	prBrm|	AN3	|Z|	Para birimi. |
 |> Bakiye İletilme Zamanı	|bkyZmn|	ISODateTime	|Z|	Bakiyenin iletildiği zaman bilgisi.|
 |> KrediliHesap|	krdHsp|	Kompleks: KrediliHesap|	K	||
-|>> Kredili Mevduat Hesabı Bakiyesi	|kulKrdTtr	|AN1..25|	Z	|Kullanılabilir kredili mevduat tutarı. Kredili bir hesap ise zorunlu. <br> Tutar alanı regex patterni şu şekildedir: '^-?\d{1,18}$\|^-?\d{1,18}\\.\d{1,5}$'|
+|>> Kredili Mevduat Hesabı Bakiyesi	|kulKrdTtr	|AN1..24|	Z	|Kullanılabilir kredili mevduat tutarı. Kredili bir hesap ise zorunlu. <br> Tutar alanı regex patterni şu şekildedir: '^\d{1,18}$\|^\d{1,18}\\.\d{1,5}$'|
 |>> Kredi Dahil Göstergesi|	krdDhlGstr	|AN1|	Z	|Kredili bir hesap ise zorunlu. Bakiye tutarının kullanılabilir kredi tutarı dahil edilerek ya da edilmeden iletildiğini gösterir. <br> 0: Kredi tutarı dahil edilmeden bakiye bilgisi iletilmesi durumu <br> 1: Kredi tutarı dahil edilerek bakiye bilgisi iletilmesi durumu|  
 
 ## 7.8 ADIM 3.5 ve 3.6: İşlemlerin Sorgulanması  
@@ -448,7 +460,7 @@ srlmYon=A
 |> Temel İşlem Bilgileri|	islTml	|Kompleks:IslemTemel|	Z	|Temel İşlem Bilgileri varsayılan olarak dönülür. |
 |>> İşlem Numarası	|islNo|	AN3..50|	Z|	Hesap hareketinin oluşturulması sırasında atanan ve borç (veya alacak) hareketini tekilleştiren HHS bazında tekil tanımlayıcıdır. Bu değer tek başına tekil olabileceği gibi birden fazla değerin bir araya getirilmesiyle de tekilliği sağlanmış olabilir. Bu değerin en azından hesap numarası (hesNo) bazında tekil olması beklenir. Genellikle kullanılan örnekleri; Instance_Id, Transaction_Id, Transaction_Num, Transaction_TimeStamp,dekont numarası|
 |>> İşlem Referans Numarası	|refNo|	AN3..50	|Z|	İşlemi uçtan uca tanımlayan tekil tanımlayıcıdır. Borç ve alacak hareketinden oluşan bir veya birden fazla işlemler bütünü için atanmış olan ve bu bütünü tekilleştiren (bir biri ile ilişkisini tutan) değerdir.Bu değer hem YÖS’ten gelen değer olabilir (ödeme işlemlerinde kullanılan kkodRef ya da refBlg alanı) hem de HHS içinde takip edilmek için üretilmiş bir değer olabilir. HHS sisteminde 2 değerin de bulunması durumunda;refNo alanını doldurmak için, HHS’nin YÖS’ten gelen değere öncelik vermesi beklenmektedir. YÖS’ten gelen veri örneği: Sipariş Numarası, Fatura Numarası, Karekod Referansı vb. HHS’te üretilen veri örneği: Masraflı havale işleminde hem havale işleminin hem de masraf işleminin aynı referans numarasına sahip olması da örnek olarak gösterilebilir.|
-|>> İşlem Tutarı |	islTtr|	AN1..25|	Z	|İşlem tutarı.  <br> Tutar alanı regex patterni şu şekildedir: '^-?\d{1,18}$\|^-?\d{1,18}\\.\d{1,5}$'|
+|>> İşlem Tutarı |	islTtr|	AN1..24|	Z	|İşlem tutarı.  <br> Tutar alanı regex patterni şu şekildedir: '^\d{1,18}$\|^\d{1,18}\\.\d{1,5}$'|
 |>> Para Birimi	|prBrm|	AN3|	Z|	Para birimi.|
 |>> İşlem Gerçekleşme Zamanı|	islGrckZaman|	ISODateTime|	Z|	İşlemin gerçekleşme zamanı.|
 |>> İşlem Kanalı|	kanal|	AN1|	Z	|TR.OHVPS.DataCode.OdemeKaynak sıralı veri türü değerlerinden birini alır.|
