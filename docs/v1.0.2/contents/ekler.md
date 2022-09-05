@@ -36,7 +36,7 @@ Açık Bankacılık simülatör uygulaması üzerinde swagger dökümanlarının
 
 ## EK-3: İstemci Sertifikalarının Tanım ve Yönetimi
 
-Tüm katılımcıların BKM API Geçidine erişebilmesi için, BKM tarafından yapılan istemci sertifika doğrulamasından geçmesi gerekmektedir. İstemci sertifikası üretilmeden önce katılımcıların csr üretme akışını tamamlaması gerekmektedir.
+Tüm katılımcıların BKM API Geçidine erişebilmesi için, BKM tarafından yapılan istemci sertifika doğrulamasından geçmesi gerekmektedir. İstemci sertifikası üretilmeden önce katılımcıların CSR üretme akışını tamamlaması gerekmektedir.
   
 
 OpenSSL ile CSR (Certificate Signing Request) Oluşturma   
@@ -44,9 +44,8 @@ Aşağıdaki komut ile 2048-bit RSA private key ve CSR oluşturulur.
 openssl req -new -newkey rsa:2048 -nodes -keyout PRIVATEKEY.key -out CSR.csr  
 
 CSR ile ilgili detay bilgilerin girişinde;   
-Organization Unit Name (OU) olarak BKM tarafından size iletilen clientId değeri,   
-Common Name (CN) olarak 4 karakterli hhsKod ya da yosKod değeri,  
-Diğer alanlar için de kurum bilgilerinize göre giriş yapılır.   
+Common Name (CN) olarak 4 karakterli hhsKod ya da yosKod değeri ile,  
+diğer alanlar için de kurum bilgileriniz ile giriş yapılır.   
 
 Tüm bilgilerin girilmesinden sonra oluşan private key dosyası kurumunuzda saklanır. 
 CSR dosyası ise istemci sertifika üretmek üzere kullanılır. Bu aşamada takip edilmesi gereken adımlar şu şekildedir: 
