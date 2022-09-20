@@ -410,8 +410,8 @@ Belirli bir hesaba ilişkin işlem bilgileri Tablo 1’daki istek parametrelerin
 HHS, işlemin sistemsel yapılıp yapılmadığını, istek parametreleri içerisinde yer alan PSU-Initiated parametresi ile anlar. Bu parametre “E” ise ÖHK’lı, “H” ise sistemsel yapılmış bir sorgu anlamına gelmektedir. 
 ÖHK’nın başlattığı sorgular için HHS tarafından belirlenen üst rate limitler dahilinde çağrım yapılabilir.  
 YÖS, otomatik yapacağı sorgularda;  
-- Bireysel ÖHK’lar için hesap bazında günde en fazla 4 adet sorgulama yapabilir.
-- Kurumsal ÖHK’lar için hesap bazında saatte en fazla 12 adet sorgulama yapabilir.  
+- Bireysel ÖHK’lar için hesap bazında günde en fazla 4 adet başarı ile sonuçlanan sorgulama yapabilir.
+- Kurumsal ÖHK’lar için hesap bazında saatte en fazla 12 adet başarı ile sonuçlanan sorgulama yapabilir.  
 
 HHS, tutacağı sayaç bilgisi ile bu sayıları kontrol ederek daha fazla sorgulama yapılmasına izin vermeyebilir. 
 
