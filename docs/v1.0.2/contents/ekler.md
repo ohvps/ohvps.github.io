@@ -88,6 +88,21 @@ openssl rsa -in private.pem -pubout -outform PEM -out public_key.pem
 
 - İmzalı mesajı açacak olan kurum mesajı imzalayan kurumun açık anahtarını her sorguda yeniden almak durumunda değildir. Belirli periyodlarda kendi ortamındaki anahtarı yenileyerek sistemi işletebilir. Ancak imzalayan kurum anahtar çifti yenilemesi yaptığında BKM ile açık anahtarını paylaşsa dahi imzalı mesajı doğrulayacak taraf eski açık anahtar ile doğrulama yapmaya çalıştığı için hata alacaktır. Bu ilk hata durumunda hızlıca BKM üzerinden yeni anahtarı alıp mesajı tekrar doğrulamayı denemelidir. Eğer yine hata alıyor ise doğrulama işlemini hata statüsüne almalıdır. Bu sebeple anahtar yenileyen kurum yeni açık anahtarını yeni bir mesaj imzalama yapmadan önce mutlaka BKM ile paylaşmalıdır.
 
+- PSU-Fraud-Check alanı için de JWT formatında çıktı hazırlanması beklenmektedir. Örnek bir PSU-Fraud-Check payload değeri aşağıdaki gibidir;
+
+
+
+    {"AnomalyFlag": "0",   
+    "LastPasswordChangeFlag": "1",   
+    "FirstLoginFlag": "1",   
+    "DeviceFirstLoginFlag": "1",   
+    "BlacklistFlag": "0",  
+    "MalwareFlag": "0",   
+    "UnsafeAccountFlag": "0",   
+    "exp": 1663424479,   
+    "iat": 1663338079,   
+    "iss": "[https://apigw.bkm.com.tr|https://apigw.bkm.com.tr/]" }
+ 
 ### İmzalama Kuralları (YÖS)
 Bir YÖS üzerinden başlayan akış örnek olarak paylaşılmıştır.
 - YÖS, mesaj imzalama gerektiren her API isteğinin HTTP gövdesini (request body) kendi özel anahtarı ile şifreleyerek imza bilgisini oluşturur.  
