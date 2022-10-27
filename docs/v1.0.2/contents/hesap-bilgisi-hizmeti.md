@@ -397,8 +397,8 @@ srlmYon=A
 |> Para Birimi|	prBrm|	AN3	|Z|	Para birimi. |
 |> Bakiye İletilme Zamanı	|bkyZmn|	ISODateTime	|Z|	Bakiyenin iletildiği zaman bilgisi.|
 |> KrediliHesap|	krdHsp|	Kompleks: KrediliHesap|	K	||
-|>> Kredili Mevduat Hesabı Bakiyesi	|kulKrdTtr	|AN1..24|	Z	|Kullanılabilir kredili mevduat tutarı. Kredili bir hesap ise zorunlu. <br> Tutar alanı regex patterni şu şekildedir: '^\d{1,18}$\|^\d{1,18}\\.\d{1,5}$'|
-|>> Kredi Dahil Göstergesi|	krdDhlGstr	|AN1|	Z	|Kredili bir hesap ise zorunlu. Bakiye tutarının kullanılabilir kredi tutarı dahil edilerek ya da edilmeden iletildiğini gösterir. <br> 0: Kredi tutarı dahil edilmeden bakiye bilgisi iletilmesi durumu <br> 1: Kredi tutarı dahil edilerek bakiye bilgisi iletilmesi durumu|  
+|>> Kredili Mevduat Hesabı Bakiyesi	|kulKrdTtr	|AN1..24|	Z	|Kredili mevduat tutarı. Kredili bir hesap ise zorunlu. <br> Tutar alanı regex patterni şu şekildedir: '^\d{1,18}$\|^\d{1,18}\\.\d{1,5}$'|
+|>> Kredi Dahil Göstergesi|	krdDhlGstr	|AN1|	Z	|Kredili bir hesap ise zorunlu. Bakiye tutarının kredi tutarı dahil edilerek ya da edilmeden iletildiğini gösterir. <br> 0: Kredi tutarı dahil edilmeden bakiye bilgisi iletilmesi durumu <br> 1: Kredi tutarı dahil edilerek bakiye bilgisi iletilmesi durumu|  
 
 ## 7.8 ADIM 3.5 ve 3.6: İşlemlerin Sorgulanması  
 
