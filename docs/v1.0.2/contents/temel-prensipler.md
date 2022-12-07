@@ -57,6 +57,28 @@ API’ler, dünya ölçeğinde yaygın bir şekilde kullanılan Temsili Durum Tr
 
 [^JSON Şeması]:  http://json-schema.org/  
 
+İstek ve yanıt mesajlarında, isteğe bağlı veya koşullu bir alan, değer içermiyorsa, bu alan JSON payloadunda yer almamalıdır.
+
+Örnek kod bloğu.
+```
+"rzBlg":{
+         "rizaNo":"aa9bd7e7-0ccd-4edc-9639-5a358dbf2335",
+         "olusZmn":"2022-11-28T12:00:21+03:00",
+         "gnclZmn":null,    --> hatalı
+         "rizaDrm":"K",
+         "rizaIptDtyKod":"" --> hatalı 
+      },
+```
+
+Örnek kod bloğu: 
+```
+
+         "alc":{
+            "hspNo": "TR800800004162387689546019",
+            "unv": "AHMET YILMAZ", 
+            "kolas":{}  --> nesne gönderimi hatalı
+         },
+```
 
 ## 3.4.	Sürüm Yönetimi   
 
@@ -263,6 +285,11 @@ Erişim adreslerinin ve alanların kullanımı Zorunlu(Z), İsteğe Bağlı(İ) 
 
 ## 3.15. İstek Başlığı
 
+- "Başlık isimleri" yorumlanırken küçük büyük harfe duyarlı olmamalıdır. Örneğin "x-ReQuEsT-Id" geçerli bir başlık ismidir.
+- "Başlık değerleri" yorumlanırken ise küçük büyük harf duyarlılığı olmalıdır. Örneğin "xyz123" ile "XYZ123" değerleri farklıdır.
+-  Başlık değerlerinde ISO-8859-1 standartında yer alan karakter kümesi kullanılmalıdır. Örneğin "PSU-Device-Data" değerinde "İOS12" yazmak, büyük "İ" harfinin ISO-8859-1 içerisinde yer almamasından dolayı, hataya yol açacaktır. 
+ 
+
 **Tablo 2: İstek Başlığında Yer Alan Veriler**  
 |Başlık İsimleri |Format |Notlar |POST |GET |DELETE |
 | --- | --- | --- | --- | --- | --- |
@@ -287,6 +314,10 @@ Erişim adreslerinin ve alanların kullanımı Zorunlu(Z), İsteğe Bağlı(İ) 
 
 ## 3.16. Yanıt Başlığı  
 
+- "Başlık isimleri" yorumlanırken küçük büyük harfe duyarlı olmamalıdır. Örneğin "x-ReQuEsT-Id" geçerli bir başlık ismidir.
+- "Başlık değerleri" yorumlanırken ise küçük büyük harf duyarlılığı olmalıdır. Örneğin "xyz123" ile "XYZ123" değerleri farklıdır.
+-  Başlık değerlerinde ISO-8859-1 standartında yer alan karakter kümesi kullanılmalıdır. Örneğin "Link" değerinde "İOS12" yazmak, büyük "İ" harfinin ISO-8859-1 içerisinde yer almamasından dolayı, hataya yol açacaktır. 
+
 **Tablo 3: Yanıt Başlığında Yer Alan Veriler**
 
 |Başlık İsimleri |Format |Notlar |Kullanım Durumu |
@@ -296,7 +327,7 @@ Erişim adreslerinin ve alanların kullanımı Zorunlu(Z), İsteğe Bağlı(İ) 
 |X-ASPSP-Code  | AN4| İsteğin iletildiği Hesap Hizmeti Sağlayıcısının kodudur. (Nezdinde ÖH bulunduran kuruluş kodu. Örneğin, Banka, Elektronik Para Kuruluşu ve Ödeme Kuruluşu)|Z|
 |X-TPP-Code |AN4| İsteği gönderen Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur|Z|
 |Content-Type |AN1..20|Standart HTTP Başlığı; Talepte sağlanan payload’ın biçimini temsil eder: **application/json**|Z|
-|X-JWS-Signature |AN1..4096|JWS imzasını içeren üstbilgi. Bu başlığın hangi yanıtlar için kullanılması gerektiği ilgili endpoint için belirtilmiştir. <br>Hata durumlarında, yanıt gövdesi değeri dönülüyor ise imzalalanmalı ve imza bilgisi x-jws-signature alanında iletilmelidir.<br> Ancak uygulama katmanı tarafından yakalanamayan dolayısı ile imzalanamayan hata durumlarında x-jws-signature alanı HHS'ler tarafından boş gönderilebilir. |K|
+|X-JWS-Signature |AN1..4096|JWS imzasını içeren üstbilgi. Bu başlığın hangi yanıtlar için kullanılması gerektiği ilgili endpoint için belirtilmiştir. <br>Hata durumlarında, yanıt gövdesi değeri dönülüyor ise imzalanmalı ve imza bilgisi x-jws-signature alanında iletilmelidir.<br> Ancak uygulama katmanı tarafından yakalanamayan dolayısı ile imzalanamayan hata durumlarında x-jws-signature alanı HHS'ler tarafından boş gönderilebilir. |K|
 | X-RateLimit-Limit | N 1..18 | İstek kısıtı uygulanan servislerde en fazla kaç adet istek yapılabileceğini gösterir. Kısıt uygulanan servislerde bu başlığın dönmesi zorunludur. | K |
 | X-RateLimit-Remaining  | N 1..18 | İstek kısıtı uygulanan servislerde kaç adet istek hakkı kaldığını gösterir. Kısıt uygulanan servislerde bu başlığın dönmesi zorunludur. | K |
 |X-RateLimit-Reset |AN 1..255|İstek kısıtı uygulanan servislerde çağrım hakkı bittikten sonra yeniden denemeden önce beklemesi gereken süreyi (saniye cinsinden) gösterir. HTTP 429 durum kodu (Too Many Requests) ile dönülen yanıtların başlığında dönülmesi zorunludur. |K|
