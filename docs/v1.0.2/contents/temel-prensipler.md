@@ -679,3 +679,33 @@ Health servisinden yanıt alınamaması, hata alması ya da status DOWN gelmesi 
 
 - HHS’lerin servislerini erişim yüzdeleri açısından yıl bazında %99.75 oranında ayakta olmalarını sağlayacak şekilde kurgulamaları gerekmektedir.
 
+## 3.21. Otomatik Sorgular
+
+YÖS uygulaması, ÖHK'nın başlattığı işlemler neticesinde API çağrımı yapabileceği gibi, sistemsel bir şekilde otomatik API çağrımı da yapabilir.<br>
+HHS, API çağrımının ÖHK'lı ya da ÖHK'sız olduğunu istek parametreleri içerisinde yer alan PSU-Initiated parametresi ile anlar. Bu parametre “E” ise ÖHK’lı, “H” ise sistemsel yapılmış bir sorgu anlamına gelmektedir. 
+  
+ÖHK YÖS uygulamasına giriş yaptığı andan çıkış yaptığı ana kadar yani ÖHK oturumu boyunca yapılan API çağrımlarında, PSU-Initiated  değerinin "E" olması gerekmektedir. YÖS uygulamasında ÖHK oturumu boyunca,  ÖHK'nın bilgilerinden minimumda "bakiye" bilgisinin, uygulama arayüzlerinde güncel değeri ile gösterimi online sorgularla sağlanmalıdır. 
+  
+YÖS, aşağıdaki API'leri sistemsel bir şekilde çağırabilir.  
+
+|No|	Kaynak|	HTTP işlemi	|Erişim Adresi|
+| --- | --- | --- | --- | 
+| 1 | erisim-belirteci | POST |/erisim-belirteci|
+| 2 | odeme-emri-rizasi | GET |/odeme-emri-rizasi/{rizaNo}| 
+| 3 | odeme-emri | GET |/odeme-emri/{odemeEmriNo}| 
+| 4 | hesap-bilgisi-rizasi | GET | /hesap-bilgisi-rizasi/{RizaNo} | 
+| 5 | hesap-bilgisi-rizasi | DELETE | /hesap-bilgisi-rizasi/{RizaNo} | 
+| 6 | hesaplar | GET |/hesaplar| 
+| 7 | hesaplar | GET |/hesaplar/{hspRef}| 
+| 8 | bakiye | GET |/hesaplar/{hspRef}/bakiye| 
+| 9 | bakiye | GET |/bakiye| 
+| 10 | islemler | GET |/hesaplar/{hspRef}/işlemler| 
+
+Sistemsel yapılan otomatik API çağrımlarında sadece işlemler servisinin çağrım sayısında limit konulmuştur. Bknz: [^Bölüm 7.8] Bunun dışındaki API çağrımlarında API İlke ve Kuralları 1.0 sürümünde limit konulmamıştır. HHS'lerin uygulayabileceği limitler Bölüm 3.20'de açıklanmıştır.
+
+[^Bölüm 7.8]:  https://ohvps.github.io/v1.0.2/contents/hesap-bilgisi-hizmeti.html#_7-8-adim-3-5-ve-3-6-islemlerin-sorgulanmas%C4%B1/ 
+
+
+Hesap bilgisi rızasının YÖS tarafından sistemsel bir şekilde iptal edilmesi durumu [^Bölüm 9]'da açıklanmıştır.
+
+[^Bölüm 9]:  https://ohvps.github.io/v1.0.2/contents/erisim-belirteci.html
