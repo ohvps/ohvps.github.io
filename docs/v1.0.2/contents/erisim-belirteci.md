@@ -45,3 +45,5 @@ erisim-belirteci erisim noktasından alınan elde edilen erisimBelirteci ilişki
 Yenilenme Belirteci (refreshToken) kullanılarak Erişim Belirteci (accessToken) alındığında, dönen yanıttaki Yenileme Belirteci ve Yenileme Belirteci Geçerlik Süresi değişmez.
 
 Erişim Belirteci API çağrımı sırasında rıza durumları kontrol edilmelidir. Bu kontrollerin nasıl yapılması gerektiği 4-Rıza Durumları bölümünde aktarılmıştır.
+
+Yenileme belirteci karşılığında yeni bir erişim belirteci alınması sırasında hata alınması durumunda, HHS'nin döndüğü hata yanıtında httpCode = 401 ve errorCode = "TR.OHVPS.Connection.InvalidToken" geldiği durumda, YÖS tarafından HHS'ye ilgili rıza için sistemsel olarak iptal isteği gönderilmelidir.
