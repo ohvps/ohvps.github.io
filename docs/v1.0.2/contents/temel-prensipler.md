@@ -684,7 +684,7 @@ Health servisinden yanıt alınamaması, hata alması ya da status DOWN gelmesi 
 YÖS uygulaması, ÖHK'nın başlattığı işlemler neticesinde API çağrımı yapabileceği gibi, sistemsel bir şekilde otomatik API çağrımı da yapabilir.<br>
 HHS, API çağrımının ÖHK'lı ya da ÖHK'sız olduğunu istek parametreleri içerisinde yer alan PSU-Initiated parametresi ile anlar. Bu parametre “E” ise ÖHK’lı, “H” ise sistemsel yapılmış bir sorgu anlamına gelmektedir. 
   
-ÖHK YÖS uygulamasına giriş yaptığı andan çıkış yaptığı ana kadar yani ÖHK oturumu boyunca yapılan API çağrımlarında, PSU-Initiated  değerinin "E" olması gerekmektedir. YÖS uygulamasında ÖHK oturumu boyunca,  ÖHK'nın bilgilerinden minimumda "bakiye" bilgisinin, uygulama arayüzlerinde güncel değeri ile gösterimi online sorgularla sağlanmalıdır. 
+ÖHK YÖS uygulamasına giriş yaptığı andan çıkış yaptığı ana kadar yani ÖHK oturumu boyunca yapılan API çağrımlarında, PSU-Initiated  değerinin "E" olması gerekmektedir.  YÖS uygulamasında ÖHK oturumu boyunca,  ÖHK'nın bilgilerinden minimumda "bakiye" bilgisinin, uygulama arayüzlerinde güncel değeri ile gösterimi online sorgularla gösterimi tavsiye edilmektedir. 
   
 YÖS, aşağıdaki API'leri sistemsel bir şekilde çağırabilir.  
 
@@ -700,6 +700,9 @@ YÖS, aşağıdaki API'leri sistemsel bir şekilde çağırabilir.
 | 8 | bakiye | GET |/hesaplar/{hspRef}/bakiye| 
 | 9 | bakiye | GET |/bakiye| 
 | 10 | islemler | GET |/hesaplar/{hspRef}/işlemler| 
+
+
+ÖHK’nın başlattığı sorgular için HHS tarafından belirlenen üst rate limitler dahilinde çağrım yapılabilir.
 
 Sistemsel yapılan otomatik API çağrımlarında sadece işlemler servisinin çağrım sayısında limit konulmuştur. Bknz: [^Bölüm 7.8] Bunun dışındaki API çağrımlarında API İlke ve Kuralları 1.0 sürümünde limit konulmamıştır. HHS'lerin uygulayabileceği limitler Bölüm 3.20'de açıklanmıştır.
 
