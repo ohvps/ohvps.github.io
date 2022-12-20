@@ -38,7 +38,11 @@ HHS ve YÖS API Tablo 20’deki istek parametrelerine göre sorgulanabilir.
 | Logo Bilgileri | logoBilgileri | Kompleks: LogoBilgisi [Array][1..N] | Z | HHS’ye ait logo bilgileri. Logotur = Original  formatındaki logonun minimumda gönderimi zorunludur. | 
 | >logoTur | logoTur | AN3..50 | Z | Logonun türünü belirler.<br>TR.OHVPS.DataCode.LogoTur alabileceği değerler <br>ORIGINAL , WHITE_OVERLAY , BLACK_OVERLAY , GRAY_OVERLAY | 
 | > logoAdr | logoAdr | AN1..255 | Z | HHS tarafında tutulan ve YÖS’lerle paylaşılacak olan url adres bilgisidir. | 
+| Durum | durum | AN1 | Z |HHS'nin durum bilgisidir.<br> TR.OHVPS.DataCode.HHSDurumu sıralı veri tipinde alabileceği değerler belirtilmiştir.| 
 
+HHS API'de; Açık, Yaygınlaştırma, Geçici Hizmet Veremiyor, Kapalı durumlarındaki HHS'ler listelenecektir. <br>
+Sertifikasyon onayı alan HHS'ler, üretim ortamına geçişte "Yaygınlaştırma" durumuna sahip olabilir.  HHS'nin, hangi YÖS'ler ile "Yaygınlaştırma" kontrollerini yapacağı, HHS yönetiminde olacaktır. Böylece Üretim Ortamında HHS’nin kendisi tarafından tanımlanmış kısıtlı ÖHK’ya hizmet vermesi ve servislerini test etmesi sağlanabilir olacaktır. HHS'ler kendi kurum kontrollerini yapana kadar, "Yaygınlaştırma" durumunda kalabilirler. HHS'nin BKM'ye yapacağı talep ile, HHS "Yaygınlaştırma" durumundan "Açık" durumuna geçebilecektir.<br>
+HHS'de olası bir teknik sorun olması durumunda, BKM - HHS koordinasyonu ile HHS durumu "Geçici Hizmet Veremiyor" haline getirilecektir. Sorun giderildiğinde "Açık" durumuna geri dönecektir.
 
 Hem YOS hem de HHS API için geçerli olacak; logo gönderiminde dikkat edilmesi gerekenler şu şekilde tariflenmiştir:   
 

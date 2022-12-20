@@ -33,6 +33,7 @@ Açık Bankacılık simülatör uygulaması üzerinde swagger dökümanlarının
 | TR.OHVPS.DataCode.SrlmYon | ‘A’: Azalan değerle sıralama<br>‘Y’: Artan değerle sıralama |
 | TR.OHVPS.DataCode.ZmnAralik | 0 : Kayıt Yok <br>1 : 0-2 saat<br>2 : 2-24 saat<br> 3 : 1-3 gün <br> 4 : 3-15 gün	<br> 5 : 15 gün ve üstü |
 | TR.OHVPS.DataCode.VarYok | 0 : Kayıt Yok <br> 1 : Kayıt Var |
+| TR.OHVPS.DataCode.HHSDurumu | A : Açık. Üretim Ortamında HHS’nin aktif bir şekilde hizmet vermesi durumu.<br> Y : Yaygınlaştırma. Üretim Ortamında HHS’nin kendisi tarafından tanımlanmış kısıtlı ÖHK’ya hizmet vermesi durumu. <br>  G : Geçici Hizmet Veremiyor. HHS servislerinde teknik bir sorun olması nedeniyle HHS’nin hizmet verememesi durumu. <br>K: Kapalı. HHS’nin hizmet vermeme durumu. |
 
 ## EK-3: İstemci Sertifikalarının Tanım ve Yönetimi
 

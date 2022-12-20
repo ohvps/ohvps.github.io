@@ -684,22 +684,22 @@ Health servisinden yanıt alınamaması, hata alması ya da status DOWN gelmesi 
 YÖS uygulaması, ÖHK'nın başlattığı işlemler neticesinde API çağrımı yapabileceği gibi, sistemsel bir şekilde otomatik API çağrımı da yapabilir.<br>
 HHS, API çağrımının ÖHK'lı ya da ÖHK'sız olduğunu istek parametreleri içerisinde yer alan PSU-Initiated parametresi ile anlar. Bu parametre “E” ise ÖHK’lı, “H” ise sistemsel yapılmış bir sorgu anlamına gelmektedir. 
   
-ÖHK YÖS uygulamasına giriş yaptığı andan çıkış yaptığı ana kadar yani ÖHK oturumu boyunca yapılan API çağrımlarında, PSU-Initiated  değerinin "E" olması gerekmektedir.  YÖS uygulamasında ÖHK oturumu boyunca,  ÖHK'nın bilgilerinden minimumda "bakiye" bilgisinin, uygulama arayüzlerinde güncel değeri ile gösterimi online sorgularla gösterimi tavsiye edilmektedir. 
+ÖHK YÖS uygulamasına giriş yaptığı andan çıkış yaptığı ana kadar yani ÖHK oturumu boyunca yapılan API çağrımlarında, PSU-Initiated  değerinin "E" olması gerekmektedir.  YÖS uygulamasında ÖHK oturumu boyunca,  ÖHK'nın bilgilerinden minimumda "bakiye" bilgisinin, uygulama arayüzlerinde güncel değeri ile online sorgularla gösterimi YÖS'ün insiyatifindedir. 
   
 YÖS, aşağıdaki API'leri sistemsel bir şekilde çağırabilir.  
 
-|No|	Kaynak|	HTTP işlemi	|Erişim Adresi|
-| --- | --- | --- | --- | 
-| 1 | erisim-belirteci | POST |/erisim-belirteci|
-| 2 | odeme-emri-rizasi | GET |/odeme-emri-rizasi/{rizaNo}| 
-| 3 | odeme-emri | GET |/odeme-emri/{odemeEmriNo}| 
-| 4 | hesap-bilgisi-rizasi | GET | /hesap-bilgisi-rizasi/{RizaNo} | 
-| 5 | hesap-bilgisi-rizasi | DELETE | /hesap-bilgisi-rizasi/{RizaNo} | 
-| 6 | hesaplar | GET |/hesaplar| 
-| 7 | hesaplar | GET |/hesaplar/{hspRef}| 
-| 8 | bakiye | GET |/hesaplar/{hspRef}/bakiye| 
-| 9 | bakiye | GET |/bakiye| 
-| 10 | islemler | GET |/hesaplar/{hspRef}/işlemler| 
+|No|	Kaynak|	HTTP işlemi	|Erişim Adresi|Otomatik Sorgu Kriteri|Otomatik Sorgu Sayısı|
+| --- | --- | --- | --- | --- | --- | 
+| 1 | erisim-belirteci | POST |/erisim-belirteci|--- | --- | 
+| 2 | odeme-emri-rizasi | GET |/odeme-emri-rizasi/{rizaNo}| --- | --- | 
+| 3 | odeme-emri | GET |/odeme-emri/{odemeEmriNo}| --- | --- | 
+| 4 | hesap-bilgisi-rizasi | GET | /hesap-bilgisi-rizasi/{RizaNo} | --- | --- | 
+| 5 | hesap-bilgisi-rizasi | DELETE | /hesap-bilgisi-rizasi/{RizaNo} | --- | --- | 
+| 6 | hesaplar | GET |/hesaplar| --- | --- | 
+| 7 | hesaplar | GET |/hesaplar/{hspRef}| --- | --- | 
+| 8 | bakiye | GET |/hesaplar/{hspRef}/bakiye| --- | --- | 
+| 9 | bakiye | GET |/bakiye| --- | --- | 
+| 10 | islemler | GET |/hesaplar/{hspRef}/işlemler| --- | --- | 
 
 
 ÖHK’nın başlattığı sorgular için HHS tarafından belirlenen üst rate limitler dahilinde çağrım yapılabilir.
