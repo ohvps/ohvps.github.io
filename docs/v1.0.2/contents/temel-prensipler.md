@@ -688,19 +688,20 @@ HHS, API çağrımının ÖHK'lı ya da ÖHK'sız olduğunu istek parametreleri 
   
 YÖS, aşağıdaki API'leri sistemsel bir şekilde çağırabilir.  
 
-|No|	Kaynak|	HTTP işlemi	|Erişim Adresi|Otomatik Sorgu Kriteri|Otomatik Sorgu Sayısı|
+|No|	Kaynak|	HTTP işlemi	|Erişim Adresi|Otomatik Sorgu Sayısı|
 | --- | --- | --- | --- | --- | --- | 
-| 1 | erisim-belirteci | POST |/erisim-belirteci|--- | --- | 
-| 2 | odeme-emri-rizasi | GET |/odeme-emri-rizasi/{rizaNo}| --- | --- | 
-| 3 | odeme-emri | GET |/odeme-emri/{odemeEmriNo}| --- | --- | 
-| 4 | hesap-bilgisi-rizasi | GET | /hesap-bilgisi-rizasi/{RizaNo} | --- | --- | 
-| 5 | hesap-bilgisi-rizasi | DELETE | /hesap-bilgisi-rizasi/{RizaNo} | --- | --- | 
-| 6 | hesaplar | GET |/hesaplar| --- | --- | 
-| 7 | hesaplar | GET |/hesaplar/{hspRef}| --- | --- | 
-| 8 | bakiye | GET |/hesaplar/{hspRef}/bakiye| --- | --- | 
-| 9 | bakiye | GET |/bakiye| --- | --- | 
-| 10 | islemler | GET |/hesaplar/{hspRef}/işlemler| --- | --- | 
+| 1 | erisim-belirteci | POST |/erisim-belirteci|  --- |
+| 2 | odeme-emri-rizasi | GET |/odeme-emri-rizasi/{rizaNo}| Rıza bazında günde 4 | 
+| 3 | odeme-emri | GET |/odeme-emri/{odemeEmriNo}| Rıza bazında günde 24  | 
+| 4 | hesap-bilgisi-rizasi | GET | /hesap-bilgisi-rizasi/{RizaNo} | Rıza bazında günde 4 | 
+| 5 | hesap-bilgisi-rizasi | DELETE | /hesap-bilgisi-rizasi/{RizaNo} | --- |
+| 6 | hesaplar | GET |/hesaplar| Bireysel Günde 4<br> Kurumsal günde 4 | 
+| 7 | hesaplar | GET |/hesaplar/{hspRef}| Bireysel Günde 4<br>Kurumsal günde 4 | 
+| 8 | bakiye | GET |/hesaplar/{hspRef}/bakiye| Bireysel Günde 24<br>Kurumsal Günde 24 | 
+| 9 | bakiye | GET |/bakiye| Bireysel Günde 24<br>Kurumsal Günde 24 | 
+| 10 | islemler | GET |/hesaplar/{hspRef}/işlemler| Bireysel günde 4<br>Kurumsal saatte 12 | 
 
+YÖS ve HHS son 24 saat içerisindeki sorgu sayılarını toplayarak elde ettiği sonuçlarla limit kontrolü yapmalıdır (Pencere yöntemi).  
 
 ÖHK’nın başlattığı sorgular için HHS tarafından belirlenen üst rate limitler dahilinde çağrım yapılabilir.
 
