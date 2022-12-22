@@ -367,7 +367,7 @@ RFC 2616'da belirlenmiş olan durum kodları (status code) gönderilen isteğin 
 - 4xx İstemci Hatası
 - 5xx Sunucu Hatası
 
-**Sıralı (Enumarated) Hata Tipleri:**
+**errorCode Alanında Kullanılabilecek Sıralı Hata Tipleri :**
 
 >**TR.OHVPS.Resource**  
 >>**&#8680;	InvalidFormat**  
@@ -406,44 +406,32 @@ TR.OHVPS.Resource.InvalidFormat hatası alındığı durumda; fieldErrors nesnes
 
 ```JSON
 {
-  "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-  "path": "/ohvps/s1.1/obh/odeme-emri-rizasi",
-  "timestamp": "2020-06-13T18:24:38",
-  "httpCode": 400,
-  "httpMessage": "Bad Request",
-  "moreInformation": "Resource Schema validation error",
-  "moreInformationTr": "Şema kontrolleri başarısız",
-   "errorCode": "TR.OHVPS.Resource.InvalidFormat",
-   
-  "fieldErrors": [
-           {
-                 "objectName": "odemeEmriRizasi",
-                 "field": "kmlkNo",
-                 "messageTr": "boyut '6' ile '30' arasında olmalı",
-                 "message": "size must be between '6' and '30'",
-                 "code": "TR.OHVPS.Field.Invalid"
-              },
-              {
-                 "objectName": "odemeEmriRizasi",
-                  "field": "prBrm",
-                  "messageTr": "boş değer olamaz",
-                  "message": "must not be null",
-                  "code": "TR.OHVPS.Field.Missing"
-              }]
-}
-```  
-**Veri Tipi Örneği:**  
-
-Zorunlu header alanlarından biri ya da birkaçı eksik olarak gönderilirse aşağıdaki gibi bir hata dönüşü gerçekleşebilir.  
-```JSON 
-
-{
-    "httpCode": "400",
+    "path": "/ohvps/obh/s1.0/odeme-emri-rizasi",
+    "id": "d8bd4e5f-f094-48a6-aee1-3a800e2709d9",
+    "timestamp": "2022-12-22T10:33:15+03:00",
+    "httpCode": 400,
     "httpMessage": "Bad Request",
-    "moreInformation": "One or more required API parameters are missing in the API request."
-}
-
-```
+    "moreInformation": "Validation error",
+    "moreInformationTr": "Şema kontrolleri başarısız",
+    "fieldErrors": [
+        {
+            "objectName": "odemeEmriRizasiIstegi",
+            "field": "odmBsltm.islTtr.prBrm",
+            "messageTr": "boş değer olamaz",
+            "message": "must not be null",
+            "code": "TR.OHVPS.Field.Missing"
+        },
+        {
+            "objectName": "odemeEmriRizasiIstegi",
+            "field": "odmBsltm.kmlk.kmlkVrs",
+            "messageTr": "boyut '1' ile '30' arasında olmalı",
+            "message": "size must be between 1 and 30",
+            "code": "TR.OHVPS.Field.Invalid"
+        }
+    ],
+    "errorCode": "TR.OHVPS.Resource.InvalidFormat"
+} 
+```  
 
 **Tablo 4: HTTP Durum Kodları**
 
@@ -462,6 +450,7 @@ Zorunlu header alanlarından biri ya da birkaçı eksik olarak gönderilirse aş
 | 429 Too Many Requests| **Belirli bir süre içinde çok fazla talepte bulunulduğu için işlem reddedildi.** HHS’ler adil kullanım politikalarını aşan talepleri kısıtlayabilir.| E | E | E |
 | 500 Internal Server Error | **API sunucu / servis katmanında sorun oluştu. İşlem başarısız.**<br> 5XX hata durumlarında yanıt gövde değeri olmadığı için mesaj imzalama yapılamaz ve x-jws-signature alanı boş olarak iletilir.<br> Bu durumda x-jws-signature kontrolü yapılmamalıdır.| E | E | E |
 | 503 Service Unavailable | **Hizmet sürümü kullanımdan kaldırıldı.** Bir API'nin kullanımdan kaldırıldığı ve artık bir HHS tarafından operasyonel olarak desteklenmediği durumlarda, URI yolu hala etkin olabilir ve API isteklerini kabul edebilir.  Bu durumda, YÖS'ün API sürümünün çevrimdışı olduğunun farkında olması için 503 Hizmet Kullanılamıyor dönmesi önerilir.| E | E | E |
+
 **Hata Örnekleri:**
 
 <ins>**400 Bad Request**</ins>
@@ -470,61 +459,135 @@ Zorunlu header alanlarından biri ya da birkaçı eksik olarak gönderilirse aş
 **TR.OHVPS.Resource.InvalidFormat** hatası şema validasyonu, alan uzunluk ve varlık kontrollerinin başarısız olduğu durumda verilmelidir. 
 
 ```JSON 
-httpCode: 400
-httpMessage: “Bad Request”
-moreInformation: “Resource Schema validation error”
-moreInformationTr: “Şema Kontrolleri Başarısız” 
-errorCode: "TR.OHVPS.Resource.InvalidFormat"
 
-fieldErrors:  
-         code: {"TR.OHVPS.Field.Invalid",
-                    "TR.OHVPS.Field.Missing"}
+{
+    "path": "/ohvps/obh/s1.0/odeme-emri-rizasi",
+    "id": "7f115b9c-d7c2-4a2a-bc45-5a9891c79072",
+    "timestamp": "2022-12-22T10:47:57+03:00",
+    "httpCode": 400,
+    "httpMessage": "Bad Request",
+    "moreInformation": "Validation error",
+    "moreInformationTr": "Şema kontrolleri başarısız",
+    "fieldErrors": [
+        {
+            "objectName": "odemeEmriRizasiIstegi",
+            "field": "odmBsltm.alc.unv",
+            "messageTr": "boyut '3' ile '140' arasında olmalı",
+            "message": "size must be between 3 and 140",
+            "code": "TR.OHVPS.Field.Invalid"
+        },
+        {
+            "objectName": "odemeEmriRizasiIstegi",
+            "field": "odmBsltm.islTtr.ttr",
+            "messageTr": "boş değer olamaz",
+            "message": "must not be null",
+            "code": "TR.OHVPS.Field.Missing"
+        }
+    ],
+    "errorCode": "TR.OHVPS.Resource.InvalidFormat"
+} 
 
 ```
 
-Örn; GET /odeme-emri/22289 çağrısı durumunda 22289 geçerli bir ödeme kaynağı değilse, HHS, 400 koduyla cevap vermelidir.  
+Zorunlu header alanlarından biri ya da birkaçı eksik olarak gönderilirse aşağıdaki gibi bir hata dönüşü gerçekleşebilir.
+
+HHS uygulaması tarafından dönülebilecek hata örnekleri:
+```JSON 
+
+{
+    "path": "/ohvps/obh/s1.0/odeme-emri-rizasi",
+    "id": "2005515d-f0e6-4a07-a439-0ef3b0f56011",
+    "timestamp": "2022-12-22T10:39:26+03:00",
+    "httpCode": 400,
+    "httpMessage": "Bad Request",
+    "moreInformation": "Validation error",
+    "moreInformationTr": "Şema kontrolleri başarısız",
+    "errorCode": "TR.OHVPS.Resource.InvalidFormat",
+    "fieldErrors": [
+        {         
+            "field": "X-Request-ID",
+            "messageTr": "X-Request-ID değeri boş olamaz.",
+            "message": "X-Request-ID cannot be null.",
+            "code": "TR.OHVPS.Field.Invalid"
+        }
+    ]
+} 
+
+```
+
+Business hata örneği - 1:  
 ```JSON 
 {
-  "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-  "path": "/ohvps/s1.1/obh/odeme-emri-rizasi",
-  "timestamp": "2020-06-13T18:24:38",
-  "httpCode": 400,
-  "httpMessage": "Bad Request",
-  "moreInformation": "Resource Schema validation error",
-  "moreInformationTr": "Şema kontrolleri başarısız",
-   "errorCode": "TR.OHVPS.Resource.InvalidFormat",
-   
-  "fieldErrors": [
-{
-"objectName": "odemeEmriRizasi",
-"field": "kmlkNo",
-"messageTr": "boyut '6' ile '30' arasında olmalı",
-"message": "size must be between '6' and '30'",
-"code": "TR.OHVPS.Field.Invalid"
-},
-{
-"objectName": "odemeEmriRizasi",
- "field": "prBrm",
- "messageTr": "boş değer olamaz",
- "message": "must not be null",
- "code": "TR.OHVPS.Field.Missing"
-}
-]
-}
-
-
-errorCode: "TR.OHVPS.Connection.InvalidTPP"
-moreInformation: “Invalid TPP Code”
-moreInformationTr: “Geçersiz Yös Kodu” 
-
-errorCode: "TR.OHVPS.Connection.InvalidASPSP"
-moreInformation: “Invalid ASPSP Code”
-moreInformationTr: “Geçersiz HHS Kodu” 
-
-errorCode: "TR.OHVPS.Connection. InvalidTPPRole"
-moreInformation: “Invalid TPP Role” 
-moreInformationTr: “Hatalı Yös Rolü” 
+    "path": "/ohvps/obh/s1.0/odeme-emri-rizasi",
+    "id": "677cfd9d-77c1-4ea3-8bdf-74a6e9887177",
+    "timestamp": "2022-12-22T11:05:59+03:00",
+    "httpCode": 400,
+    "httpMessage": "Bad Request",
+    "moreInformation": "gonUnvan wrong",
+    "moreInformationTr": "Gönderen Ünvan hatalı",
+    "errorCode": "TR.OHVPS.Business.InvalidContent"
+} 
 ```
+
+Business hata örneği - 2:  
+```JSON 
+{
+    "path": "/ohvps/obh/s1.0/odeme-emri-rizasi",
+    "id": "5df3b402-3aca-4305-a35b-5af0f3184b40",
+    "timestamp": "2022-12-22T11:06:47+03:00",
+    "httpCode": 400,
+    "httpMessage": "Bad Request",
+    "moreInformation": "Sender account is disabled or not found.",
+    "moreInformationTr": "Gonderen hesap aktif değil veya bulunamadı.",
+    "errorCode": "TR.OHVPS.Business.InvalidAccount"
+} 
+ ```
+
+
+BKM API Geçidi'nde yapılan zorunlu header kontrollerinde aşağıdaki hatalar dönebilir:
+```JSON 
+
+{
+    "timestamp": "2022-12-22T10:40:28+03:00",
+    "path": "/ohvps/obh/s1.0/odeme-emri-rizasi",
+    "id": "d4375748-6fc7-4f7e-94f3-6411cab1d59f",
+    "moreInformationTr": "Geçersiz HHS kodu.",
+    "errorCode": "TR.OHVPS.Connection.InvalidASPSP",
+    "moreInformation": "Invalid ASPSP Code",
+    "httpCode": 400,
+    "httpMessage": "Bad Request"
+} 
+ ```
+BKM API Geçidi tarafından dönülecek hata örneği:
+```JSON 
+
+{
+    "timestamp": "2022-12-22T10:40:28+03:00",
+    "path": "/ohvps/obh/s1.0/odeme-emri-rizasi",
+    "id": "d4375748-6fc7-4f7e-94f3-6411cab1d59f",
+    "moreInformationTr": "Geçersiz HHS kodu.",
+    "errorCode": "TR.OHVPS.Connection.InvalidTPP",
+    "moreInformation": "Invalid TPP Code",
+    "httpCode": 400,
+    "httpMessage": "Bad Request"
+} 
+ ```
+
+BKM API Geçidi tarafından dönülecek hata örneği:
+```JSON 
+
+{
+    "timestamp": "2022-12-22T11:14:05+03:00",
+    "path": "/ohvps/hbh/s1.0/hesap-bilgisi-rizasi",
+    "id": "ee1e3ea7-a5e5-468b-bb02-314148f84e6a",
+    "moreInformationTr": "Geçersiz yös rolü. İlgili api çağrısı için yetkisi yok.",
+    "errorCode": "TR.OHVPS.Connection.InvalidTPPRole",
+    "moreInformation": "Invalid TPP Role",
+    "httpCode": 403,
+    "httpMessage": "Forbidden"
+} 
+
+ ```
 
 
 <ins>**401 Unauthorized**</ins>
@@ -536,89 +599,144 @@ moreInformationTr: “Hatalı Yös Rolü”
 Bu hata, müşteriden doğru izinlerle yeniden kimlik doğrulaması isteyerek çözülebilir.
 
 ```json 
-errorCode: " TR.OHVPS.Connection.InvalidToken "
-moreInformation: “Invalid Token”
-moreInformationTr: “Geçersiz Token” 
+
+{
+    "path": "/ohvps/gkd/s1.0/erisim-belirteci",
+    "id": "ed3fd667-fc58-40ad-a982-e8937faccd15",
+    "timestamp": "2022-12-22T11:17:33+03:00",
+    "httpCode": 401,
+    "httpMessage": "Unauthorized",
+    "moreInformation": "Refresh token expired or not found in database",
+    "moreInformationTr": "Yenileme belirteci zaman aşımına uğramış veya veri tabanında yok",
+    "errorCode": "TR.OHVPS.Connection.InvalidToken"
+} 
+ 
+
 ```
 
 <ins>**403 Forbidden**</ins>
-```json 
-httpCode: 403
-httpMessage: “Forbidden”
 
-errorCode: "TR.OHVPS.Resource.Forbidden"
-moreInformation: “Insufficient rights”
-moreInformationTr: “İzin verilmedi.”
+Örn; YÖS yetkisi olmayan rol(ÖBH/HBH) ile işlem yapmaya çalıştığı durumda 403 hatası alarak işleme devam edemez.
+
+
+```json 
+{
+  "path": "/ohvps/hbh/s1.0/bakiye",
+  "id": "3e48ea98-f889-48b9-aa6e-28aabc6cfb14",
+  "timestamp": "2022-12-22T11:20:05+03:00",
+  "httpCode": 403,
+  "httpMessage": "Forbidden",
+  "moreInformation": "Forbidden",
+  "moreInformationTr": "Bakiye Bilgileri için ÖHK izni bulunmamaktadır.",
+  "errorCode": "TR.OHVPS.Resource.Forbidden"
+} 
 ```
 
 <ins>**404 Not Found**</ins>
-```json 
-httpCode: 404
-httpMessage: “Not Found”
 
-errorCode: "TR.OHVPS.Resource.NotFound"
-moreInformation: “Resource not found”
-moreInformationTr: “Kayıt bulunamadı”
+Örn; GET /odeme-emri-rizasi/123456 çağrısı durumunda 123456 geçerli bir ödeme kaynağı değilse, HHS, 404 koduyla cevap vermelidir.  
+
+```JSON 
+{
+    "path": "/ohvps/obh/s1.0/odeme-emri-rizasi/123456",
+    "id": "22f52b2d-d442-4a6a-8f39-d23eba45a34b",
+    "timestamp": "2022-12-22T10:53:53+03:00",
+    "httpCode": 404,
+    "httpMessage": "Not Found",
+    "moreInformation": "Resource not found",
+    "errorCode": "TR.OHVPS.Resource.NotFound",
+    "moreInformationTr": "Kaynak bulunamadı"
+} 
+
 ```
 <ins>**405 Method Not Allowed**</ins>
 ```json 
-httpCode: 405
-httpMessage: “Method  Not Found”
-
-errorCode: "TR.OHVPS.Resource.MethodNotAllowed"
-moreInformation: “Method Not Allowed”
-moreInformationTr: “İstek yapılan URL için izin verilmeyen metot” 
+{
+    "path": "/ohvps/obh/s1.0/odeme-emri-rizasi",
+    "id": "3e5c6b28-7ee4-4469-b541-843fb4a94eec",
+    "timestamp": "2022-12-22T11:35:10+03:00",
+    "httpCode": 405,
+    "httpMessage": "Method Not Allowed",
+    "moreInformation": "Method not allowed",
+    "errorCode": "TR.OHVPS.Resource.MethodNotAllowed",
+    "moreInformationTr": "İstek yapılan URL için izin verilmeyen metot"
+} 
 ```
 <ins>**406 Not Acceptable**</ins>
 ```json 
-httpCode: 406
-httpMessage: “Not Acceptable”
-
-errorCode: " TR.OHVPS.Resource.NotAcceptable"
-moreInformation: “Accept Headers not supported”
-moreInformationTr: “Desteklenmeyen kabul başlıkları” 
+{
+    "path": "/ohvps/obh/s1.0/odeme-emri-rizasi",
+    "id": "3e5c6b28-7ee4-4469-b541-843fb4a94eec",
+    "timestamp": "2022-12-22T11:35:10+03:00",
+    "httpCode": 406,
+    "httpMessage": "Not Acceptable",
+    "moreInformation": "Not Acceptable",
+    "errorCode": "TR.OHVPS.Resource.NotAcceptable",
+    "moreInformationTr": "Kabul edilmedi"
+} 
 ```
 <ins>**415 Unsupported Media Type**</ins>
-```json 
-httpCode: 415
-httpMessage: “Unsupported Media Type”
 
-errorCode: " TR.OHVPS.Resource.UnsupportedMediaType"
-moreInformation: “Content type not supported”
-moreInformationTr: “Desteklenmeyen içerik tipi” 
+İstek başlığında content-type, JSON dışında bir veri iletilirse bu hata verilebilir. 
+
+```json 
+
+{
+    "path": "/ohvps/obh/s1.0/odeme-emri-rizasi",
+    "id": "63cc94b6-1b51-4648-9671-95e6e2e7e03d",
+    "timestamp": "2022-12-22T11:37:12+03:00",
+    "httpCode": 415,
+    "httpMessage": "Unsupported Media Type",
+    "moreInformation": "Content type not supported",
+    "errorCode": "TR.OHVPS.Resource.UnsupportedMediaType",
+    "moreInformationTr": "Desteklenmeyen içerik tipi’"
+} 
 ```
 
 
 <ins>**429 Too Many Requests**</ins>
 ```json 
-httpCode: 429
-httpMessage: “Too Many Requests”
-
-errorCode: " TR.OHVPS.Connection.ExceededRate"
-moreInformation: “The rate limit has been exceeded for the plan or operation being used”
-moreInformationTr: “Planda tanımlanmış olan çağrı limiti aşıldı”
+{
+  "path": "/ohvps/hbh/s1.0/hesaplar/aef6061f-2978-4bb4-980d-b4c634c8055b/islemler",
+  "id": "20473c5f-2f4f-4b2e-8b66-7978aec442f7",
+  "timestamp": "2022-12-22T00:21:07+03:00",
+  "httpCode": 429,
+  "httpMessage": "Too Many Requests",
+  "moreInformation": "Exceeded rate",
+  "moreInformationTr": "Erişim sıklığı limiti aşımı",
+  "errorCode": "TR.OHVPS.Connection.ExceededRate"
+} 
 ```
 
 
 <ins>**500 Internal Server Error**</ins>
 ```json 
-httpCode: 500
-httpMessage: “Internal Server Error”
+{
+  "id": "1b90c6dc-0277-4755-8b05-9297ddfab743",
+  "path": "/ohvps/obh/s1.0/odeme-emri-rizasi",
+  "timestamp": "2022-12-22T11:41:34+03:00",
+  "httpCode": 500,
+  "httpMessage": "Internal Server Error",
+  "moreInformation": "Unexpected condition was encountered.",
+  "moreInformationTr": "Beklenmeyen bir durumla karşılaşıldı.",
+  "errorCode": "TR.OHVPS.Server.InternalError"
+} 
 
-errorCode: "TR.OHVPS.Server.InternalError"
-moreInformation: “Unexpected condition was encountered”
-moreInformationTr: “Beklenmedik bir durumla karşılaşıldı.” 
 ```
 
 
 <ins>**503 Service Unavailable**</ins>
 ```json 
-httpCode: 503
-httpMessage: “Service Unavailable”
 
-errorCode: "TR.OHVPS.Server.ServiceUnavailable "
-moreInformation: “API is currently unable to handle the request”
-moreInformationTr: “API şu anda isteği işleyemiyor” 
+  "timestamp": "2022-12-20T23:18:56+03:00",
+  "path": "/ohvps/hbh/s1.0/hesap-bilgisi-rizasi/2a72678ee3d24de2be47887e4903a8c6",
+  "id": "e76315b7-09f4-4295-b6d8-1f7fec632159",
+  "moreInformationTr": "HHS şu anda hizmet veremiyor.",
+  "errorCode": "TR.OHVPS.Server.ServiceUnavailable",
+  "moreInformation": "HHS is currently unavailable",
+  "httpCode": 503,
+  "httpMessage": "Service Unavailable"
+
 ```
 
 
