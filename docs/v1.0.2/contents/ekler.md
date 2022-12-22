@@ -7,7 +7,7 @@ Açık Bankacılık simülatör uygulaması üzerinde swagger dökümanlarının
 | Kod | Açıklama |
 | --- | --- |
 | TR.OHVPS.DataCode.KimlikTur | Kod, Tip, Format<br>K , TCKN , N11<br>M , MNO , AN1..30 (HHS’ye özel bireysel veya kurum müşteri numarası)<br>Y , YKN , N11<br>P , PNO , AN7..9 |
-| TR.OHVPS.DataCode.KurumKimlikTur | Kod, Tip, Format<br>K , TCKN , N11<br>M , MNO , AN1..30 (HHS’ye özel bireysel veya kurum müşteri numarası)<br>V , VKN , N10|
+| TR.OHVPS.DataCode.KurumKimlikTur | Kod, Tip, Format<br>K , TCKN , N11<br>M , MNO , AN1..30 (HHS’ye özel bireysel veya kurum müşteri numarası)<br>V , VKN , AN10|
 | TR.OHVPS.DataCode.OhkTur | Kod:<br>B: Bireysel <br>K: Kurumsal |
 | TR.OHVPS.DataCode.KolasTur | Müşterinin sorgulama istediği Kolay Adres Tipi değeridir. Alabileceği değerler BKM “Kolay Adresleme Sistemi Uygulama Kuralları” belgesinde tanımlıdır:<br>T: Telefon Numarası<br>E: E-Posta<br>K: TCKN<br>V: VKN<br>Y: YKN<br>P: Pasaport Numarası |
 | TR.OHVPS.DataCode.KareKodAksTur | Karekod Akış Türü Karekod ödemesinin hangi akışla gerçekleştirildiğini gösterir.<br> 01: FAST katılımcısından dinamik doğrulamalı hizmet alınan işyeri ödemesi<br>02: FAST katılımcısından statik doğrulamalı işyeri ödemesi<br>03: Kişiden kişiye ödemeler |
