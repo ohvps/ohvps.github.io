@@ -805,6 +805,9 @@ HHS, API çağrımının ÖHK'lı ya da ÖHK'sız olduğunu istek parametreleri 
 ÖHK YÖS uygulamasına giriş yaptığı andan çıkış yaptığı ana kadar yani ÖHK oturumu boyunca yapılan API çağrımlarında, PSU-Initiated  değerinin "E" olması gerekmektedir.  YÖS uygulamasında ÖHK oturumu boyunca,  ÖHK'nın bilgilerinden minimumda "bakiye" bilgisinin, uygulama arayüzlerinde güncel değeri ile online sorgularla gösterimi YÖS'ün insiyatifindedir. 
   
 YÖS, aşağıdaki API'leri sistemsel bir şekilde çağırabilir.  
+HHS'lerin bu servisler için minimumda cevap vermesi gereken sorgu sayıları belirlenmiştir. Bu sayıların üzerinde yapılan servis çağrısına yanıt dönmek HHS inisiyatifindedir.<br>
+HHS tarafından izin verilen sorgu sayısının üzerinde yapılan bir sorgu için HTTP 429 durum kodu (Too Many Requests) hatası dönülmelidir. Yanıt gövdesinde tekrar hata nesnesinin oluşturulması HHS inisiyatifindedir. <br>HHS yanıt headerı alanında iletilecek X-RateLimit-Reset (saniye cinsinden) değeri kadar süre sonunda
+ YÖS'ün tekrar sorgulama yapması beklenmektedir.
 
 |No|	Kaynak|	HTTP işlemi	|Erişim Adresi|Otomatik Sorgu Sayısı|
 | --- | --- | --- | --- | --- | --- | 
