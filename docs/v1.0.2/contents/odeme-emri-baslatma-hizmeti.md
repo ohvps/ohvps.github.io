@@ -388,7 +388,7 @@ POST işleminin RESPONSE gövdesini (BODY) oluşturan “OdemeEmri” nesnesi Ta
 | --- |--- |--- |--- |--- |
 | **Riza Bilgileri**	| rzBlg | Kompleks: RizaBilgileri | Z |  |
 | **> Rıza No**|rizaNo  | 	AN1..128 | Z  | OdemeEmriRızasi nesnesinin oluşturulması esnasında HHS kaynak sunucusu tarafından atanan biricik tanımlayıcı | 
-| **> Oluşturma Zamanı** | olusZmn | ISODateTime | Z | OdemeEmriRizasi nesnesinin oluşturulma zamanı | 
+| **> Oluşturma Zamanı** | olusZmn | ISODateTime | Z | OdemeEmriRizasi nesnesinin oluşturulma zamanıdır. | 
 | **> Rıza Durumu** | rizaDrm | AN1 |  Z | **TR.OHVPS.DataCode.RizaDurumu** sıralı veri tipini değerlerinden birini alır. | 
 | **Katılımcı Bilgisi** | katilimciBlg | Kompleks:KatilimciBilgisi | Z | Katılımcılara atanmış kod bilgileridir. |   
 | **>Hesap Hizmeti Sağlayıcısı Kodu** | hhsKod  | AN4  | Z  |  İsteğin iletildiği Hesap Hizmeti Sağlayıcısının kodudur. (Nezdinde ÖH bulunduran kuruluş kodu. Örneğin, Banka, Elektronik Para Kuruluşu ve Ödeme Kuruluşu) | 
@@ -400,8 +400,8 @@ POST işleminin RESPONSE gövdesini (BODY) oluşturan “OdemeEmri” nesnesi Ta
 | **> HHS Yönlenme Adresi**	| hhsYonAdr  |  AN1..1024 | K  | GKD doğrulama bilgilerinin girilebilmesi için uygulamadan açılacak yönlendirme sayfasının adresi    |
 | **> Yetkilendirme Tamamlanma Zamanı**	| yetTmmZmn  |  ISODateTime | Z  | Yetkilendirme akışının tamamlanması gereken son zamanı gösterir. <br> Rıza durumu Yetkilendirildi statüsüne geçene kadarki süredir.| 
 | **Emir Bilgileri** | emrBlg  | Kompleks: EmirBilgileri  | Z   |   |  
-| **> Ödeme Emri Numarası** | odmEmriNo  | AN1..128  | Z   |  Ödeme Emri nesnesinin UID'sidir. OdemeEmrine İlişkin sorgular bu ID üzerinden yapılır. |  
-| **> Ödeme Emri Zaman** | odmEmriZmn  | ISODateTime  | Z   | Ödeme emrinin FAST, PÖS, havale gibi gerçekleştirileceği ilgili ödeme sistemine iletilme tarihi.  |  
+| **> Ödeme Emri Numarası** | odmEmriNo  | AN1..128  | Z   |  odemeEmri nesnesinin UID'sidir. OdemeEmrine İlişkin sorgular bu ID üzerinden yapılır. |  
+| **> Ödeme Emri Zaman** | odmEmriZmn  | ISODateTime  | Z   | odemeEmri nesnesinin oluşturulma zamanıdır.|  
 | **Ödeme Başlatma** | odmBsltm  | Kompleks: OdemeBaslatma  | Z   |   |  
 | **> Kimlik** | kmlk  | Kompleks:Kimlik  | Z   |   |  
 | **>> Kimlik Türü** | kmlkTur  | AN1| Z | **TR.OHVPS.DataCode.KimlikTur** sıralı veri türü değerlerinden birini alır.| 
