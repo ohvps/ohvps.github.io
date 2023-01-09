@@ -42,7 +42,7 @@ Rıza iptal edilmediği ve geçerli olduğu sürece kapalı hesaplar için diğe
 
 Hesap kapama ve ticari kullanıcıların hesaplar üzerindeki yetki değişiklikleri HHS'nin iç sistemleri tarafından yapılan kontrollerle yönetilir. Buradaki değişiklikler ile HHS sistemsel olarak rıza iptali gerçekleştiremez. ÖHK izni ve onayı dahilinde rıza iptal gerçekleştirilmesi gerekmektedir.  
 
-HHS'ler sunmuş oldukları Rıza İptal ekranını, hangi ortamlardan GKD yapılmasına izin veriliyorsa (web/mobil) aynı ortamdan ÖHK'ya sunmalıdır. Örneğin bir HHS bireysel müşterileri için web ve mobil, kurumsal müşteriler için web üzerinden GKD imkanı sunuyor ise, minimumda bireysel müşteriler için web ve mobil ortamlarından, kurumsal müşteriler için web ortamından Rıza İptal ekranı aracılığı ile rıza iptaline izin vermelidir. Bunun dışında çağrı merkezi ya da şube gibi ortamlardan sunacağı Rıza İptal imkanı HHS inisiyatifindedir.
+HHS'ler sunmuş oldukları Rıza İptal ekranını (sadece Hesap Bilgisi Rızası için), hangi ortamlardan GKD yapılmasına izin veriliyorsa (web/mobil) aynı ortamdan ÖHK'ya sunmalıdır.  Örneğin bir HHS bireysel müşterileri için web ve mobil, kurumsal müşteriler için web üzerinden GKD imkanı sunuyor ise, minimumda bireysel müşteriler için web ve mobil ortamlarından, kurumsal müşteriler için web ortamından Rıza İptal ekranı aracılığı ile rıza iptaline izin vermelidir. Bunun dışında çağrı merkezi ya da şube gibi ortamlardan sunacağı Rıza İptal imkanı HHS inisiyatifindedir. Bahsi geçen zorunluluk Ödeme Emri Rıza İptal ekranı için geçerli değildir.
 
 ## 4.1.	Hesap Bilgisi Hizmeti Rıza durum değişiklikleri
 
