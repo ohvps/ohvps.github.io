@@ -82,6 +82,12 @@ Hesap bakiye kontrolünün rıza aşamasında yapılmaması gerekmektedir. Çün
 
 **POST /odeme-emri-rizasi** isteğinin (REQUEST) gövdesinde (BODY)  “odemeEmriRizasiIstegi” nesnesi (Tablo-7) kullanılır. İstek başarıyla sonuçlanırsa HHS kaynak sunucusunda “odemeEmriRizasi” (Tablo-8) nesnesi oluşturulur.
 
+**Tek Seferlik Ödeme**  
+Tek seferlik ödeme akışı YÖS'ten HHS'ye giden istekte, gönderen kimlik bilgilerinin olmadığı durumda gerçekleşir. Gönderen kimlik bilgisi olmadığında, KOLAS sorgusu yapılamayacağından ötürü, HHS tarafından TR.OHVPS.Business.InvalidContent hatası dönülmelidir.  
+Tek seferlik ödeme akışı hem işyeri ödemelerinde hem de kişiden kişiye para transferlerinde kullanılabilen bir akıştır.
+Aşağıdaki senaryolar tek seferlik ödemeye örnek olarak gösterilebilir.  
+İşyeri Ödemesi akışı örneği: Bir e-ticaret sitesinde, üye olmadan alışveriş yapılması ve ödemenin YÖS tarafından kimlik bilgisi olmadan başlatılması  
+Kişiden kişiye para transferi akışı örneği: QR veya diğer yöntemler ile alıcı bilgilerinin gönderici ile paylaşılması ve YÖS üzerinden gönderici bilgileri olmadan alıcıya para transferi yapılması için rıza verilmesi
 
 #### **BAŞARILI İSTEK:**
 
@@ -113,7 +119,7 @@ Hesap bakiye kontrolünün rıza aşamasında yapılmaması gerekmektedir. Çün
 | **> Alıcı** |  alc  |  	Kompleks:Hesap  | Z |   |  |
 | **>> Unvan** | unv | AN3..140 | K  | **Kolay Adres Sistemi** kullanılmıyorsa zorunludur.<br> Alıcının unvanıdır. ÖBHS ekranlarından girişi yapılabileceği gibi ÖBHS’nin kayıtlı alıcılarından yapılan seçimle de doldurup gönderebildiği bilgi olabilir.<br> FAST-TR Karekod Veri Organizasyonunda;<br> İşyeri tarafından sunulan uzun karekod yapısının **59:** alanında tanımlı İşyeri adı alanıdır, Kişiden Kişiye Ödeme Karekod Yapısının **07:** alanında tanımlı <br> **Ödeme Alıcısının Adı ve Soyadı** alanıdır. <br><br>FAST-TR Karekod dışındaki iş yeri ödemelerinde; yine Unvan alanında işyeri adı bilgisi gönderilmelidir.|  |
 | **>> Hesap Numarası**	|hspNo | AN26 | K | **Alıcının Hesap Numarası (IBAN)** alanıdır.<br> **Kolay Adres Sistemi** kullanılmıyorsa zorunludur.<br> Karekod akışında, FAST Karekod Veri Organizasyonundaki **30-01:** alanında tanımlı İş Yeri IBAN verisi kullanılır.<br> Alıcının birden fazla hesabının kullanılabilir olduğu durumlarda (özellikle işyeri ödemelerinde HHS nezdindeki hesap (on-us havale akışı) tercih edilmelidir. | HHS (Gönderen Katılımcı) tarafından IBAN doğrulaması (kontrol basamağı doğrulaması) yapılır.  |
-| **>> Kolay Adres** | kolas   | Kompleks:Kolas  | K  |   | Tek seferlik ödeme akışı yalnızca işyeri ödemelerinde karşımıza çıkacaktır. Burada gönderen kimlik bilgileri boş olarak iletilir. Alıcının hesap bilgileri yapılan anlaşmalar gereği YÖS'te mevcut olacağı için, KOLAS akışına gerek bulunmamaktadır.<br> Bu yüzden gönderen kimlik bilgileri boş iletildiğinde, KOLAS nesnesi dolu iletiliyorsa; HHS tarafından TR.OHVPS.Business.InvalidContent hatası dönülmelidir. |
+| **>> Kolay Adres** | kolas   | Kompleks:Kolas  | K  |   | Tek seferlik ödemelerde ( kimlik bilgileri boş iletildiğinde) KOLAS nesnesi dolu iletiliyorsa; HHS tarafından TR.OHVPS.Business.InvalidContent hatası dönülmelidir |
 | **>>> Kolas Türü**  |  kolasTur   |  AN1   | Z  |  **TR.OHVPS.DataCode.KolasTur** sıralı veri türü değerlerinden birini alır.<br> Alıcı Hesap Numarası girilmediyse kullanımı zorunludur ve **Kolay Adres Tipi** alanıyla birlikte kullanılır. | HHS (Gönderen FAST katılımcısı) tarafından KOLAS Servisine yapılan sorguda girdi olarak kullanılır. |
 | **>>> Kolas Değeri**  |  kolasDgr   |  AN7..50   |  Z | Müşterinin eklediği, HHS (FAST katılımcısı) tarafından doğrulanmış Kolay Adres değeridir. Alabileceği değerler BKM “Kolay Adresleme Sistemi Uygulama Kuralları” belgesinde tanımlıdır.<br> Hesap Numarası girilmediyse kullanımı zorunludur ve **Kolay Adres Tipi** alanıyla birlikte kullanılır.  | HHS (Gönderen FAST katılımcısı) tarafından KOLAS Servisine yapılan sorguda girdi olarak kullanılır.  |
 | **> Karekod**  | kkod | Kompleks:Karekod   |  	K   |      |  |
