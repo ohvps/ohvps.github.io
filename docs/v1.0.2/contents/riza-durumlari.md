@@ -56,8 +56,8 @@ Bir ÖHK hem kişisel olarak hem de bir kurumun kullanıcısı olabilir. Bu duru
          &nbsp;&nbsp;&nbsp;&nbsp;    HHS, sistemde Yetki Bekleniyor - B rıza durumuna sahip kayıt olduğu için, öncelikle eski kaydı Yetki İptal - I durumuna getirir.  Rıza İptal Detay Kodu “Yeni Rıza Talebi ile iptal” olmalıdır. **B &#8680; I / 01** Sonrasında, **Yetki Bekleniyor - B** rıza durumu ile yeni rıza oluşturur.   
             
     &nbsp;&nbsp;&nbsp;&nbsp; ii. Rıza durumu Yetkilendirildi - Y veya Yetki Kullanıldı - K ise;  
-     &nbsp;&nbsp;&nbsp;&nbsp;ÖHK'nın halihazırda verilmiş bir rızası vardır. HHS, önce mevcut rızanın iptalinin yapılması gerektiğine dair hata döner. **TR.OHVPS.Resource.ConsentMismatch**
-
+     &nbsp;&nbsp;&nbsp;&nbsp;ÖHK'nın halihazırda verilmiş bir rızası vardır. HHS, önce mevcut rızanın iptalinin yapılması gerektiğine dair  **TR.OHVPS.Resource.ConsentMismatch** hatasını döner. YÖS, HHS ya da YÖS uygulaması üzerinden bu rızanın iptal edilmesi gerektiğine dair ÖHK'ya bilgilendirme yapar.
+    
     &nbsp;&nbsp;&nbsp;&nbsp; iii.	Rıza durumu Yetki Sonlandırıldı - S  ise Yetki Bekleniyor - B durumunda yeni rıza no oluşturur.   
 
     &nbsp;&nbsp;&nbsp;&nbsp; iv.	Rıza durumu Yetki İptal - I ise **Yetki Bekleniyor - B** durumunda yeni rıza no oluşturur.
