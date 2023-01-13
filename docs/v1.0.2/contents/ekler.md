@@ -141,6 +141,7 @@ Bir YÖS üzerinden başlayan akış örnek olarak paylaşılmıştır.
     1. 	Header kısmındaki algoritmanin RS256 olduğu kontrol edilir.   
     2. 	Gönderen kurumun açık anahtarı ile JWT verify (doğrulama) işlemi yapılır.
     3. 	Yukarıdaki işlemlerin doğruluğunun ardından JWT’nin payload kısmındaki “body” claim alanındaki bilginin, isteğin gövde verisinin SHA256 hash değerlerinin aynı olduğu kontrol edilir. 
+    4. Örnek checksum değeri <br> "a64b19f95eeb1fb0a0a3e2dbbc6e3d8472c52184d4543417ddc6d156fc5c5571" veya <br> "A64B19F95EEB1FB0A0A3E2DBBC6E3D8472C52184D4543417DDC6D156FC5C5571" şeklinde olabilir. İki hali de aynı değere sahiptir. Kontrollerde buna dikkat edilmesi gerekmektedir. 
 
 - Yukarıdaki işlemler ile doğruluğu teyit edilmiş olan isteğin talebi gerçekleştirir.
 - Eğer istek doğrulanamıyor ise gönderen kurumun açık ve özel anahtar çifti yenilenmiş olabilir.
