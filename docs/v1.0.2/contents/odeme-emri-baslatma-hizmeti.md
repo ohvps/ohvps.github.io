@@ -73,7 +73,7 @@ HHS’nin base pathi/alt-dizin/GKD Karşılama Ekranı?rizano={rızano}
 - HHS; istek mesajında yer alan alanların API dökümanında belirtilen şartları sağlayacak şekilde zorunluluk, uzunluk ve içerik kontrollerini yapar. (Zorunlu)  
 - HHS; YÖS API ile alınan ÖBHS bilgilerinin içerisinde yer alan yönlendirme ve bildirim adresleri ile ödeme emri rızası nesnesi request mesajında paylaşılan adreslerin uyumlu olup olmadığının kontrollerini yapar. (Zorunlu)  
 - HHS; kimlik bilgileri nesnesinde eğer kimlik bilgileri iletilmiş ise; bu veri ile ÖHK’nın HHS müşterisi olup olmadığının kontrollerini yapar. Bu kontrol hem bireysel hem de kurumsal ÖHK’lar için yapılmalıdır.  (Koşullu Zorunlu)  
-- HHS kimlik bilgisi ile gönderen unvanının uyumlu olduğunun kontrol eder. (Zorunlu)  
+- HHS kimlik bilgisi ile gönderen unvanının uyumlu olduğunun kontrol eder. HHS'ler EFT/FAST işlemlerinde kabul ettikleri kontrol kriterleri ile işleme izin verebilirler. (Zorunlu)  
 - Gönderen Hesap Numarası ile ilgili Tablo7’de belirtilen kontroller yapılmalıdır. (Zorunlu)  
 - HHS, ödeme için benzersiz “RizaNo” ile “OdemeEmriRizasi” nesnesi oluşturur ve ÖBHS’ye döner.  
 - HHS, OdemeEmriRizasi oluşturduğu anda durumunu “Yetki Bekleniyor” olarak düzenler.  

@@ -803,6 +803,8 @@ YÖS uygulaması, ÖHK'nın başlattığı işlemler neticesinde API çağrımı
 HHS, API çağrımının ÖHK'lı ya da ÖHK'sız olduğunu istek parametreleri içerisinde yer alan PSU-Initiated parametresi ile anlar. Bu parametre “E” ise ÖHK’lı, “H” ise sistemsel yapılmış bir sorgu anlamına gelmektedir. 
   
 ÖHK YÖS uygulamasına giriş yaptığı andan çıkış yaptığı ana kadar yani ÖHK oturumu boyunca yapılan API çağrımlarında, PSU-Initiated  değerinin "E" olması gerekmektedir.  YÖS uygulamasında ÖHK oturumu boyunca,  ÖHK'nın bilgilerinden minimumda "bakiye" bilgisinin, uygulama arayüzlerinde güncel değeri ile online sorgularla gösterimi YÖS'ün insiyatifindedir. 
+
+ÖHK’nın başlattığı sorgular için HHS tarafından belirlenen üst rate limitler dahilinde çağrım yapılabilir.
   
 YÖS, aşağıdaki API'leri sistemsel bir şekilde çağırabilir.  
 HHS'lerin bu servisler için minimumda cevap vermesi gereken sorgu sayıları belirlenmiştir. Bu sayıların üzerinde yapılan servis çağrısına yanıt dönmek HHS inisiyatifindedir.<br>
@@ -823,8 +825,6 @@ HHS tarafından izin verilen sorgu sayısının üzerinde yapılan bir sorgu iç
 | 10 | islemler | GET |/hesaplar/{hspRef}/işlemler| Bireysel günde 4<br>Kurumsal saatte 12 | 
 
 YÖS ve HHS son 24 saat içerisindeki sorgu sayılarını toplayarak elde ettiği sonuçlarla limit kontrolü yapmalıdır (Pencere yöntemi).  
-
-ÖHK’nın başlattığı sorgular için HHS tarafından belirlenen üst rate limitler dahilinde çağrım yapılabilir.
 
 Sistemsel yapılan otomatik API çağrımlarında sadece işlemler servisinin çağrım sayısında limit konulmuştur. Bknz: [^Bölüm 7.8] Bunun dışındaki API çağrımlarında API İlke ve Kuralları 1.0 sürümünde limit konulmamıştır. HHS'lerin uygulayabileceği limitler Bölüm 3.20'de açıklanmıştır.
 
