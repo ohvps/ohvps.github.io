@@ -758,13 +758,10 @@ Maskeli olarak iletilmesi gereken verilerin maskeleme kuralları şu şekildedir
 
 - HHS’lerin sunuyor oldukları servisleri en fazla 3000 ms içinde yanıt dönecek şekilde tasarlamalıdır.  
 
-- YÖS tarafından kullanıcının başlatmadığı otomatize sorgular için aşağıdaki limitler belirlenmiştir.  
-  - YÖS, Bireysel ÖHK’lar için hesap bazında günde en fazla 4 adet sorgulama yapabilir.  
-  - YÖS, Kurumsal ÖHK’lar için hesap bazında saatte en fazla 12 adet sorgulama yapabilir  
-  Diğer taraftan kullanıcının başlattığı Hesap Bilgisi Hizmeti kapsamındaki sorgular HHS tarafından belirlenen üst rate limitler dahilinde tanımlanabilir.  
-
 - HHS’lerin sunuyor oldukları servislere sistemin güvenlik ve sürekliliğini sağlamak adına rate limit koyma ihtiyaçları olur ise, standartlar ve ihtiyaçlara uygun şekilde bir konfigürasyon yapabilirler. Ör: YÖS - Kullanıcı bazında günde X sorgu v.b. 
 İsteğin kullanıcı tarafından başlatıldığı Request Header içerisinde yer alan Payment Service User (PSU) alanlarından anlaşılabilir. 
+
+- YÖS tarafından kullanıcının başlatmadığı otomatik sorgu limitleri Bölüm 3.21'de detaylandırılmıştır. Diğer taraftan kullanıcının başlattığı sorgular HHS tarafından anında yanıtlanmalıdır.  
 
 - HHS’ler aynı zamanda servislerin ayakta olup olmadığına yönelik olarak bir healthcheck servisi kurmalıdır.  HHS’lerin bu servis ile tüm network ve veritabanı ya da servislerinin ihtiyaç duydukları altyapısal erişimleri modellemeli ve bu servisi BKM ile paylaşmaları beklenmektedir. Bu servis düzenli olarak BKM tarafından çağırılarak servislerin ayakta olup olmadıklarının kontrolünün sağlanması planlanmaktadır.  
 
@@ -818,19 +815,18 @@ HHS tarafından izin verilen sorgu sayısının üzerinde yapılan bir sorgu iç
 | 3 | odeme-emri | GET |/odeme-emri/{odemeEmriNo}| Rıza bazında günde 24  | 
 | 4 | hesap-bilgisi-rizasi | GET | /hesap-bilgisi-rizasi/{RizaNo} | Rıza bazında günde 4 | 
 | 5 | hesap-bilgisi-rizasi | DELETE | /hesap-bilgisi-rizasi/{RizaNo} | --- |
-| 6 | hesaplar | GET |/hesaplar| Bireysel Günde 4<br> Kurumsal günde 4 | 
-| 7 | hesaplar | GET |/hesaplar/{hspRef}| Bireysel Günde 4<br>Kurumsal günde 4 | 
-| 8 | bakiye | GET |/hesaplar/{hspRef}/bakiye| Bireysel Günde 24<br>Kurumsal Günde 24 | 
-| 9 | bakiye | GET |/bakiye| Bireysel Günde 24<br>Kurumsal Günde 24 | 
-| 10 | islemler | GET |/hesaplar/{hspRef}/işlemler| Bireysel günde 4<br>Kurumsal saatte 12 | 
+| 6 | hesaplar | GET |/hesaplar| Bireysel günde 4<br> Kurumsal günde 4 | 
+| 7 | hesaplar | GET |/hesaplar/{hspRef}| Bireysel günde 4<br>Kurumsal günde 4 | 
+| 8 | bakiye | GET |/hesaplar/{hspRef}/bakiye| Bireysel günde 24<br>Kurumsal ÖHK - günde 24 | 
+| 9 | bakiye | GET |/bakiye| Bireysel günde 24<br>Kurumsal ÖHK - günde 24 | 
+| 10 | islemler | GET |/hesaplar/{hspRef}/işlemler| Bireysel günde 4<br>Kurumsal ÖHK - saatte 12 | 
 
 YÖS ve HHS son 24 saat içerisindeki sorgu sayılarını toplayarak elde ettiği sonuçlarla limit kontrolü yapmalıdır (Pencere yöntemi).  
 
-Sistemsel yapılan otomatik API çağrımlarında sadece işlemler servisinin çağrım sayısında limit konulmuştur. Bknz: [^Bölüm 7.8] Bunun dışındaki API çağrımlarında API İlke ve Kuralları 1.0 sürümünde limit konulmamıştır. HHS'lerin uygulayabileceği limitler Bölüm 3.20'de açıklanmıştır.
+İşlemler servisinin çağrım detaylarına [^Bölüm 7.8] üzerinden ulaşılabilir. 
 
 [^Bölüm 7.8]:  https://ohvps.github.io/v1.0.2/contents/hesap-bilgisi-hizmeti.html#_7-8-adim-3-5-ve-3-6-islemlerin-sorgulanmas%C4%B1/ 
 
-
-Hesap bilgisi rızasının YÖS tarafından sistemsel bir şekilde iptal edilmesi durumu [^Bölüm 9]'da açıklanmıştır.
+Hesap bilgisi rızasının YÖS tarafından otomatik bir şekilde iptal edilmesi durumu [^Bölüm 9]'da açıklanmıştır.
 
 [^Bölüm 9]:  https://ohvps.github.io/v1.0.2/contents/erisim-belirteci.html
