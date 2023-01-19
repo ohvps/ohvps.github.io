@@ -117,8 +117,8 @@ Bir YÖS üzerinden başlayan akış örnek olarak paylaşılmıştır.
         - Payload kısmında özel olarak oluşturulacak olan “body” claim alanına istek gövdesi (request body) verisinin SHA256 hash değeri karşılığı yazılmalıdır.
         - JSON payload oluşturulurken RFC 7519 baz alınmalıdır. "iss" (Issuer) Claim, "exp" (Expiration Time) Claim, "iat" (Issued At) Claim, “body” Claim alanlarının gönderilmesi zorunludur.[^RFC7519]  
         a.	"iss" (Issuer) Claim : Kurumunuza özel bilgidir.  
-        b.	"exp" (Expiration Time) Claim: Saniye cinsinden (Unix time) imzanın son geçerli olduğu tarih.  
-        c.	"iat" (Issued At) Claim : Saniye cinsinden (Unix time) imzanın oluşturulduğu tarih  
+        b.	"exp" (Expiration Time) Claim: Saniye cinsinden (Unix time) imzanın son geçerli olduğu tarih. Bu tarih  mevcut sunucu saatinizden 60 dakika sonra olacak şekilde kullanılmalıdır.  
+        c.	"iat" (Issued At) Claim : Saniye cinsinden (Unix time) imzanın oluşturulduğu tarih. Bu tarih  mevcut sunucu saatinizden 5 dakika önce olacak şekilde kullanılmalıdır.    
         d.	“body” Claim : istek gövdesi (request body) verisinin SHA256 hash değeri karşılığı.  
         - Signature alanında da özel anahtar ile imzalanmış olan imza içeriği yer alacaktır.
 
