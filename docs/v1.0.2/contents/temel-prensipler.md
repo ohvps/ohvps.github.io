@@ -438,7 +438,7 @@ TR.OHVPS.Resource.InvalidFormat hatası alındığı durumda; fieldErrors nesnes
 
 |HTTP Durum |İstek Sonucu ve Açıklamalar |POST |GET|DELETE |
 | --- | --- | --- | --- | --- |
-| 200 OK | **İstek Başarıyla Tamamlandı.**<br>Kaynak güncellemek için yapılan (örneğin, PUT) ve başarıyla tamamlanan isteklerinde kullanılır.  | H | H | H |
+| 200 OK | **İstek Başarıyla Tamamlandı.**<br>Kaynak güncellemek için yapılan (örneğin, GET) ve başarıyla tamamlanan isteklerinde kullanılır.  | H | E | H |
 | 201 Created | **İstek Başarılı Oldu.**<br>Kaynak yaratma isteği (örneğin, POST /ödeme-emri-rizasi) başarıyla sonuçlandı. | E | H | H |
 | 204 No Content | **Silme işlemi başarıyla tamamlandı.**<br>Kaynak silme isteği (örneğin, **DELETE /hesap-rizasi/{RizaNo}**) başarıyla sonuçlandı. | H | H | E |
 | 400 Bad Request | **İstekte bozuk, eksik veya uyumlu olmayan JSON gövdesi, URL parametreleri veya başlık alanları var.** İstekle başlatılan işlem yapısal bozukluk, eksik veya tutarsız veri veya HHS tarafındaki kontrollerin hatalı sonuçlanması nedeniyle hata ile sonuçlanır ve hataya ilişkin veriler hata nesnesi içerisinde dönülür. | E | E | E |
