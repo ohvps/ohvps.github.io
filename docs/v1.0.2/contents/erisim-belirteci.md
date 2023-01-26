@@ -41,8 +41,12 @@ POST işleminin RESPONSE gövdesini (BODY) oluşturan “erisimBelirteci” nesn
 | Yenileme Belirteci | yenilemeBelirteci | AN1..4096 | Z | Erişim belirtecinin yenilenmesi amacıyla kullanılır. | 
 | Yenileme Belirteci Geçerlik Süresi | yenilemeBelirteciGecerlilikSuresi | N1..9 | Z | Yenileme belirtecinin saniye cinsinden geçerlilik süresidir.<br>Yenileme belirtecinin geçerli olduğu son tarih ;<br>Hesap Bilgisi için Erişimin Geçerli Olduğu Son Tarih ile sınırlı olmalıdır.<br>Bu tarih geldiği zaman Hesap Bilgisi Rıza Durumunu ”Yetki Sonlandırıldı” statüsüne çekilmesi gerekir.<br>Ödeme Başlatma için Rıza Oluşturma Zamanından 15 gün sonrası olmalıdır.<br><br>15 gün süresi sorgulama servislerinin çağrımını destekleyecek şekilde uzun tutulmuştur. İleri vadeli işlemler bu kapsamda değildir. <br>Ödeme emri 5 dakika içinde gerçekleştirilmelidir. Gerçekleşmediğinde 4.2.8 bölümünde aktarılan rıza statü güncellemesi yapılmalıdır. | 
 
-erisim-belirteci erisim noktasından alınan elde edilen erisimBelirteci ilişkilendiriliği nesne veya işlem için gönderilen POST isteği başlığında x-access-token alanında iletilir.
-Yenilenme Belirteci (refreshToken) kullanılarak Erişim Belirteci (accessToken) alındığında, dönen yanıttaki Yenileme Belirteci ve Yenileme Belirteci Geçerlik Süresi değişmez.
+erisim-belirteci erisim noktasından elde edilen erisimBelirteci, ilişkilendirildiği nesne veya işlem için gönderilen POST isteği başlığında x-access-token alanında iletilir.
+
+Yenilenme Belirteci (refreshToken) kullanılarak Erişim Belirteci (accessToken) alındığında, dönen yanıttaki Yenileme Belirteci Geçerlik Süresi (yenilemeBelirteciGecerlilikSuresi) geçen süre eksiltilerek, kalan zamanın saniye cinsinden hesaplanmasıyla iletilmelidir.
+
+Yenileme Belirteci ile Erişim Belirteci güncellendiğinde, HHS'den dönen yenilemeBelirteci değeri değişebilir, YÖS bu güncel anahtarı saklamalı ve sonraki erisimBelirteci isteğini yenilenmiş olan yenilemeBelirteci ile yapmalıdır.
+
 
 Erişim Belirteci API çağrımı sırasında rıza durumları kontrol edilmelidir. Bu kontrollerin nasıl yapılması gerektiği 4-Rıza Durumları bölümünde aktarılmıştır.
 
