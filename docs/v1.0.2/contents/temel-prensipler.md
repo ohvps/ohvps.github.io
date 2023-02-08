@@ -760,10 +760,15 @@ Maskeli olarak iletilmesi gereken verilerin maskeleme kuralları şu şekildedir
 
 - HHS’lerin sunuyor oldukları servisleri en fazla 3000 ms içinde yanıt dönecek şekilde tasarlamalıdır.  
 
-- HHS’lerin sunuyor oldukları servislere sistemin güvenlik ve sürekliliğini sağlamak adına rate limit koyma ihtiyaçları olur ise, standartlar ve ihtiyaçlara uygun şekilde bir konfigürasyon yapabilirler. Ör: YÖS - Kullanıcı bazında günde X sorgu v.b. 
-İsteğin kullanıcı tarafından başlatıldığı Request Header içerisinde yer alan Payment Service User (PSU) alanlarından anlaşılabilir. 
+- HHS'ler mevcut online işlem kanallarından sundukları erişilebilirlik ve performans kriterlerinden daha düşük bir hizmet kalitesi sunmamalıdır.  
 
-- YÖS tarafından kullanıcının başlatmadığı otomatik sorgu limitleri Bölüm 3.21'de detaylandırılmıştır. Diğer taraftan kullanıcının başlattığı sorgular HHS tarafından anında yanıtlanmalıdır.  
+- HHS’lerin sunuyor oldukları servislere sistemin güvenlik ve sürekliliğini sağlamak adına rate limit koyma ihtiyaçları olur ise, standartlar ve ihtiyaçlara uygun şekilde bir konfigürasyon yapabilirler. <br>
+
+- HHS rate limit tanımı uyguluyor ise; YÖS'ler arasında ayrım yapmadan, adil ve makul sınırlar dahilinde uygulamalıdır.   <br>
+  
+- YÖS tarafından kullanıcının başlatmadığı otomatik sorgu limitleri **3.21 Otomatik Sorgular** bölümünde detaylandırılmıştır. HHS'lerin bu servisler için minimumda cevap vermesi gereken sorgu sayıları belirlenmiştir. Bu sayıların üzerinde yapılan servis çağrısına yanıt dönmek HHS inisiyatifindedir. Diğer taraftan kullanıcının başlattığı istekler için uygulanacak limitler, HHS'nin online işlem kanallarından sunulan sorgu limitlerinden daha az olmamalıdır.
+
+- HHS'ler, çağrım limitlerini aşan istekler için HTTP 429 - Too Many Request hatasını dönmelidir. Örnek hata mesajı **3.18 HTTP Durum Kodları** bölümünde bulunmaktadır. Rate Limit özelinde tanımlanmış parametreler olan X-RateLimit-Limit, X-RateLimit-Remaining ve X-RateLimit-Reset alanları da  **3.16 Yanıt Başlığı** bölümünde açıklanmıştır. YÖS'ler de HHS'nin belirlediği rate limit kurallarına uymakla yükümlüdür. 
 
 - HHS’ler aynı zamanda servislerin ayakta olup olmadığına yönelik olarak bir healthcheck servisi kurmalıdır.  HHS’lerin bu servis ile tüm network ve veritabanı ya da servislerinin ihtiyaç duydukları altyapısal erişimleri modellemeli ve bu servisi BKM ile paylaşmaları beklenmektedir. Bu servis düzenli olarak BKM tarafından çağırılarak servislerin ayakta olup olmadıklarının kontrolünün sağlanması planlanmaktadır.  
 
