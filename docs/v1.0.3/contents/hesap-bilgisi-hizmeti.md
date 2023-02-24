@@ -119,16 +119,19 @@ HBHS, bu API erişim adresinden HHS’ye yeni bir HesapBilgisiRizasi oluşturulm
 -	HHS, HesapBilgisiRizasi oluşturduğu anda durumunu “Yetki Bekleniyor” olarak düzenler.
 
 Erişimin Geçerli Olduğu Son Tarih, İşlem Sorgulama Başlangıç Zamanı, İşlem Sorgulama Bitiş Zamanı alanlarında zaman aralıkları müşteri deneyimi penceresinden değerlendirilerek ay cinsinden belirtilmiştir. Bu konuda aşağıdaki gibi oluşabilecek uç örneklere dikkat edilmesi gerekmektedir.  
-
-Bugün : 31.08.2019  
-Bugün + 6 Ay : 29.02.2020  
-Bugün : 30.08.2020  
-Bugün + 6 Ay : 28.02.2021
-Bugün : 30.09.2022  
-Bugün + 3 Ay : 30.12.2022
-Bugün : 14.07.2022  
-Bugün + 3 Ay : 14.10.2022
-
+<br>
+Bugün : 31.08.2019<br>
+Bugün + 6 Ay : 29.02.2020<br>
+<br>
+Bugün : 30.08.2020<br>
+Bugün + 6 Ay : 28.02.2021<br>
+<br>
+Bugün : 30.09.2022<br>
+Bugün + 3 Ay : 30.12.2022<br>
+<br>
+Bugün : 14.07.2022<br>
+Bugün + 3 Ay : 14.10.2022<br>
+<br>
 **Tablo 12: “HesapBilgisiRizasiIstegi” nesnesi**
 |Alan Adı |JSON Alan Adı	|Format	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|HHS tarafından yapılması gereken kontrol ve işlemler|
 | --- | --- | --- | --- | --- | --- |
