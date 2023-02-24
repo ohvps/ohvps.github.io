@@ -431,14 +431,19 @@ Hesap kapalı olduğu durumda hesap hareketlerini iletmek istemeyen HHS'lerin **
 
 İşlem Sorgu Örneği (Belirli Bir Hesap)=  /hesaplar/{hspRef}/islemler?
 hesapIslemBslTrh=2020-06-01T00:00:00+03:00&
-hesapIslemBtsTrh=2020-06-02T23:59:59+03:00&
+hesapIslemBtsTrh=2020-06-02T00:00:00+03:00&
 minIslTtr=0&
-mksIslTtr=100000&
+mksIslTtr=1000000000&
 brcAlc=A&
-syfKytSayi=25&
+syfKytSayi=100&
 syfNo=1&
-srlmKrtr= islGrckZaman &
+srlmKrtr=islGrckZaman&
 srlmYon=A
+
+Hatırlatma: GET isteğindeki uri-query parametre değerlerinde yer alan "+" karakteri gibi özel karakterler, URL-encoded şekilde iletilmelidir. Örnek curl isteği;
+```
+curl --location '.../hesaplar/a036c5ab-11d1-49ff-9167-9ab129c00490/islemler?hesapIslemBslTrh=2020-06-01T00%3A00%3A00%2B03%3A00&hesapIslemBtsTrh=2020-06-02T00%3A00%3A00%2B03%3A00&minIslTtr=0&mksIslTtr=1000000000&brcAlc=A&syfKytSayi=100&syfNo=1&srlmKrtr=islGrckZaman&srlmYon=A'
+```
 
 **Tablo 18: İşlem Listesi Sorgulama İsteği Sorgu Parametreleri**  
 
