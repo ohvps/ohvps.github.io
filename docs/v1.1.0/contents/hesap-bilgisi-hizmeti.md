@@ -120,14 +120,16 @@ HBHS, bu API erişim adresinden HHS’ye yeni bir HesapBilgisiRizasi oluşturulm
 
 Erişimin Geçerli Olduğu Son Tarih, İşlem Sorgulama Başlangıç Zamanı, İşlem Sorgulama Bitiş Zamanı alanlarında zaman aralıkları müşteri deneyimi penceresinden değerlendirilerek ay cinsinden belirtilmiştir. Bu konuda aşağıdaki gibi oluşabilecek uç örneklere dikkat edilmesi gerekmektedir.  
 
-Bugün : 31.08.2019  
-Bugün + 6 Ay : 29.02.2020  
-Bugün : 30.08.2020  
-Bugün + 6 Ay : 28.02.2021
-Bugün : 30.09.2022  
-Bugün + 3 Ay : 30.12.2022
-Bugün : 14.07.2022  
-Bugün + 3 Ay : 14.10.2022
+Yeni günün başlangıç saatinin 00:00:00 olduğu kabul edilmiştir.
+
+Bugün : 31.08.2019<br>
+Bugün + 6 Ay : 01.03.2020 00:00:00 (29.02.2020 tüm gün dahildir.)<br><br> 
+Bugün : 30.08.2020<br>
+Bugün + 6 Ay : 01.03.2020 00:00:00 (28.02.2021 tüm gün dahildir.)<br><br>
+Bugün : 30.09.2022<br>
+Bugün + 3 Ay : 01.01.2023 00:00:00 (30.12.2022 tüm gün dahildir.)<br><br>
+Bugün : 14.07.2022<br>
+Bugün + 3 Ay : 15.10.2022 00:00:00 (14.10.2022 tüm gün dahildir.)<br><br>
 
 **Tablo 12: “HesapBilgisiRizasiIstegi” nesnesi**
 |Alan Adı |JSON Alan Adı	|Format	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|HHS tarafından yapılması gereken kontrol ve işlemler|
@@ -148,9 +150,9 @@ Bugün + 3 Ay : 14.10.2022
 | Hesap Bilgisi | hspBlg | Kompleks: HesapBilgisi | Z |  |  |
 | >İzin Bilgisi | iznBlg | Kompleks: IzinBilgisi | Z |  |  |
 | >> İzin Türü | iznTur | Array[AN2] | Z | ÖHK tarafından HHS önyüzünde belirlenen izin tipleridir. Bir istekte birden fazla değer bulunabilir, TR.OHVPS.DataCode.IzinTur sıralı veri türü değerlerinden birini alır.  |  |
-| >> Erişimin Geçerli Olduğu Son Tarih |erisimIzniSonTrh | ISODateTime | Z | Hesap bilgisi rızasının geçerli olduğu son tarih. <br> Müşteri YÖS ekranından bu değeri belirleyebilir. <br> Varsayılan değer : Rıza verilen tarih + 6 ay <br> Alabileceği maksimum değer : Rıza tarihi + 6 ay <br>  Alabileceği minimum değer : Rıza tarihi + 1 gün <br> Örneğin 23/09/2021’de minimum 24/09/2021 seçilebilir. Bu durumda izin 24/09/2021 23:59:59’da bitecek şekilde olmalıdır. | Bu alanda bir değer bulunmadığı durumda HHS hata dönmelidir. |
-| >> İşlem Sorgulama Başlangıç Zamanı | hesapIslemBslZmn | ISODateTime | K | Hesap bilgisi rızası verilmesinden geçmişe dönük en fazla 12 ay olabilir, daha eski olmaması gerekir. <br> Varsayılan değeri rıza verilen tarih (işlem zamanı) – 12 aydır. <br> ÖHK bu alana bir değer girişi sağlamamış ise ÖBHS varsayılan değerlerle bu alanı doldurarak, HHS’ye iletir. <br> Minimum tarihi : Rızanın veriliş tarihi  - 12 ay  <br> Maksimum tarih: Rızanın veriliş tarihi +  12 ay  <br> İzin türü “Temel işlem Bilgisi” ve/veya “Ayrıntılı İşlem Bilgisi” seçildiğinde bu alanların doldurulması zorunludur.<br> İzin türü “Temel işlem Bilgisi” ve/veya “Ayrıntılı İşlem Bilgisi” seçilmemiş ise gönderilmemelidir.  |ÖHK tarafından izin türü “Temel işlem Bilgisi” ve/veya “Ayrıntılı İşlem Bilgisi” seçilmemiş ve  İşlem Sorgulama Başlangıç Zamanı ÖBHS tarafından dolu olarak gönderilmiş ise HHS tarafından işlemin devamına izin verilmez.<br>İzin türü “Temel işlem Bilgisi” ve/veya “Ayrıntılı İşlem Bilgisi” seçilmiş ise; HHS bu alanın alabileceği minimum ve maksimum değerlerin sınırlar içerisinde olduğunu kontrol eder. |
-| >> İşlem Sorgulama Bitiş Zamanı | hesapIslemBtsZmn | ISODateTime | K | Hesap bilgisi rızası verilmesinden geleceğe dönük en fazla 12 ay sonrası olabilir, daha ileri bir tarih olmaması gerekir. <br> Varsayılan değeri: Rıza verilen tarih + 12 aydır.<br> ÖHK bu alana bir değer girişi sağlamamış ise ÖBHS varsayılan değerlerle bu alanı doldurarak, HHS’ye iletir.<br> Minimum tarihi : Rızanın veriliş tarihi  – 12 ay<br> Maksimum tarihi :  Rızanın veriliş tarihi + 12 ay <br> İzin türü “Temel işlem Bilgisi” ve/veya “Ayrıntılı İşlem Bilgisi” seçildiğinde bu alanların doldurulması zorunludur.<br> İzin türü “Temel işlem Bilgisi” ve/veya “Ayrıntılı İşlem Bilgisi” seçilmemiş ise gönderilmemelidir. Eğer dolu gönderilirse HHS tarafından uygun hata mesajı iletilmelidir. | ÖHK tarafından izin türü “Temel işlem Bilgisi” ve/veya “Ayrıntılı İşlem Bilgisi” seçilmemiş ve İşlem Sorgulama Bitiş Zamanı ÖBHS tarafından dolu olarak gönderilmiş ise HHS tarafından işlemin devamına izin verilmez. <br> İzin türü “Temel işlem Bilgisi” ve/veya “Ayrıntılı İşlem Bilgisi” seçilmiş ise; HHS bu alanın alabileceği minimum ve maksimum değerlerin sınırlar içerisinde olduğunu kontrol eder. |
+| >> Erişimin Geçerli Olduğu Son Tarih |erisimIzniSonTrh | ISODateTime | Z | Hesap bilgisi rızasının geçerli olduğu son tarih. <br> Müşteri YÖS ekranından bu değeri belirleyebilir. <br> Varsayılan değer : Rıza verilen tarih + 6 ay <br> Alabileceği maksimum değer : Rıza tarihi + 6 ay <br>  Alabileceği minimum değer : Rıza tarihi + 1 gün <br><br> **Örneğin** 23/09/2021’de minimum 24/09/2021 seçilebilir. Bu durumda yeni günün başlangıç saati 00:00:00 olduğu kabul edildiği için; erisimIzniSonTrh değeri 2021-09-25T00:00:00+03:00 olmalıdır. <br><br> **Örnek rıza oluş zamanı** : 2023-02-04T21:20:20+03:00 <br> **1 günlük rıza verildiğinde erisimIzniSonTrh değeri:**   2023-02-06T00:00:00+03:00 (26 saat 40 sakikalık rıza vermiş oluyor.) <br> **7 günlük rıza verildiğinde erisimIzniSonTrh değeri:** 2023-02-12T00:00:00+03:00 <br> **1 aylık rıza verildiğinde erisimIzniSonTrh değeri :**  2023-03-05-T00:00:00+03:00  | Bu alanda bir değer bulunmadığı durumda HHS hata dönmelidir. |
+| >> İşlem Sorgulama Başlangıç Zamanı | hesapIslemBslZmn | ISODateTime | K | Hesap bilgisi rızası verilmesinden geçmişe dönük en fazla 12 ay olabilir, daha eski olmaması gerekir. <br> Varsayılan değeri rıza verilen tarih (işlem zamanı) – 12 aydır. <br> ÖHK bu alana bir değer girişi sağlamış ise zaman bilgisi üretilirken ekrandan girilen tarihe 00:00:00 zaman bilgisi eklenmelidir. ÖHK değer girişi sağlamamış ise ÖBHS varsayılan değerlerle bu alanı doldurarak, HHS’ye iletir. <br> Minimum tarihi : Rızanın veriliş tarihi  - 12 ay  <br> Maksimum tarih: Rızanın veriliş tarihi +  12 ay  <br> İzin türü “Temel işlem Bilgisi” ve/veya “Ayrıntılı İşlem Bilgisi” seçildiğinde bu alanların doldurulması zorunludur.<br> İzin türü “Temel işlem Bilgisi” ve/veya “Ayrıntılı İşlem Bilgisi” seçilmemiş ise gönderilmemelidir.  |ÖHK tarafından izin türü “Temel işlem Bilgisi” ve/veya “Ayrıntılı İşlem Bilgisi” seçilmemiş ve  İşlem Sorgulama Başlangıç Zamanı ÖBHS tarafından dolu olarak gönderilmiş ise HHS tarafından işlemin devamına izin verilmez.<br>İzin türü “Temel işlem Bilgisi” ve/veya “Ayrıntılı İşlem Bilgisi” seçilmiş ise; HHS bu alanın alabileceği minimum ve maksimum değerlerin sınırlar içerisinde olduğunu kontrol eder. |
+| >> İşlem Sorgulama Bitiş Zamanı | hesapIslemBtsZmn | ISODateTime | K | Hesap bilgisi rızası verilmesinden geleceğe dönük en fazla 12 ay sonrası olabilir, daha ileri bir tarih olmaması gerekir. <br> Varsayılan değeri: Rıza verilen tarih + 12 aydır.<br>ÖHK bu alana bir değer girişi sağlamış ise girdiği tarihe 1 gün eklenir ve yeni günün ilk saati kabul edilen 00:00:00 saat bilgisini ekler.<br> ÖHK bu alana bir değer girişi sağlamamış ise ÖBHS varsayılan değerlerle bu alanı doldurarak, HHS’ye iletir.<br> Minimum tarihi : Rızanın veriliş tarihi  – 12 ay<br> Maksimum tarihi :  Rızanın veriliş tarihi + 12 ay <br> İzin türü “Temel işlem Bilgisi” ve/veya “Ayrıntılı İşlem Bilgisi” seçildiğinde bu alanların doldurulması zorunludur.<br> İzin türü “Temel işlem Bilgisi” ve/veya “Ayrıntılı İşlem Bilgisi” seçilmemiş ise gönderilmemelidir. Eğer dolu gönderilirse HHS tarafından uygun hata mesajı iletilmelidir. | ÖHK tarafından izin türü “Temel işlem Bilgisi” ve/veya “Ayrıntılı İşlem Bilgisi” seçilmemiş ve İşlem Sorgulama Bitiş Zamanı ÖBHS tarafından dolu olarak gönderilmiş ise HHS tarafından işlemin devamına izin verilmez. <br> İzin türü “Temel işlem Bilgisi” ve/veya “Ayrıntılı İşlem Bilgisi” seçilmiş ise; HHS bu alanın alabileceği minimum ve maksimum değerlerin sınırlar içerisinde olduğunu kontrol eder. |
 
 
 					
@@ -423,12 +425,15 @@ kurumsal ÖHK’lar için ise en fazla 1 haftalık bir pencere aralığında sor
 
 YÖS, otomatik yapacağı sorgularda hem bireysel hem de kurumsal ÖHK’lar için 24 saatlik bir pencere aralığında sorgulama yapabilir.   
 
-Hesap kapalı olduğu durumda hesap hareketlerini iletmek istemeyen HHS'lerin **TR.OHVPS.Business.InvalidAccount** hatası vermeleri beklenir.
+Hesap kapalı olduğu durumda hesap hareketlerini iletmek istemeyen HHS'lerin **TR.OHVPS.Business.InvalidAccount** hatası vermeleri beklenir.  
 
+Yeni günün başlangıç saatinin 00:00:00 olduğu kabul edilmiştir. 
 
-İşlem Sorgu Örneği (Belirli Bir Hesap)=  /hesaplar/{hspRef}/islemler?
+**Sorgu örnekleri aşağıdaki gibidir: <br>**
+
+**1 günlük İşlem Sorgu Örneği (Belirli Bir Hesap)**=  /hesaplar/{hspRef}/islemler?
 hesapIslemBslTrh=2020-06-01T00:00:00+03:00&
-hesapIslemBtsTrh=2020-06-02T23:59:59+03:00&
+hesapIslemBtsTrh=2020-06-02T00:00:00+03:00&
 minIslTtr=0&
 mksIslTtr=100000&
 brcAlc=A&
@@ -436,13 +441,83 @@ syfKytSayi=25&
 syfNo=1&
 srlmKrtr= islGrckZaman &
 srlmYon=A
-
+<br>
+<br>
+**1 haftalık İşlem Sorgu Örneği (Belirli Bir Hesap)**=  /hesaplar/{hspRef}/islemler?
+hesapIslemBslTrh=2020-06-01T00:00:00+03:00&
+hesapIslemBtsTrh=2020-06-08T00:00:00+03:00&
+minIslTtr=0&
+mksIslTtr=100000&
+brcAlc=A&
+syfKytSayi=25&
+syfNo=1&
+srlmKrtr= islGrckZaman &
+srlmYon=A
+<br>
+<br>
+**1 Aylık İşlem Sorgu Örneği (Belirli Bir Hesap)**=  /hesaplar/{hspRef}/islemler?
+hesapIslemBslTrh=2020-02-01T00:00:00+03:00&
+hesapIslemBtsTrh=2020-03-01T00:00:00+03:00&
+minIslTtr=0&
+mksIslTtr=100000&
+brcAlc=A&
+syfKytSayi=25&
+syfNo=1&
+srlmKrtr= islGrckZaman &
+srlmYon=A
+<br><br>
+**1 Aylık İşlem Sorgu Örneği (Belirli Bir Hesap)**=  /hesaplar/{hspRef}/islemler?
+hesapIslemBslTrh=2020-01-31T00:00:00+03:00&
+hesapIslemBtsTrh=2020-02-28T00:00:00+03:00&
+minIslTtr=0&
+mksIslTtr=100000&
+brcAlc=A&
+syfKytSayi=25&
+syfNo=1&
+srlmKrtr= islGrckZaman &
+srlmYon=A
+<br><br>
+**1 Aylık İşlem Sorgu Örneği (Belirli Bir Hesap)**=  /hesaplar/{hspRef}/islemler?
+hesapIslemBslTrh=2020-02-28T00:00:00+03:00&
+hesapIslemBtsTrh=2020-03-28T00:00:00+03:00&
+minIslTtr=0&
+mksIslTtr=100000&
+brcAlc=A&
+syfKytSayi=25&
+syfNo=1&
+srlmKrtr= islGrckZaman &
+srlmYon=A
+<br><br>
+**24 saatlik pencerede yapacağı sistemsel sorgu örneği (Son sorgusunun üzerine 24 saat eklenmesi)** = 
+/hesaplar/{hspRef}/islemler?
+hesapIslemBslTrh=2020-06-01T14:10:08+03:00&
+hesapIslemBtsTrh=2020-06-02T14:10:08+03:00&
+minIslTtr=0&
+mksIslTtr=100000&
+brcAlc=A&
+syfKytSayi=25&
+syfNo=1&
+srlmKrtr= islGrckZaman &
+srlmYon=A
+<br><br>
+**Önyüzden alınan sorgu parametreleri ile oluşturulan sorgu örneği (Örnek sorgu tarih aralığı 20.02.2023- 25.02.2023 arasındadır)** = 
+/hesaplar/{hspRef}/islemler?
+hesapIslemBslTrh=2023-02-20T00:00:00+03:00&
+hesapIslemBtsTrh=2023-02-26T00:00:00+03:00&
+minIslTtr=0&
+mksIslTtr=100000&
+brcAlc=A&
+syfKytSayi=25&
+syfNo=1&
+srlmKrtr= islGrckZaman &
+srlmYon=A
+<br><br>
 **Tablo 18: İşlem Listesi Sorgulama İsteği Sorgu Parametreleri**  
 
 |Alan Adı |Parametre Adı	|Format	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|HHS tarafından yapılması gereken kontrol ve işlemler|
 | --- | --- | --- | --- | --- | --- |
 |İşlem Sorgulama Başlangıç Zamanı	|hesapIslemBslTrh	|ISODateTime|	Z	|Sorgulanacak işlemlerin başlangıç tarihi.|	HHS işlemler listesi dönüşünü bu kritere göre filtreleyerek iletmek zorundadır.<br><br>ÖHK tarafından tetiklenen sorgularda;hesapIslemBslTrh ve hesapIslemBtsTrh arası fark bireysel ÖHK’lar için en fazla 1 ay,kurumsal ÖHK’lar için ise en fazla 1 hafta olabilir.<br><br>YÖS tarafından sistemsel yapılan sorgulamalarda hem bireysel, hem de kurumsal ÖHK’lar için;son 24 saat sorgulanabilir. Bu yüzden hesapIslemBtsTrh-24 saat’ten daha uzun bir aralık sorgulanamaz olmalıdır.<br><br>İstek başlığında yer alan PSU-Initiated alanı “E” ise ÖHK’lı, “H” ise sistemsel yapılmış bir sorgu anlamına gelmektedir.|
-|İşlem Sorgulama Bitiş Zamanı|	hesapIslemBtsTrh	|ISODateTime|	Z	|Sorgulanacak işlemlerin bitiş tarihi.|	HHS işlemler listesi dönüşünü bu kritere göre filtreleyerek iletmek zorundadır.<br>YÖS tarafından sistemsel yapılan sorgulamalarda hem bireysel, hem de kurumsal ÖHK’lar için;İleri vadeli işlem emirleri dahil olmadığı için; İşlem Sorgulama Bitiş Zamanı, her zaman, sorgulama zaman damgasını iletecek şekilde (datetime (now)) iletilmelidir. |
+|İşlem Sorgulama Bitiş Zamanı|	hesapIslemBtsTrh	|ISODateTime|	Z	|Sorgulanacak işlemlerin bitiş tarihi.|	HHS işlemler listesi dönüşünü bu kritere göre filtreleyerek iletmek zorundadır.<br>YÖS tarafından sistemsel yapılan sorgulamalarda hem bireysel, hem de kurumsal ÖHK’lar için;İleri vadeli işlem emirleri dahil olmadığı için (Sürüm 1.0.2 kapsamında); İşlem Sorgulama Bitiş Zamanı, her zaman, sorgulama zaman damgasını iletecek şekilde (datetime (now)) iletilebilir. |
 |En Düşük İşlem Tutarı|	minIslTtr	|AN1..24	|İ	|Sorgulanacak işlemlerin alabileceği en düşük işlem tutarı. <br>  <br> Tutar alanı regex patterni şu şekildedir: '^\d{1,18}$\|^\d{1,18}\\.\d{1,5}$' |	Bu veri gönderildiği durumda HHS işlemler listesi dönüşünü bu kritere göre filtreleyerek iletmek zorundadır.|
 |En Yüksek İşlem Tutarı	|mksIslTtr|	AN1..24|	İ|	Sorgulanacak işlemlerin alabileceği en yüksek işlem tutarı.  <br> Tutar alanı regex patterni şu şekildedir: '^\d{1,18}$\|^\d{1,18}\\.\d{1,5}$'  |	Bu veri gönderildiği durumda HHS işlemler listesi dönüşünü bu kritere göre filtreleyerek iletmek zorundadır.|
 |Borç Alacak Göstergesi	|brcAlc	|AN1|	İ|	TR.OHVPS.DataCode.BrcAlc sıralı veri tipi değerlerinden birini alır. Sorgulanacak işlemlerin borç / alacak kriteri B: Hesaba borç yaratan işlem.A: Hesaba alacak yaratan işlem.{“B”,”A”}	|Bu veri gönderildiği durumda HHS işlemler listesi dönüşünü bu kritere göre filtreleyerek iletmek zorundadır.|

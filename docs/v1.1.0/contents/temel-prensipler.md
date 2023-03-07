@@ -187,6 +187,8 @@ mm : Başa ‘0’ eklenmiş, toplam 2 hane dakika
 ss    : Başa ‘0’ eklenmiş, toplam 2 hane saniye  
 XXX : ISO 8601 Time zone  
 
+- Zaman damgası hesaplamalarında, yeni günün başlangıç saatinin 00:00:00 olduğu kabul edilmiştir.
+
 - JWT veri paketlerinde kullanılan zaman damgaları, 1 Ocak 1970 Saat 00:00:00 (UTC) anından itibaren geçen saniye sayısı değerini (Unix Time) kullanmalıdır.
 - Bir HHS, tarihi yanlış biçimlendirilmiş bir istek aldığında, 400 (Hatalı İstek) durum kodu ve ilgili hata kodu ile yanıt vermelidir.
 
