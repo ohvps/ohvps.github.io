@@ -155,15 +155,19 @@ HHS’lerin sağlayacakları API’lerdeki URI çevrimi örnekleri aşağıdaki 
 
 BKM API Geçidi üzerinden yapılan çağrılarda, istek başlığında bulunan “x-aspsp-code” (isteğin iletildiği Hesap Hizmeti Sağlayıcısının kodu) değerine göre HHS API’de standart olarak tanımlanmış olan “basePath” bilgisine servis uzantısı eklenerek HHS’ye yönlendirme yapılır.
 
-Örneğin, istek başlığında **xbank**’ın kodu varsa, YÖS tarafından yapılan   
-[https://secure.api-preprod.bkm.com.tr/ohvps/hbh/s1.0/hesap-bilgisi-rizasi]()  
-çağrısı BKM API Geçidi tarafından karşılanarak  
-[https://xbank.com.tr/api-portal/ohvps/hbh/s1.0/hesap-bilgisi-rizasi]()  
-adresine yönlendirilir.   
+  Örneğin, istek başlığında **xbank**’ın kodu varsa, YÖS tarafından yapılan   
+    [https://secure.api-preprod.bkm.com.tr/ohvps/hbh/s1.0/hesap-bilgisi-rizasi]()  
+    çağrısı BKM API Geçidi tarafından karşılanarak  
+    [https://xbank.com.tr/api-portal/ohvps/hbh/s1.0/hesap-bilgisi-rizasi]()  
+    adresine yönlendirilir.   
 
 
-Bu örnekte, [https://xbank.com.tr/api-portal]() basePath bilgisi HHS tarafından HHS API’ye girilen değerdir.
+   Bu örnekte, [https://xbank.com.tr/api-portal]() basePath bilgisi HHS tarafından HHS API’ye girilen değerdir.
 
+**ÖNEMLİ :** URI Query parametreleri GET ile iletilirken değerlerde url-encode yapılmalıdır. Örnek bir API isteği;  
+GET /ohvps/hbh/s1.0/hesaplar/xxx/islemler?hesapIslemBslTrh=2023-02-07T16:42:38%2B03:00&hesapIslemBtsTrh=2023-02-07T17:09:18%2B03:00&srlmKrtr=islGrckZaman&srlmYon=Y&syfKytSayi=10&syfNo=1  
+
+Burada '+' karakterinin boşluk olarak algılanmaması için %2B değeri ile iletilmiştir.
 
 
 
