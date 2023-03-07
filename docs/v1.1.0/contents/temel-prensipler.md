@@ -801,7 +801,7 @@ Health servisinden yanıt alınamaması, hata alması ya da status DOWN gelmesi 
 
 - ÖHVPS servisleri ile ilgili olarak HHS’ler, BKM tarafından düzenli olarak sorgulanacaktır, erişilebilirlik ve kullanım oranları takip edilecektir. 
 
-- HHS’lerin servislerini erişim yüzdeleri açısından yıl bazında %99.75 oranında ayakta olmalarını sağlayacak şekilde kurgulamaları gerekmektedir.
+- HHS’lerin servislerini erişim yüzdeleri açısından yıl bazında %99.50 oranında ayakta olmalarını sağlayacak şekilde kurgulamaları gerekmektedir.
 
 ## 3.21. Otomatik Sorgular
 
