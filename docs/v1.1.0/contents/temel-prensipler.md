@@ -302,7 +302,7 @@ Erişim adreslerinin ve alanların kullanımı Zorunlu(Z), İsteğe Bağlı(İ) 
 | X-ASPSP-Code |AN4| İsteğin iletildiği Hesap Hizmeti Sağlayıcısının kodudur. (Nezdinde ÖH bulunduran kuruluş kodu. Örneğin, Banka, Elektronik Para Kuruluşu ve Ödeme Kuruluşu)|Z |Z|Z| 
 |X-TPP-Code|AN4|İsteği gönderen Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur	|Z|Z|Z|
 |PSU-Auth-Date|ISODateTime|ÖHK’nın YÖS üzerinde en son oturum açtığı saat. [RFC7231] Örneğin:  auth-date: Tue, 11 Sep 2012 19:43:31 GMT	|İ|İ|İ|
-|PSU-IP-Adress|AN7..15|ÖHK YÖS üzerinde oturum açmışsa, işlemi başlattığı cihazın IP adresi.|İ|İ|İ|
+|PSU-IP-Address|AN7..15|ÖHK YÖS üzerinde oturum açmışsa, işlemi başlattığı cihazın IP adresi.|İ|İ|İ|
 |PSU-IP-Port|AN1..5|ÖHK YÖS üzerinde oturum açmışsa, işlemi başlattığı cihazın Port adresi.	|İ|İ|İ|
 |PSU-GEO-Location|AN1..36|ÖHK’nın işlemi başlattığı cihazın konum bilgisi. RFC2426 standartına uygun olarak paylaşılmalıdır. Örneğin  GEO:"&lt;enlem &gt;, &lt;boylam&gt;GEO:52.506931,13.144558|İ|İ|İ|
 |PSU-User-Agent|AN 1.. 255|ÖHK’nın işlemi başlattığı cihazın sağladığı user-agent bilgisi. (Tarayıcı, versiyon, işletim sistemi bilgileri)|İ|İ|İ|
