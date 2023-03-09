@@ -37,7 +37,7 @@ Açık Bankacılık simülatör uygulaması üzerinde swagger dökümanlarının
 
 ## EK-3: İstemci Sertifikalarının Tanım ve Yönetimi
 
-Tüm katılımcıların BKM API Geçidine erişebilmesi için, BKM tarafından yapılan istemci sertifika doğrulamasından geçmesi gerekmektedir. İstemci sertifikası üretilmeden önce katılımcıların CSR üretme akışını tamamlaması gerekmektedir.
+Tüm katılımcıların GEÇİT'e erişebilmesi için, BKM tarafından yapılan istemci sertifika doğrulamasından geçmesi gerekmektedir. İstemci sertifikası üretilmeden önce katılımcıların CSR üretme akışını tamamlaması gerekmektedir.
   
 
 OpenSSL ile CSR (Certificate Signing Request) Oluşturma   
@@ -56,7 +56,7 @@ Katılımcıların, TRIP ortamı üzerinden, BKM Tarafından yetki verilmiş kul
 
 Uzun dönemli olarak hazırlanacak olan sertifikalar sertifikasyon ve üretim ortamlarında kullanılacaktır. Sertifikaların işlevselliği ve geçerliliği bu aşamalarda sınanacaktır. 
 
-BKM API Geçidi çözümünün test ve üretim ortamları ayrımında istemci sertifikaları, HHS Listeleme API erişimleri ve Sertifikasyon bağlantıları Şekil 15-HHS/YÖS API Mimarisi Diagramında resmedilmiştir.
+GEÇİT'in test ve üretim ortamları ayrımında istemci sertifikaları, HHS Listeleme API erişimleri ve Sertifikasyon bağlantıları Şekil 15-HHS/YÖS API Mimarisi Diagramında resmedilmiştir.
 
 
 ## EK-4: Sunucu Sertifikaları

@@ -23,8 +23,8 @@ Hesap Bilgisi Hizmeti Sağlayıcısı (HBHS) ÖHK’nın farklı Hesap Hizmeti S
 
 **Şekil 2: Ödeme Hizmetleri Veri Paylaşım Servisleri (ÖHVPS) -üst düzey gösterim**  
 
-Ödeme Hizmetleri Veri Paylaşım Servislerinin HHS’ler tarafından **BKM API Geçidi** vasıtasıyla sunulduğu uygulama mimarisi ise Şekil-3’te sunulmuştur.  
+Ödeme Hizmetleri Veri Paylaşım Servislerinin HHS’ler tarafından **GEÇİT** vasıtasıyla sunulduğu uygulama mimarisi ise Şekil-3’te sunulmuştur.  
 
 <img src="./images/sekil3-ohvps-bkm.png" width="50%" > 
    
-**Şekil 3: ÖHVPS'nin BKM API Geçidi vasıtasıyla sunumu**
+**Şekil 3: ÖHVPS'nin GEÇİT vasıtasıyla sunumu**

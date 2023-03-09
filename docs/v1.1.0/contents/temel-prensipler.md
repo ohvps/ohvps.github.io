@@ -28,7 +28,7 @@ Bu bölümde Ödeme Hizmetleri Veri Paylaşım Servisleri (Hesap Bilgisi Hizmeti
 
 ## 3.1 Genel  
 
-- HHS’ler Yönetmeliğin 59. maddesinin beşinci fıkrası ve Ödeme ve Elektronik Para Kuruluşlarının Bilgi Sistemleri ile Ödeme Hizmeti Sağlayıcılarının Ödeme Hizmetleri Alanındaki Veri Paylaşım Servislerine İlişkin Tebliğin (Tebliğ) 23. maddesinin birinci fıkrası uyarınca, ödeme hizmetleri veri paylaşım servislerini BKM API Geçidi aracılığıyla HBHS ve ÖBHS’ye sunmakla yükümlüdür.  
+- HHS’ler Yönetmeliğin 59. maddesinin beşinci fıkrası ve Ödeme ve Elektronik Para Kuruluşlarının Bilgi Sistemleri ile Ödeme Hizmeti Sağlayıcılarının Ödeme Hizmetleri Alanındaki Veri Paylaşım Servislerine İlişkin Tebliğin (Tebliğ) 23. maddesinin birinci fıkrası uyarınca, ödeme hizmetleri veri paylaşım servislerini GEÇİT aracılığıyla HBHS ve ÖBHS’ye sunmakla yükümlüdür.  
 
 - Tebliğin 23. maddesinin ikinci fıkrası uyarınca ödeme emri başlatma hizmetinde açık iletişim servisinin tarafları ÖBHS ile HHS’dir.
 
@@ -109,7 +109,7 @@ Bu, aşağıdaki unsurlardan oluşur:
 
 - [hhs-yol-ön-eki]  
 İsteğe bağlı, HHS'ye özgü yol ön ekini ifade eder.  
-BKM API geçidi üzerinden yapılan çağrılarda BKM tarafından belirlenen sistem adı ve yol ön eki kullanılır.  
+GEÇİT üzerinden yapılan çağrılarda BKM tarafından belirlenen sistem adı ve yol ön eki kullanılır.  
 - ohvps  
 Sabit metin “ohvps” (Ödeme Hizmetleri Veri Paylaşım Servisleri kısaltması)  
 - [kaynak-grubu]   
@@ -153,11 +153,11 @@ HHS’lerin sağlayacakları API’lerdeki URI çevrimi örnekleri aşağıdaki 
 - [https://xbank.com.tr/api-portal/ohvps/hbh/s1.1/hesaplar/1234]() 
 - [https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s1.1/hesaplar/1234]() (BKM API)
 
-BKM API Geçidi üzerinden yapılan çağrılarda, istek başlığında bulunan “x-aspsp-code” (isteğin iletildiği Hesap Hizmeti Sağlayıcısının kodu) değerine göre HHS API’de standart olarak tanımlanmış olan “basePath” bilgisine servis uzantısı eklenerek HHS’ye yönlendirme yapılır.
+GEÇİT üzerinden yapılan çağrılarda, istek başlığında bulunan “x-aspsp-code” (isteğin iletildiği Hesap Hizmeti Sağlayıcısının kodu) değerine göre HHS API’de standart olarak tanımlanmış olan “basePath” bilgisine servis uzantısı eklenerek HHS’ye yönlendirme yapılır.
 
   Örneğin, istek başlığında **xbank**’ın kodu varsa, YÖS tarafından yapılan   
     [https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s1.0/hesap-bilgisi-rizasi]()  
-    çağrısı BKM API Geçidi tarafından karşılanarak  
+    çağrısı GEÇİT tarafından karşılanarak  
     [https://xbank.com.tr/api-portal/ohvps/hbh/s1.0/hesap-bilgisi-rizasi]()  
     adresine yönlendirilir.   
 
@@ -216,15 +216,15 @@ API Standartlarında da para birimleri  ISO 4217’de tanımlanmış olan 3 harf
 
 ÖHVPS kapsamında tarafların güvenli bir şekilde tanımlaması, uçtan uca güvenli iletişim, mesaj şifreleme ve mesaj imzalama işlevleri 15/1/2004 tarihli ve 5070 sayılı Elektronik İmza Kanunu’nda açıklanan elektronik sertifikalar kullanılarak sağlanır. Elektronik sertifikada Türkiye Cumhuriyet Merkez Bankası tarafından verilen kuruluş kodu ve kuruluşun türüne dair bilgiler bulunur.  
 
-BKM API Geçidi üzerinden yapılan erişimlerde YÖS ve HHS’lere önceden dağıtılmış olan istemci sertifikaları kullanılarak tarafların (sunucu) kimliklerinin doğrulanması sağlanacaktır. İstemci sertifikaları hem test hem de üretim ortamında kullanılacaktır. Sertifikaların işlevselliği ve geçerliliği sertifikasyon sürecinde de sınanacaktır. Söz konusu sertifikaların dağıtım prosedürleri ve kullanımlara yönelik açıklamalar EK-3’te yer verilmiştir.  
+GEÇİT üzerinden yapılan erişimlerde YÖS ve HHS’lere önceden dağıtılmış olan istemci sertifikaları kullanılarak tarafların (sunucu) kimliklerinin doğrulanması sağlanacaktır. İstemci sertifikaları hem test hem de üretim ortamında kullanılacaktır. Sertifikaların işlevselliği ve geçerliliği sertifikasyon sürecinde de sınanacaktır. Söz konusu sertifikaların dağıtım prosedürleri ve kullanımlara yönelik açıklamalar EK-3’te yer verilmiştir.  
 
 
 ## 3.9.	Yetkilendirme Türleri
 
-BKM API Geçidi üzerinden yapılan çağrılarda iki temel yetkilendirme türü kullanılır:
+GEÇİT üzerinden yapılan çağrılarda iki temel yetkilendirme türü kullanılır:
 
 **1.	İstemci Kimlik Bilgileri:** Müşteri onayının gerekmediği, sadece YÖS’ün tanımlanıp doğrulandığı API çağrılarında kullanılır. YÖS’ün yetkilendirilmiş olduğu ve faaliyet izninin yaptığı hizmet çağrısına uygun olduğu kontrol edilir.  Bu amaçla, YÖS’lere clientId ve clientSecret tahsis edilecektir. YÖS’ler ilgili clientId ve clientSecret ile sadece yetkilendirilmiş oldukları servislere erişebileceklerdir. YÖS’ler kendilerine BKM tarafından sunulacak API’yi, kendi clientID ve clientSecret değerleri ile sorgulayarak “İstemci Kimlik Bilgileri” belirtecini (access token) elde edeceklerdir.
-HHS’ler de BKM API geçidi üzerindeki YÖS API’sini sorgulama maksadı ile BKM API Geçidine geldiklerinde, kendilerine atanmış olan clientID ve clientSecret bilgileri ile yetki kontrolleri yapılır.
+HHS’ler de GEÇİT üzerindeki YÖS API’sini sorgulama maksadı ile GEÇİT'e geldiklerinde, kendilerine atanmış olan clientID ve clientSecret bilgileri ile yetki kontrolleri yapılır.
 HHS’ler kendilerinden alınacak username ve password değerleri kullanılarak oluşturulacak basic authentication metodu ile servislerini sunacaklardır.  
 
 **2.	Yetkilendirme Kodu:** YÖS’ün doğrulanmasının yanısıra müşterinin GKD ile doğrulanması gereken API çağrılarında kullanılır. Müşteri doğrulanarak yetkilendirme kodu oluşturulması HHS’nin yetkilendirme arayüzüne yönlendirilir. GKD’nin başarıyla tamamlanması sonrasında yetkilendirme kodu YÖS’e dönülür. YÖS daha sonra HHS’nin **erişim belirteci** (access token) erişim adresini (EK-3: POST /erisim-belirteci) çağırmak suretiyle yetkilendirme kodunu bir erişim belirteci (access token) ile değiştirerek ilgili kaynakları kullanabilir.
@@ -316,7 +316,7 @@ Erişim adreslerinin ve alanların kullanımı Zorunlu(Z), İsteğe Bağlı(İ) 
 |PSU-Fraud-Check | AN1..4096 | YÖS'lerin çeşitli güvenlik kontrollerini gerçekleştirerek, önemli görülen aşağıdaki bilgileri HHS'ler ile paylaşmaları gerekmektedir.<br>Bu bilgiler ışığında müşterinin profili oluşturulmasına katkı sağlanacaktır. <br> ÖHK’lı işlemlerde (PSU-Initiated = E gönderildiği durumlarda) gönderilmesi zorunludur.  Sistemsel yapılan API çağrımlarımda ve HHS-YÖS API çağrımlarında gönderilmesine gerek bulunmamaktadır.<br> Paylaşılacak bilgiler şu şekildedir.<br> <b>FirstLoginFlag</b> : ÖHK'nın, müşterilik ömründe ilgili YÖS sistemine (mobil ya da web uygulaması) ilk login olma süresini ifade eden değer. ÖHK'nın ilk yaptığı HBH ya da ÖBH işlemi değil, YÖS sisteminde kendini aktifleştirme tarih aralığı bilgisidir. <br> YÖS, kullanıcının ilk login bilgisini tutarak sonraki işlemlerinde bu bilgiyi belirlenen format ile HHS'ye aktaracaktır. Örneğin; YÖS'ün 7 aydır müşterisi olan bir kullanıcı için bu alan "5" olarak YÖS tarafından beslenecektir. Burada amaç; ilgili kullanıcının YÖS'ün eski bir müşterisi mi, yoksa yeni bir müşterisi mi olup olmadığını anlamaktır. <br> Gönderilmesi Zorunlu alandır.<br>TR.OHVPS.DataCode.ZmnAralik sıralı veri tipinin alabileceği değerleri alabilir.<br> <b>DeviceFirstLoginFlag</b> : ÖHK'nın, müşterilik ömründe işlem anında kullandığı cihazla YÖS uygulamasına (web ya da uygulama tabanlı) ilk login olma süresini ifade eden değer. ÖHK cihaz değişikliği yaparsa FirstLoginFlag değeri sabit kalmalı  ancak DeviceFirstLoginFlag değeri değişmelidir. <br>FirstloginFlag değeri ile ÖHK’nın YÖS uygulamasına ilk login tarih bilgisi ile ilgili bilgi verilirken, DeviceFirstLoginFlag ile de ÖHK’nın YÖS uygulamasına farklı bir cihaz aracılığı ile ilk login tarihinin bilgisi verilmektedir.<br> Örneğin; ÖHK 7 aydır YÖS'ün müşterisi olabilir, böyle bir durumda FirstLoginFlag değeri "5" olacaktır. Ancak son işlemini daha önce hiç kullanmadığı bir cihazdan yapmıştır. Yeni cihazdaki login süre aralığı 0-2 saat aralığında  olduğu için DeviceFirstLoginFlag değeri "1" olacaktır.FirstLoginFlag değeri yine "5" olarak kalmaya devam edecektir.Bu bilgi ile YÖS, ilgili HHS'ye ilk kez geliyor olsa bile; HHS, müşterinin YÖS'ü uzun süredir kullandığını ama yeni bir cihazla işlemlerine devam ettiğini anlayabilecektir.<br>Bir ÖHK, farklı cihazlar veya platformlar üzerinden YÖS ile etkileşime girebilir.  Kullanıcı ve YÖS arasında bir oturum başlatılmış ise YÖS’ün tutarlı ve kalıcı bir kimlik (device id) ataması beklenmektedir. <br>Device ID: Web sitesi veya mobil uygulama kullanıcıları için üretilen, tarayıcı ya da mobil uygulama tabanlı benzersiz (tekil) tanımlayıcı değer. Mobil uygulamalar için ÖHK’nın ilk defa ilgili cihaza aktivasyon yaptığı tarih bilgisi alınmalıdır. <br> Device ID bilgileri YÖS uygulama ortamı (web ya da uygulama tabanlı) ve ÖHK cihazı bazında tutulmalıdır. YÖS’ten başlatılan işlem hangi uygulama ortamına ait ise ilgili ortamala ilişkili tutulan Device ID’nin ilk login tarihine bakılarak güncel flag değeri hesaplanmalıdır. <br>Gönderilmesi Zorunlu alandır. TR.OHVPS.DataCode.ZmnAralik sıralı veri tipinin alabileceği değerleri alabilir.<br> <b>LastPasswordChangeFlag</b> : ÖHK'nın, YÖS (cihaz bağımsız)  uygulamasına login olduğu şifre bilgisinin en son değiştirildiği süreyi ifade eden değer. Müşterinin en son ne zaman şifre değişikliği yaptığını anlamak için kullanılan alandır. Yeni müşteri ve hiç şifre değişikliği yapmamış olabilir, böyle bir durumda ilgili alan "0" olarak beslenecektir. <br> Gönderilmesi Zorunlu alandır. TR.OHVPS.DataCode.ZmnAralik sıralı veri tipinin alabileceği değerleri alabilir.<br> <b>BlacklistFlag</b> : ÖHK'nın herhangi bir sebeple YÖS'ün sakıncalı müşteriler listesinde bulunup bulunmadığını ifade eden değer. <br> Burada amaç herhangi bir sebeple YÖS tarafında yasaklı olarak kayıtlı olan ÖHK bilgisinin, dolandırıcılığı önceden tespit etmek amaçlı HHS'ye aktarılması olarak açıklanabilir. Örneğin, YÖS tarafından tespit edilen dolandırıcı kullancılara ait device id bilgisi, bu kara listede tutulur daha sonra aynı cihazla başka bir ÖHK işlem yapacak olsa bile bu alanda ilgili bilgi "1" değeri ile HHS'ye aktarılır. HHS'de olmayıp YÖS tarafında olan bu örnekteki sakıncalı müşteri/cihaz bilgisinin, dolaylı yoldan HHS'ye aktarılması amaçlanmaktadır.<br> Gönderilmesi Opsiyonel alandır. TR.OHVPS.DataCode.VarYok sıralı veri tipinin alabileceği değerleri alabilir.<br> <b>MalwareFlag</b> : YÖS uygulamasının çalıştığı cihaz üzerindeki son 21 güne ait zararlı yazılım tespit bilgisini ifade eden değer.<br>Örneğin ÖHK'nın cihazında zararlı yazılım olduğu ayın 1'inde YÖS tarafından tespit edildi. Zararlı yazılım tespitinden 2 saat sonra YÖS üzerinden login olan ÖHK'nın durumu,  "1" olarak iletilecektir. Bir gün sonra ayın 2'sinde, yeni bir zararlı yazılım tespiti yok ancak mevcut zararlı yazılım aktifse alan "2" değeri ile iletilecektir. Süreler artarak 21 güne kadar TR.OHVPS.DataCode.ZmnAralik değerlerine göre iletilecektir.Son 21 gün içinde yeni bir tespit yoksa ayın 22'sinden itibaren ilgili alan  "0" değeri ile beslenecektir.<br>Not: Zararlı yazılım, bankacılık işlemlerinin yapıldığı uygulamalara girişte kullanılan bilgilerin (şifre, kullanıcı kodu gibi) ele geçirilmesi amacıyla kullanılan bir uygulama ya da kod parçacığı olabilir. Bu amaçlar dışında kullanılan (bankacılığa yönelik bir zararlı yazılım olmayan) yazılım tespitleri iletilmemelidir. YÖS kanallarına her bir loginde, kullanılan cihazda bir zararlı yazılım var mı yok mu kontrolü yapılmalıdır. <br> Gönderilmesi Opsiyonel alandır. TR.OHVPS.DataCode.ZmnAralik sıralı veri tipinin alabileceği değerleri alabilir.<br> <b>AnomallyFlag</b> : Diğer şüpheli durumların varlığını ifade eden değer. Gönderilmesi Opsiyonel alandır. TR.OHVPS.DataCode.VarYok sıralı veri tipinin alabileceği değerleri alabilir.<br> <b>UnsafeAccountFlag</b>: HHS tarafından aktarılan bilgi ile son 21 gün içinde ÖHK'nın dolandırıcılık mağduru olması durumunu ifade eden değer.<br>Örneğin; HHS 1, ayın 1'inde süphe veya sahtekarlık nedeniyle bir ödeme işlemine izin vermediği durumda, bu bilgiyi rıza iptal detay kodu ile YÖS'e aktarmış olur. Bu bilgiyi tutan YÖS, ilgili müşterinin 15 dakika sonra HHS 2'de yaptığı işlem için ilgili alanı "1" değeri ile besler. Böylece HHS 2, ÖHK'nın farklı bir HHS'de son 15 dakika içinde şüpheli veya sahte bir işlemi olduğunu anlayabilecektir. Ayın 22'sinde yeni bir tespit/kayıt yoksa bu alan YÖS tarafından "0" olarak beslenecektir.<br>Gönderilmesi Opsiyonel alandır.TR.OHVPS.DataCode.ZmnAralik sıralı veri tipinin alabileceği değerleri alabilir. <br><br> <br> Flaglar JWT claims içine key value şeklinde eklenerek gönderilecektir. EK-5: Mesaj İmzalama Akışı'nda belirtilen yöntemle imzalanarak oluşturulan JWT PSU-Fraud-Check alanına konularak YÖS'ler tarafından HHS'ye iletilmelidir.| K | K | Z |
 |PSU-Initiated|AN1|İşlemin ÖHK tarafından başlatılması durumunda E , sistem tarafından başlatıldığı durumda H değerini alması beklenir. <br> İşlemler servisinde yapılacak sistemsel sorgulardaki işlem limitlerini kontrol amacıyla kullanılır. |Z|Z|Z|
 |PSU-Session-ID|AN1..100|İsteği başlatan YÖS tarafından belirlenen oturuma özgü talep kimliği. ÖHK'nın YÖS uygulaması üzerinden kimlik doğrulama mekanizması ile bilgi sistemlerine dâhil olmalarından işlemlerini tamamlayıp sistemden ayrılmalarına kadar geçecek tüm süreci kapsayacak şekilde aynı değeri almalıdır. Tek seferlik ödeme gibi ÖHK’nın tanınmadan başlatıldığı işlemlerde bu değer boş olarak iletilmelidir. |İ|İ|İ|
-|Authorization|AN1..4096|YÖS ile BKM API Gateway arasındaki otorizasyon için kullanılan token bilgisidir. <br>Yekilendirme türlerinden İstemci Kimlik Bilgileri’ni adresler.|Z  |Z |Z  |
+|Authorization|AN1..4096|YÖS ile GEÇİT arasındaki otorizasyon için kullanılan token bilgisidir. <br>Yekilendirme türlerinden İstemci Kimlik Bilgileri’ni adresler.|Z  |Z |Z  |
 | X-Access-Token |AN1..4096|ÖHK’nın GKD sürecinde doğrulanması sonrasında kullanılan erişim simgesi. Yetkilendirme türlerinden Yetkilendirme Kodu (GKD)’nu adresler. |İ|İ|İ|
 |X-JWS-Signature|AN1..4096|Payload gövdesinin ayrılmış bir JWS imzasını içeren üstbilgi.<br> Bu başlığın ne zaman belirtilmesi gerektiği hususu ilgili endpoint için belirtilmiştir.|K (Kullanılan API ve methoda göre kullanılır.) |K  |K |K|
 
@@ -552,7 +552,7 @@ Business hata örneği - 2:
  ```
 
 
-BKM API Geçidi'nde yapılan zorunlu header kontrollerinde aşağıdaki hatalar dönebilir:
+GEÇİT'te yapılan zorunlu header kontrollerinde aşağıdaki hatalar dönebilir:
 ```JSON 
 
 {
@@ -566,7 +566,7 @@ BKM API Geçidi'nde yapılan zorunlu header kontrollerinde aşağıdaki hatalar 
     "httpMessage": "Bad Request"
 } 
  ```
-BKM API Geçidi tarafından dönülecek hata örneği:
+GEÇİT tarafından dönülecek hata örneği:
 ```JSON 
 
 {
@@ -581,7 +581,7 @@ BKM API Geçidi tarafından dönülecek hata örneği:
 } 
  ```
 
-BKM API Geçidi tarafından dönülecek hata örneği:
+GEÇİT tarafından dönülecek hata örneği:
 ```JSON 
 
 {
@@ -800,7 +800,7 @@ Başarılı Yanıt:
 |status | 	status |  	AN2..20	 | Z | 	“UP”, “DOWN” değerlerini alabilir.|
 
 
-Health servisinden yanıt alınamaması, hata alması ya da status DOWN gelmesi durumunda API Gatewayden istek HHS tarafına iletilmeyecektir. 
+Health servisinden yanıt alınamaması, hata alması ya da status DOWN gelmesi durumunda GEÇİT'ten istek HHS tarafına iletilmeyecektir. 
 
 
 - ÖHVPS servisleri ile ilgili olarak HHS’ler, BKM tarafından düzenli olarak sorgulanacaktır, erişilebilirlik ve kullanım oranları takip edilecektir. 

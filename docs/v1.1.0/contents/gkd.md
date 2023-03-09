@@ -23,7 +23,7 @@ Müşteri için güçlü kimlik doğrulama, ÖHK’nın (müşterinin) kimliğin
 
 8.	İşlem doğrulama kodunun gönderilmesinden HHS sorumludur. HHS, **Tebliğin 10 uncu maddesinin ikinci fıkrasında** belirtilen risk değerlendirmesi sonucuna göre işlem doğrulama kodu kullanmaksızın ÖHK’nın onayını alabilir. İşlem doğrulama kodu kullanılmayan işlemlerle ilgili olarak gerçekleştirilen işlemin ÖHK tarafından yapıldığını ispat etme yükümlülüğü HHS’ye aittir.  
 
-9.	ÖHVPS API standartı kapsamında iki adet Güçlü Kimlik Doğrulama (GKD) yöntemi kullanılacaktır:   
+9.	ÖHVPS API İlke ve Kuralları kapsamında iki adet Güçlü Kimlik Doğrulama (GKD) yöntemi kullanılacaktır:   
 
      - Yönlendirmeli (Redirect) GKD Yöntemi 
      - Ayrık (Decoupled) GKD Yöntemi  
