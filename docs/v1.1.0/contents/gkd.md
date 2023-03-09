@@ -36,7 +36,7 @@ Müşteri için güçlü kimlik doğrulama, ÖHK’nın (müşterinin) kimliğin
 
 Yönlendirmeli GKD Yönteminde, müşteri kimlik doğrulama için YÖS tarafından HHS arayüzüne yönlendirilir.   
 
-Müşteri HHS’ye (uygulama veya web arayüzü vasıtasıyla) yönlendirildikten sonra müşterinin güçlü kimlik doğrulaması adım adım ve doğrudan HHS ile müşteri arasında yürütülür. GKD’nin tamamlanmasından sonra müşteri tekrar YÖS uygulamasına yönlendirilir.Yönlendirmenin aynı sayfada HTTP 302 yanıt koduyla yapılması gerekmektedir.   
+Müşteri HHS’ye (uygulama veya web arayüzü vasıtasıyla) yönlendirildikten sonra müşterinin güçlü kimlik doğrulaması adım adım ve doğrudan HHS ile müşteri arasında yürütülür. GKD’nin tamamlanmasından sonra müşteri tekrar YÖS uygulamasına yönlendirilir.  
 
 Yönlendirmeli GKD Yöntemi için üst düzey örnek iş akışı aşağıdaki adımlardan oluşur: 
 
@@ -49,14 +49,34 @@ Yönlendirmeli GKD için temel gereklilikler şunlardır:
 - Ödeme hizmeti (hesap bilgisi veya ödeme emri başlatma hizmeti) tarayıcı ya da uygulama tabanlı bir şekilde sunulabilir. Bu nedenle, **YÖS ve HHS’lerin Yönlendirmeli GKD için asgari olarak tarayıcı tabanlı yönlendirme akışını desteklemeleri gerekmektedir.**
 - **Çerçeve sözleşme (ÇS) kapsamında olmayan tek seferlik ödeme işlemleri sadece Yönlendirmeli GKD yöntemi ile gerçekleştirilebilir.**  
 
+
 **Tarayıcı Tabanlı Yönlendirme**  
+
+Yönlendirmeli GKD Yönteminde; rıza isteğine başarılı yanıt alındıktan sonra, ÖHK, kimlik doğrulama için YÖS tarafından HHS arayüzüne yönlendirilir.
+YÖS, yönlendirme akışını kendi sunucusundan karşılayacağı bir istek ile başlatmalıdır. YÖS web arayüzündeki bu yapı, 302 yanıt kodu ve yanıt başlığındaki Location değeri ile ÖHK tarayıcısını HHS adresine yönlendirmelidir. Bu sayede GKD, HHS tarafında başlayabilir.
+
+YÖS tarafındaki yönlendirme servisi için örnek response;
+```
+HTTP/1.1 302 Found
+Location: {{hhsYonAdr}}
+```
+
+ÖHK, HHS’ye (uygulama veya web arayüzü vasıtasıyla) yönlendirildikten sonra ÖHK'nin güçlü kimlik doğrulaması HHS ile ÖHK arasında yürütülür. GKD’nin tamamlanmasından sonra ÖHK tekrar YÖS uygulamasına yönlendirilir. 
+
+HHS, yönlendirme akışını kendi sunucusundan karşılayacağı bir istek ile başlatmalıdır. HHS web arayüzündeki bu yapı, ÖHK'nin oturumunu güvenli bir şekilde kapatmalıdır. Ardından 302 yanıt kodu ve yanıt başlığındaki Location değeri ile ÖHK tarayıcısını YÖS adresine yönlendirmelidir.
+
+```
+HTTP/1.1 302 Found
+Location: {{yosYonAdr}}&rizaDrm=Y&yetKod=xx&rizaNo=yy&rizaTip=O
+```
 
 HHS’nin web arayüzüne,   
 - HHS’nin mobil uygulamasının olmadığı,  
 - ÖHK’nın ödeme hizmetini (hesap bilgisi veya ödeme emri başlatma hizmeti) sunduğu mobil cihazda HHS uygulamasının yüklü olmadığı,  
 durumlarda yönlendirme yapılır.  
 
-YÖS’ün mobil uygulaması varsa mobil cihazda uygulamadan tarayıcıya, YÖS’ün mobil uygulaması yoksa ödeme hizmetinin sunduğu cihazda (Kişisel Bilgisayar veya Mobil Cihaz) tarayıcı üzerinden yönlendirme yapılır.  
+YÖS’ün mobil uygulaması varsa mobil cihazda uygulamadan tarayıcıya, YÖS’ün mobil uygulaması yoksa ödeme hizmetinin sunduğu cihazda (Kişisel Bilgisayar veya Mobil Cihaz) tarayıcı üzerinden yönlendirme yapılır. 
+
 
 **Uygulama Tabanlı Yönlendirme**  
 
