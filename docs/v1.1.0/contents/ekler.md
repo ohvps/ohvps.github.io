@@ -34,6 +34,9 @@ Açık Bankacılık simülatör uygulaması üzerinde swagger dökümanlarının
 | TR.OHVPS.DataCode.ZmnAralik | 0 : Kayıt Yok <br>1 : 0-2 saat<br>2 : 2-24 saat<br> 3 : 1-3 gün <br> 4 : 3-15 gün	<br> 5 : 15 gün ve üstü |
 | TR.OHVPS.DataCode.VarYok | 0 : Kayıt Yok <br> 1 : Kayıt Var |
 | TR.OHVPS.DataCode.HHSDurumu | A : Açık. Üretim Ortamında HHS’nin aktif bir şekilde hizmet vermesi durumu.<br> Y : Yaygınlaştırma. Üretim Ortamında HHS’nin kendisi tarafından tanımlanmış kısıtlı ÖHK’ya hizmet vermesi durumu. <br>  G : Geçici Hizmet Veremiyor. HHS servislerinde teknik bir sorun olması nedeniyle HHS’nin hizmet verememesi durumu. <br>K: Kapalı. HHS’nin hizmet vermeme durumu. |
+| TR.OHVPS.DataCode.LogoTur | FULL_LOGO   : Yazı ve ikon şekillerin bir arada olduğu logo <br> ICON_LOGO : İkon şekillerin olduğu ( Sadece görsel olan-yazısız ) logo |
+| TR.OHVPS.DataCode.LogoArkaPlan | B :  Logoların arka planının beyaz olması (Erkek Logo) <br> K : Logoların arka planının renkli/koyu olması (Dişi Logo) |
+| TR.OHVPS.DataCode.LogoFormat | SVG :  Logonun svg formatında olmasını ifade eder. Logonun 1:2 oranında olması gerekmektedir. <br> PNG : Logonun png formatında olmasını ifade eder. Logonun 500 X 1000 px olması gerekmektedir.|
 
 ## EK-3: İstemci Sertifikalarının Tanım ve Yönetimi
 
