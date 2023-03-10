@@ -40,11 +40,16 @@ HHS ve YÖS API Tablo 20’deki istek parametrelerine göre sorgulanabilir.
 | > logoAdr | logoAdr | AN1..255 | Z | HHS tarafında tutulan ve YÖS'lerle paylaşılacak olan url adres bilgisidir. <br>Örnek: https://via.placeholder.com/150?text=0001 | 
 | > logoArkaPlan | logoArkaPlan | AN1 | Z | TR.OHVPS.DataCode.LogoArkaPlan sıralı veri türü değerlerlerinden birini alır. | 
 | > logoFormat | logoFormat | AN3 | Z | TR.OHVPS.DataCode.LogoFormat sıralı veri türü değerlerlerinden birini alır. | 
+| Durum | durum | AN1 | Z |HHS'nin durum bilgisidir.<br> TR.OHVPS.DataCode.HHSDurumu sıralı veri tipinde alabileceği değerler belirtilmiştir.| 
 
 HHS API'de; Açık, Yaygınlaştırma, Geçici Hizmet Veremiyor, Kapalı durumlarındaki HHS'ler listelenecektir. <br>
 Sertifikasyon onayı alan HHS'ler, üretim ortamına geçişte "Yaygınlaştırma" durumuna sahip olabilir.  HHS'nin, hangi YÖS'ler ile "Yaygınlaştırma" kontrollerini yapacağı, HHS yönetiminde olacaktır. Böylece Üretim Ortamında HHS’nin kendisi tarafından tanımlanmış kısıtlı ÖHK’ya hizmet vermesi ve servislerini test etmesi sağlanabilir olacaktır. HHS'ler kendi kurum kontrollerini yapana kadar, "Yaygınlaştırma" durumunda kalabilirler. HHS'nin BKM'ye yapacağı talep ile, HHS "Yaygınlaştırma" durumundan "Açık" durumuna geçebilecektir.<br>
-HHS'de olası bir teknik sorun olması durumunda, BKM - HHS koordinasyonu ile HHS durumu "Geçici Hizmet Veremiyor" haline getirilecektir. Sorun giderildiğinde "Açık" durumuna geri dönecektir.
 
+Aşağıdaki durumlarda HHS'nin statüsü Geçici Kapalı olarak güncellenebilecektir: 
+
+ - HHS'nin talebi ile uzun süreli (minimum 1 saati aşan) yaşanan teknik sorunlarda G statüsüne alınabilecektir. G statüsüne alınma talebinin HHS tarafından ohvps@bkm.com.tr ye mail atarak iletilmesi beklenmektedir. 
+ - İlgili resmi kurumlardan gelen talep üzerine HHS G statüsüne alınabilir.
+ 
 Hem YOS hem de HHS API için geçerli olacak; logo gönderiminde dikkat edilmesi gerekenler şu şekilde tariflenmiştir:   
 
 1.	Logoların ham dosya yerine kurumun yayınlayacağı bir URL üzerinden sunulması gerekmektedir. (Örn: logoURL = https://kurumadi.com.tr/logo.png) Logo BKM tarafında host edilmeyecektir.
@@ -70,14 +75,17 @@ YÖS API içerisinde yer alan YÖS rol bilgileri ve aktiflik/pasiflik durumları
 
 YÖS'ün sahip olduğu öbhs,hbhs rolleri için herhangi bir fraud ya da teknik sebeplerden ötürü geçici süreyle geri alınabilir.  
 
+YÖS'lerin hizmet verememesi durumunda rollerinin geri alınması yapılmayacaktır. YÖS rolleri sadece ilgili resmi kurumlardan gelen talep üzerine alınabilecektir.
+
+
 YÖS aktifliğini korurken problem çözülene kadar geçici olarak alınan roller(öbhs,hbhs) tekrardan aktif hale getirilir.   
 
 **GET /yos/{yosKod}**  
 
 
-İşlem Sorgu Örneği =  /yos  &rarr; bu sorgu yöntemi ile tüm YÖS'lerin dizi şeklinde verileri listelenir.
+İşlem Sorgu Örneği =  /yos  &#8680;  bu sorgu yöntemi ile tüm YÖS'lerin dizi şeklinde verileri listelenir.
 
-İşlem Sorgu Örneği =  /yos/2501  &#8594; bu sorgu yöntemi ile gönderilmiş olan yosKodu’na ait bilgiler listelenir ya da “404 Not Found” hatası alır.
+İşlem Sorgu Örneği =  /yos/2501  &#8680;  bu sorgu yöntemi ile gönderilmiş olan yosKodu’na ait bilgiler listelenir ya da “404 Not Found” hatası alır.
 YÖS API Tablo 20’deki istek parametrelerine göre sorgulanabilir.
 İşlem Sorgu Örneği (Belirli Bir Hesap)=  /yos?srlmKrtr=kod&srlmYon=A
 
