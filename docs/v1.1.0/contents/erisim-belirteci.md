@@ -50,4 +50,7 @@ Yenileme Belirteci ile Erişim Belirteci güncellendiğinde, HHS'den dönen yeni
 
 Erişim Belirteci API çağrımı sırasında rıza durumları kontrol edilmelidir. Bu kontrollerin nasıl yapılması gerektiği 4-Rıza Durumları bölümünde aktarılmıştır.
 
-Yenileme belirteci karşılığında yeni bir erişim belirteci alınması sırasında hata alınması durumunda, HHS'nin döndüğü hata yanıtında httpCode = 401 ve errorCode = "TR.OHVPS.Connection.InvalidToken" geldiği durumda, YÖS tarafından HHS'ye ilgili rıza için sistemsel olarak iptal isteği gönderilmelidir.
+
+Yenileme belirteci karşılığında yeni bir erişim belirteci alınması sırasında HHS'nin döndüğü hata yanıtında httpCode = 401 ve errorCode = "TR.OHVPS.Connection.InvalidToken" gelirse YÖS önce rızanın durumu sorgulamalıdır. <br>
+    Eğer geçerli bir rıza ise; HHS veya YÖS tarafında bir sorun olduğu anlaşılmalıdır. Sistem tarafından hata üretilmeli ve sorun incelenmelidir.<br>
+    Eğer geçerli bir rıza değil ise YÖS tarafındaki rıza durumu güncellenmelidir.<br>
