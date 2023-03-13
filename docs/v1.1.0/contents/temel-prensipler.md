@@ -757,7 +757,7 @@ Maskeli olarak iletilmesi gereken verilerin maskeleme kuralları şu şekildedir
 - Ad-Soyadı / Ticari Unvan : Her kelimenin ilk 2 karakteri açık, sonraki karakterler yerine 4 adet ‘*’ karakteri konumlandırılmalıdır. 
       Örneğin: “FATİH SERKAN EREN” ifadesi “FA**** SE**** ER****” şeklinde gösterilmelidir.
 - Tabela Unvanı : Her kelimenin ilk 2 karakteri açık, sonraki karakterler yerine 4 adet ‘*’ karakteri konumlandırılmalıdır. Örneğin “BANKALARARASI KART MERKEZİ ANONİM ŞİRKETİ” ifadesi “BA**** KA**** ME**** AN**** Şİ****” şeklinde gösterilmelidir.
-- YÖS’ten girilen unvan ve iban bilgileri ödeme emri rızası ve ödeme emri yanıtında açık dönülür, Kolas akışında ödeme emri rızası yanıtı ve ödeme emri istek ve yanıtında maskeli taşınır.
+- YÖS’ten girilen alıcı unvan ve IBAN bilgileri ödeme emri rızası ve ödeme emri yanıtında açık dönülür, Kolas akışında ödeme emri rızası yanıtı ve ödeme emri istek ve yanıtında maskeli taşınır.
 
 
 
