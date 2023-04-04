@@ -28,7 +28,8 @@ Müşteri için güçlü kimlik doğrulama, ÖHK’nın (müşterinin) kimliğin
      - Yönlendirmeli (Redirect) GKD Yöntemi 
      - Ayrık (Decoupled) GKD Yöntemi  
 
-10.	HHS asgari olarak tarayıcı tabanlı Yönlendirmeli GKD yöntemini desteklemek zorundadır.
+10.	HHS asgari olarak tarayıcı tabanlı Yönlendirmeli GKD yöntemini desteklemek zorundadır.  
+11.  HHS’nin mobil uygulamasının bulunması durumunda tarayıcı tabanlı yönlendirmenin yanında uygulama tabanlı yönlendirme yapması zorunludur. Uygulama sahiplerinin uygulama tabanlı yönlendirme için uyumlanma son tarihleri 1 Ekim 2023’tür.    
 11.	Çerçeve sözleşme kapsamında olmayan tek seferlik ödeme işlemleri sadece Yönlendirmeli GKD yöntemi ile gerçekleştirilebilir.
 
 
