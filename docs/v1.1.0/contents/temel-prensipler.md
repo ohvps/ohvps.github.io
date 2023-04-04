@@ -177,7 +177,7 @@ API istekleri ve yanıtlarının **Başlık** parametrelerinde ISO-8859-1 standa
 
 API istekleri ve yanıtlarında **Gövde** parametrelerinde UTF-8 karakter kodlaması kullanılır. Bu, JSON için varsayılan karakter kodlamasıdır.  
 
-Ancak, bir HHS'nin kendi uygulamaları ve ödeme başlattığı ödeme sistemi (Havale vb.) bazı UTF-8 karakterlerini kabul etmeyebilir. HHS, UTF-8 kodlaması içeren bir mesajı işleyemez ve reddederse, HTTP 400 (Hatalı İstek) durum kodu ile yanıt vermelidir.  
+Ancak, bir HHS'nin kendi uygulamaları ve ödeme başlattığı ödeme sistemi (Havale vb.) bazı UTF-8 karakterlerini kabul etmeyebilir. HHS, UTF-8 kodlaması içeren bir mesajı işleyemez ve reddederse, HTTP 400 (Hatalı İstek) durum kodu ile yanıt vermelidir.
 
 Gövde parametrelerinde desteklenen UTF-8 karakter kümesi aşağıda listelenmiştir. 
 
@@ -216,11 +216,10 @@ Ancak **Erişim belirteci, Yenileme belirteci ve Authorization** parametreleri d
 Bearer HTTP Authorization Şeması RFC 6750'de tanımlanmıştır. <https://www.rfc-editor.org/rfc/rfc6750#section-2.1> bölümünde izin verilen karakterlerin gönderilmesi beklenmektedir. Buradaki standartın her 3 parametre için de uygulanmasına karar verilmiştir. 
 
 RFC 6750 içerisinde bearer token formatı şu şekildedir : 1*( ALPHA / DIGIT / "-" / "." / "&#95;" / "~" / "+" / "/" ) *"="  
-Augmented BNF for Syntax Specifications (ABNF) ile ifade edilen bu formatta token en az 1 adet alfanumerik karakter ve özel karakter ("-", "." , "&#95;" , "~" , "+" , "/")  içermeli ve 0 ya da daha çok sayıda "=" karakteri ile bitmelidir.   
+Augmented BNF for Syntax Specifications (ABNF) ile ifade edilen bu formatta token en az 1 adet alfanumerik karakter veya özel karakter ("-", "." , "&#95;" , "~" , "+" , "/")  içermeli ve 0 ya da daha çok sayıda "=" karakteri ile bitmelidir.   
 
-ALPHA = A-Z / a-z harfleridir.  
-DIGIT = 0-9 rakamlarıdır.
-
+ALPHA = A-Z / a-z aralığındaki harflerdir.  
+DIGIT = 0-9 aralığındaki rakamlardır.
 
 
 ## 3.7.	Veri Formatı

@@ -8,8 +8,28 @@ Sertifikasyon için geçerli olan SÜRÜM 1.0.2 olacaktır.<br>
  <https://github.com/ohvps/> adresi üzerinden değişiklik açıklamaları ve tarihçesi incelenebilir.<br></b></font>
 
 <br/>
+
+
 <br/>
 <br/>
+
+SÜRÜM 1.1.0 (TASLAK) sürüm gerçiş tarihleri şu şekildedir.
+
+- Sürüm Geçiş Tarihi : 1 Temmuz 2023
+
+- Sertifikasyona Başlangıç Tarihi : 10-15 Temmuz 2023
+
+- HHS Yeni Sürüm Üretime Geçiş Son Tarihi Tarihi : 1 Ekim 2023
+
+- YÖS Yeni Sürüm Üretime Geçiş Başlangıç Tarihi : 1 Ekim 2023
+
+- YÖS Yeni Sürüm Üretime Geçiş Son Tarihi : 1 Aralık 2023
+
+- Eski Sürümün Kaldırılma Tarihi : 1 Ocak 2024  
+
+[Sürüm Yönetimi](surum-yonetimi) bölümünden tarih bilgilerinin açıklamalarına ulaşılabilir.
+
+
 <br/>
 <br/>
 <br/>
