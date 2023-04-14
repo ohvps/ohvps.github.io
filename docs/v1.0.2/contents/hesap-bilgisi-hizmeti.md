@@ -255,7 +255,7 @@ Başarılı GKD sonrasında (rizaDrm=’Y’) ilgili rıza nesnesi için (belirl
 
 Erişim belirteci alındıktan sonra; HHS,  hesap bilgisi rızasının durumunu “Yetki Kullanıldı” olarak günceller. Rıza tesisi sağlanmış olur.
 
-## 7.3 ADIM 2.1: Hesap Bilgisi Rızasının Sorgulanması (İsteğe Bağlı)
+## 7.3 ADIM 2.1: Hesap Bilgisi Rızasının Sorgulanması 
 
 **GET /hesap-bilgisi-rizasi/{RizaNo}**  
 

@@ -149,7 +149,12 @@ module.exports = [
             
             },
             {
-                title: '10. Ekler',
+                title: '10. Olay Bildirim',
+                path: '/v1.1.0/contents/olay-bildirim',
+            
+            },
+            {
+                title: '11. Ekler',
                 path: '/v1.1.0/contents/ekler',
             
             },

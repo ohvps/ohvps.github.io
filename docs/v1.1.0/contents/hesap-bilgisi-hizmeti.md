@@ -73,7 +73,7 @@ Hesap bilgisi için müşteri rızasına ilişkin temel ilkeler şunlardır:
 | 3.1 |hesaplar |GET |/hesaplar | Z |İstemci Kimlik Bilgileri ve Yetkilendirme Kodu (GKD) |  | Sayfalama | |HesapBilgileri(birden çok hesap) |
 | 3.2 |hesaplar |GET |/hesaplar/{hspRef} | Z |İstemci Kimlik Bilgileri ve Yetkilendirme Kodu (GKD) |  |  | |HesapBilgileri(tek  hesap) |
 | 3.3 |bakiye  |GET |/hesaplar/{hspRef}/bakiye | Z |İstemci Kimlik Bilgileri ve Yetkilendirme Kodu (GKD) |  |  | |BakiyeBilgileri(tek  hesap) |
-| 3.4 |bakiye  |GET |/bakiye | İ |İstemci Kimlik Bilgileri ve Yetkilendirme Kodu (GKD) |  |Sayfalama  | |BakiyeBilgileri(birden çok hesap) |
+| 3.4 |bakiye  |GET |/bakiye | Z |İstemci Kimlik Bilgileri ve Yetkilendirme Kodu (GKD) |  |Sayfalama  | |BakiyeBilgileri(birden çok hesap) |
 | 3.5 |islemler  |GET |/hesaplar/{hspRef}/işlemler | Z |İstemci Kimlik Bilgileri ve Yetkilendirme Kodu (GKD) |  |Sayfalama Filtreleme  | |IslemBilgileri (tek hesap) |
 
 **Tablo 11: Hesap Bilgisi Hizmeti İçin Erişim Adresleri**
@@ -257,7 +257,7 @@ Başarılı GKD sonrasında (rizaDrm=’Y’) ilgili rıza nesnesi için (belirl
 
 Erişim belirteci alındıktan sonra; HHS,  hesap bilgisi rızasının durumunu “Yetki Kullanıldı” olarak günceller. Rıza tesisi sağlanmış olur.
 
-## 7.3 ADIM 2.1: Hesap Bilgisi Rızasının Sorgulanması (İsteğe Bağlı)
+## 7.3 ADIM 2.1: Hesap Bilgisi Rızasının Sorgulanması 
 
 **GET /hesap-bilgisi-rizasi/{RizaNo}**  
 
