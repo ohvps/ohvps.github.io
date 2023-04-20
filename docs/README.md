@@ -28,6 +28,7 @@ SÜRÜM 1.1.0 (TASLAK) sürüm gerçiş tarihleri şu şekildedir.
 - Eski Sürümün Kaldırılma Tarihi : 1 Ocak 2024  
 
 <br>
+<br>
 
 Üretim ortamında servis sunan HHS’lerin 1 Ekim 2023 -1 Ocak 2024  tarihleri arasında aynı anda çift sürüm desteklemesi gerekmektedir!
 
