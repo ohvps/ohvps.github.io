@@ -101,7 +101,7 @@ BKM'nin sunacağı abonelik servisleri için HHS ve YÖS'lerin abonelik isteği 
 | Olay Abonelik | olayAbonelik |Kompleks:OlayAbonelik | Z |   |  
 | >Olay Abonelik Numarası  | olayAbonelikNo |AN1..64 | Z | YÖS özelinde oluşturulan tekil tanımlayıcıdır. Farklı YÖS'ler için aynı değer kullanılamaz.|  
 | >Olay Abonelik Oluşturulma zamanı  | olusturmaZamani | ISODateTime | Z | Olay Abonelik nesnesinin oluşturulma zaman damgası |
-| >Olay Abonelik Güncelleme zamanı  | guncellemeZamani | ISODateTime | İ | Olay Abonelik nesnesinin güncelleme zaman damgası iletilebilir.|
+| >Olay Abonelik Güncelleme zamanı  | guncellemeZamani | ISODateTime | İ | Olay Abonelik nesnesinin güncelleme zaman damgası iletilebilir. İlk değeri olay abonelik oluşturma zamanı bilgisidir.|
 |>Katılımcı Bilgisi|	katilimciBlg|	Kompleks:KatilimciBilgisi	|Z|	Katılımcılara atanmış kod bilgileridir.| 
 |>>Hesap Hizmeti Sağlayıcısı Kodu|	hhsKod|	AN4|	Z	|Hesap Hizmeti Sağlayıcısının kodudur. (Nezdinde ÖH bulunduran kuruluş kodu. Örneğin, Banka, Elektronik Para Kuruluşu ve Ödeme Kuruluşu)| 
 |>> Yetkili Ödeme Hizmeti Sağlayıcısı Kodu	|yosKod	|AN4|	Z	|Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.| 
@@ -157,15 +157,15 @@ Başarılı PUT isteği sonucu HTTP 200 cevabı ile iletilmelidir.
 |>Katılımcı Bilgisi|	katilimciBlg|	Kompleks:KatilimciBilgisi	|Z|	Katılımcılara atanmış kod bilgileridir.| 
 |>>Hesap Hizmeti Sağlayıcısı Kodu|	hhsKod|	AN4|	Z	|Hesap Hizmeti Sağlayıcısının kodudur. (Nezdinde ÖH bulunduran kuruluş kodu. Örneğin, Banka, Elektronik Para Kuruluşu ve Ödeme Kuruluşu)| 
 |>> Yetkili Ödeme Hizmeti Sağlayıcısı Kodu	|yosKod	|AN4|	Z	|Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.| 
-| >Abonelik Tipleri  | aboneliktipleri | Kompleks: abonelikTipleri[Array][1..N] | Z | YÖS üyelik güncellemesi yapmak istediği abonelik tiplerini iletir. <br> Abonelik Tipleri nesnesi içerisinde yer alan değerler YÖS'ün güncel abonelikleri olarak HHS sistemine işlenmelidir. <br>OlayAbonelikIstegi nesnesi içerisinde iletilen değerlerin yanıt içerisinde dönmesi beklenmektedir.|
-| >> Olay Tipi  | olayTipi | AN1..36 | Z |YÖS olay tiplerine abone olmak istediğinde olay tipi değerini TR.OHVPS.DataCode.OlayTip sıralı veri tiplerinden değer ya da değerler ile doldurur.|
-| >> Kaynak Tipi  | kaynakTipi | AN1..36 | Z | Abone olunmak istenen olay tipleri ile ilişkili kaynak tipleri belirlenerek ait olduğu TR.OHVPS.DataCode.KaynakTip sıralı veri tiplerinden değer ya da değerler ile doldurur.|
+| >Abonelik Tipleri  | aboneliktipleri | Kompleks: abonelikTipleri[Array][1..N] | Z | OlayAbonelikIstegi nesnesi içerisinde iletilen değerlerin yanıt içerisinde dönmesi beklenmektedir.|
+| >> Olay Tipi  | olayTipi | AN1..36 | Z |OlayAbonelikIstegi nesnesi içerisinde iletilen değerlerin yanıt içerisinde dönmesi beklenmektedir.|
+| >> Kaynak Tipi  | kaynakTipi | AN1..36 | Z | OlayAbonelikIstegi nesnesi içerisinde iletilen değerlerin yanıt içerisinde dönmesi beklenmektedir.|
 
 ## ADIM 3: Olay Aboneliğinin sorgulanması  
 
-GET/olay-abonelik  
+GET /olay-abonelik  
 
-YÖSolay abonelik bilgilerini sorgulamak isteyebilir. HHS, YÖS'e ait aktif durumdaki abonelik bilgisini iletir. 
+YÖS olay abonelik bilgilerini sorgulamak isteyebilir. HHS, YÖS'e ait aktif durumdaki abonelik bilgisini iletir. 
 Başarılı GET sonucu HTTP 200 kodu ile iletilmelidir. 
 
 
@@ -179,15 +179,15 @@ Başarılı GET sonucu HTTP 200 kodu ile iletilmelidir.
 |>Katılımcı Bilgisi|	katilimciBlg|	Kompleks:KatilimciBilgisi	|Z|	Katılımcılara atanmış kod bilgileridir.| 
 |>>Hesap Hizmeti Sağlayıcısı Kodu|	hhsKod|	AN4|	Z	|Hesap Hizmeti Sağlayıcısının kodudur. (Nezdinde ÖH bulunduran kuruluş kodu. Örneğin, Banka, Elektronik Para Kuruluşu ve Ödeme Kuruluşu)| 
 |>> Yetkili Ödeme Hizmeti Sağlayıcısı Kodu	|yosKod	|AN4|	Z	|Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.| 
-| >Abonelik Tipleri  | aboneliktipleri | Kompleks: abonelikTipleri[Array][1..N] | Z | YÖS üyelik güncellemesi yapmak istediği abonelik tiplerini iletir. <br> Abonelik Tipleri nesnesi içerisinde yer alan değerler YÖS'ün güncel abonelikleri olarak HHS sistemine işlenmelidir. |
-| >> Olay Tipi  | olayTipi | AN1..36 | Z |YÖS olay tiplerine abone olmak istediğinde olay tipi değerini TR.OHVPS.DataCode.OlayTip sıralı veri tiplerinden değer ya da değerler ile doldurur.|
-| >> Kaynak Tipi  | kaynakTipi | AN1..36 | Z | Abone olunmak istenen olay tipleri ile ilişkili kaynak tipleri belirlenerek ait olduğu TR.OHVPS.DataCode.KaynakTip sıralı veri tiplerinden değer ya da değerler ile doldurur.|
+| >Abonelik Tipleri  | aboneliktipleri | Kompleks: abonelikTipleri[Array][1..N] | Z | OlayAbonelikIstegi nesnesi içerisinde iletilen değerlerin yanıt içerisinde dönmesi beklenmektedir. |
+| >> Olay Tipi  | olayTipi | AN1..36 | Z |OlayAbonelikIstegi nesnesi içerisinde iletilen değerlerin yanıt içerisinde dönmesi beklenmektedir.|
+| >> Kaynak Tipi  | kaynakTipi | AN1..36 | Z | OlayAbonelikIstegi nesnesi içerisinde iletilen değerlerin yanıt içerisinde dönmesi beklenmektedir.|
 
 
 ## ADIM 4: Olay Aboneliğinin iptali
 
 
-DELETE/olay-abonelik/olayAbonelikNo
+DELETE /olay-abonelik/olayAbonelikNo
 
 YÖS'ün abonelik kaydını silmesi için HHS'nin sunduğu servistir.  Başarılı silme işlemi sonucu HTTP 204 ile YÖS'e iletilir.
 
@@ -195,7 +195,7 @@ YÖS'ün abonelik kaydını silmesi için HHS'nin sunduğu servistir.  Başarıl
 
 GET /iletilemeyen-olaylar 
 
-HHS kaynaklar üzerinde oluşacak olayları YÖS'e POST/olay-bildirim servisi ile gönderim sağlayacak. Bu gönderim belli bir yeniden gönderim politası (retry-policy) ile yapılacaktır.  Ancak yine de iletilemeyen olaylar olursa (YÖS servisinden HTTP 202 alamama durumu) YÖS'e bu servis üzerinden sunulacaktır. Yani yeniden gönderim politikası sonunda gönderilemeyen olaylar bu servis ile sunulmalıdır.  
+HHS kaynaklar üzerinde oluşacak olayları YÖS'e POST/olay-dinleme servisi ile gönderim sağlayacak. Bu gönderim belli bir yeniden gönderim politası (retry-policy) ile yapılacaktır.  Ancak yine de iletilemeyen olaylar olursa (YÖS servisinden HTTP 202 alamama durumu) YÖS'e iletilemeyen-olaylar servisi üzerinden sunulacaktır. Yani yeniden gönderim politikası sonunda gönderilemeyen olaylar bu servis ile sunulmalıdır.  
 
 Bu serviste 1 gün öncesinden sorgu anına kadar tüm kayıtlarına ait iletilemeyen olaylar listelenecektir. 
 Örnek sorgu zamanı : 2023-04-06T15:14:00+03:00 
@@ -220,7 +220,7 @@ Sıralama yönü olay tarihine göre artan şekilde olmalıdır. Sayfalama 100'e
 |>> Yetkili Ödeme Hizmeti Sağlayıcısı Kodu	|yosKod	|AN4|	Z	|Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.| 
 |>Olaylar |	olaylar|	Kompleks: Olaylar	|Z|	 |
 |>>Olay No|	 olayNo	|AN1..64|	Z	|Olaya ait evrensel tekil numaradır.|
-|>>Olay Tarihi	| olayTarihi	| ISODateTime |	Z	| Olayın oluştuğu tarih bilgisidir. |
+|>>Olay Zamani	| olayZamani	| ISODateTime |	Z	| Olayın oluştuğu tarih bilgisidir. |
 |>>Olay Tipi	| olayTipi	| AN1..36 |Z|TR.OHVPS.DataCode.OlayTip sıralı veri tiplerinden birini alır. |
 |>>Kaynak Tipi|	kaynakTipi |	AN1..36|Z|	TR.OHVPS.DataCode.KaynakTip sıralı veri tiplerinden birini alır. |
 |>>Kaynak Numarası|kaynakNo |AN1..128|Z|Güncellenen kaynağa ait HHS sistemindeki tekil tanımlayıcı.|
@@ -243,7 +243,7 @@ Olay Dinleme Servisine ait API Endpointleri aşağıdaki tabloda listelenmiştir
 
 ## ADIM 1: Olay Dinleme
 
-POST/olay-dinleme
+POST /olay-dinleme
 
 Olay abonelik servisi ile abone olunan olaylar, olay dinleme servisi ile YÖS'e iletilir. 
 Olaylar yanıt nesnesi içerisinde en fazla 100 kayıt gönderilmelidir.
@@ -264,7 +264,7 @@ HHS kendi sistemini yormayacak şekilde, belirleyeceği kurallar dahilinde bu ge
 |>> Yetkili Ödeme Hizmeti Sağlayıcısı Kodu	|yosKod	|AN4|	Z	| Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.| 
 |>Olaylar |	olaylar|	Kompleks: Olaylar	|Z|	 |
 |>>Olay Numarası|	 olayNo	|AN1..64|	Z	||
-|>>Olay Tarihi	| olayTarihi	| ISODateTime |	Z	| |
+|>>Olay Zamanı	| olayZamani	| ISODateTime |	Z	| |
 |>>Olay Tipi	| olayTipi	| AN1..36 |>|TR.OHVPS.DataCode.OlayTip sıralı veri tiplerinden birini alır. |
 |>>Kaynak Tipi|	kaynakTipi |	AN1..36|Z|	TR.OHVPS.DataCode.KaynakTip sıralı veri tiplerinden birini alır. |
 |>>Kaynak Numarası| kaynakNo|AN1..128|Z|Güncellenen kaynağa ait HHS sistemindeki tekil tanımlayıcı.|

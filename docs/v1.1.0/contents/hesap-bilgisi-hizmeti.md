@@ -200,6 +200,7 @@ Bir hesap bilgisi müşteri rızası kaynağı çağrısına yanıt olarak dönd
 -	Bakiye Bilgisi 
 -	Temel İşlem (Hesap Hareketleri) Bilgisi 
 -	Ayrıntılı İşlem Bilgisi
+- Olay Bildirimi
 
 ÖHK’ya sunulacak seçimler ve kuralları aşağıdaki gibi olmalıdır.
 
