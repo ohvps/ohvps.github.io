@@ -103,11 +103,15 @@ YÖS API Tablo 20’deki istek parametrelerine göre sorgulanabilir.
 | >> Temel Adres | tmlAdr | AN1..1024 | Z | yetYntm değeri “Y” olarak iletildiğinde Yönlendirmeli GKD sürecinde HHS’nin YOS’e authorizasyon kodunu hangi url e göndereceği bilgisini tutar.<br>yetYntm değeri “A” olarak iletildiğinde Ayrık GKD sürecinde HHS’nin YOS’e authorizasyon kodunu hangi url e göndereceği bilgisini tutar.<br>Riza isteklerinde bu değer ile uyumluluğu kontrol edilmelidir.<br>Örnek: https://example.com<br>https://example2.com/path<br>deepLink://example/test<br>deepLink://example2/test |
 | >> Açıklama | aciklama | AN1..1024 | İ | YÖS’ün gönderdiği adrese yönelik vermek istediği açıklama<br>Örnek: WEB bireysel , WEB kurumsal  , APP |
 | Açık anahtar | acikAnahtar | AN1..1024 | Z | YÖS’ün mesaj imzalama için paylaştığı açık anahtar | 
+| YÖS Api Bilgileri | apiBilgileri | Kompleks: YosApiBilgi[Array][0..N] | Z |Desteklenen Api ve sürüm bilgileri dönülecektir. | 
+| > api | api | AN1..20 | Z | Api İsmi Örnek :ods | 
+| > surum | surum | AN1..10 | Z | Api Sürüm Kodu Örnek: s1.0, s2.0 s1.0 | 
 | Logo Bilgileri | logoBilgileri | Kompleks: LogoBilgisi [Array][1..N] | Z | YOS’e ait logo bilgileri.| 
 | > logoTur | logoTur | AN3..50 | Z | Logonun türünü belirler.<br>TR.OHVPS.DataCode.LogoTur sıralı veri türü değerlerlerinden birini alır. | 
 | > logoAdr | logoAdr | AN1..255 | Z | YÖS tarafında tutulan ve HHS’lerle paylaşılacak olan url adres bilgisidir. <br>Örnek: https://via.placeholder.com/150?text=0001 | 
 | > logoArkaPlan | logoArkaPlan | AN1 | Z | TR.OHVPS.DataCode.LogoArkaPlan sıralı veri türü değerlerlerinden birini alır. | 
 | > logoFormat | logoFormat | AN3 | Z | TR.OHVPS.DataCode.LogoFormat sıralı veri türü değerlerlerinden birini alır. | 
+| Durum | durum | AN1 | Z |YÖS'ün durum bilgisidir.<br> TR.OHVPS.DataCode.YOSDurumu sıralı veri tipinde alabileceği değerler belirtilmiştir.| 
 
 ## Healthcheck API
 

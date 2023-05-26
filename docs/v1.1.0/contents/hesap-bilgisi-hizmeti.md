@@ -211,11 +211,14 @@ Bir hesap bilgisi müşteri rızası kaynağı çağrısına yanıt olarak dönd
 | Bakiye Bilgisi | ÖHK seçim yapabilir. |
 | Temel İşlem (Hesap Hareketleri)  Bilgisi  | ÖHK seçim yapabilir. |  
 | Ayrıntılı İşlem Bilgisi	 | ÖHK seçim yapabilir. Ayrıntılı İşlem Bilgisi seçimi Temel İşlem Bilgisi seçimini kapsar. (Ayrıntılı İşlem bilgisi seçildiğinde Temel İşlem Bilgisi de seçili olmalıdır.)|  
+| Olay Bildirimi  | Bakiye Bilgisi izin türü ile birlikte seçilmesi gereklidir. ÖHK, HHS'de olacak bakiye değişikliklerinden anlık haberdar olmak istiyor ise bu izin türü seçimi ile rıza başlatması gereklidir.|  
+
 
 Aşağıdaki durumlarda, izin kombinasyonlarına izin verilmez. HHS, bu hesap erişim onaylarını 400 (Hatalı İstek) yanıt koduyla reddetmelidir:
 
 - İzin dizisinin herhangi bir izin türü içermemesi durumu,
 - İzin dizisinde HHS tarafından desteklenmeyen bir izin kodunun yer alması durumu
+ 
 
 ## 7.2 ADIM 2: Hesap Bilgisi Hizmeti Rızasının Tesisi
 <!--
