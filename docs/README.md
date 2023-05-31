@@ -28,6 +28,9 @@ SÜRÜM 1.1.0 (TASLAK) sürüm gerçiş tarihleri şu şekildedir.
 - Eski Sürümün Kaldırılma Tarihi : 1 Ağustos 2024  
 
 <br>
+
+**ÖNEMLİ BİLGİ : <br>HHS’nin mobil uygulamasının bulunması durumunda tarayıcı tabanlı yönlendirmenin yanında uygulama tabanlı yönlendirme yapması zorunludur. <br>Uygulama sahiplerinin uygulama tabanlı yönlendirme için uyumlanma son tarihleri 1 Ekim 2023’tür.**
+<br>
 <br>
 
 Üretim ortamında servis sunan HHS’lerin 29 Şubat 2024 - 30 Haziran 2024 tarihleri arasında aynı anda çift sürüm desteklemesi gerekmektedir!
