@@ -40,6 +40,7 @@ HHS ve YÖS API Tablo 20’deki istek parametrelerine göre sorgulanabilir.
 | > logoAdr | logoAdr | AN1..255 | Z | HHS tarafında tutulan ve YÖS'lerle paylaşılacak olan url adres bilgisidir. <br>Örnek: https://via.placeholder.com/150?text=0001 | 
 | > logoArkaPlan | logoArkaPlan | AN1 | Z | TR.OHVPS.DataCode.LogoArkaPlan sıralı veri türü değerlerlerinden birini alır. | 
 | > logoFormat | logoFormat | AN3 | Z | TR.OHVPS.DataCode.LogoFormat sıralı veri türü değerlerlerinden birini alır. | 
+| Ayrık GKD | ayrikGKD | AN1 | Z |HHS'nin Ayrık GKD desteklediğini BKM'ye bildirmesi ile bu alan E değerini alır.<br> TR.OHVPS.DataCode.EvetHayir sıralı veri tiplerinden birini alır. | 
 | Durum | durum | AN1 | Z |HHS'nin durum bilgisidir.<br> TR.OHVPS.DataCode.HHSDurumu sıralı veri tipinde alabileceği değerler belirtilmiştir.| 
 
 HHS API'de; Açık, Yaygınlaştırma, Geçici Hizmet Veremiyor, Kapalı durumlarındaki HHS'ler listelenecektir. <br>

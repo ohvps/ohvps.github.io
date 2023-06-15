@@ -144,7 +144,7 @@ module.exports = [
             
             },
             {
-                title: '9. Erişim Belirteci API',
+                title: '9. Güçlü Kimlik Doğrulama API',
                 path: '/v1.1.0/contents/erisim-belirteci',
             
             },

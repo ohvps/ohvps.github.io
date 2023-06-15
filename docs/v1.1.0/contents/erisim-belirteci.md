@@ -1,3 +1,60 @@
+# 	Güçlü Kimlik Doğrulama <!-- omit in toc -->
+<!--
+- [Yetkilendirme Kodu API](#yetkilendirme-kodu)
+- [Erişim Belirteci API](#erisim-belirteci)
+
+-->
+
+ÖHK'nın YÖS uygulamasından HHS uygulamasına yönlendirilmesi ile başlanan güçlü kimlik doğrulama süreci,<br> Oauth 2.0 standartları gereği öncelikle yetkod değerinin YÖS'e iletilmesi ile başlar ve erişim belirtecinin alınması sonucunda başarı ile sonuçlanmış olur.
+
+
+#  Güçlü Kimlik Doğrulama için Erişim Adresleri (Endpoints)
+
+**Etki Alanı (Scope) =“hesap_bilgisi”  "odeme_emri"**  
+|No  |Kaynak |HTTP işlemi|Erişim Adresi |Zorunlu (Z)/ İsteğe Bağlı(İ)|Yetkilendirme Türü |İmzalama |Parametre |İstem Nesnesi |Yanıt Nesnesi |
+| --- |--- |--- |--- |--- |--- |--- |--- |--- |--- |
+| 1 |yetkilendirme-kodu |POST |/yetkilendirme-kodu | Z |İstemci Kimlik Bilgileri |İmzalı İstek ve Yanıt | |  | yetkilendirmeKodu |
+| 2 |erisim-belirteci |POST |/erisim-belirteci| Z |İstemci Kimlik Bilgileri |İmzalı İstek ve Yanıt | | ErisimBelirteciIstegi  | ErisimBelirteci |
+
+## Yetkilendirme Kodu API
+
+**GET /yetkilendirme-kodu**
+
+
+Ayrık GKD sürecinde kullanılacak olan Yetkilendirme Kodu API'nin  HHS tarafından sunulması gerekmektedir. 
+
+Ayrık GKD akışında; HHS, YÖS'ün olay dinleme servisine "AYRIK_GKD_BASARILI" olay tipi ile olay bildirimi yapar. Böylece ÖHK'nın kendi sistemine başarı ile login olduğunu ve yetKod değerinin ÖHK ile ilişkilendirildiğinin bilgisini YÖS'e iletmiş olur. <br>
+HHS olay bildirimi için retry policy süreçleri kapsamında 1 dakikada 3 kez deneme yapabilir. YÖS'e olay bildirimi yapılmamış ise, kendisine gelmeyen olay bildirimi için yetkod'un geçerli olduğu 5 dakika boyunca yetkilendirme-kodu endpointi ile sorgulama yaparak yetkod değerini alabilir.  
+
+YÖS, "ODEME_EMRI_RIZASI" kaynağı için bildirim yapıldı ise; GET /yetkilendirme-kodu endpointi ile yetkod sorgusu yapılır.  
+Örnek çağrım : 
+**GET /yetkilendirme-kodu?rizaNo=123&rizaTip=O**
+
+YÖS, "HESAP_BILGISI_RIZASI" kaynağı için bildirim yapıldı ise; GET /yetkilendirme-kodu endpointi ile yetkod sorgusu yapılır.   
+Örnek çağrım : 
+**GET /yetkilendirme-kodu?rizaNo=123&rizaTip=H**
+
+**İSTEK:**
+
+YÖS, rıza numarasını ve isteğin ÖBH ya da HBH olmasına göre değişen rıza tipini parametre olarak istek talebine ekler. Rıza tipinin alabileceği değerler **TR.OHVPS.DataCode.RizaTip** sıralı veri tiplerinde belirtilmiştir.
+
+HHS'nin, yetkilendirme yöntemi "Ayrık Gkd" ise  rıza numarası ile yetki kodu değerini dönmesi beklenmektedir. Yönlendirmeli GKD için bu endpoint "yetKod" değerini dönmemelidir. 
+
+**YANIT:**  
+
+HHS yanıt nesnesi içerisinde, ÖHK'ya ait yetki kodunu, rıza no ve rıza durumu ile birlikte YÖS'e iletir. 
+
+|Alan Adı |JSON Alan Adı	|Format:Veri modeli İsmi	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|
+| --- | --- | --- | --- | --- | 
+| Yetkilendirme Kodu | yetkilendirmeKodu | AN1..128 | Z | Rıza nesnesinin oluşturulması esnasında HHS kaynak sunucusu tarafından atanan biricik tanımlayıcı | 
+| > Yetki Kodu | yetKod | AN1..255 | Z | GKD sürecinde üretilen yetkilendirme kodudur. Tek kullanımlık olup, aynı yetKod ile birden fazla token alınamaz. yetKod Parametresinin yaşam ömrü 5 dakika olmalıdır.  | 
+| > RızaNo | rizaNo | AN1..128 | Z | Rıza nesnesinin oluşturulması esnasında HHS kaynak sunucusu tarafından atanan biricik tanımlayıcı | 
+| > Rıza Durumu |	rizaDrm	| AN1 |	Z |	**TR.OHVPS.DataCode.RizaDurumu** sıralı veri tipini değerlerinden birini alır. |
+
+Ayrık GKD sürecinde, yetkod değerini alan YÖS; erişim belirteci API ile GKD sürecini tamamlar.
+
+## Erişim Belirteci API
+
 **POST /erisim-belirteci** 
 
 
@@ -15,7 +72,7 @@ POST /erisim-belirteci isteğinin (REQUEST) gövdesinde (BODY)  “ErisimBelirte
 Erişim Belirteci POST işlemi sonucunda HTTP 200 dönülmesi gerekmektedir. 
 
 
-**Tablo 23: “ErisimBelirteciIstegi” nesnesi**
+**“ErisimBelirteciIstegi” nesnesi**
 
 |Alan Adı |JSON Alan Adı	|Format:Veri modeli İsmi	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|
 | --- | --- | --- | --- | --- | 
@@ -29,10 +86,10 @@ Erişim Belirteci POST işlemi sonucunda HTTP 200 dönülmesi gerekmektedir.
 **BAŞARILI YANIT:**
 
 
-POST işleminin RESPONSE gövdesini (BODY) oluşturan “erisimBelirteci” nesnesinde (Tablo-19) bulunan erişim belirteci değeri ödeme emrinin başlatılması esnasında kullanılır.
+POST işleminin RESPONSE gövdesini (BODY) oluşturan “erisimBelirteci” nesnesinde bulunan erişim belirteci değeri ödeme emrinin başlatılması esnasında kullanılır.
 
 
-**Tablo 24: "ErisimBelirteci" nesnesi**
+**"ErisimBelirteci" nesnesi**
 
 |Alan Adı |JSON Alan Adı	|Format:Veri modeli İsmi	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|
 | --- | --- | --- | --- | --- | 

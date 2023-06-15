@@ -83,9 +83,13 @@ Hesap bakiye kontrolünün rıza aşamasında yapılmaması gerekmektedir. Çün
 **POST /odeme-emri-rizasi** isteğinin (REQUEST) gövdesinde (BODY)  “odemeEmriRizasiIstegi” nesnesi (Tablo-7) kullanılır. İstek başarıyla sonuçlanırsa HHS kaynak sunucusunda “odemeEmriRizasi” (Tablo-8) nesnesi oluşturulur.
 
 **Tek Seferlik Ödeme**  
-Tek seferlik ödeme akışı YÖS'ten HHS'ye giden istekte, gönderen kimlik bilgilerinin olmadığı durumda gerçekleşir. Gönderen kimlik bilgisi olmadığında, KOLAS sorgusu yapılamayacağından ötürü, HHS tarafından TR.OHVPS.Business.InvalidContent hatası dönülmelidir.  
-Tek seferlik ödeme akışı hem işyeri ödemelerinde hem de kişiden kişiye para transferlerinde kullanılabilen bir akıştır.
+Tek seferlik ödeme akışı YÖS'ten HHS'ye giden istekte, gönderen kimlik bilgilerinin olmadığı durumda gerçekleşir. Gönderen kimlik bilgisi olmadığında, KOLAS sorgusu yapılamayacağından ötürü, HHS tarafından TR.OHVPS.Business.InvalidContent hatası dönülmelidir.  ÖHK'nın YÖS'ün müşterisi olmadığı durumda tek seferlik ödeme başlatılabilir.  
+Tek seferlik ödeme akışı hem işyeri ödemelerinde hem de kişiden kişiye para transferlerinde kullanılabilen bir akıştır.  
+Tek seferlik ödeme akışı sadece bireysel müşteriler için kullanılabilir.  
+Tek seferlik ödeme akışında hem yönlendirmeli hem de ayrık GKD akışı ile müşteri yetkilendirmesi sağlanabilir.  
+
 Aşağıdaki senaryolar tek seferlik ödemeye örnek olarak gösterilebilir.  
+
 İşyeri Ödemesi akışı örneği: Bir e-ticaret sitesinde, üye olmadan alışveriş yapılması ve ödemenin YÖS tarafından kimlik bilgisi olmadan başlatılması  
 Kişiden kişiye para transferi akışı örneği: QR veya diğer yöntemler ile alıcı bilgilerinin gönderici ile paylaşılması ve YÖS üzerinden gönderici bilgileri olmadan alıcıya para transferi yapılması için rıza verilmesi
 
@@ -100,8 +104,10 @@ Kişiden kişiye para transferi akışı örneği: QR veya diğer yöntemler ile
 | **> Yetkili Ödeme Hizmeti Sağlayıcısı Kodu** | yosKod		  | AN4  | Z  | İsteği gönderen Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.  | HHS, yosKod’un geçerli bir Ödeme Hizmeti Sağlayıcısı Kodu olduğunu ve istek başlığındaki x-tpp-code değeri ile aynı olduğunu kontrol eder. Hata durumunda **TR.OHVPS.Connection.InvalidTPP** hata kodunu döner. |
 | **GKD** | gkd  |  Kompleks:Gkd | Z   |   |  |
 | **> Yetkilendirme Yöntemi**	| yetYntm  | AN1  |  İ | **TR.OHVPS.DataCode.GkdTur** sıralı veri türü değerlerinden birini alır. Yetkilendirme yöntemi, ÖBHS tarafından belirtilmeyebilir.  | HHS, ÖBHS’nin belirlediği yöntemi dikkate alarak kendi belirlediği yöntemi kullanır.  |
-| **> Yönlenme Adresi** | yonAdr  |  AN1..1024 | K  | Yönlendirmeli güçlü kimlik doğrulama için zorunlu.<br> YÖS’ün ileteceği adrestir.<br> YÖS Yönlendirmeli GKD yöntemi ile akışı destekliyorsa, yetYntm değişkeninden bağımsız olarak yönlendirme adresini iletmelidir.<br> Durum kodu(drmKod), yönlendirme adresine parametre olarak eklenmelidir.| HHS, müşteri uygulama / tarayıcısını bu alanda belirtilen adrese yönlendirir. |
-| **> Bildirim Adresi**	| bldAdr  |  AN1..1024 | K  | Ayrık güçlü kimlik doğrulama için zorunlu. YÖS’ün ileteceği adrestir.<br> YÖS Ayrık GKD yöntemi ile akışı destekliyorsa, yetYntm değişkeninden bağımsız olarak bildirim adresini iletmelidir.<br> Durum kodu(drmKod), yönlendirme adresine parametre olarak eklenmelidir. | HHS, ayrık GKD sonrası bu alanda belirtilen adrese otorizasyon kodunu (authentication code) iletir.  |
+| **> Yönlenme Adresi** | yonAdr  |  AN1..1024 | Z  | Yönlendirmeli güçlü kimlik doğrulama için zorunlu.<br> YÖS’ün ileteceği adrestir.<br> yetYntm değişkeninden bağımsız olarak yönlendirme adresini iletmelidir.<br> Durum kodu(drmKod), yönlendirme adresine parametre olarak eklenmelidir.| HHS, müşteri uygulama / tarayıcısını bu alanda belirtilen adrese yönlendirir. |
+| **> Ayrık GKD**	| ayrikGkd  | Kompleks:AyrikGkd  | K   | Ayrık güçlü kimlik doğrulama için zorunlu.  | yetYntm = A gönderilmiş ise ayrikGkd nesnesinin dolu gönderilmesi zorunludur. <br><br> HHS, YÖS'ün AYRIK_GKD_BASARILI ve AYRIK_GKD_BASARISIZ olay tipleri için olay aboneliğinin varlığını kontrol eder. Eğer yoksa işlemi Yönlendirmeli Akış'a çevirir. [Bknz: Ayrık GKD](gkd.html#_5-2-ayr%C4%B1k-guclu-kimlik-dogrulama)  |
+| **>> OHKTanimTip**	| OHKTanimTip  | AN8  | K   | ÖHK'nın HHS uygulaması tarafından tanınmasını sağlayacak tanım tipleridir. **TR.OHVPS.DataCode.OHKTanimTip** sıralı veri tiplerinden birini alır. |  |
+| **>> OHKTanimDeger**	| OHKTanimDeger  | AN1..30  | K   |ÖHK'nın HHS uygulaması tarafından tanınmasını sağlayacak tanım değeridir. OHKTanimTip'i ile uyumlu değerdir.|  |
 | **Ödeme Başlatma** | odmBsltm  | Kompleks: OdemeBaslatma  | Z   |   |  |
 | **> Kimlik** | kmlk  | Kompleks:Kimlik  | Z   |   |  |
 | **>> Kimlik Türü** | kmlkTur  | AN1| K | **TR.OHVPS.DataCode.KimlikTur** sıralı veri türü değerlerinden birini alır.| Çerçeve sözleşme kapsamındaki ödemelerde kullanımı zorunludur.<br>HHS geçerli bir Kimlik Numarası Türü olduğunu kontrol eder.<br>Kurum adına yapılan (ticari) ödemelerde, kurum adına işlem yapan kullanıcının kimlik türünün bu alanda gönderilmesi zorunludur. |
@@ -161,9 +167,12 @@ POST işleminin RESPONSE gövdesini (BODY) oluşturan “OdemeEmriRizasi” nesn
 | **>Hesap Hizmeti Sağlayıcısı Kodu** | hhsKod  | AN4  | Z  |  İsteğin iletildiği Hesap Hizmeti Sağlayıcısının kodudur. (Nezdinde ÖH bulunduran kuruluş kodu. Örneğin, Banka, Elektronik Para Kuruluşu ve Ödeme Kuruluşu) | 
 | **> Yetkili Ödeme Hizmeti Sağlayıcısı Kodu** | yosKod		  | AN4  | Z  | İsteği gönderen Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.  | 
 | **GKD** | gkd  |  Kompleks:Gkd | Z   |   |  
-| **> Yetkilendirme Yöntemi**	| yetYntm  | AN1  |  Z | **TR.OHVPS.DataCode.GkdTur** sıralı veri türü değerlerinden birini alır.   |  
-| **> Yönlenme Adresi** | yonAdr  |  AN1..1024 | K  | Yönlendirmeli güçlü kimlik doğrulama için zorunlu.<br>   |
-| **> Bildirim Adresi**	| bldAdr  |  AN1..1024 | K  | Ayrık güçlü kimlik doğrulama için zorunlu.    |
+| **> Yetkilendirme Yöntemi**	| yetYntm  | AN1  |  Z | **TR.OHVPS.DataCode.GkdTur** sıralı veri türü değerlerinden birini alır.  HHS, ÖBHS’nin belirlediği yöntemi dikkate alarak kendi belirlediği yöntemi kullanır.  |  
+| **> Yönlenme Adresi** | yonAdr  |  AN1..1024 | Z  | Yönlendirmeli güçlü kimlik doğrulama için zorunlu.<br>   |
+| **> Ayrık GKD**	| ayrikGkd  | Kompleks:AyrikGkd  | K   | Ayrık güçlü kimlik doğrulama için zorunlu.  | yetYntm = A gönderilmiş ise ayrikGkd nesnesinin dolu gönderilmesi zorunludur. yetYntm = Y için bu nesne iletilmemelidir. |
+| **>> OHKTanimTip**	| OHKTanimTip  | AN8  | K   | ÖHK'nın HHS uygulaması tarafından tanınmasını sağlayacak tanım tipleridir. İstek içerisindeki veri değiştirilmeden iletilir. |  
+| **>> OHKTanimDeger**	| OHKTanimDeger  | AN1..30  | K   |ÖHK'nın HHS uygulaması tarafından tanınmasını sağlayacak tanım değeridir. OHKTanimTip'i ile uyumlu değerdir.  İstek içerisindeki veri değiştirilmeden iletilir.|  
+| **> Yetkilendirme Yöntemi Değişim Sebebi** | yetYntmDegisimSebep  |  AN2 | K  | HHS yetYntm değerini ayrıktan yönlendirmeliye çevirdi ise çevirme sebebini bu alanda iletmek zorundadır. **TR.OHVPS.DataCode.yetYntmDegisimSebep** sıralı veri türü değerlerinden birini alır. |
 | **> HHS Yönlenme Adresi**	| hhsYonAdr  |  AN1..1024 | K  | GKD doğrulama bilgilerinin girilebilmesi için uygulamadan açılacak yönlendirme sayfasının adresi    |
 | **> Yetkilendirme Tamamlanma Zamanı**	| yetTmmZmn  |  ISODateTime | Z  | Yetkilendirme akışının tamamlanması gereken son zamanı gösterir. <br> HHS tarafından maksimum 5 dk içinde işlem tamamlanacak şekil zaman damgası oluşturulur. Zaman aşımı olduğunda HHS’nin GKD’ye izin vermeyecek şekilde hata mesajı vermesi gerekmektedir.<br> Rıza durumu Yetkilendirildi statüsüne geçene kadarki süredir.|
 | **Ödeme Başlatma** | odmBsltm  | Kompleks: OdemeBaslatma  | Z   |   |  
@@ -332,11 +341,14 @@ Gönderen Hesap Bilgisinin, ADIM 2 (Ödeme Emri Rızasının Yetkilendirilmesi) 
 | **>Hesap Hizmeti Sağlayıcısı Kodu** | hhsKod  | AN4  | Z  |  İsteğin iletildiği Hesap Hizmeti Sağlayıcısının kodudur. (Nezdinde ÖH bulunduran kuruluş kodu. Örneğin, Banka, Elektronik Para Kuruluşu ve Ödeme Kuruluşu) | HHS, hhsKod’un kendisine ait olduğunu ve istek başlığındaki x-aspsp-code değeri ile aynı olduğunu kontrol eder.<br> Hata durumunda **TR.OHVPS.Connection.InvalidASPSP** hata kodunu döner. |Gönderen katılımcı kodu (yani bankanın FAST/PÖS’teki Katılımcı kodu) |
 | **> Yetkili Ödeme Hizmeti Sağlayıcısı Kodu** | yosKod		  | AN4  | Z  | İsteği gönderen Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.  |HHS, yosKod’un geçerli bir Ödeme Hizmeti Sağlayıcısı Kodu olduğunu ve istek başlığındaki x-tpp-code değeri ile aynı olduğunu kontrol eder.<br> Hata durumunda **TR.OHVPS.Connection.InvalidTPP** hata kodunu döner.| **YosKod** |
 | **GKD** | gkd  |  Kompleks:Gkd | Z   |   |   | |
-| **> Yetkilendirme Yöntemi**	| yetYntm  | AN1  |  Z | **TR.OHVPS.DataCode.GkdTur** sıralı veri türü değerlerinden birini alır.   |   | |
-| **> Yönlenme Adresi** | yonAdr  |  AN1..1024 | K  | Yönlendirmeli güçlü kimlik doğrulama için zorunlu. | | |
-| **> Bildirim Adresi**	| bldAdr  |  AN1..1024 | K  | Ayrık güçlü kimlik doğrulama için zorunlu.    | | |
-| **> HHS Yönlenme Adresi**	| hhsYonAdr  |  AN1..1024 | K  | GKD doğrulama bilgilerinin girilebilmesi için uygulamadan açılacak yönlendirme sayfasının adresi    | | |
-| **> Yetkilendirme Tamamlanma Zamanı**	| yetTmmZmn  |  ISODateTime | Z  | Yetkilendirme akışının tamamlanması gereken son zamanı gösterir. <br> Rıza durumu Yetkilendirildi statüsüne geçene kadarki süredir.| | |
+| **>Yetkilendirme Yöntemi**	| yetYntm  | AN1  |  Z | **TR.OHVPS.DataCode.GkdTur** sıralı veri türü değerlerinden birini alır.   |   | |
+| **>Yönlendirme Adresi** | yonAdr  |  AN1..1024 | Z  | Yönlendirmeli güçlü kimlik doğrulama için zorunludur.  | | |
+| **>Ayrık GKD**	| ayrikGkd  | Kompleks:AyrikGkd  | K   | Ayrık güçlü kimlik doğrulama için zorunlu.  | yetYntm = A gönderilmiş ise ayrikGkd nesnesinin dolu gönderilmesi zorunludur. yetYntm = Y için bu nesne iletilmemelidir. |
+| **>>OHKTanimTip**	| OHKTanimTip  | AN8  | K   | ÖHK'nın HHS uygulaması tarafından tanınmasını sağlayacak tanım tipleridir. İstek içerisindeki veri değiştirilmeden iletilir. |  
+| **>>OHKTanimDeger**	| OHKTanimDeger  | AN1..30  | K   |ÖHK'nın HHS uygulaması tarafından tanınmasını sağlayacak tanım değeridir. OHKTanimTip'i ile uyumlu değerdir.  İstek içerisindeki veri değiştirilmeden iletilir.|  
+| **>Yetkilendirme Yöntemi Değişim Sebebi** | yetYntmDegisimSebep  |  AN2 | K  | HHS yetYntm değerini ayrıktan yönlendirmeliye çevirdi ise çevirme sebebini bu alanda iletmek zorundadır. **TR.OHVPS.DataCode.yetYntmDegisimSebep** sıralı veri türü değerlerinden birini alır. ||
+| **>HHS Yönlenme Adresi**	| hhsYonAdr  |  AN1..1024 | K  | GKD doğrulama bilgilerinin girilebilmesi için uygulamadan açılacak yönlendirme sayfasının adresi    | | |
+| **>Yetkilendirme Tamamlanma Zamanı**	| yetTmmZmn  |  ISODateTime | Z  | Yetkilendirme akışının tamamlanması gereken son zamanı gösterir. <br> Rıza durumu Yetkilendirildi statüsüne geçene kadarki süredir.| | |
 | **Ödeme Başlatma** | odmBsltm  | Kompleks: OdemeBaslatma  | Z   |   |   | |
 | **> Kimlik** | kmlk  | Kompleks:Kimlik  | Z   |   |   | |
 | **>> Kimlik Türü** | kmlkTur  | AN1| Z | **TR.OHVPS.DataCode.KimlikTur** sıralı veri türü değerlerinden birini alır.| Çerçeve sözleşme kapsamındaki ödemelerde kullanımı zorunludur.<br>Ödeme Emri Rizası Nesnesindeki Kimlik Numarası Türü verisi ile aynı olmalıdır.<br>Kurum adına yapılan (ticari) ödemelerde, kurum adına işlem yapan kullanıcının kimlik türünün bu alanda gönderilmesi zorunludur. | |
@@ -401,8 +413,11 @@ POST işleminin RESPONSE gövdesini (BODY) oluşturan “OdemeEmri” nesnesi Ta
 | **> Yetkili Ödeme Hizmeti Sağlayıcısı Kodu** | yosKod		  | AN4  | Z  | İsteği gönderen Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.  |
 | **GKD** | gkd  |  Kompleks:Gkd | Z   |   |   
 | **> Yetkilendirme Yöntemi**	| yetYntm  | AN1  |  Z | **TR.OHVPS.DataCode.GkdTur** sıralı veri türü değerlerinden birini alır.   | 
-| **> Yönlenme Adresi** | yonAdr  |  AN1..1024 | K  | Yönlendirmeli güçlü kimlik doğrulama için zorunlu. | 
-| **> Bildirim Adresi**	| bldAdr  |  AN1..1024 | K  | Ayrık güçlü kimlik doğrulama için zorunlu.    | 
+| **> Yönlenme Adresi** | yonAdr  |  AN1..1024 | Z  | Yönlendirmeli güçlü kimlik doğrulama için zorunlu. | 
+| **> Ayrık GKD**	| ayrikGkd  | Kompleks:AyrikGkd  | K   | Ayrık güçlü kimlik doğrulama için zorunlu.  | yetYntm = A gönderilmiş ise ayrikGkd nesnesinin dolu gönderilmesi zorunludur. yetYntm = Y için bu nesne iletilmemelidir. |
+| **>> OHKTanimTip**	| OHKTanimTip  | AN8  | K   | ÖHK'nın HHS uygulaması tarafından tanınmasını sağlayacak tanım tipleridir. İstek içerisindeki veri değiştirilmeden iletilir. |  
+| **>> OHKTanimDeger**	| OHKTanimDeger  | AN1..30  | K   |ÖHK'nın HHS uygulaması tarafından tanınmasını sağlayacak tanım değeridir. OHKTanimTip'i ile uyumlu değerdir.  İstek içerisindeki veri değiştirilmeden iletilir.|  
+| **> Yetkilendirme Yöntemi Değişim Sebebi** | yetYntmDegisimSebep  |  AN2 | K  | HHS yetYntm değerini ayrıktan yönlendirmeliye çevirdi ise çevirme sebebini bu alanda iletmek zorundadır. **TR.OHVPS.DataCode.yetYntmDegisimSebep** sıralı veri türü değerlerinden birini alır. |
 | **> HHS Yönlenme Adresi**	| hhsYonAdr  |  AN1..1024 | K  | GKD doğrulama bilgilerinin girilebilmesi için uygulamadan açılacak yönlendirme sayfasının adresi    |
 | **> Yetkilendirme Tamamlanma Zamanı**	| yetTmmZmn  |  ISODateTime | Z  | Yetkilendirme akışının tamamlanması gereken son zamanı gösterir. <br> Rıza durumu Yetkilendirildi statüsüne geçene kadarki süredir.| 
 | **Emir Bilgileri** | emrBlg  | Kompleks: EmirBilgileri  | Z   |   |  
