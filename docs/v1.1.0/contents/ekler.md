@@ -7,6 +7,7 @@ Açık Bankacılık simülatör uygulaması üzerinde swagger dökümanlarının
 | Kod | Açıklama |
 | --- | --- |
 | TR.OHVPS.DataCode.BrcAlc | İşlemin hesabı borçlandırdığı ya da alacaklandırdığı bilgisidir.<br>B : Borç<br>A : Alacak |
+| TR.OHVPS.DataCode.EvetHayir | E : Evet<br>H : Hayır |
 | TR.OHVPS.DataCode.GkdTur | GKD yapılmasını gerekli bulduğu durumda HHS, YÖS’ün belirlediği yöntemi dikkate alarak kendi belirlediği GKD yöntemini bildirir:<br>Y: Yönlendirmeli GKD<br>A: Ayrık GKD |
 | TR.OHVPS.DataCode.HHSDurumu | A : Açık. Üretim Ortamında HHS’nin aktif bir şekilde hizmet vermesi durumu.<br> Y : Yaygınlaştırma. Üretim Ortamında HHS’nin kendisi tarafından tanımlanmış kısıtlı ÖHK’ya hizmet vermesi durumu. <br>  G : Geçici Hizmet Veremiyor. HHS servislerinde teknik bir sorun olması nedeniyle HHS’nin hizmet verememesi durumu. <br>K: Kapalı. HHS’nin hizmet vermeme durumu. |
 | TR.OHVPS.DataCode.HHSYOSSrlmKrtr | ‘kod’ : Kod<br>‘unv’ : Unvan |
@@ -30,7 +31,8 @@ Açık Bankacılık simülatör uygulaması üzerinde swagger dökümanlarının
 | TR.OHVPS.DataCode.OdemeKaynak | I: İnternet bankacılığından gönderilen ödemelerde kullanılır.<br>A: Otomatik para makineleri (ATM) ile gönderilen ödemelerde kullanılır.<br>T: Telefon bankacılığı ile gönderilen ödemelerde kullanılır.<br>K: Kiosklar aracılığıyla gönderilen ödemelerde kullanılır.<br>S: Şubeden girilen ödemelerde kullanılır.<br>M: Mobil uygulamadan gönderilen ödemelerde kullanılır.<br>D: Yukarıdakiler dışındaki ödeme kaynaklarından gönderilen ödemelerde kullanılır.<br> O: Açık bankacılık aracılığı ile gönderilen ödemelerde kullanılır.<br> |
 | TR.OHVPS.DataCode.OdemeSistemi | İşlemin yönlendirildiği Ödeme Sistemine göre aşağıdaki değerlerden birini alabilir:<br>H: Havale<br>F: FAST<br>E: EFT (PÖS)<br>değerlerinden birini alabilir.|
 | TR.OHVPS.DataCode.OhkTur | B: Bireysel <br>K: Kurumsal |
-| TR.OHVPS.DataCode.OlayTip | KAYNAK_GUNCELLENDI <br>AYRIK_GKD_TAMAMLANDI<br>HHS_YOS_GUNCELLENDI|
+| TR.OHVPS.DataCode.OhkTanimTip |  TCKN: TCKN &nbsp; (ohkTanimDeger N11 olarak gönderilmelidir.)<br> MNO:  &nbsp; &nbsp;   HHS’ye özel bireysel veya kurum müşteri numarası (OHKTanimDeger AN1..30 olarak gönderilmelidir. )<br>  YKN:  &nbsp; &nbsp; Yabancı Kimlik Numarası (OHKTanimDeger N11 olarak gönderilmelidir.)  <br> PNO:  &nbsp; &nbsp; Pasaport numarsı (ohkTanimDeger AN7..9 olarak gönderilmelidir.)  <br> GSM:  &nbsp; &nbsp;  Cep telefonu numarası <br> IBAN:  &nbsp; IBAN numarası (OHKTanimDeger AN26 olarak gönderilmelidir.) |
+| TR.OHVPS.DataCode.OlayTip | KAYNAK_GUNCELLENDI <br>AYRIK_GKD_BASARILI<br>AYRIK_GKD_BASARISIZ<br>HHS_YOS_GUNCELLENDI|
 | TR.OHVPS.DataCode.YOSDurumu | A : Açık. Üretim Ortamında YÖS’ün aktif bir şekilde hizmet vermesi durumu.<br>  G : Geçici Hizmet Veremiyor. YÖS servislerinde teknik bir sorun olması nedeniyle YÖS'ün hizmet verememesi durumu. <br> K: Kapalı. YÖS'ün hizmet vermeme durumu. |
 | TR.OHVPS.DataCode.PSUInitiated | ‘E’ : Evet<br> ‘H’ : Hayır <br> ‘O’ : Olay Bildirim|
 | TR.OHVPS.DataCode.RizaDurumu | B: Yetki Bekleniyor<br>Y: Yetkilendirildi<br>K: Yetki Kullanıldı<br>E: Yetki Ödeme Emrine Dönüştü<br>S: Yetki Sonlandırıldı<br>I :Yetki Iptal |

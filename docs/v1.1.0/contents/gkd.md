@@ -30,7 +30,7 @@ Müşteri için güçlü kimlik doğrulama, ÖHK’nın (müşterinin) kimliğin
 
 10.	HHS asgari olarak tarayıcı tabanlı Yönlendirmeli GKD yöntemini desteklemek zorundadır.  
 11.  HHS’nin mobil uygulamasının bulunması durumunda tarayıcı tabanlı yönlendirmenin yanında uygulama tabanlı yönlendirme yapması zorunludur. Uygulama sahiplerinin uygulama tabanlı yönlendirme için uyumlanma son tarihleri 1 Ekim 2023’tür.    
-11.	Çerçeve sözleşme kapsamında olmayan tek seferlik ödeme işlemleri sadece Yönlendirmeli GKD yöntemi ile gerçekleştirilebilir.
+
 
 
 ## 5.1.	Yönlendirmeli Güçlü Kimlik Doğrulama
@@ -48,7 +48,7 @@ Yönlendirmeli GKD Yöntemi için üst düzey örnek iş akışı aşağıdaki a
 Yönlendirmeli GKD için temel gereklilikler şunlardır:  
 
 - Ödeme hizmeti (hesap bilgisi veya ödeme emri başlatma hizmeti) tarayıcı ya da uygulama tabanlı bir şekilde sunulabilir. Bu nedenle, **YÖS ve HHS’lerin Yönlendirmeli GKD için asgari olarak tarayıcı tabanlı yönlendirme akışını desteklemeleri gerekmektedir.**
-- **Çerçeve sözleşme (ÇS) kapsamında olmayan tek seferlik ödeme işlemleri sadece Yönlendirmeli GKD yöntemi ile gerçekleştirilebilir.**  
+
 
 
 **Tarayıcı Tabanlı Yönlendirme**  
@@ -94,12 +94,98 @@ YÖS’ün mobil uygulaması varsa mobil cihazda uygulamadan tarayıcıya, YÖS�
 
 ## 5.2.	Ayrık Güçlü Kimlik Doğrulama 
 
-Ayrık GKD Yöntemi iş akışı, Yönlendirmeli GKD Yönteminin işlem akışına benzer. Fark, HHS'nin, çevrimiçi arayüzünden bağımsız olan herhangi bir uygulama veya cihaz aracılığıyla ödeme işlemi ayrıntılarını içeren bir anlık bildirim (push notification) göndererek müşteriden kimlik doğrulaması istemesidir. Ayrık GKD Yöntemine dayalı bir işlem için (çok basitleştirilmiş) üst düzey örnek bilgi akışı şu şekildedir:
-1.	Müşteri, YÖS arayüzünde işlemini başlatır.
-2.	YÖS, talebini müşteriye ait TCKN, VKN, YKN gibi tekil tanımlayıcı kimlik numarası bilgisi içerecek şekilde HHS’ye iletilir.
-3.	HHS tekil tanımlayıcı bilgisini kullanarak farklı bir cihaz veya uygulama üzerinden müşteriye anlık bildirim gönderir ve doğrulama yapılmasını sağlar. Bu şekilde HHS kendi mobil uygulamasına erişim için kullanılan doğrulama yöntemini aynen kullanabilecektir.
-4.	YÖS, herhangi bir yere yönlendirme yapmadan işlemin sonucunu bekler, müşteri YÖS arayüzünden ayrılmaz (arayüz aynı kalır).
-5.	Kimlik doğrulama sonrası, YÖS arayüzünde işlem sonucu görüntülenir.
+Ayrık Güçlü Kimlik Doğrulama, bir kullanıcının kimliğinin, bir işlem başlatıldıktan sonra ayrı bir şekilde doğrulandığı yönteme verilen addır. Bu GKD modelinde, kimlik doğrulama işlem sürecinden "ayrıştırılmıştır". Kullanıcılar, başka bir arayüze yönlendirilmek yerine ( tarayıcı veya uygulama tabanlı yönlendirme gibi), ayrı bir kanal üzerinden (telefonlarında bir uygulama bildirimi gibi) işlemi doğrulamaları için bildirim alır.
+Kullanıcı, işlemi tamamen ayrı bir cihaz veya uygulama kullanarak doğrulayabilir. 
+
+
+Ayrık GKD uygulamalarının farklı örnekleri bulunmaktadır. Ancak yaygın olan yaklaşım, bir web arayüzü ve bir mobil uygulamanın kombinasyonunu kullanmayı içerir. 
+
+Örnek bir akış şu şekildedir:
+
+1.	**İşlem Başlatma (YÖS Web Arayüzü):** ÖHK bir işlemi YÖS’ün web arayüzünde başlatır. YÖS uygulaması, ÖHK'nın tekil bir kullanıcı kimliğini rızaya ekleyerek bir rıza başlatma işlemini HHS’ye iletir. HHS, tekil kullanıcı kimliğini kullanarak ÖHK'nın mobil uygulamasına bir bildirim gönderir.
+2.	**Kimlik Doğrulama İsteği (HHS Mobil Uygulama):** ÖHK Mobil uygulama bildirimi alır ve mobil uygulama ÖHK'ya  kimlik doğrulama isteği sunar. HHS’nin BDDK tarafından belirlenmiş GKD yöntemlerine uygun davranması beklenmektedir.
+3.	**Kimlik Doğrulama Onayı (HHS Mobil Uygulama):** Mobil uygulama, ÖHK’nın kimlik doğrulama girişimini doğrular. Başarılı olursa rıza onayı sonrası mobil uygulama, 'Ayrık Yetkilendirme Başarılı' olay bildirimini YÖS’e gönderir.
+4.	**İşlem Onayı (YÖS Web Arayüzü):** YÖS,  HHS'den gelen 'Ayrık Yetkilendirme Başarılı' olay bildirimine konu olan rızayı kullanarak yetkilendirme koduna erişir. Bundan sonraki süreç erişim belirteci alınması servisi ile devam eder. 
+
+**Ayrık Güçlü Kimlik Doğrulamanın Olay Bildirim Servisleri ile olan Bağımlılıkları**
+
+Ayrık GKD sürecinde; HHS'nin yetkilendirme kodunu YÖS'e iletmesi için gerekli önkoşul olan ÖHK doğrulaması adımının tamamlanmasını olay bildirimi ile YÖS'e yapması gerekmektedir.
+Bu nedenle YÖS'lerin eğer Ayrık GKD sürecini destekleyecek ise;  /olay-dinleme endpointini açarak olay bildirimi alması zorunludur. 
+
+
+### 5.2.1	Statik Model
+
+YÖS'ün ÖHK'yı tanıdığı ve ÖHK'ya ait tanımlayıcı bilgileri HHS'ye aktarabildiği durumda kullanılmaktadır. Buradaki ÖHK'ya ait tanımlayıcı bilgiler TCKN, MNO , YKN, PNO, GSM, IBAN olarak belirlenmiştir.  
+Akış aşağıdaki gibi kurgulanmıştır: 
+
+<img src="./images/AyrikGkdStatik.png" width="75%" >  
+
+- ÖHK, YÖS uygulaması üzerinde işlem başlatır.
+- ÖHK, YÖS uygulaması içerisinde, farklı bir ortam üzerinden HHS doğrulamasını gerçekleştirmek istediğini belirtir. ÖHK'yı tanıma tip ve değerleri YÖS ÖHK'dan talep edebileceği gibi, YÖS sisteminde hali hazırda kayıtlı bilgilerle de akışı devam ettirebilir. <br>
+
+    - ÖHK, YÖS'ün müşterisi ve YÖS uygulamasına login ise tek seferlik ödeme akışı başlatamaz.
+    - YÖS önyüzde ÖHK'dan aldığı ohkTanimTip ve ohkTanimDeger değerlerini kimlik tür ve kimlik değeri alanlarına atamamalıdır.
+ 
+- YÖS, ayrık GKD ile işlem başlatabileceği HHS'lerin listesini HHS API'de yer alan "ayrikGKD"="E" parametresi ile alabilir.
+- YÖS, ÖHK bilgileri ile rıza oluşturur. Rıza nesnesi içerisinde yer alan GKD nesnesinde ilgili parametreler aşağıdaki şekilde doldurulur:<br><br>
+    - **ohkTanimTip ve ohkTanimDeger parametreleri**  
+          Bu metodda; ayrikGkd nesnesi içerisindeki "ohkTanimTip" parametresi TR.OHVPS.DataCode.ohkTanimTip sıralı veri tiplerinden TCKN, MNO , YKN, PNO, GSM, IBAN değerlerinden birini alabilir. ohkTanimDeger parametresi de seçilen tipe ait ÖHK'ya ait değeri içermelidir.<br>
+
+      YÖS'ten ohkTanimTip olarak gelen IBAN bilgisi sadece ÖHK'yı tanımak için kullanılabilir. Tanım tipi IBAN ile başlatılan bir işlemde ÖHK, başka bir IBAN ile ödeme başlatabilir.
+
+      Kurumsal müşteriler için kmlkTur ve kmlkVrs alanları ohkTanimTip ve ohkTanimDeger alanlarında gönderilmelidir.<br> 
+    - **yetYntm parametresi**  
+      yetYntm parametresi  Ayrık GKD  akışını ifade eden "A" değerini almalıdır. <br>
+    - **yonAdr parametresi**  
+      HHS'nin Ayrık GKD desteklememesi durumunda akışı yönlendirmeli GKD'ye çevirebilmesi için gerekli olan YÖS'e ait yönlendirme adresidir.   
+
+Örnek bir istek :  
+POST/ohvps/obh/s1.1/odeme-emri-rizasi  
+
+RizaNesnesi
+
+```
+{
+...
+  "gkd": {
+    "yetYntm": "A",
+    "yonAdr": "https://yosAdr?drmKod",
+     "ayrikGkd" :{
+         "ohkTanimTip" : "TCKN" 
+         "ohkTanimDeger": "11232123212"
+     }    
+  },
+...
+}
+```
+- YÖS, ayrık GKD ile işlem başlatabileceği HHS'lerin listesini HHS API'de yer alan "ayrikGKD"="E" parametresi ile alabilir.
+  YÖS, ayrık GKD desteklemeyen HHS'ye Ayrık GKD yöntemiyle rıza başlatma isteği yapması durumunda HHS tarafından **TR.OHVPS.Business.DecoupledAuthenticationNotSupported** hatası iletilmelidir.
+
+- HHS, YÖS'ün AYRIK_GKD_BASARILI ve AYRIK_GKD_BASARISIZ olay tipleri için olay aboneliğinin varlığını kontrol eder. <br>YÖS iki olay tipine de abone olmak zorundadır. Eğer olay aboneliği yoksa HHS tarafından **TR.OHVPS.Business.EventSubscriptionNotFound** hata kodu iletilmelidir.
+
+- HHS "gkd" nesnesi için alan kontrollerini gerçekleştirir. <br> "yetYntm" = "A" gönderilmiş ise "ayrikGkd" nesnesinin dolu gönderilmesi zorunludur. Gönderilmemesi durumunda HHS tarafından **TR.OHVPS.Resource.InvalidFormat** hata kodu iletilmelidir.
+
+- Rıza başlatma akışı içerisinde kimlik bilgisinin olduğu durumlarda; ÖHK'ya ait kimlik verisi(kmlk.kmlkVrs) ile ayrık GKD içerisinde yer alan OHK Tanım Değer alanı (ayrikGkd.ohkTanimDeger) birebir aynı olmalıdır. Aynı olmadığı durumda HHS tarafından **TR.OHVPS.Business.CustomerInfoMismatch** hatası iletilmelidir.
+Kimlik alanı içermeyen tek seferlik ödeme emri akışlarında bu kural geçerli değildir. GSM ve IBAN değerleri sadece tek seferlik ödemelerde kullanılabilir.
+
+- Tek seferlik ödeme işlemlerinde "ohkTanimTip" = "GSM"/"IBAN" olarak gönderilmiş ise, HHS sisteminde bu GSM/IBAN ile eşleşen müşterileri taramalıdır. GSM/IBAN bilgisi ÖHK bazında tekil bir kullanıcıya erişim imkanı sağlamaz ise **TR.OHVPS.Business.InvalidCustomerInfo** hatasını iletmelidir.<br>
+
+- Kontrollerin başarılı olması durumunda HHS rızayı oluşturur ve ÖHK tekil verisi ile ulaştığı ÖHK'ya bilgilendirme mesajı gönderir. <br>    Bilgilendirme mesajı kısa mesaj ya da anlık bildirim mesajı olabilir. <br>
+  
+    - Kurumsal müşteriler için, hangi kullacıya bildirim gitmesi isteniyor ise, rıza aşamasında o kişi ayrikGkd nesnesinde gönderilir. HHS'nin rıza içerisindeki ohkTur değerine göre,  gelen bildirime verilen cevaba uygun uygulamasını açmalıdır. Kurumsal ÖHK için rıza geldi ise, kurumsal giriş sayfası; bireysel ÖHK için rıza geldi ise bireysel giriş sayfası müşterinin önüne açılmalıdır ve ilgili hesaplara erişime izin vermelidir. 
+
+    - ÖHK'ya bir bildirim gelmemesi durumunda, HHS kendi sisteminde GKD sürecine devam edemez. 5 dakika sonunda rıza durumu Yetki Bekleniyor'dan Rıza İptal / Süre Aşımı (İptal kod 04) durumuna çeker.  
+
+- ÖHK, HHS sisteminden gelen bildirim mesajını alır. HHS sistemine login olduktan sonra işleme onay verilmezse veya GKD kontrolleri başarısız olursa HHS Olay Bildirim servisleri aracılığı ile GKD sürecinin sonlandığını YÖS'e iletir. Olay tipi "AYRIK_GKD_BASARISIZ" olacak şekilde bir POST /olay-dinleme servis çağrısı yapılır.YÖS kendisine gelen olay bildirimi ile
+rıza sorgulaması yaparak iptal detay kodunu öğrenebilir.
+
+- ÖHK, HHS sisteminde login olduktan sonra işleme onay verirse; HHS tarafınadn rıza ile ilişkili yetkod değeri üretilir.HHS, YÖS'e ÖHK için "yetkod" değeri üretildiğinin bilgisini Olay Bildirim servisleri aracılığı ile iletir. Olay tipi "AYRIK_GKD_BASARILI" olacak şekilde bir POST /olay-dinleme servis çağrısı yapılır. 
+
+- YÖS kendisine gelen olay bildirimi ile "yetkod" değerinin HHS'de üretildiğinin bilgisini alır. "yetkod" değerini öğrenebilmek için HHS'yi sorgulaması gerekmektedir. <br>
+HHS'nin açacağı  [GET /yetkilendirme-kodu endpointi](erisim-belirteci.html#yetkilendirme-kodu-api)  ile bu bilgiye erişebilir. 
+
+- YÖS, "yetkod" ile POST /erisim-belirteci endpointinden erişim belirteci alır. Böylelikle ÖHK'nın Ayrık GKD süreci tamamlanmış olur. 
+
 
 ## 5.3.	Yönlendirme/Bildirim Adresleri ve Durum Kodu Parametresi  
 

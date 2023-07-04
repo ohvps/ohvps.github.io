@@ -22,7 +22,7 @@ Rıza iptal durumu ise gerek raporlama gerekse müşteri deneyimi perspektifinde
 >>**‘05’ :	Süre Aşımı : Yetkilendirildi**  
 >>**‘06’ :	Süre Aşımı : Yetki Ödemeye Dönüşmedi**  
 >>**‘07’ :	GKD iptali : Aynı rıza no ile mükerrer çağrımı**  
->>**‘08’ :	GKD iptali : Rızano ile TCKN uyuşmaması**  
+>>**‘08’ :	GKD iptali : Rızano ile kimlik bilgileri uyuşmaması**  
 >>**‘09’ :	GKD iptali : Uygun ürünü bulunmuyor**  
 >>**‘10’ :	GKD iptali : HHS Açık Bankacılık kanalı işleme kapalı**  
 >>**’11’ :	GKD iptali : Hesap Yetki Sorunu**  

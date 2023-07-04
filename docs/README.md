@@ -15,7 +15,7 @@ Sertifikasyon için geçerli olan SÜRÜM 1.0.2 olacaktır.<br>
 
 SÜRÜM 1.1.0 (TASLAK) sürüm gerçiş tarihleri şu şekildedir.
 
-- Sürüm Geçiş Tarihi : 1 Ekim 2023
+- Sürüm Geçiş Tarihi : 1 Aralık 2023
 
 - Sertifikasyona Başlangıç Tarihi : 1 Aralık 2023
 
@@ -23,7 +23,7 @@ SÜRÜM 1.1.0 (TASLAK) sürüm gerçiş tarihleri şu şekildedir.
 
 - YÖS Yeni Sürüm Üretime Geçiş Başlangıç Tarihi : 29 Şubat 2024 
 
-- YÖS Yeni Sürüm Üretime Geçiş Son Tarihi : 30 Haziran 2024
+- YÖS Yeni Sürüm Üretime Geçiş Son Tarihi : 30 Eylül 2024
 
 - Eski Sürümün Kaldırılma Tarihi : 1 Ağustos 2024  
 
@@ -33,7 +33,7 @@ SÜRÜM 1.1.0 (TASLAK) sürüm gerçiş tarihleri şu şekildedir.
 <br>
 <br>
 
-Üretim ortamında servis sunan HHS’lerin 29 Şubat 2024 - 30 Haziran 2024 tarihleri arasında aynı anda çift sürüm desteklemesi gerekmektedir!
+Üretim ortamında servis sunan HHS’lerin 29 Şubat 2024 - 30 Eylül 2024 tarihleri arasında aynı anda çift sürüm desteklemesi gerekmektedir!
 
 İlk kez üretim ortamına 1.1 sürümü ile geçecek HHS'ler, 1.1 sürümünü destekleyen YÖS'ler tarafından listenebileceklerdir.
 

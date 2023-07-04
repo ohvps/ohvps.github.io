@@ -74,7 +74,7 @@ YÖS, seçeceği olay-kaynak tipleri için bu servis aracılığı ile abone ola
 1 YÖS'ün 1 HHS'de 1 adet abonelik kaydı olabilir.  
 Başarılı POST isteği sonucu HTTP 200 cevabı ile iletilmelidir.   
 
-YÖS tarafından daha önce oluşturulmuş olay abonelik kaydı varsa "HTTP 409 - Kaynak Çakışması" hatasıyla uyarı mesajını döner.
+YÖS tarafından daha önce oluşturulmuş olay abonelik kaydı varsa "HTTP 400 -TR.OHVPS.Business.InvalidContent -Kaynak Çakışması" hatasıyla uyarı mesajını döner.
 
 Abonelik üzerinde görüntüleme, güncelleme, silme işlemlerini gerçekleştirebilir.
 YÖS'ün Aboneliği devam ettiği sürece; YÖS'ün açacağı Olay Dinleme API'sine, HHS tarafından abonelik kapsamında olay bildirimleri iletilir. 
@@ -119,8 +119,10 @@ BKM'nin sunacağı abonelik servisleri için HHS ve YÖS'lerin abonelik isteği 
 |   | HBH | HESAP_BILGISI_RIZASI |Rıza iptal detay kodu ‘02’ : Kullanıcı İsteği ile HHS üzerinden İptal durumunda| RizaNo | GET /hesap-bilgisi-rizasi/{RizaNo}| HHS |30 Dakika - 3 Deneme|
 |   | HBH | BAKIYE | Bakiye nesnesindeki bir bilgi değiştiğinde ve HBH rızası içerisinde "06-Olay Bildirimi" izin türü var ise| hspRef |  GET /hesaplar/{hspRef}/bakiye | HHS |Retry policy uygulanmamalıdır. İlk istek gönderilemediği durumda İletilemeyen Olaylara eklenmelidir.|
 |   | HBH |   COKLU_ISLEM_TALEBI ( bulk-data)   |İlgili API İlke ve kurallarına eklendiğinde güncellenecektir. |  | | HHS |30 Dakika - 3 Deneme|
-| AYRIK_GKD_TAMAMLANDI | ÖBH |  ODEME_EMRI_RIZASI   |İlgili API İlke ve kurallarına eklendiğinde güncellenecektir. |  | | HHS |5 Dakika |
-|   |  HBH | HESAP_BILGISI_RIZASI  |İlgili API İlke ve kurallarına eklendiğinde güncellenecektir. |  | | HHS |5 Dakika |
+| AYRIK_GKD_BASARILI | ÖBH |  ODEME_EMRI_RIZASI   | HHS sisteminde ÖHK kendini doğruladığında rıza oluşturulur. YÖS'e rıza oluşturulduğuna dair bildirim yapılır. YÖS yetkod değerini sorgulama sonucunda elde eder. | RizaNo | GET /yetkilendirme-kodu?rizaNo={rizaNo}}&rizaTip=O| HHS |1 Dakika 3 kez|
+|   |  HBH | HESAP_BILGISI_RIZASI  | HHS sisteminde ÖHK kendini doğruladığında rıza oluşturulur. YÖS'e rıza oluşturulduğuna dair bildirim yapılır. YÖS yetkod değerini sorgulama sonucunda elde eder.   | RizaNo | GET /yetkilendirme-kodu?rizaNo={rizaNo}&rizaTip=H | HHS |1 Dakika 3 kez|
+| AYRIK_GKD_BASARISIZ | ÖBH |  ODEME_EMRI_RIZASI   | HHS sisteminde ÖHK kendini doğruladıktan sonra yaptığı kontroller neticesinde logine izin vermez ise YÖS'e bildirim yapılır. YÖS rıza durumunu sorgulayarak işlemin neden iletilmediğine dair bilgi edinebilir.| RizaNo | GET /odeme-emri-rizasi/{RizaNo}| HHS |  1 Dakika 3 kez|
+|   |  HBH | HESAP_BILGISI_RIZASI  | HHS sisteminde ÖHK kendini doğruladıktan sonra yaptığı kontroller neticesinde logine izin vermez ise YÖS'e bildirim yapılır. YÖS rıza durumunu sorgulayarak işlemin neden iletilmediğine dair bilgi edinebilir. | RizaNo | GET /hesap-bilgisi-rizasi/{RizaNo} | HHS |1 Dakika 3 kez|
 | HHS_YOS_GUNCELLENDI |   |    |BKM sistemi tarafından üretilecek olayları dinlemek için kullanılacak kaynak tipidir. YÖS ve HHS'lerin BKM'ye abonelik oluşturmasına gerek bulunmamaktadır. BKM HHS ve YÖS üretim ortamı tanımı yaparken aboneliklerini başlatacaktır.  <br>(HHS yaygınlaştırma durumundayken de aboneliği başlatılacaktır.) | | | HHS ||
 |  | YÖS | HHS  |HHS bilgilerinde değişiklik olduğunda, YÖS'ün hhsKod ile sorgulama yapması ve değişen bilgiyi güncellemesi beklenmektedir.| hhsKod | GET /hhs/{hhsKod}| BKM | 5 Dakika - 3 Deneme |
 |  | HHS | YOS  |YÖS bilgilerinde değişiklik olduğunda, HHS'nin yosKod ile sorgulama yapması ve değişen bilgiyi güncellemesi beklenmektedir. | yosKod | GET /yos/{yosKod} | BKM | 5 Dakika - 3 Deneme|
@@ -143,7 +145,7 @@ Başarılı PUT isteği sonucu HTTP 200 cevabı ile iletilmelidir.
 |>>Hesap Hizmeti Sağlayıcısı Kodu|	hhsKod|	AN4|	Z	|Hesap Hizmeti Sağlayıcısının kodudur. (Nezdinde ÖH bulunduran kuruluş kodu. Örneğin, Banka, Elektronik Para Kuruluşu ve Ödeme Kuruluşu)| |
 |>> Yetkili Ödeme Hizmeti Sağlayıcısı Kodu	|yosKod	|AN4|	Z	|Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.| |
 | >Abonelik Tipleri  | aboneliktipleri | Kompleks: abonelikTipleri[Array][1..N] | Z |HHS Sisteminde, YÖS'ün eski abonelikleri yeni aboneliklerle güncellenmelidir.||
-| >> Olay Tipi  | olayTipi | AN1..36 | Z |YÖS abone olmak istediği olay tiplerini TR.OHVPS.DataCode.OlayTip sıralı veri tiplerinden değer ya da değerler ile doldurur.  |"Olay Tipleri ve Kaynak Tipleri İlişkisi" tablosunda "Olay Bildirim Yapan" kolonu "HHS" olan olay tipleri ile veri girişine izin verilir.|
+| >> Olay Tipi  | olayTipi | AN1..36 | Z |YÖS abone olmak istediği olay tiplerini TR.OHVPS.DataCode.OlayTip sıralı veri tiplerinden değer ya da değerler ile doldurur.  |"Olay Tipleri ve Kaynak Tipleri İlişkisi" tablosunda "Olay Bildirim Yapan" kolonu "HHS" olan olay tipleri ile veri girişine izin verilir.<br> Olay tipi AYRIK_GKD_BASARILI ve AYRIK_GKD_BASARISIZ için, YÖS'ün ODS API'yi sunması zorunludur. HHS, bu olay tipleri özelinde YÖS API üzerinden YÖS'ün bu API'yi sunduğunu kontrol eder ve eğer sunmuyor ise TR.OHVPS.Business.InvalidContent hatası dönerek kayıt işlemini gerçekleştirmez.|
 | >> Kaynak Tipi  | kaynakTipi | AN1..36 | Z | Olay tiplerinin tanımlanabildiği kaynak listesi bulunmaktadır. Bu listeye uygun kaynak tipleri iletilmelidir. |HHS, YÖS API üzerinden YÖS'ün rollerini alarak uygun kaynak tiplerine kayıt olmasına izin verir.|
   
     
