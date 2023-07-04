@@ -32,6 +32,7 @@ Açık Bankacılık simülatör uygulaması üzerinde swagger dökümanlarının
 | TR.OHVPS.DataCode.OdemeSistemi | İşlemin yönlendirildiği Ödeme Sistemine göre aşağıdaki değerlerden birini alabilir:<br>H: Havale<br>F: FAST<br>E: EFT (PÖS)<br>değerlerinden birini alabilir.|
 | TR.OHVPS.DataCode.OhkTur | B: Bireysel <br>K: Kurumsal |
 | TR.OHVPS.DataCode.OhkTanimTip |  TCKN: TCKN &nbsp; (ohkTanimDeger N11 olarak gönderilmelidir.)<br> MNO:  &nbsp; &nbsp;   HHS’ye özel bireysel veya kurum müşteri numarası (OHKTanimDeger AN1..30 olarak gönderilmelidir. )<br>  YKN:  &nbsp; &nbsp; Yabancı Kimlik Numarası (OHKTanimDeger N11 olarak gönderilmelidir.)  <br> PNO:  &nbsp; &nbsp; Pasaport numarsı (ohkTanimDeger AN7..9 olarak gönderilmelidir.)  <br> GSM:  &nbsp; &nbsp;  Cep telefonu numarası <br> IBAN:  &nbsp; IBAN numarası (OHKTanimDeger AN26 olarak gönderilmelidir.) |
+| TR.OHVPS.DataCode.OHKTanimTip |TCKN: TCKN &nbsp; (OHKTanimDeger N11 olarak gönderilmelidir.)<br> GSM:  &nbsp; &nbsp;  Cep telefonu numarası<br>   MNO:  &nbsp; &nbsp;   HHS’ye özel bireysel veya kurum müşteri numarası (OHKTanimDeger AN1..30 olarak gönderilmelidir. )<br>  YKN:  &nbsp; &nbsp; Yabancı Kimlik Numarası (OHKTanimDeger N11 olarak gönderilmelidir.)  <br> PNO:  &nbsp; &nbsp; Pasaport numarsı (OHKTanimDeger AN7..9 olarak gönderilmelidir.)  <br> IBAN:  &nbsp;  IBAN numarası (OHKTanimDeger AN26 olarak gönderilmelidir.) |
 | TR.OHVPS.DataCode.OlayTip | KAYNAK_GUNCELLENDI <br>AYRIK_GKD_BASARILI<br>AYRIK_GKD_BASARISIZ<br>HHS_YOS_GUNCELLENDI|
 | TR.OHVPS.DataCode.YOSDurumu | A : Açık. Üretim Ortamında YÖS’ün aktif bir şekilde hizmet vermesi durumu.<br>  G : Geçici Hizmet Veremiyor. YÖS servislerinde teknik bir sorun olması nedeniyle YÖS'ün hizmet verememesi durumu. <br> K: Kapalı. YÖS'ün hizmet vermeme durumu. |
 | TR.OHVPS.DataCode.PSUInitiated | ‘E’ : Evet<br> ‘H’ : Hayır <br> ‘O’ : Olay Bildirim|
@@ -40,6 +41,7 @@ Açık Bankacılık simülatör uygulaması üzerinde swagger dökümanlarının
 | TR.OHVPS.DataCode.RizaTip | H: Hesap Bilgisi Rızası<br>O: Ödeme Emri Rızası |
 | TR.OHVPS.DataCode.SrlmYon | ‘A’: Azalan değerle sıralama<br>‘Y’: Artan değerle sıralama |
 | TR.OHVPS.DataCode.VarYok | 0 : Kayıt Yok <br> 1 : Kayıt Var |
+| TR.OHVPS.DataCode.YetYntmDegisimSebep | 1 : HHS'nin Ayrık GKD'yi desteklememesi. <br> 2 : YÖS'ün ayrikGKD nesnesini göndermemesi. <br> 3 : YÖS'ün Olay Aboneliğinin olmaması.|
 | TR.OHVPS.DataCode.YetTip | Alabileceği değerlere göre hangi belirtecin döneceğine karar verilir.<br>yet_kod<br>yenileme_belirteci |
 | TR.OHVPS.DataCode.ZmnAralik | 0 : Kayıt Yok <br>1 : 0-2 saat<br>2 : 2-24 saat<br> 3 : 1-3 gün <br> 4 : 3-15 gün	<br> 5 : 15 gün ve üstü |
 

@@ -116,6 +116,7 @@ Bu nedenle YÖS'lerin eğer Ayrık GKD sürecini destekleyecek ise;  /olay-dinle
 ### 5.2.1	Statik Model
 
 YÖS'ün ÖHK'yı tanıdığı ve ÖHK'ya ait tanımlayıcı bilgileri HHS'ye aktarabildiği durumda kullanılmaktadır. Buradaki ÖHK'ya ait tanımlayıcı bilgiler TCKN, MNO , YKN, PNO, GSM, IBAN olarak belirlenmiştir.  
+YÖS'ün ÖHK'yı tanıdığı ve ÖHK'ya ait tanımlayıcı bilgileri HHS'ye aktarabildiği durumda kullanılmaktadır. Buradaki ÖHK'ya ait tanımlayıcı bilgiler TCKN, GSM, MNO , YKN, PNO, IBAN olarak belirlenmiştir.  
 Akış aşağıdaki gibi kurgulanmıştır: 
 
 <img src="./images/AyrikGkdStatik.png" width="75%" >  
@@ -134,6 +135,16 @@ Akış aşağıdaki gibi kurgulanmıştır:
       YÖS'ten ohkTanimTip olarak gelen IBAN bilgisi sadece ÖHK'yı tanımak için kullanılabilir. Tanım tipi IBAN ile başlatılan bir işlemde ÖHK, başka bir IBAN ile ödeme başlatabilir.
 
       Kurumsal müşteriler için kmlkTur ve kmlkVrs alanları ohkTanimTip ve ohkTanimDeger alanlarında gönderilmelidir.<br> 
+    - YÖS önyüzde ÖHK'dan aldığı OHKTanimTip ve OHKTanimDeger değerlerini kimlik tür ve kimlik değeri alanlarına atamamalıdır.
+ 
+- YÖS, ayrık GKD ile işlem başlatabileceği HHS'lerin listesini HHS API'de yer alan "ayrikGKD"="E" parametresi ile alabilir.
+- YÖS, ÖHK bilgileri ile rıza oluşturur. Rıza nesnesi içerisinde yer alan GKD nesnesinde ilgili parametreler aşağıdaki şekilde doldurulur:<br><br>
+    - **OHKTanimTip ve OHKTanimDeger parametreleri**  
+          Bu metodda; ayrikGkd nesnesi içerisindeki "OHKTanimTip" parametresi TR.OHVPS.DataCode.OHKTanimTip sıralı veri tiplerinden TCKN, GSM, MNO , YKN, PNO, IBAN değerlerinden birini alabilir. OHKTanimDeger parametresi de seçilen tipe ait ÖHK'ya ait değeri içermelidir.<br>
+
+      YÖS'ten OHKTanimTip olarak gelen IBAN bilgisi sadece ÖHK'yı tanımak için kullanılabilir. Tanım tipi IBAN ile başlatılan bir işlemde ÖHK, başka bir IBAN ile ödeme başlatabilir. Benzer şekilde Hesap Bilgisi seçiminde farklı hesapların seçimi ile işleme devam edebilir.
+
+      Kurumsal müşteriler için kmlkTur ve kmlkVrs alanları OHKTanimTip ve OHKTanimDeger alanlarında gönderilmelidir.<br> 
     - **yetYntm parametresi**  
       yetYntm parametresi  Ayrık GKD  akışını ifade eden "A" değerini almalıdır. <br>
     - **yonAdr parametresi**  
@@ -153,6 +164,8 @@ RizaNesnesi
      "ayrikGkd" :{
          "ohkTanimTip" : "TCKN" 
          "ohkTanimDeger": "11232123212"
+         "OHKTanimTip" : "TCKN" 
+         "OHKTanimDeger": "11232123212"
      }    
   },
 ...
@@ -180,6 +193,43 @@ Kimlik alanı içermeyen tek seferlik ödeme emri akışlarında bu kural geçer
 rıza sorgulaması yaparak iptal detay kodunu öğrenebilir.
 
 - ÖHK, HHS sisteminde login olduktan sonra işleme onay verirse; HHS tarafınadn rıza ile ilişkili yetkod değeri üretilir.HHS, YÖS'e ÖHK için "yetkod" değeri üretildiğinin bilgisini Olay Bildirim servisleri aracılığı ile iletir. Olay tipi "AYRIK_GKD_BASARILI" olacak şekilde bir POST /olay-dinleme servis çağrısı yapılır. 
+- HHS "gkd" nesnesi için alan kontrollerini gerçekleştirir. <br> "yetYntm" = "A" gönderilmiş ise "ayrikGkd" nesnesinin dolu gönderilmesi zorunludur. Eğer gönderilmemiş ise akışı Yönlendirmeli Akış'a çevirir.  
+
+- HHS, YÖS'ün AYRIK_GKD_BASARILI ve AYRIK_GKD_BASARISIZ olay tipleri için olay aboneliğinin varlığını kontrol eder. <br>YÖS iki olay tipine de abone olmak zorundadır. Eğer olay aboneliği yoksa işlemi Yönlendirmeli Akış'a çevirir.  
+
+- HHS, ayrık GKD destekliyor ise [GKD kontrollerini](gkd.html#_5-5-guclu-kimlik-dogrulama-kontrolleri)  gerçekleştirir. <br> GKD kontrolleri başarısız olursa;HHS Olay Bildirim servisleri aracılığı ile GKD sürecinin sonlandığını YÖS'e iletir. Olay tipi "AYRIK_GKD_BASARISIZ" olacak şekilde bir POST /olay-dinleme servis çağrısı yapılır. YÖS rıza iptal detay kodunu rıza sorgulama servisleri aracılığı ile sorgulayabilir.<br>
+
+ÖBH işlemlerinde; ÖHK, YÖS uygulamasına login olmuş durumda ise IBAN ve GSM OHKTanimTip'lerini kullanmamalıdır. Rıza içerisindeki Kimlik Tür değeri ile OHKTanimTip değeri aynı olmalıdır. 
+
+Tek seferlik ödeme işlemlerinde "OHKTanimTip" = "GSM"/"IBAN" olarak gönderilmiş ise, HHS sisteminde bu GSM/IBAN ile eşleşen müşterileri taramalıdır. GSM/IBAN bilgisi ÖHK bazında tekil bir kullanıcıya erişim imkanı sağlamaz ise **TR.OHVPS.Business.InvalidCustomerVerificationCode** hatasını iletmelidir.<br>
+
+- HHS rızayı oluşturur ve ÖHK tekil verisi ile ulaştığı ÖHK'ye bilgilendirme mesajı gönderir. <br>    
+Bilgilendirme mesajı kısa mesaj ya da anlık bildirim mesajı olabilir. <br>
+
+  -  HHS Ayrık GKD desteklemiyor ise Yönlendirmeli GKD akışına çevirebilir. HHS'nin GKD sürecini, Yönlendirmeli GKD akışına çevirebilmesi için rıza yanıtında yetYntm = "Y" olarak değiştirir. YÖS'ten dolu olarak iletilen ayrıkGKD parametresi HHS'ten iletilen rıza yanıtında yer almamalıdır. HHS, YÖS'ün yonAdr bilgisini dolu olarak gönderdiğinden emin olur. Eğer YÖS yonAdr değerini boş gönderdi ise hata iletilir.    
+
+  - HHS Ayrık GKD desteklememe nedenini  "yetYntmDegisimSebep" parametresi ile YÖS'e iletir. TR.OHVPS.DataCode.yetYntmDegisimSebep sıralı veri tipi ile alabileceği değerler belirlenmiştir. HHS hata üretmeden yönlendirme şeklini değiştirdiği ve ÖHK'nın yetkilendirme süreci kesintiye uğramadan devam ettiği için, YÖS bu parametre ile gelen değeri yorumlayarak akışın neden değiştiğinin bilgisine ulaşabilir. Bu durumda RizaNesnesi aşağıdaki gibi olmalıdır. 
+
+  
+```
+{
+...
+  "gkd": {
+    "yetYntm": "Y",
+    "yonAdr": "https://yosAdr?drmKod",
+    "yetYntmDegisimSebep" : "1"
+  },
+...
+}
+```
+
+- ÖHK, HHS sisteminden gelen bildirim mesajını alır.  HHS sistemine login olur ve işleme onay verir. HHS, rıza ile ilişkili yetkod değerini üretir.  
+
+     - ÖHK'ya bir bildirim gelmemesi durumunda, HHS kendi sisteminde GKD sürecine devam edemez. 5 dakika sonunda rıza durumu Yetki Bekleniyor'dan Rıza İptal / Süre Aşımı (İptal kod 04) durumuna çeker.  
+
+     - Kurumsal müşteriler için, hangi kullacıya bildirim gitmesi isteniyor ise, rıza aşamasında o kişi ayrikGkd nesnesinde gönderilir. HHS'nin rıza içerisindeki ohkTur değerine göre,  gelen bildirime verilen cevaba uygun uygulamasını açmalıdır. Kurumsal ÖHK için rıza geldi ise, kurumsal giriş sayfası; bireysel ÖHK için rıza geldi ise bireysel giriş sayfası müşterinin önüne açılmalıdır ve ilgili hesaplara erişime izin vermelidir. 
+
+- HHS, YÖS'e ÖHK için "yetkod" değeri üretildiğinin bilgisini Olay Bildirim servisleri aracılığı ile iletir. Olay tipi "AYRIK_GKD_BASARILI" olacak şekilde bir POST /olay-dinleme servis çağrısı yapılır. 
 
 - YÖS kendisine gelen olay bildirimi ile "yetkod" değerinin HHS'de üretildiğinin bilgisini alır. "yetkod" değerini öğrenebilmek için HHS'yi sorgulaması gerekmektedir. <br>
 HHS'nin açacağı  [GET /yetkilendirme-kodu endpointi](erisim-belirteci.html#yetkilendirme-kodu-api)  ile bu bilgiye erişebilir. 
