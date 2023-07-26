@@ -13,7 +13,7 @@
 **Etki Alanı (Scope) =“hesap_bilgisi”  "odeme_emri"**  
 |No  |Kaynak |HTTP işlemi|Erişim Adresi |Zorunlu (Z)/ İsteğe Bağlı(İ)|Yetkilendirme Türü |İmzalama |Parametre |İstem Nesnesi |Yanıt Nesnesi |
 | --- |--- |--- |--- |--- |--- |--- |--- |--- |--- |
-| 1 |yetkilendirme-kodu |POST |/yetkilendirme-kodu | Z |İstemci Kimlik Bilgileri |İmzalı İstek ve Yanıt | |  | yetkilendirmeKodu |
+| 1 |yetkilendirme-kodu |GET |/yetkilendirme-kodu | Z |İstemci Kimlik Bilgileri |İmzalı İstek ve Yanıt | |  | yetkilendirmeKodu |
 | 2 |erisim-belirteci |POST |/erisim-belirteci| Z |İstemci Kimlik Bilgileri |İmzalı İstek ve Yanıt | | ErisimBelirteciIstegi  | ErisimBelirteci |
 
 ## Yetkilendirme Kodu API

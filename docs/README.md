@@ -25,7 +25,7 @@ SÜRÜM 1.1.0 (TASLAK) sürüm gerçiş tarihleri şu şekildedir.
 
 - YÖS Yeni Sürüm Üretime Geçiş Son Tarihi : 30 Eylül 2024
 
-- Eski Sürümün Kaldırılma Tarihi : 1 Ağustos 2024  
+- Eski Sürümün Kaldırılma Tarihi : 31 Ekim 2024  
 
 <br>
 
