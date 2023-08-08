@@ -83,6 +83,8 @@ YÖS’ün mobil uygulaması varsa mobil cihazda uygulamadan tarayıcıya, YÖS�
 
 ÖHK’nın ödeme hizmetini (hesap bilgisi veya ödeme emri başlatma hizmeti) YÖS’ün mobil uygulaması ile kullanıyorsa, aynı mobil cihazda HHS’nin mobil uygulamasının yüklenmiş olması durumunda, ÖHK doğrulamasının HHS mobil uygulaması tarafından yapılması için uygulama tabanlı yönlendirme yapılır. Böylece ÖHK, ödeme hizmetine erişim için HHS’nin mobil kanalına erişim sırasında kullandığı doğrulama yöntemini ile doğrulanabilir.  
 
+**HHS'nin mobil uygulaması olması durumunda hhsYonAdr olarak universal link kullanması gerekmektedir.**
+
 **Tablo 5: Yönlendirmeli Güçlü Kimlik Doğrulama Kanalları**  
 
 |Doğrulama Yöntemi |YÖS Olası Ortam |HHS Olası Ortam |
@@ -99,6 +101,8 @@ Kullanıcı, işlemi tamamen ayrı bir cihaz veya uygulama kullanarak doğrulaya
 
 
 Ayrık GKD uygulamalarının farklı örnekleri bulunmaktadır. Ancak yaygın olan yaklaşım, bir web arayüzü ve bir mobil uygulamanın kombinasyonunu kullanmayı içerir. 
+
+**Mobil uygulaması bulunan HHS'ler için Ayrık GKD desteklenmesi zorunludur.**
 
 Örnek bir akış şu şekildedir:
 
@@ -138,8 +142,7 @@ Akış aşağıdaki gibi kurgulanmıştır:
  
     - **yetYntm parametresi**  
       yetYntm parametresi  Ayrık GKD  akışını ifade eden "A" değerini almalıdır. <br>
-    - **yonAdr parametresi**  
-      HHS'nin Ayrık GKD desteklememesi durumunda akışı yönlendirmeli GKD'ye çevirebilmesi için gerekli olan YÖS'e ait yönlendirme adresidir.   
+  
 
 Örnek bir istek :  
 POST/ohvps/obh/s1.1/odeme-emri-rizasi  

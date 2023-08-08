@@ -50,6 +50,8 @@ Aşağıdaki durumlarda HHS'nin statüsü Geçici Kapalı olarak güncellenebile
 
  - HHS'nin talebi ile uzun süreli (minimum 1 saati aşan) yaşanan teknik sorunlarda G statüsüne alınabilecektir. G statüsüne alınma talebinin HHS tarafından ohvps@bkm.com.tr ye mail atarak iletilmesi beklenmektedir. 
  - İlgili resmi kurumlardan gelen talep üzerine HHS G statüsüne alınabilir.
+
+ YÖS'ler hem A hem G statüsünde olan HHS'leri listeleyebilir. Ancak YÖS uygulamasında G statüsünde olan bir HHS müşteri tarafından seçilirse müşteriye gerekli hata mesajının verilmesi ve ilgili HHS'ye istek atılmaması sağlanmalıdır.
  
 Hem YOS hem de HHS API için geçerli olacak; logo gönderiminde dikkat edilmesi gerekenler şu şekilde tariflenmiştir:   
 

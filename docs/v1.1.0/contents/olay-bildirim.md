@@ -58,7 +58,7 @@ Olay Abonelik Servisine ait API Endpointleri aşağıdaki tabloda listelenmişti
 | --- |--- |--- |--- |--- |--- |--- |--- |--- |--- |
 | 1 |olay-abonelik |POST |/olay-abonelik | Z |İstemci Kimlik Bilgileri |İmzalı İstek ve Yanıt | |OlayAbonelikİstegi | OlayAbonelik|
 | 2 |olay-abonelik |GET |/olay-abonelik| Z |İstemci Kimlik Bilgileri |İmzalı Yanıt | | -  | OlayAbonelik|
-| 3 |olay-abonelik/{olayAbonelikNo} |PUT |/olay-abonelik/{olayAbonelikNo} | Z |İstemci Kimlik Bilgileri |İmzalı İstek ve Yanıt | |OlayAbonelikİstegi | OlayAbonelik|
+| 3 |olay-abonelik/{olayAbonelikNo} |PUT |/olay-abonelik/{olayAbonelikNo} | Z |İstemci Kimlik Bilgileri |İmzalı İstek ve Yanıt | |OlayAbonelik | OlayAbonelik|
 | 4 | olay-abonelik/{olayAbonelikNo} |DELETE |/olay-abonelik/{olayAbonelikNo} | Z |İstemci Kimlik Bilgileri | - |- | -| -|
 | 5 |olay-abonelik/{olayAbonelikNo}/Iletilemeyen-olaylar |GET |/olay-abonelik/{olayAbonelikNo}/Iletilemeyen-olaylar | Z |İstemci Kimlik Bilgileri | - | Sayfalama | |Olaylar|
 | 6 | sistem-olay-dinleme   |POST | sistem-olay-dinleme   | Z |İstemci Kimlik Bilgileri | - | - |Olaylar | - |
@@ -75,6 +75,8 @@ YÖS, seçeceği olay-kaynak tipleri için bu servis aracılığı ile abone ola
 Başarılı POST isteği sonucu HTTP 200 cevabı ile iletilmelidir.   
 
 YÖS tarafından daha önce oluşturulmuş olay abonelik kaydı varsa "HTTP 400 -TR.OHVPS.Business.InvalidContent -Kaynak Çakışması" hatasıyla uyarı mesajını döner.
+
+Olay Abonelik kaydı oluşturmak isteyen YÖS'ün ODS API tanımı HHS tarafından kontrol edilmelidir. YÖS'ün tanımı olmaması halinde "HTTP 400-TR.OHVPS.Business.InvalidContent" hatası verilmelidir.
 
 Abonelik üzerinde görüntüleme, güncelleme, silme işlemlerini gerçekleştirebilir.
 YÖS'ün Aboneliği devam ettiği sürece; YÖS'ün açacağı Olay Dinleme API'sine, HHS tarafından abonelik kapsamında olay bildirimleri iletilir. 
@@ -111,19 +113,20 @@ BKM'nin sunacağı abonelik servisleri için HHS ve YÖS'lerin abonelik isteği 
    
      
 **Olay Tipleri ve Kaynak Tipleri İlişkisi**
-|Olay Tipleri |YÖS Rolü	|Kaynak Tipleri	|Olay Oluşturulma durumu	|KaynakNo 	| Asıl verinin elde edileceği API |Olay Bildirimini Yapan| Retry Policy |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| KAYNAK_GUNCELLENDI | ÖBH |   ODEME_EMRI | Tüm ödeme durum değişikliklerinde | odemeEmriNo |  GET /odeme-emri/{odemeEmriNo} | HHS | |
-|   | HBH | HESAP_BILGISI_RIZASI |Rıza iptal detay kodu ‘02’ : Kullanıcı İsteği ile HHS üzerinden İptal durumunda| RizaNo | GET /hesap-bilgisi-rizasi/{RizaNo}| HHS |30 Dakika - 3 Deneme|
-|   | HBH | BAKIYE | Bakiye nesnesindeki bir bilgi değiştiğinde ve HBH rızası içerisinde "06-Olay Bildirimi" izin türü varsa oluşturulur.<br>Bloke tutar değişikliği için olay oluşturma ve bildirimi HHS inisiyatifindedir.| hspRef |  GET /hesaplar/{hspRef}/bakiye | HHS |Retry policy uygulanmamalıdır. İlk istek gönderilemediği durumda İletilemeyen Olaylara eklenmelidir.|
-|   | HBH |   COKLU_ISLEM_TALEBI ( bulk-data)   |İlgili API İlke ve kurallarına eklendiğinde güncellenecektir. |  | | HHS |30 Dakika - 3 Deneme|
-| AYRIK_GKD_BASARILI | ÖBH |  ODEME_EMRI_RIZASI   | HHS sisteminde ÖHK kendini doğruladığında rıza oluşturulur. YÖS'e rıza oluşturulduğuna dair bildirim yapılır. YÖS yetkod değerini sorgulama sonucunda elde eder. | RizaNo | GET /yetkilendirme-kodu?rizaNo={rizaNo}}&rizaTip=O| HHS |1 Dakika 3 kez|
-|   |  HBH | HESAP_BILGISI_RIZASI  | HHS sisteminde ÖHK kendini doğruladığında rıza oluşturulur. YÖS'e rıza oluşturulduğuna dair bildirim yapılır. YÖS yetkod değerini sorgulama sonucunda elde eder.   | RizaNo | GET /yetkilendirme-kodu?rizaNo={rizaNo}&rizaTip=H | HHS |1 Dakika 3 kez|
-| AYRIK_GKD_BASARISIZ | ÖBH |  ODEME_EMRI_RIZASI   | HHS sisteminde ÖHK kendini doğruladıktan sonra yaptığı kontroller neticesinde logine izin vermez ise YÖS'e bildirim yapılır. YÖS rıza durumunu sorgulayarak işlemin neden iletilmediğine dair bilgi edinebilir.| RizaNo | GET /odeme-emri-rizasi/{RizaNo}| HHS |  1 Dakika 3 kez|
-|   |  HBH | HESAP_BILGISI_RIZASI  | HHS sisteminde ÖHK kendini doğruladıktan sonra yaptığı kontroller neticesinde logine izin vermez ise YÖS'e bildirim yapılır. YÖS rıza durumunu sorgulayarak işlemin neden iletilmediğine dair bilgi edinebilir. | RizaNo | GET /hesap-bilgisi-rizasi/{RizaNo} | HHS |1 Dakika 3 kez|
-| HHS_YOS_GUNCELLENDI |   |    |BKM sistemi tarafından üretilecek olayları dinlemek için kullanılacak kaynak tipidir. YÖS ve HHS'lerin BKM'ye abonelik oluşturmasına gerek bulunmamaktadır. BKM HHS ve YÖS üretim ortamı tanımı yaparken aboneliklerini başlatacaktır.  <br>(HHS yaygınlaştırma durumundayken de aboneliği başlatılacaktır.) | | | HHS ||
-|  | YÖS | HHS  |HHS bilgilerinde değişiklik olduğunda, YÖS'ün hhsKod ile sorgulama yapması ve değişen bilgiyi güncellemesi beklenmektedir.| hhsKod | GET /hhs/{hhsKod}| BKM | 5 Dakika - 3 Deneme |
-|  | HHS | YOS  |YÖS bilgilerinde değişiklik olduğunda, HHS'nin yosKod ile sorgulama yapması ve değişen bilgiyi güncellemesi beklenmektedir. | yosKod | GET /yos/{yosKod} | BKM | 5 Dakika - 3 Deneme|
+<br>** Anlık : Olay gerçekleştikten sonra maksimum 5 saniye içerisindeki zaman
+|Olay Tipleri |YÖS Rolü	|Kaynak Tipleri	|Olay Oluşturulma durumu	|KaynakNo 	| Asıl verinin elde edileceği API |Olay Bildirimini Yapan| Olay Bildirim Zamanı | Retry Policy |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| KAYNAK_GUNCELLENDI | ÖBH |   ODEME_EMRI | Tüm ödeme durum değişikliklerinde | odemeEmriNo |  GET /odeme-emri/{odemeEmriNo} | HHS | Anlık|30 Dakika - 3 Deneme |
+|   | HBH | HESAP_BILGISI_RIZASI |Rıza iptal detay kodu ‘02’ : Kullanıcı İsteği ile HHS üzerinden İptal durumunda| RizaNo | GET /hesap-bilgisi-rizasi/{RizaNo}| HHS |Anlık|30 Dakika - 3 Deneme|
+|   | HBH | BAKIYE | Bakiye nesnesindeki bir bilgi değiştiğinde ve HBH rızası içerisinde "06-Olay Bildirimi" izin türü varsa oluşturulur.<br>Bloke tutar değişikliği için olay oluşturma ve bildirimi HHS inisiyatifindedir.| hspRef |  GET /hesaplar/{hspRef}/bakiye | HHS | 10 dakika içerisinde | Retry policy uygulanmamalıdır. İlk istek gönderilemediği durumda İletilemeyen Olaylara eklenmelidir.|
+|   | HBH |   COKLU_ISLEM_TALEBI ( bulk-data)   |İlgili API İlke ve kurallarına eklendiğinde güncellenecektir. |  | | HHS | |30 Dakika - 3 Deneme|
+| AYRIK_GKD_BASARILI | ÖBH |  ODEME_EMRI_RIZASI   | HHS sisteminde ÖHK kendini doğruladığında rıza oluşturulur. YÖS'e rıza oluşturulduğuna dair bildirim yapılır. YÖS yetkod değerini sorgulama sonucunda elde eder. | RizaNo | GET /yetkilendirme-kodu?rizaNo={rizaNo}}&rizaTip=O| HHS | Anlık|1 Dakika 3 kez|
+|   |  HBH | HESAP_BILGISI_RIZASI  | HHS sisteminde ÖHK kendini doğruladığında rıza oluşturulur. YÖS'e rıza oluşturulduğuna dair bildirim yapılır. YÖS yetkod değerini sorgulama sonucunda elde eder.   | RizaNo | GET /yetkilendirme-kodu?rizaNo={rizaNo}&rizaTip=H | HHS | Anlık|1 Dakika 3 kez|
+| AYRIK_GKD_BASARISIZ | ÖBH |  ODEME_EMRI_RIZASI   | HHS sisteminde ÖHK kendini doğruladıktan sonra yaptığı kontroller neticesinde logine izin vermez ise YÖS'e bildirim yapılır. YÖS rıza durumunu sorgulayarak işlemin neden iletilmediğine dair bilgi edinebilir.| RizaNo | GET /odeme-emri-rizasi/{RizaNo}| HHS | Anlık|  1 Dakika 3 kez|
+|   |  HBH | HESAP_BILGISI_RIZASI  | HHS sisteminde ÖHK kendini doğruladıktan sonra yaptığı kontroller neticesinde logine izin vermez ise YÖS'e bildirim yapılır. YÖS rıza durumunu sorgulayarak işlemin neden iletilmediğine dair bilgi edinebilir. | RizaNo | GET /hesap-bilgisi-rizasi/{RizaNo} | HHS | Anlık|1 Dakika 3 kez|
+| HHS_YOS_GUNCELLENDI |   |    |BKM sistemi tarafından üretilecek olayları dinlemek için kullanılacak kaynak tipidir. YÖS ve HHS'lerin BKM'ye abonelik oluşturmasına gerek bulunmamaktadır. BKM HHS ve YÖS üretim ortamı tanımı yaparken aboneliklerini başlatacaktır.  <br>(HHS yaygınlaştırma durumundayken de aboneliği başlatılacaktır.) | | | HHS | |
+|  | YÖS | HHS  |HHS bilgilerinde değişiklik olduğunda, YÖS'ün hhsKod ile sorgulama yapması ve değişen bilgiyi güncellemesi beklenmektedir.| hhsKod | GET /hhs/{hhsKod}| BKM |Anlık| 5 Dakika - 3 Deneme |
+|  | HHS | YOS  |YÖS bilgilerinde değişiklik olduğunda, HHS'nin yosKod ile sorgulama yapması ve değişen bilgiyi güncellemesi beklenmektedir. | yosKod | GET /yos/{yosKod} | BKM | Anlık| 5 Dakika - 3 Deneme|
 
 
 ## ADIM 2: Olay Aboneliğinin güncellenmesi
@@ -245,7 +248,7 @@ HHS'den başarılı yanıt alınamadığı durumda, 5 dakika aralıklarla 3 kez 
 
 ## Olay Dinleme Servisleri (ODS)
 
-YÖS sunacağı Olay Dinleme API ile hem HHS'den hem de BKM'den gelen olayların bildirimini dinlemelidir.
+YÖS sunacağı Olay Dinleme Servisi ile hem HHS'den hem de BKM'den gelen olayların bildirimini dinleyebilir. YÖS'ler HHS'de yer alan olay abonelik kayıtlarını iptal edebilir ancak BKM Sistem Olay Dinleme servisinin ileteceği bildirimlerin alınması zorunlu olduğundan ODS API her zaman aktif olmalıdır.
 
 HHS'den gelecek olay bildirimlerini olay-dinleme endpointi ile dinlerken, BKM'den gelecek olay bildirimlerini sistem-olay-dinleme endpointi ile dinlemelidir.
 
