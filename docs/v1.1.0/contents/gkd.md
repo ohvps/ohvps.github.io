@@ -128,8 +128,11 @@ Akış aşağıdaki gibi kurgulanmıştır:
 - ÖHK, YÖS uygulaması üzerinde işlem başlatır.
 - ÖHK, YÖS uygulaması içerisinde, farklı bir ortam üzerinden HHS doğrulamasını gerçekleştirmek istediğini belirtir. ÖHK'yı tanıma tip ve değerleri YÖS ÖHK'dan talep edebileceği gibi, YÖS sisteminde hali hazırda kayıtlı bilgilerle de akışı devam ettirebilir. <br>
 
-    - ÖHK, YÖS'ün müşterisi ve YÖS uygulamasına login ise tek seferlik ödeme akışı başlatamaz.
-    - YÖS önyüzde ÖHK'dan aldığı ohkTanimTip ve ohkTanimDeger değerlerini kimlik tür ve kimlik değeri alanlarına atamamalıdır.
+- ÖHK, YÖS'ün müşterisi ve YÖS uygulamasına login ise tek seferlik ödeme akışı başlatamaz.
+
+ -  **YÖS tarafından başlatılan tek seferlik bir Ödeme işleminin Ayrık GKD ile onaylanacağı durumda; 
+YÖS’ün ilgili kullanıcıya ait “ÖHK Tanım Değer” verisinin yanında işleme ait ve ilgili ÖHK ile eşleştirilmiş olan  ve sadece YÖS ile ÖHK’nın bilebileceği bir değerin daha ÖHK tarafından sağlanması ve YÖS tarafından kontrol edilerek eşleşen Ödeme emrinin HHS’ye iletilmesi gerekmektedir.** 
+-  YÖS önyüzde ÖHK'dan aldığı ohkTanimTip ve ohkTanimDeger değerlerini kimlik tür ve kimlik değeri alanlarına atamamalıdır.
  
 - YÖS, ayrık GKD ile işlem başlatabileceği HHS'lerin listesini HHS API'de yer alan "ayrikGKD"="E" parametresi ile alabilir.
 - YÖS, ÖHK bilgileri ile rıza oluşturur. Rıza nesnesi içerisinde yer alan GKD nesnesinde ilgili parametreler aşağıdaki şekilde doldurulur:<br><br>

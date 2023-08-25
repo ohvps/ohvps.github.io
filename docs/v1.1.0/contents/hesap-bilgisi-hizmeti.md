@@ -555,7 +555,7 @@ srlmYon=A
 |>> İşlem Açıklaması|	islAcklm|	AN1..200|	Z|	HHS tarafından atanan işlem açıklaması. HHS kendi işlem hareketlerine yansıttığı açıklamayı buraya yansıtmalıdır.|
 |>> Karşı Taraf	|krsTrf	|Kompleks:  KarsiTaraf	|K|	Kullanımı işlem bazında değişmektedir. Örnek: FAST işleminde karşı taraf alıcının bilgileridir. Vergi ödemesinde kurum IBAN bilgisi müşteriye gösterilemeyebileceğinden bu alanın boş gelmesi HHS insiyatifindedir.|
 |>>> Karşı Maskeli IBAN	|krsMskIBAN	|AN26	|K	|İlgili hesap hareketinin karşı tarafının maskeli IBAN bilgisi.|
-|>>> Karşı Maskeli Unvan|	krsMskUnvan	|AN3..140|	K	|İlgili hesap hareketinin karşı tarafının maskeli ad-soyad ya da ticari unvan bilgisi.|
+|>>> Karşı Unvan|	krsMskUnvan	|AN3..140|	K	|İlgili hesap hareketinin karşı tarafının ad-soyad ya da ticari unvan bilgisi.|
 
 
 
