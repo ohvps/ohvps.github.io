@@ -39,7 +39,7 @@ Bu bölümde Ödeme Hizmetleri Veri Paylaşım Servisleri (Hesap Bilgisi Hizmeti
 -	Tebliğin 23. maddesinin dördüncü fıkrası uyarınca HHS tarafından sunulan ödeme hizmetleri veri paylaşım servislerini kullanan yetkilendirilmiş ödeme hizmeti sağlayıcılarının TCMB tarafından ilgili ödeme hizmeti için yetkilendirilmiş olduğu kontrol edilir. 
 -	Tebliğin 25. maddesinin beşinci fıkrası uyarınca zaman damgası, 15/1/2004 tarihli 5070 sayılı Elektronik İmza Kanunu kapsamında tanımlanan zaman damgasına dayanır.
 -	API alan isimleri Türkçe olarak tanımlanmıştır. Ancak API başlığı (header) alanındaki alan isimleri özelinde, API Geçitleri tarafından otomatik olarak tanınabilmesi gözetilerek, İngilizce isimlendirme tercih edilmiştir.  
--   ÖHK halihazırda ödeme hesaplarına, çevrim içi (mobil bankacılık, internet bankacılığı vb.) erişebilir durumda ise, HHS'nin varsa Açık Bankacılık kanal veya yetki tanımını varsayılan değeri AÇIK olacak şekilde sunması gerekmektedir. HHS’nin, Bireyse/Kurumsal/Ticari müşteri ayrımı yapmaksızın tüm müşterileri için, çevrim içi kanallarda hesap hareketlerine erişim ve ödeme yapabilme yetkisi bulunması durumunda, yine aynı şekilde Açık Bankacılık kanal veya yetki tanımını da varsayılan değeri AÇIK olacak şekilde sunması gerekmektedir.     
+-   ÖHK halihazırda ödeme hesaplarına, çevrim içi (mobil bankacılık, internet bankacılığı vb.) erişebilir durumda ise, HHS'nin varsa Açık Bankacılık kanal veya yetki tanımını varsayılan değeri AÇIK olacak şekilde sunması gerekmektedir. HHS’nin, Bireysel/Kurumsal/Ticari müşteri ayrımı yapmaksızın tüm müşterileri için, çevrim içi kanallarda hesap hareketlerine erişim ve ödeme yapabilme yetkisi bulunması durumunda, yine aynı şekilde Açık Bankacılık kanal veya yetki tanımını da varsayılan değeri AÇIK olacak şekilde sunması gerekmektedir.     
 -   5411 Sayılı Kanun kapsamındaki bankalar, HHS API içerisinde Aktif durumda listelenmemişken, YÖS API içerisinde listelenemezler.
 
 ## 3.2.	İstem (Çağrı) ve Oturum  
@@ -802,7 +802,7 @@ Maskeli olarak iletilmesi gereken verilerin maskeleme kuralları şu şekildedir
 - IBAN verileri Hesap Numarası : İlk 4 ve son 4 karakteri açık, diğer karakterler maskeli olmalıdır. Örnek: TR54******************4812
 - Ad-Soyadı / Ticari Unvan : Her kelimenin ilk 2 karakteri açık, sonraki karakterler yerine 4 adet ‘*’ karakteri konumlandırılmalıdır. 
       Örneğin: “FATİH SERKAN EREN” ifadesi “FA**** SE**** ER****” şeklinde gösterilmelidir.
-- Tabela Unvanı : Her kelimenin ilk 2 karakteri açık, sonraki karakterler yerine 4 adet ‘*’ karakteri konumlandırılmalıdır. Örneğin “BANKALARARASI KART MERKEZİ ANONİM ŞİRKETİ” ifadesi “BA**** KA**** ME**** AN**** Şİ****” şeklinde gösterilmelidir.
+- Tabela Unvanı : Her kelimenin ilk 2 karakteri açık, sonraki karakterler yerine 4 adet '*' karakteri konumlandırılmalıdır. Örneğin “BANKALARARASI KART MERKEZİ ANONİM ŞİRKETİ” ifadesi “BA**** KA**** ME**** AN**** Şİ****” şeklinde gösterilmelidir.
 - YÖS’ten girilen alıcı unvan ve IBAN bilgileri ödeme emri rızası ve ödeme emri yanıtında açık dönülür, Kolas akışında ödeme emri rızası yanıtı ve ödeme emri istek ve yanıtında maskeli taşınır.
 
 
@@ -845,13 +845,6 @@ Başarılı Yanıt:
 | --- | --- | --- | --- | --- |
 |status | 	status |  	AN2..20	 | Z | 	“UP”, “DOWN” değerlerini alabilir.|
 
-
-Health servisinden yanıt alınamaması, hata alması ya da status DOWN gelmesi durumunda GEÇİT'ten istek HHS tarafına iletilmeyecektir. 
-
-
-- ÖHVPS servisleri ile ilgili olarak HHS’ler, BKM tarafından düzenli olarak sorgulanacaktır, erişilebilirlik ve kullanım oranları takip edilecektir. 
-
-- HHS’lerin servislerini erişim yüzdeleri açısından yıl bazında %99.50 oranında ayakta olmalarını sağlayacak şekilde kurgulamaları gerekmektedir.
 
 ## 3.21. Otomatik Sorgular
 
