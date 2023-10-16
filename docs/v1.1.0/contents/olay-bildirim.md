@@ -78,6 +78,8 @@ YÖS tarafından daha önce oluşturulmuş olay abonelik kaydı varsa "HTTP 400 
 
 Olay Abonelik kaydı oluşturmak isteyen YÖS'ün ODS API tanımı HHS tarafından kontrol edilmelidir. YÖS'ün tanımı olmaması halinde "HTTP 400-TR.OHVPS.Business.InvalidContent" hatası verilmelidir.
 
+Olay Abonelik kaydı oluşturmak isteyen YÖS tarafından olay tipi ve kaynak tipi için iletilen değerler olması gereken sıralı veri tülerinden(TR.OHVPS.DataCode.OlayTip ve TR.OHVPS.DataCode.KaynakTip) farklı ise HHS tarafından  "HTTP 400-TR.OHVPS.Resource.InvalidFormat" hatası verilmelidir.
+
 Abonelik üzerinde görüntüleme, güncelleme, silme işlemlerini gerçekleştirebilir.
 YÖS'ün Aboneliği devam ettiği sürece; YÖS'ün açacağı Olay Dinleme API'sine, HHS tarafından abonelik kapsamında olay bildirimleri iletilir. 
 

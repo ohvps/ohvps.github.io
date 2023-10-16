@@ -103,7 +103,9 @@ Kullanıcı, işlemi tamamen ayrı bir cihaz veya uygulama kullanarak doğrulaya
 
 Ayrık GKD uygulamalarının farklı örnekleri bulunmaktadır. Ancak yaygın olan yaklaşım, bir web arayüzü ve bir mobil uygulamanın kombinasyonunu kullanmayı içerir. 
 
-**Mobil uygulaması bulunan HHS'ler için Ayrık GKD desteklenmesi zorunludur.** HHS’nin web olduğu durumda Ayrık GKD akışı uygulanmayacaktır. YÖS rolünde Ayrık GKD akışının ÖHK’ya sorularak başlatılmasına gerek bulunmamakla beraber bu bilginin ÖHK’ya sorulması YÖS insiyatifindedir.
+**Mobil uygulaması bulunan HHS'ler için Ayrık GKD desteklenmesi zorunludur.** HHS’nin web olduğu durumda Ayrık GKD akışı uygulanmayacaktır. Mobil uygulaması bulunup müşteri özelinde mobil aktiflik kontrol süreci HHS inisiyatifindedir.
+
+YÖS rolünde Ayrık GKD akışının ÖHK’ya sorularak başlatılmasına gerek bulunmamakla beraber bu bilginin ÖHK’ya sorulması YÖS inisiyatifindedir. Aynı zamanda Ayrık GKD ile rıza sürecinin başlatılması zorunlu değildir. Rıza süreci başlatılırken yetkilendirme yöntemi YÖS inisiyatifindedir.
 
 Örnek bir akış şu şekildedir:
 
