@@ -41,7 +41,7 @@ Açık Bankacılık simülatör uygulaması üzerinde swagger dökümanlarının
 | TR.OHVPS.DataCode.SrlmYon | ‘A’: Azalan değerle sıralama<br>‘Y’: Artan değerle sıralama |
 | TR.OHVPS.DataCode.VarYok | 0 : Kayıt Yok <br> 1 : Kayıt Var |
 | TR.OHVPS.DataCode.YetTip | Alabileceği değerlere göre hangi belirtecin döneceğine karar verilir.<br>yet_kod<br>yenileme_belirteci |
-| TR.OHVPS.DataCode.ZmnAralik | 0 : Kayıt Yok <br>1 : 0-2 saat<br>2 : 2-24 saat<br> 3 : 1-3 gün <br> 4 : 3-15 gün	<br> 5 : 15 gün ve üstü |
+| TR.OHVPS.DataCode.ZmnAralik | 0 : Kayıt Yok <br>1 : 0-2 saat<br>2 : 2 saat 1 dakika-24 saat<br> 3 : 1-3 gün <br> 4 : 4-15 gün	<br> 5 : 16 gün ve üstü |
 
 
 

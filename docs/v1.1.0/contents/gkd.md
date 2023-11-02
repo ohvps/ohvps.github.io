@@ -103,9 +103,9 @@ Kullanıcı, işlemi tamamen ayrı bir cihaz veya uygulama kullanarak doğrulaya
 
 Ayrık GKD uygulamalarının farklı örnekleri bulunmaktadır. Ancak yaygın olan yaklaşım, bir web arayüzü ve bir mobil uygulamanın kombinasyonunu kullanmayı içerir. 
 
-**Mobil uygulaması bulunan HHS'ler için Ayrık GKD desteklenmesi zorunludur.** HHS’nin web olduğu durumda Ayrık GKD akışı uygulanmayacaktır. Mobil uygulaması bulunup müşteri özelinde mobil aktiflik kontrol süreci HHS inisiyatifindedir.
+**Mobil uygulaması bulunan HHS'ler için Ayrık GKD desteklenmesi zorunludur.** HHS’nin web olduğu durumda Ayrık GKD akışı uygulanmayacaktır. Mobil uygulaması bulunup müşteri özelinde mobil aktiflik kontrol süreci HHS inisiyatifindedir. Ayrık GKD sürecinde HHS tarafında sadece mobil uygulama üzerinden GKD yapılmalıdır. ÖHK’nın web uygulamasına yönlendirme yapmaması gerekmektedir.
 
-YÖS rolünde Ayrık GKD akışının ÖHK’ya sorularak başlatılmasına gerek bulunmamakla beraber bu bilginin ÖHK’ya sorulması YÖS inisiyatifindedir. Aynı zamanda Ayrık GKD ile rıza sürecinin başlatılması zorunlu değildir. Rıza süreci başlatılırken yetkilendirme yöntemi YÖS inisiyatifindedir.
+YÖS rolünde Ayrık GKD akışının ÖHK’ya sorularak başlatılmasına gerek bulunmamakla beraber bu bilginin ÖHK’ya sorulması YÖS inisiyatifindedir. YÖS olarak, Ayrık GKD iş akışları kapsamında ÖHK’ya ayrık GKD öncesi HHS mobil uygulamasının varlığı sorularak (bildirim ayarlarının açık olması gerektiği bilgisi de verilebilir) ilerlenebilir. Aynı zamanda Ayrık GKD ile rıza sürecinin başlatılması zorunlu değildir. Rıza süreci başlatılırken yetkilendirme yöntemi YÖS inisiyatifindedir.
 
 Örnek bir akış şu şekildedir:
 
@@ -172,7 +172,7 @@ RizaNesnesi
 - YÖS, ayrık GKD ile işlem başlatabileceği HHS'lerin listesini HHS API'de yer alan "ayrikGKD"="E" parametresi ile alabilir.
   YÖS, ayrık GKD desteklemeyen HHS'ye Ayrık GKD yöntemiyle rıza başlatma isteği yapması durumunda HHS tarafından **TR.OHVPS.Business.DecoupledAuthenticationNotSupported** hatası iletilmelidir. YÖS ilgili işlemi “Yönlendirmeli” akışa çekip süreci ilerletebilir.
 
-- HHS tarafında ÖHK'nın mobil uygulaması bulunmaması durumunda bildirim gönderilemeyeceği için Ayrık GKD ile başlatılan rıza akışlarında hata mesajı vermelidir. HHS tarafından **TR.OHVPS.Business.CustomerMobileApplicationNotFound** hatası iletilmelidir. YÖS ilgili işlemi “Yönlendirmeli” akışa çekip süreci ilerletebilir.
+- HHS tarafında ÖHK'nın mobil uygulaması bulunmaması durumu tespit edilebildiği durumda Ayrık GKD ile başlatılan rıza akışlarında hata mesajı vermelidir. HHS tarafından **TR.OHVPS.Business.CustomerMobileApplicationNotFound** hatası iletilmelidir. YÖS ilgili işlemi “Yönlendirmeli” akışa çekip süreci ilerletebilir. HHS, ÖHK’nın mobil uygulamasının bulunmadığı bilgisine ulaşamazsa kendisinin belirleyeceği bildirim yöntemlerinden biri ile ÖHK’ye bilgilendirme yapar. Bildirim yöntemi SMS ise ÖHK’ya mobil uygulamasını açtıracak şekilde adres iletir, Web uygulamayı açtıracak bir link iletilmemelidir.
 
 - HHS, YÖS'ün AYRIK_GKD_BASARILI ve AYRIK_GKD_BASARISIZ olay tipleri için olay aboneliğinin varlığını kontrol eder. <br>YÖS iki olay tipine de abone olmak zorundadır. Eğer olay aboneliği yoksa HHS tarafından **TR.OHVPS.Business.EventSubscriptionNotFound** hata kodu iletilmelidir.
 
