@@ -94,7 +94,7 @@ BKM'nin sunacağı abonelik servisleri için HHS ve YÖS'lerin abonelik isteği 
 |Katılımcı Bilgisi|	katilimciBlg|	Kompleks:KatilimciBilgisi	|Z|	Katılımcılara atanmış kod bilgileridir.| |
 |>Hesap Hizmeti Sağlayıcısı Kodu|	hhsKod|	AN4|	Z	|Hesap Hizmeti Sağlayıcısının kodudur. (Nezdinde ÖH bulunduran kuruluş kodu. Örneğin, Banka, Elektronik Para Kuruluşu ve Ödeme Kuruluşu)| |
 |> Yetkili Ödeme Hizmeti Sağlayıcısı Kodu	|yosKod	|AN4|	Z	|Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.| |
-| Abonelik Tipleri  | aboneliktipleri | Kompleks: abonelikTipleri[Array][1..N] | Z |||
+| Abonelik Tipleri  | abonelikTipleri | Kompleks: abonelikTipleri[Array][1..N] | Z |||
 | > Olay Tipi  | olayTipi | AN1..36 | Z |YÖS abone olmak istediği olay tiplerini TR.OHVPS.DataCode.OlayTip sıralı veri tiplerinden değer ya da değerler ile doldurur.|"Olay Tipleri ve Kaynak Tipleri İlişkisi" tablosunda "Olay Bildirim Yapan" kolonu "HHS" olan olay tipleri ile veri girişine izin verilir.|
 | > Kaynak Tipi  | kaynakTipi | AN1..36 | Z | Olay tiplerinin tanımlanabildiği kaynak listesi bulunmaktadır. Bu listeye uygun kaynak tipleri iletilmelidir. |HHS, YÖS API üzerinden YÖS'ün rollerini alarak uygun kaynak tiplerine kayıt olmasını sağlar.|
   
@@ -108,7 +108,7 @@ BKM'nin sunacağı abonelik servisleri için HHS ve YÖS'lerin abonelik isteği 
 |Katılımcı Bilgisi|	katilimciBlg|	Kompleks:KatilimciBilgisi	|Z|	Katılımcılara atanmış kod bilgileridir.| 
 |>Hesap Hizmeti Sağlayıcısı Kodu|	hhsKod|	AN4|	Z	|Hesap Hizmeti Sağlayıcısının kodudur. (Nezdinde ÖH bulunduran kuruluş kodu. Örneğin, Banka, Elektronik Para Kuruluşu ve Ödeme Kuruluşu)| 
 |> Yetkili Ödeme Hizmeti Sağlayıcısı Kodu	|yosKod	|AN4|	Z	|Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.| 
-| Abonelik Tipleri  | aboneliktipleri | Kompleks: abonelikTipleri[Array][1..N] | Z | OlayAbonelikIstegi nesnesi içerisinde iletilen değerlerin yanıt içerisinde dönmesi beklenmektedir.|
+| Abonelik Tipleri  | abonelikTipleri | Kompleks: abonelikTipleri[Array][1..N] | Z | OlayAbonelikIstegi nesnesi içerisinde iletilen değerlerin yanıt içerisinde dönmesi beklenmektedir.|
 | > Olay Tipi  | olayTipi | AN1..36 | Z ||
 | > Kaynak Tipi  | kaynakTipi | AN1..36 | Z ||
   
@@ -120,7 +120,7 @@ BKM'nin sunacağı abonelik servisleri için HHS ve YÖS'lerin abonelik isteği 
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | KAYNAK_GUNCELLENDI | ÖBH |   ODEME_EMRI | Tüm ödeme durum değişikliklerinde | odemeEmriNo |  GET /odeme-emri/{odemeEmriNo} | HHS | Anlık|30 Dakika - 3 Deneme |
 |   | HBH | HESAP_BILGISI_RIZASI |Rıza iptal detay kodu ‘02’ : Kullanıcı İsteği ile HHS üzerinden İptal durumunda| RizaNo | GET /hesap-bilgisi-rizasi/{RizaNo}| HHS |*Anlık|30 Dakika - 3 Deneme|
-|   | HBH | BAKIYE | Bakiye nesnesindeki bir bilgi değiştiğinde ve HBH rızası içerisinde "06-Olay Bildirimi" izin türü varsa oluşturulur.<br><br>Mevcutta alınmış rızalar için  bakiye kaynak tipi özelinde 06 izin türü gerektiğinden; mevcut rızanın yenilenmesine dair müşteriye bilgilendirme yapılarak 06 izin türünü kapsayan yeni rıza alınması süreci YÖS tarafından gerçekleştirilebilir.<br><br>Bloke tutar değişikliği için olay oluşturma ve bildirimi HHS inisiyatifindedir.<br><br>KrdHsp içerisinde yer alan kulKrdTtr değerinin değiştiği durumda olay bildirim gönderilmesi gerekmektedir.| hspRef |  GET /hesaplar/{hspRef}/bakiye | HHS | Maksimum 10 dakika içerisinde | Retry policy uygulanmamalıdır. İlk istek gönderilemediği durumda İletilemeyen Olaylara eklenmelidir.|
+|   | HBH | BAKIYE | Bakiye nesnesindeki tutarla ilgili bir bilgi değiştiğinde ve HBH rızası içerisinde "06-Olay Bildirimi" izin türü varsa oluşturulur.<br><br>Mevcutta alınmış rızalar için  bakiye kaynak tipi özelinde 06 izin türü gerektiğinden; mevcut rızanın yenilenmesine dair müşteriye bilgilendirme yapılarak 06 izin türünü kapsayan yeni rıza alınması süreci YÖS tarafından gerçekleştirilebilir.<br><br>Bloke tutar değişikliği için olay oluşturma ve bildirimi HHS inisiyatifindedir.<br><br>KrdHsp içerisinde yer alan kulKrdTtr değerinin değiştiği durumda olay bildirim gönderilmesi gerekmektedir.| hspRef |  GET /hesaplar/{hspRef}/bakiye | HHS | Maksimum 10 dakika içerisinde | Retry policy uygulanmamalıdır. İlk istek gönderilemediği durumda İletilemeyen Olaylara eklenmelidir.|
 |   | HBH |   COKLU_ISLEM_TALEBI ( bulk-data)   |İlgili API İlke ve kurallarına eklendiğinde güncellenecektir. |  | | HHS | |30 Dakika - 3 Deneme|
 | AYRIK_GKD_BASARILI | ÖBH |  ODEME_EMRI_RIZASI   | HHS sisteminde ÖHK kendini doğruladığında rıza oluşturulur. YÖS'e rıza oluşturulduğuna dair bildirim yapılır. YÖS yetkod değerini sorgulama sonucunda elde eder. | RizaNo | GET /yetkilendirme-kodu?rizaNo={rizaNo}}&rizaTip=O| HHS | *Anlık|1 Dakika 3 kez|
 |   |  HBH | HESAP_BILGISI_RIZASI  | HHS sisteminde ÖHK kendini doğruladığında rıza oluşturulur. YÖS'e rıza oluşturulduğuna dair bildirim yapılır. YÖS yetkod değerini sorgulama sonucunda elde eder.   | RizaNo | GET /yetkilendirme-kodu?rizaNo={rizaNo}&rizaTip=H | HHS | *Anlık|1 Dakika 3 kez|
@@ -146,7 +146,7 @@ Başarılı PUT isteği sonucu HTTP 200 cevabı ile iletilmelidir.
 |Katılımcı Bilgisi|	katilimciBlg|	Kompleks:KatilimciBilgisi	|Z|	Katılımcılara atanmış kod bilgileridir.| |
 |>Hesap Hizmeti Sağlayıcısı Kodu|	hhsKod|	AN4|	Z	|Hesap Hizmeti Sağlayıcısının kodudur. (Nezdinde ÖH bulunduran kuruluş kodu. Örneğin, Banka, Elektronik Para Kuruluşu ve Ödeme Kuruluşu)| |
 |> Yetkili Ödeme Hizmeti Sağlayıcısı Kodu	|yosKod	|AN4|	Z	|Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.| |
-|Abonelik Tipleri  | aboneliktipleri | Kompleks: abonelikTipleri[Array][1..N] | Z |HHS Sisteminde, YÖS'ün eski abonelikleri yeni aboneliklerle güncellenmelidir.||
+|Abonelik Tipleri  | abonelikTipleri | Kompleks: abonelikTipleri[Array][1..N] | Z |HHS Sisteminde, YÖS'ün eski abonelikleri yeni aboneliklerle güncellenmelidir.||
 | > Olay Tipi  | olayTipi | AN1..36 | Z |YÖS abone olmak istediği olay tiplerini TR.OHVPS.DataCode.OlayTip sıralı veri tiplerinden değer ya da değerler ile doldurur.  |"Olay Tipleri ve Kaynak Tipleri İlişkisi" tablosunda "Olay Bildirim Yapan" kolonu "HHS" olan olay tipleri ile veri girişine izin verilir.<br> Olay tipi AYRIK_GKD_BASARILI ve AYRIK_GKD_BASARISIZ için, YÖS'ün ODS API'yi sunması zorunludur. HHS, bu olay tipleri özelinde YÖS API üzerinden YÖS'ün bu API'yi sunduğunu kontrol eder ve eğer sunmuyor ise TR.OHVPS.Business.InvalidContent hatası dönerek kayıt işlemini gerçekleştirmez.|
 | > Kaynak Tipi  | kaynakTipi | AN1..36 | Z | Olay tiplerinin tanımlanabildiği kaynak listesi bulunmaktadır. Bu listeye uygun kaynak tipleri iletilmelidir. |HHS, YÖS API üzerinden YÖS'ün rollerini alarak uygun kaynak tiplerine kayıt olmasına izin verir.|
   
@@ -160,7 +160,7 @@ Başarılı PUT isteği sonucu HTTP 200 cevabı ile iletilmelidir.
 |Katılımcı Bilgisi|	katilimciBlg|	Kompleks:KatilimciBilgisi	|Z|	Katılımcılara atanmış kod bilgileridir.| 
 |>Hesap Hizmeti Sağlayıcısı Kodu|	hhsKod|	AN4|	Z	|Hesap Hizmeti Sağlayıcısının kodudur. (Nezdinde ÖH bulunduran kuruluş kodu. Örneğin, Banka, Elektronik Para Kuruluşu ve Ödeme Kuruluşu)| 
 |> Yetkili Ödeme Hizmeti Sağlayıcısı Kodu	|yosKod	|AN4|	Z	|Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.| 
-|Abonelik Tipleri  | aboneliktipleri | Kompleks: abonelikTipleri[Array][1..N] | Z | OlayAbonelikIstegi nesnesi içerisinde iletilen değerlerin yanıt içerisinde dönmesi beklenmektedir.|
+|Abonelik Tipleri  | abonelikTipleri | Kompleks: abonelikTipleri[Array][1..N] | Z | OlayAbonelikIstegi nesnesi içerisinde iletilen değerlerin yanıt içerisinde dönmesi beklenmektedir.|
 | > Olay Tipi  | olayTipi | AN1..36 | Z |OlayAbonelikIstegi nesnesi içerisinde iletilen değerlerin yanıt içerisinde dönmesi beklenmektedir.|
 | > Kaynak Tipi  | kaynakTipi | AN1..36 | Z | OlayAbonelikIstegi nesnesi içerisinde iletilen değerlerin yanıt içerisinde dönmesi beklenmektedir.|
 
@@ -181,7 +181,7 @@ Başarılı GET sonucu HTTP 200 kodu ile iletilmelidir.
 |Katılımcı Bilgisi|	katilimciBlg|	Kompleks:KatilimciBilgisi	|Z|	Katılımcılara atanmış kod bilgileridir.| 
 |>Hesap Hizmeti Sağlayıcısı Kodu|	hhsKod|	AN4|	Z	|Hesap Hizmeti Sağlayıcısının kodudur. (Nezdinde ÖH bulunduran kuruluş kodu. Örneğin, Banka, Elektronik Para Kuruluşu ve Ödeme Kuruluşu)| 
 |> Yetkili Ödeme Hizmeti Sağlayıcısı Kodu	|yosKod	|AN4|	Z	|Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.| 
-| Abonelik Tipleri  | aboneliktipleri | Kompleks: abonelikTipleri[Array][1..N] | Z | YÖS'ün abone olduğu olay - kaynak listesini döner. |
+| Abonelik Tipleri  | abonelikTipleri | Kompleks: abonelikTipleri[Array][1..N] | Z | YÖS'ün abone olduğu olay - kaynak listesini döner. |
 | > Olay Tipi  | olayTipi | AN1..36 | Z |TR.OHVPS.DataCode.OlayTip sıralı veri tiplerinden değerler içerir.  |
 | > Kaynak Tipi  | kaynakTipi | AN1..36 | Z |TR.OHVPS.DataCode.KaynakTip sıralı veri tiplerinden değerler içerir. |
 

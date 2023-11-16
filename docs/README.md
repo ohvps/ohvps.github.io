@@ -19,6 +19,10 @@ SÜRÜM 1.1.0 (TASLAK) sürüm gerçiş tarihleri şu şekildedir.
 
 - Sertifikasyona Başlangıç Tarihi : 1 Aralık 2023
 
+- HHS Sertifikasyon Bitiş Tarihi : 23 Şubat 2024
+
+- YÖS Sertifikasyon Bitiş Tarihi : 20 Eylül 2024
+
 - HHS Yeni Sürüm Üretime Geçiş Son Tarihi Tarihi : 29 Şubat 2024 
 
 - YÖS Yeni Sürüm Üretime Geçiş Başlangıç Tarihi : 29 Şubat 2024 
