@@ -11,10 +11,25 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/runtime-corejs2": "^7.23.2",
     "@vuepress/plugin-search": "^1.9.7",
     "vuepress": "^1.9.7"
   },
   "dependencies": {
-    "@docsearch/js": "^3.0.0"
+    "@docsearch/js": "^3.0.0",
+  
+    "bootstrap": "^5.3.2",
+    "bootstrap-vue": "^2.23.1",
+    "core-js": "^2.6.12",
+    "devextreme": "23.1.6",
+    "devextreme-vue": "23.1.6",
+    "file-saver": "^2.0.5",
+    "highlight.js": "^11.9.0",
+    "js-yaml": "^4.1.0",
+    "js-yaml-loader": "^1.2.2",
+    "node-sass": "^9.0.0",
+    "swagger-client": "^3.10.12",
+    "swagger-ui": "^4.13.0",
+    "yaml": "^2.3.4"
   }
 }
