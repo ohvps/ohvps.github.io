@@ -23,7 +23,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-if="tab.ID === 2" style="width: 100%;">
+                        <div v-if="tab.ID === 2">
+                            <DxScrollView id="scrollview" ref="scrollViewWidget"  :height="1000"
+                                direction="both">
+                                <div id="swagger-ui-oas"></div>
+                            </DxScrollView>
+                            <div id="swagger-ui-oas"></div>
+                        </div>
+
+
+                        <div v-if="tab.ID === 3" style="width: 100%;">
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
                                     <Request title="Olay Dinleme İsteği" actionButtonText="Olay Dinleme" isGet="false"
@@ -37,6 +46,15 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div v-if="tab.ID === 4" style="width: 100%;">
+                            <DxScrollView id="scrollview" ref="scrollViewWidget"  :height="1000"
+                                direction="both">
+                                <div id="swagger-ui-ods"></div>
+                            </DxScrollView>
+                            <div id="swagger-ui-ods"></div>
+                        </div>
+
                     </div>
 
                 </div>

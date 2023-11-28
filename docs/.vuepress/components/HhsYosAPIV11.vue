@@ -8,63 +8,37 @@
             <template #item="{ data: tab }">
                 <div>
                     <div class="tabpanel-item">
-                       
+
                         <div v-if="tab.ID === 1" style="width: 100%;">
+                         <div>
+                            <p>BKM tarafından sunulan bu serviste , üretim ortamında sertifikasyonunu başarıyla tamamlayarak hizmet sunmaya başlamış HHS’ler listelenir.</p>
+                        </div>
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
-                                    <Request title="YÖS Listeleme İsteği" actionButtonText="Yös Listele" isGet="true"
-                                        path="/yos"  :headers="requestHeaders"
+                                    <Request title="HHS İsteği" actionButtonText="HHS Listesi" isGet="true"
+                                        path="/hhs" :requestBody="oasRequest" :headers="requestHeaders"
                                         @request-event="requestClick" />
                                 </div>
                                 <div class="col" style="width: 50%;">
-                                    <Response title="YÖS Listeleme Yanıtı" :headers="responseHeaders"
+                                    <Response title="HHS Yanıtı" :headers="responseHeaders"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
-                                        @response-event="yosChangeTabs" :body="yosResponse" :tabs="responseTabs" />
+                                        @response-event="oasChangeTabs" :body="oasResponse" :tabs="responseTabs" />
                                 </div>
                             </div>
                         </div>
-                        <div v-if="tab.ID === 2">
-                            <DxScrollView id="scrollview" ref="scrollViewWidget" :height="1000"
-                                direction="both">
-                                <div id="swagger-ui-yos"></div>
-                            </DxScrollView>
-                            <div id="swagger-ui-yos"></div>
-                        </div>
-
-                   
-                        <div v-if="tab.ID === 3" style="width: 100%;">
+                        <div v-if="tab.ID === 2" style="width: 100%;">
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
-                                    <Request title="HHS Listeleme İsteği" actionButtonText="HHS Listele" isGet="true"
-                                        path="/hhs" 
-                                        :headers="requestHeaders" @request-event="hhsRequestClick" />
+                                    <Request title="YÖS İsteği" actionButtonText="YÖS Listesi" isGet="true"
+                                        path="/yos" :requestBody="odsRequest" :headers="requestHeaders"
+                                        @request-event="odsRequestClick" />
                                 </div>
                                 <div class="col" style="width: 50%;">
-                                    <Response title="HHS Listeleme  Yanıtı" :headers="responseHeaders"
+                                    <Response title="YÖS Yanıtı" :headers="responseHeaders"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
-                                        @response-event="hhsChangeTabs" :body="hhsResponse"  :tabs="responseTabs"/>
+                                        @response-event="odsChangeTabs" :body="odsResponse" :tabs="responseTabsOds" />
                                 </div>
                             </div>
-                        </div>
-
-                        <div v-if="tab.ID === 4" style="width: 100%;">
-                            <DxScrollView id="scrollview" ref="scrollViewWidget"  :height="1000" 
-                                direction="both">
-                                <div id="swagger-ui-hhs"></div>
-                            </DxScrollView>
-                            <div id="swagger-ui-hhs"></div>
-                        </div>
-
-                        
-
-                       
-
-                        <div v-if="tab.ID === 9">
-                            <DxScrollView id="scrollview" ref="scrollViewWidget" :height="1000" 
-                                direction="both">
-                                <div id="swagger-ui-hbh"></div>
-                            </DxScrollView>
-                            <div id="swagger-ui-hbh"></div>
                         </div>
                     </div>
 
@@ -81,14 +55,16 @@ import DxTabPanel, { DxItem } from 'devextreme-vue/tab-panel';
 import { DxScrollView } from 'devextreme-vue/scroll-view';
 
 import { mainTabs } from './data-hhs-yos-V1.1';
-import {responseTabs,requestHeaders,responseHeaders} from './data-hhs-yos-V1.1';
-import {YosResponse200,YosResponse400,YosResponse401,YosResponse403,YosResponse404} from './data-hhs-yos-V1.1'
-import {HhsResponse200,HhsResponse400,HhsResponse401,HhsResponse403,HhsResponse404} from './data-hhs-yos-V1.1'
+import { responseTabs, requestHeaders, responseHeaders, responseTabsOds } from './data-hhs-yos-V1.1'
+import { OlayAbonelikRequest, OlayAbonelikResponse201, OlayAbonelikResponse400, OlayAbonelikResponse401, OlayAbonelikResponse403, OlayAbonelikResponse404 } from './data-hhs-yos-V1.1'
+import { OlayDinlemeRequest, OlayDinlemeResponse202, OlayDinlemeResponse400, OlayDinlemeResponse401, OlayDinlemeResponse403, OlayDinlemeResponse404 } from './data-hhs-yos-V1.1'
+
+import 'devextreme/dist/css/dx.light.css';
+
 import '../public/assets/swagger-ui/swagger-ui.css'
 import SwaggerUI from '../public/assets/swagger-ui/swagger-ui-es-bundle.js'
 import SwaggerUIStandalonePreset from '../public/assets/swagger-ui/swagger-ui-standalone-preset.js'
 
-import 'devextreme/dist/css/dx.light.css';
 
 export default {
     components: {
@@ -106,11 +82,15 @@ export default {
             swipeEnabled: true,
             mainTabs: mainTabs,
             responseTabs: responseTabs,
-            requestHeaders:requestHeaders,
-            responseHeaders:responseHeaders,
-            yosResponse : "",
-            hhsResponse: "",
-            
+            requestHeaders: requestHeaders,
+            responseHeaders: responseHeaders,
+            responseTabsOds: responseTabsOds,
+
+            oasRequest: JSON.stringify(OlayAbonelikRequest, null, 2),
+            odsRequest: JSON.stringify(OlayDinlemeRequest, null, 2),
+            oasResponse: "",
+            odsResponse: "",
+
         };
     },
     props: {
@@ -129,45 +109,45 @@ export default {
 
     methods: {
         requestClick() {
-            this.yosResponse = JSON.stringify(YosResponse200, null, 2)
+            this.oasResponse = JSON.stringify(OlayAbonelikResponse201, null, 2)
         },
-        hhsRequestClick() {
-            this.hhsResponse = JSON.stringify(HhsResponse200, null, 2);
+        odsRequestClick() {
+            this.odsResponse = JSON.stringify(OlayDinlemeRequest, null, 2);
         },
         nextStep() {
             this.selectedIndex = this.selectedIndex + 1;
         },
 
-        
-        yosChangeTabs(step) {
+
+        oasChangeTabs(step) {
             
             switch (step) {
                 case 1:
-                    return this.yosResponse = JSON.stringify(YosResponse200, null, 2);
+                    return this.oasResponse = JSON.stringify(OlayAbonelikResponse201, null, 2);
                 case 2:
-                    return this.yosResponse = JSON.stringify(YosResponse400, null, 2);
+                    return this.oasResponse = JSON.stringify(OlayAbonelikResponse400, null, 2);
                 case 3:
-                    return this.yosResponse = JSON.stringify(YosResponse401, null, 2);
+                    return this.oasResponse = JSON.stringify(OlayAbonelikResponse401, null, 2);
                 case 4:
-                    return this.yosResponse = JSON.stringify(YosResponse403, null, 2);
+                    return this.oasResponse = JSON.stringify(OlayAbonelikResponse403, null, 2);
                 case 5:
-                    return this.yosResponse = JSON.stringify(YosResponse404, null, 2);
+                    return this.oasResponse = JSON.stringify(OlayAbonelikResponse404, null, 2);
 
             }
         },
-        hhsChangeTabs(step) {
+        odsChangeTabs(step) {
             
             switch (step) {
                 case 1:
-                    return this.hhsResponse = JSON.stringify(HhsResponse200, null, 2);
+                    return this.odsResponse = JSON.stringify(OlayDinlemeResponse202, null, 2);
                 case 2:
-                    return this.hhsResponse = JSON.stringify(HhsResponse400, null, 2);
+                    return this.odsResponse = JSON.stringify(OlayDinlemeResponse400, null, 2);
                 case 3:
-                    return this.hhsResponse = JSON.stringify(HhsResponse401, null, 2);
+                    return this.odsResponse = JSON.stringify(OlayDinlemeResponse401, null, 2);
                 case 4:
-                    return this.hhsResponse = JSON.stringify(HhsResponse403, null, 2);
+                    return this.odsResponse = JSON.stringify(OlayDinlemeResponse403, null, 2);
                 case 5:
-                    return this.hhsResponse = JSON.stringify(HhsResponse404, null, 2);
+                    return this.odsResponse = JSON.stringify(OlayDinlemeResponse404, null, 2);
 
             }
         },
@@ -176,30 +156,29 @@ export default {
             
             this.selectedIndex = e.addedItems[0].ID - 1;
             if (e.addedItems[0].ID == 2) {
-                const spec = require('../public/yos-api-s1.1.json');
+                const spec = require('../public/oas-api-s1.1.json');
                 SwaggerUI({
                     spec: spec,
-                    dom_id: '#swagger-ui-yos',
+                    dom_id: '#swagger-ui-oas',
                     presets: [
                         SwaggerUI.presets.apis,
                         SwaggerUIStandalonePreset,
                     ],
                     layout: 'StandaloneLayout',
-                 
+
                 });
             }
             else if (e.addedItems[0].ID == 4) {
-                const spec = require('../public/hhs-api-s1.1.json');
+                const spec = require('../public/ods-api-s1.1.json');
                 SwaggerUI({
                     spec: spec,
-                    dom_id: '#swagger-ui-hhs',
+                    dom_id: '#swagger-ui-ods',
                     presets: [
                         SwaggerUI.presets.apis,
                         SwaggerUIStandalonePreset,
                     ],
                     layout: 'StandaloneLayout',
-                 
-                });
+                })
             }
         },
 
@@ -215,6 +194,7 @@ export default {
     --renk3: darkcyan;
     --renk4: white;
 }
+
 .tabpanel-item {
     user-select: none;
     padding-left: 25px;
@@ -237,6 +217,7 @@ export default {
     color: white;
 
 }
+
 .dx-tab.dx-tab-selected>.dx-item-content.dx-tab-content {
     color: white;
 }
@@ -276,7 +257,6 @@ export default {
 .dx-tabs.dx-widget {
     background-color: white;
 }
-
 </style>
   
   

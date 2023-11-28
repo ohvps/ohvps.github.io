@@ -108,7 +108,13 @@
 
                        
 
-                   
+                        <div v-if="tab.ID === 9">
+                            <DxScrollView id="scrollview" ref="scrollViewWidget" :height="1000"
+                                direction="both">
+                                <div id="swagger-ui-hbh"></div>
+                            </DxScrollView>
+                            <div id="swagger-ui-hbh"></div>
+                        </div>
                     </div>
 
                 </div>

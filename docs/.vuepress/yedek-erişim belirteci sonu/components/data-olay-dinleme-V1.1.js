@@ -4,9 +4,17 @@ export const mainTabs = [{
    
 }, {
     ID: 2,
+    Name: "OAS API Swagger",
+   
+}, {
+    ID: 3,
     Name: 'ODS - Olay Dinleme API',
    
   
+}, {
+    ID: 4,
+    Name: 'ODS API Swagger',
+   
 }
 ];
 

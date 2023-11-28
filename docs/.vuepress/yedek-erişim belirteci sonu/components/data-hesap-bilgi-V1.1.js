@@ -25,7 +25,7 @@ export const mainTabs = [{
 
 {
     ID: 6,
-    Name: 'Bakiye',
+    Name: 'Bakiyler',
    
   
 },
@@ -39,6 +39,12 @@ export const mainTabs = [{
   ID: 8,
   Name: 'Yenileme Belirteci',
 
+},
+
+{
+    ID: 9,
+    Name: 'Swagger File',
+   
 }
 ];
 

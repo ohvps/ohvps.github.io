@@ -84,29 +84,23 @@
                                 <div class="col" style="width: 50%;">
                                     <Response title="Erişim Belirteci  Yanıtı" :headers="headerResponse"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
-                                        @response-event="erisimBelirteciChangeTab" :body="erisimBelirteciResponseBody"
+                                        @response-event="erisimBerliteciChangeTab" :body="erisimBelirteciResponseBody"
                                         :tabs="erisimBelirteciTabs" />
                                 </div>
                             </div>
                         </div>
 
                         <div v-if="tab.ID === 5" style="width: 100%;">
-                          <div>
-                                <p>Örnek akışta;</p>
-                                <p>Rıza durumu "Yetki Kullanıldı” olması ön koşulu ile ödeme emrini başlatmak için gerekli tüm zorunlu alanlar doldurularak HHS'ye iletilir.</p>
-                                <p>HHS tarafında ödeme sistemine talep iletilir ve başarılı işlem sonucunda rıza durumu “Yetki Ödeme Emrine Dönüştü” olarak güncellenir.</p>                    
-                            </div>
-
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
                                     <Request title="Ödeme Emri İsteği" actionButtonText="Ödeme Emri İsteği" isGet="false"
                                         path="/odeme-emri" :requestBody="odemeEmriBody"
-                                        :headers="headersOdemeEmriRiza" @request-event="odemeEmri" />
+                                        :headers="erisimBelirteciRequestHeader" @request-event="odemeEmri" />
                                 </div>
                                 <div class="col" style="width: 50%;">
                                     <Response title="Ödeme Emri Yanıtı" :headers="headerResponse" @process-event="nextStep"
                                         actionButtonText="Bir Sonraki İşlem" @response-event="odemeEmriChangeTab"
-                                        :body="odemeEmriResponseBody" :tabs="responseTabsOdemeEmri" />
+                                        :body="odemeEmriResponseBody" :tabs="responseTabs" />
                                 </div>
                             </div>
                         </div>
@@ -128,7 +122,7 @@
                                 <div class="col" style="width: 50%;">
                                     <Response title="Yenileme Belirteci  Yanıtı" :headers="headerResponse"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
-                                        @response-event="erisimBelirteciChangeTab" :body="erisimBelirteciResponseBody"
+                                        @response-event="erisimBerliteciChangeTab" :body="erisimBelirteciResponseBody"
                                         :tabs="erisimBelirteciTabs" />
                                 </div>
                             </div>
@@ -152,7 +146,13 @@
 
 
 
-                       
+                        <div v-if="tab.ID === 8">
+                            <DxScrollView id="scrollview" ref="scrollViewWidget"  :height="1000"
+                                direction="both">
+                                <div id="swagger-ui"></div>
+                            </DxScrollView>
+                            <div id="swagger-ui"></div>
+                        </div>
                     </div>
 
                 </div>
@@ -168,11 +168,11 @@ import DxTabPanel from 'devextreme-vue/tab-panel';
 import { DxScrollView } from 'devextreme-vue/scroll-view';
 
 import { mainTabs } from './data-odeme-emri-V1.1.js';
-import { responseTabs, erisimBelirteciResponseTabs, responseTabsOdemeEmriRizasi , responseTabsOdemeEmri} from './data-odeme-emri-V1.1.js';
+import { responseTabs, erisimBelirteciResponseTabs, responseTabsOdemeEmriRizasi } from './data-odeme-emri-V1.1.js';
 import { odemeEmriErisimBelirteciHeader } from './data-odeme-emri-V1.1.js';
 import { OdemeEmriRızasiRequest, OdemeEmriRizasi201, OdemeEmriRizasi400, OdemeEmriRizasi403, OdemeEmriRizasi404, OdemeEmriRizasi408,OdemeEmriRizasi429,OdemeEmriRizasi500,OdemeEmriRizasi503 } from './data-odeme-emri-V1.1.js';
-import { OdemeEmriRequestBody, OdemeEmriResponse201, OdemeEmriResponse400, OdemeEmriResponse401, OdemeEmriResponse403, OdemeEmriResponse408 , OdemeEmriResponse422,OdemeEmriResponse500 , OdemeEmriResponse503, OdemeEmriResponse504   } from './data-odeme-emri-V1.1.js';
-import { odemeEmriYenilemeBelirteci, ErisimBerliteciRequest, ErisimBelirteciResponse200, ErisimBelirteciResponse400, ErisimBelirteciResponse401,  ErisimBelirteciResponse404 ,ErisimBelirteciResponse503,ErisimBelirteciResponse504} from './data-odeme-emri-V1.1.js';
+import { OdemeEmriRequestBody, odemeEmriResponse201, odemeEmriResponse400, odemeEmriResponse401, odemeEmriResponse403, odemeEmriResponse404 } from './data-odeme-emri-V1.1.js';
+import { odemeEmriYenilemeBelirteci, ErisimBerliteciRequest, ErisimBelirteciResponse200, ErisimBelirteciResponse400, ErisimBelirteciResponse401, ErisimBelirteciResponse403, ErisimBelirteciResponse404 } from './data-odeme-emri-V1.1.js';
 import { odemeEmriRizaHeader, odemeEmriRizaResponseHeader } from './data-odeme-emri-V1.1.js'
 
 
@@ -200,7 +200,6 @@ export default {
             responseTabs: responseTabs,
             responseTabsOdemeEmriRizasi: responseTabsOdemeEmriRizasi,
             erisimBelirteciTabs: erisimBelirteciResponseTabs,
-            responseTabsOdemeEmri:responseTabsOdemeEmri,
             headerResponse: odemeEmriRizaResponseHeader,
             odemeEmriRizasiResponse: "",
             erisimBelirteciRequestHeader: odemeEmriErisimBelirteciHeader,
@@ -243,7 +242,7 @@ export default {
             this.selectedIndex = this.selectedIndex + 1;
         },
 
-        erisimBelirteciChangeTab(step) {
+        erisimBerliteciChangeTab(step) {
             
             switch (step) {
                 case 1:
@@ -253,11 +252,9 @@ export default {
                 case 3:
                     return this.erisimBelirteciResponseBody = JSON.stringify(ErisimBelirteciResponse401, null, 2);
                 case 4:
-                    return this.erisimBelirteciResponseBody = JSON.stringify(ErisimBelirteciResponse404, null, 2);
+                    return this.erisimBelirteciResponseBody = JSON.stringify(ErisimBelirteciResponse403, null, 2);
                 case 5:
-                    return this.erisimBelirteciResponseBody = JSON.stringify(ErisimBelirteciResponse503, null, 2);
-                case 6:
-                    return this.erisimBelirteciResponseBody = JSON.stringify(ErisimBelirteciResponse504, null, 2);
+                    return this.erisimBelirteciResponseBody = JSON.stringify(ErisimBelirteciResponse404, null, 2);
 
             }
         },
@@ -266,23 +263,16 @@ export default {
             
             switch (step) {
                 case 1:
-                    return this.odemeEmriResponseBody = JSON.stringify(OdemeEmriResponse201, null, 2);
+                    return this.odemeEmriResponseBody = JSON.stringify(odemeEmriResponse201, null, 2);
                 case 2:
-                    return this.odemeEmriResponseBody = JSON.stringify(OdemeEmriResponse400, null, 2);
+                    return this.odemeEmriResponseBody = JSON.stringify(odemeEmriResponse400, null, 2);
                 case 3:
-                    return this.odemeEmriResponseBody = JSON.stringify(OdemeEmriResponse401, null, 2);
+                    return this.odemeEmriResponseBody = JSON.stringify(odemeEmriResponse401, null, 2);
                 case 4:
-                    return this.odemeEmriResponseBody = JSON.stringify(OdemeEmriResponse403, null, 2);
+                    return this.odemeEmriResponseBody = JSON.stringify(odemeEmriResponse403, null, 2);
                 case 5:
-                    return this.odemeEmriResponseBody = JSON.stringify(OdemeEmriResponse408, null, 2);
-                case 6:
-                    return this.odemeEmriResponseBody = JSON.stringify(OdemeEmriResponse422, null, 2);
-                case 7:
-                    return this.odemeEmriResponseBody = JSON.stringify(OdemeEmriResponse500, null, 2);
-                case 8:
-                    return this.odemeEmriResponseBody = JSON.stringify(OdemeEmriResponse503, null, 2);
-                case 9:
-                    return this.odemeEmriResponseBody = JSON.stringify(OdemeEmriResponse504, null, 2);
+                    return this.odemeEmriResponseBody = JSON.stringify(odemeEmriResponse404, null, 2);
+
             }
         },
         changeTabs(step) {
@@ -309,7 +299,7 @@ export default {
         },
 
         odemeEmri() {
-            this.odemeEmriResponseBody = JSON.stringify(OdemeEmriResponse201, null, 2)
+            this.odemeEmriResponseBody = JSON.stringify(odemeEmriResponse201, null, 2)
         },
 
         odemeEmriTabsChanged: function (e) {
