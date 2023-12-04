@@ -36,28 +36,6 @@ export const mainTabs = [{
 
 
 ];
-export const responseTabs = [{
-    ID: 1,
-    Name: '201',
-    Color: 'black'
-}, {
-    ID: 2,
-    Name: "400",
-    Color: 'red'
-}, {
-    ID: 3,
-    Name: '401',
-    Color: 'red'
-}, {
-    ID: 4,
-    Name: '403',
-    Color: 'red'
-}, {
-    ID: 5,
-    Name: '404',
-    Color: 'red'
-}
-];
 export const responseTabsOdemeEmriRizasi = [{
   ID: 1,
   Name: '201',

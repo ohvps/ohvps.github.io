@@ -10,6 +10,13 @@
                     <div class="tabpanel-item">
                        
                         <div v-if="tab.ID === 1" style="width: 100%;">
+                            <div>
+                            Aşağıda HBHS'den başlatılan bir Hesap Bilgisi Rızası isteğinin sabit değerlerle nasıl çalıştığını,  "Hesap Bilgisi Rızası Al" butonuna basıldığında dönen başarılı ve başarısız yanıtları inceleyebilirsiniz.<br>
+                           Örnek akışta; <br>
+                           ÖHK, HBHS uygulamasında (web arayüzü/mobil uygulama) hesap bilgilerine erişim için talepte bulunur.<br>
+                            ÖBHS uygulaması Hesap Bilgisi Rızası API ile rıza isteğinde bulunur.İşlem başarı ile gerçekleştirildiğinde rıza durumu "Yetki Bekleniyor" durumuna getirilir.</br>
+                            <p></p> 
+                           </div>
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
                                     <Request title="Hesap Bilgisi Rızası İsteği" actionButtonText="Hesap Bilgisi Rızası Al" isGet="false"
@@ -19,19 +26,42 @@
                                 <div class="col" style="width: 50%;">
                                     <Response title="Hesap Bilgisi Rızası Yanıtı" :headers="headerResponse"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
-                                        @response-event="changeTabs" :body="hesapBilgisiRizasiResponse" :tabs="responseTabs" />
+                                        @response-event="changeTabs" :body="hesapBilgisiRizasiResponse" :tabs="responseTabsHBHRiza" />
                                 </div>
                             </div>
                         </div>
                         <div v-if="tab.ID === 2">
+                          <div>
+                                <p>Örnek akışta;</p>
+                                <p>ÖBHS uygulaması, başarılı hesap bilgisi rızası çağrımından sonra ÖHK'yı HHS uygulamasına yönlendirir. Burada Yönlendirmeli Güçlü Kimlik Doğrulama akışı örneklendirilmiştir.</p>
+                                <p>HHS, sisteminde ÖHK'yı yetkilendirilebilmek için kendi login akışını başlatır.</p>
+                                <p>HHS kendi iç servisleri ile akışı devam ettirir. ÖHVPS API çağrımı yapılmaz.</p>
+                                <p>Aşağıda, örnek bir HHS login ekranını inceleyebilirsiniz.</p>
+                            </div>
                            <Gkd  @process-event="nextStep" />
                         </div>
 
                         <div v-if="tab.ID === 3">
-                            <RizaOnay  @process-event="nextStep" />
+                               <div>
+                                <p>Örnek akışta;</p>
+                                <p> ÖHK, HHS uygulamasında rızanın detaylarını inceler ve hesap seçimi yapar.  </p>
+                                <p> HHS kendi iç servisleri ile akışı devam ettirir. ÖHVPS API çağrısı yapılmaz .</p>
+                                <p>ÖHK onayı alındığında, Rıza Durumu "Yetkilendirildi" durumuna gelir.</p>
+                                <p>HHS, akışa özel oluşturduğu "yetKod" parametresini YÖS'e iletir.</p>
+                            </div>
+                            <RizaOnayHesapBilgisi  @process-event="nextStep" />
                         </div>
 
                         <div v-if="tab.ID === 4" style="width: 100%;">
+                             <div>
+                                <p>Örnek akışta;</p>
+                                <p>YÖS, ÖHK adına işlem yapabilmek için, HHS'den erişim belirteci talep eder.
+                                Erişim belirteci alabilmek için rıza durumunun "Yetkilendirildi" olması ve "yetKod"
+                                    parametresinin HHS'ye iletilmesi gerekmektedir.
+                                Erişim belirteci başarı ile iletildiğinde rıza durumu "Yetki Kullanıldı" olarak
+                                    güncellenir.
+                                </p>
+                            </div>
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
                                     <Request title="Erişim Belirteci İsteği" actionButtonText="Erişim Belirteci Al" isGet="false"
@@ -39,19 +69,23 @@
                                         :headers="headerHesapBilgiRiza" @request-event="erisimBelirteci" />
                                 </div>
                                 <div class="col" style="width: 50%;">
-                                    <Response title="Erişim Belirteci  Yanıtı" :headers="headerResponse"
+                                    <Response title="Erişim Belirteci  Yanıtı" :headers="headerHesapBilgiRiza"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
-                                        @response-event="erisimBerliteciChangeTab" :body="erisimBelirteciResponseBody"  :tabs="erisimBelirteciTabs"/>
+                                        @response-event="erisimBelirteciChangeTab" :body="erisimBelirteciResponseBody"  :tabs="erisimBelirteciTabs"/>
                                 </div>
                             </div>
                         </div>
 
                         <div v-if="tab.ID === 5" style="width: 100%;">
+                            <div>
+                                <p>Rıza durumu "Yetki Kullanıldı " ise YÖS, ÖHK'ya ait hesap bilgilerini bu servis ile sorgular.
+                                    Servis parametre alarak, tek bir hesaba ait bilgileri dönebilirken, parametre almadığında tüm hesaplara ait bilgileri de dönebilir. </p>
+                            </div>
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
                                     <Request title="Hesaplar İsteği" actionButtonText="Hesaplar" isGet="true"
                                         path="/hesaplar" :requestBody="odemeEmriBody"
-                                        :headers="erisimBelirteciRequestHeader" @request-event="getHesaplar" />
+                                        :headers="requestHeadersAfterToken" @request-event="getHesaplar" />
                                 </div>
                                 <div class="col" style="width: 50%;">
                                     <Response title="Hesaplar Yanıtı" :headers="headerResponse"
@@ -101,14 +135,20 @@
                                 <div class="col" style="width: 50%;">
                                     <Response title="Yenileme Belirteci  Yanıtı" :headers="headerResponse"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
-                                        @response-event="erisimBerliteciChangeTab" :body="erisimBelirteciResponseBody"  :tabs="erisimBelirteciTabs"/>
+                                        @response-event="erisimBelirteciChangeTab" :body="erisimBelirteciResponseBody"  :tabs="erisimBelirteciTabs"/>
                                 </div>
                             </div>
                         </div>
 
                        
 
-                   
+                        <div v-if="tab.ID === 9">
+                            <DxScrollView id="scrollview" ref="scrollViewWidget" :height="1000"
+                                direction="both">
+                                <div id="swagger-ui-hbh"></div>
+                            </DxScrollView>
+                            <div id="swagger-ui-hbh"></div>
+                        </div>
                     </div>
 
                 </div>
@@ -124,14 +164,15 @@ import DxTabPanel, { DxItem } from 'devextreme-vue/tab-panel';
 import { DxScrollView } from 'devextreme-vue/scroll-view';
 
 import { mainTabs } from './data-hesap-bilgi-V1.1.js';
-import {responseTabs,erisimBelirteciResponseTabs} from './data-hesap-bilgi-V1.1.js';
+import {responseTabs,responseTabsHBHRiza, erisimBelirteciResponseTabs} from './data-hesap-bilgi-V1.1.js';
 import { odemeEmriErisimBelirteciHeader } from './data-hesap-bilgi-V1.1.js';
-import { HesapBilgisiRizasi201, HesapBilgisiRizasi400, HesapBilgisiRizasi401, HesapBilgisiRizasi403, HesapBilgisiRizasi404 } from './data-hesap-bilgi-V1.1.js';
+import { HesapBilgisiRizasi201, HesapBilgisiRizasi400, HesapBilgisiRizasi401, HesapBilgisiRizasi403, HesapBilgisiRizasi404, HesapBilgisiRizasi500, HesapBilgisiRizasi503, HesapBilgisiRizasi504 } from './data-hesap-bilgi-V1.1.js';
 import { hesapBilgisiRızasiRequest,HesaplarResponse200,HesaplarResponse400,HesaplarResponse401,HesaplarResponse403,HesaplarResponse404} from './data-hesap-bilgi-V1.1.js';
 import { BakiyeResponse200,BakiyeResponse400,BakiyeResponse401,BakiyeResponse403,BakiyeResponse404} from './data-hesap-bilgi-V1.1.js';
 import { IslemlerResponse200,IslemlerResponse400,IslemlerResponse401,IslemlerResponse403,IslemlerResponse404} from './data-hesap-bilgi-V1.1.js';
-import { odemeEmriYenilemeBelirteci,ErisimBerliteciRequest, ErisimBelirteciResponse200, ErisimBelirteciResponse400, ErisimBelirteciResponse401, ErisimBelirteciResponse403, ErisimBelirteciResponse404 } from './data-hesap-bilgi-V1.1.js';
-import { odemeEmriRizaHeader, odemeEmriRizaResponseHeader } from './data-hesap-bilgi-V1.1.js'
+import { odemeEmriYenilemeBelirteci,ErisimBelirteciRequest, ErisimBelirteciResponse200, ErisimBelirteciResponse400,ErisimBelirteciResponse401 ,  ErisimBelirteciResponse403,  ErisimBelirteciResponse404,  ErisimBelirteciResponse500 ,ErisimBelirteciResponse503,ErisimBelirteciResponse504} from './data-hesap-bilgi-V1.1.js';
+import { hesapBilgisiRizaHeader, hesapBilgisiRizaResponseHeader,YenilemeBelirteciResponse401 } from './data-hesap-bilgi-V1.1.js'
+import { requestHeadersAfterToken } from './data-hesap-bilgi-V1.1.js'
 
 
 import '../public/assets/swagger-ui/swagger-ui.css'
@@ -139,7 +180,7 @@ import SwaggerUI from '../public/assets/swagger-ui/swagger-ui-es-bundle.js'
 import SwaggerUIStandalonePreset from '../public/assets/swagger-ui/swagger-ui-standalone-preset.js'
 
 import 'devextreme/dist/css/dx.light.css';
-const dataSource = odemeEmriRizaHeader;
+const dataSource = hesapBilgisiRizaHeader;
 export default {
     components: {
         DxTabPanel,
@@ -156,19 +197,21 @@ export default {
             swipeEnabled: true,
             mainTabs: mainTabs,
             responseTabs: responseTabs,
+            responseTabsHBHRiza: responseTabsHBHRiza,
             erisimBelirteciTabs: erisimBelirteciResponseTabs,
-            headerResponse: odemeEmriRizaResponseHeader,
+            headerResponse: hesapBilgisiRizaResponseHeader,
             hesapBilgisiRizasiResponse: "",
             erisimBelirteciRequestHeader: odemeEmriErisimBelirteciHeader,
-            erisimBelirteciBody: JSON.stringify(ErisimBerliteciRequest, null, 2),
+            erisimBelirteciBody: JSON.stringify(ErisimBelirteciRequest, null, 2),
             erisimBelirteciResponseBody: "",
             yenilemeBelirteci: JSON.stringify(odemeEmriYenilemeBelirteci,null,2),
             odemeEmriBody:JSON.stringify(null,null,2),
             hesaplarResponseBody:"",
             hesapBilgisiRequestBody: JSON.stringify(hesapBilgisiRızasiRequest, null, 2),
-            headerHesapBilgiRiza: odemeEmriRizaHeader,
+            headerHesapBilgiRiza: hesapBilgisiRizaHeader,
             bakiyeResponse:"",
-            islemlerResponse:""
+            islemlerResponse:"",
+            requestHeadersAfterToken:requestHeadersAfterToken
             
         };
     },
@@ -197,9 +240,9 @@ export default {
             this.selectedIndex = this.selectedIndex + 1;
         },
 
-        erisimBerliteciChangeTab(step) {
+        erisimBelirteciChangeTab(step) {
             
-            switch (step) {
+          switch (step) {
                 case 1:
                     return this.erisimBelirteciResponseBody = JSON.stringify(ErisimBelirteciResponse200, null, 2);
                 case 2:
@@ -210,7 +253,12 @@ export default {
                     return this.erisimBelirteciResponseBody = JSON.stringify(ErisimBelirteciResponse403, null, 2);
                 case 5:
                     return this.erisimBelirteciResponseBody = JSON.stringify(ErisimBelirteciResponse404, null, 2);
-
+                case 6:
+                    return this.erisimBelirteciResponseBody = JSON.stringify(ErisimBelirteciResponse500, null, 2);
+                case 7:
+                    return this.erisimBelirteciResponseBody = JSON.stringify(ErisimBelirteciResponse503, null, 2);
+                case 8:
+                    return this.erisimBelirteciResponseBody = JSON.stringify(ErisimBelirteciResponse504, null, 2);
             }
         },
 
@@ -277,7 +325,12 @@ export default {
                     return this.hesapBilgisiRizasiResponse = JSON.stringify(HesapBilgisiRizasi403, null, 2);
                 case 5:
                     return this.hesapBilgisiRizasiResponse = JSON.stringify(HesapBilgisiRizasi404, null, 2);
-
+                case 6:
+                    return this.hesapBilgisiRizasiResponse = JSON.stringify(HesapBilgisiRizasi500, null, 2);
+                case 7:
+                    return this.hesapBilgisiRizasiResponse = JSON.stringify(HesapBilgisiRizasi503, null, 2);
+                case 8:
+                    return this.hesapBilgisiRizasiResponse = JSON.stringify(HesapBilgisiRizasi504, null, 2);                    
             }
         },
 

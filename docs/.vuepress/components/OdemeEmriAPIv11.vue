@@ -135,6 +135,9 @@
                         </div>
 
                         <div v-if="tab.ID === 7" style="width: 100%;">
+                          <div>                                
+                                <p>Ödeme durumunu takip etmek isteyen YÖS tarafından yapılan sorgulamadır. </p>
+                            </div>
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
                                     <Request title="Ödeme Emri Sorgulama" actionButtonText="Ödeme Emri Sorgula" isGet="true"
@@ -168,7 +171,7 @@ import DxTabPanel from 'devextreme-vue/tab-panel';
 import { DxScrollView } from 'devextreme-vue/scroll-view';
 
 import { mainTabs } from './data-odeme-emri-V1.1.js';
-import { responseTabs, erisimBelirteciResponseTabs, responseTabsOdemeEmriRizasi , responseTabsOdemeEmri, responseTabsOdemeEmriSorgulama} from './data-odeme-emri-V1.1.js';
+import { erisimBelirteciResponseTabs, responseTabsOdemeEmriRizasi , responseTabsOdemeEmri, responseTabsOdemeEmriSorgulama} from './data-odeme-emri-V1.1.js';
 import { odemeEmriErisimBelirteciHeader } from './data-odeme-emri-V1.1.js';
 import { OdemeEmriRızasiRequest, OdemeEmriRizasi201, OdemeEmriRizasi400, OdemeEmriRizasi401, OdemeEmriRizasi403, OdemeEmriRizasi404,OdemeEmriRizasi500,OdemeEmriRizasi503,OdemeEmriRizasi504 } from './data-odeme-emri-V1.1.js';
 import { OdemeEmriRequestBody, OdemeEmriResponse201, OdemeEmriResponse400, OdemeEmriResponse401, OdemeEmriResponse403, OdemeEmriResponse404 , OdemeEmriResponse500 , OdemeEmriResponse503, OdemeEmriResponse504   } from './data-odeme-emri-V1.1.js';
@@ -199,8 +202,7 @@ export default {
             loop: false,
             animationEnabled: true,
             swipeEnabled: true,
-            odemeEmriTabs: mainTabs,
-            responseTabs: responseTabs,
+            odemeEmriTabs: mainTabs,    
             responseTabsOdemeEmriRizasi: responseTabsOdemeEmriRizasi,
             erisimBelirteciTabs: erisimBelirteciResponseTabs,
             responseTabsOdemeEmri:responseTabsOdemeEmri,
