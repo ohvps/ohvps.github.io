@@ -34,7 +34,7 @@
                                 <div class="col" style="width: 50%;">
                                     <Response title="Ödeme Emri Rızası Yanıtı" :headers="headerResponse"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
-                                        @response-event="changeTabs" :body="odemeEmriRizasiResponse" :tabs="responseTabsOdemeEmriRizasi" />
+                                        @response-event="changeTabs" :body="odemeEmriRizasiResponse" :tabs="responseTabsOdemeEmriRizasi" nextButtonVisible="true" />
                                 </div>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                                     <Response title="Erişim Belirteci  Yanıtı" :headers="headerResponse"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
                                         @response-event="erisimBelirteciChangeTab" :body="erisimBelirteciResponseBody"
-                                        :tabs="erisimBelirteciTabs" />
+                                        :tabs="erisimBelirteciTabs" nextButtonVisible="true"/>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                                 <div class="col" style="width: 50%;">
                                     <Response title="Ödeme Emri Yanıtı" :headers="headerResponse" @process-event="nextStep"
                                         actionButtonText="Bir Sonraki İşlem" @response-event="odemeEmriChangeTab"
-                                        :body="odemeEmriResponseBody" :tabs="responseTabsOdemeEmri" />
+                                        :body="odemeEmriResponseBody" :tabs="responseTabsOdemeEmri" nextButtonVisible="true"/>
                                 </div>
                             </div>
                         </div>
@@ -129,7 +129,7 @@
                                     <Response title="Yenileme Belirteci  Yanıtı" :headers="headerResponse"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
                                         @response-event="yenilemeBelirteciChangeTab" :body="erisimBelirteciResponseBody"
-                                        :tabs="erisimBelirteciTabs" />
+                                        :tabs="erisimBelirteciTabs" nextButtonVisible="true" />
                                 </div>
                             </div>
                         </div>
@@ -148,7 +148,7 @@
                                     <Response title="Ödeme Emri Sorgulama Yanıtı" :headers="headerResponse"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
                                         @response-event="odemeEmriSorgulamaChangeTab" :body="odemeEmriResponseBody"
-                                        :tabs="responseTabsOdemeEmriSorgulama" />
+                                        :tabs="responseTabsOdemeEmriSorgulama" nextButtonVisible="false"/>
                                 </div>
                             </div>
                         </div>

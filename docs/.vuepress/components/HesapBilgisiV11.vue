@@ -26,7 +26,7 @@
                                 <div class="col" style="width: 50%;">
                                     <Response title="Hesap Bilgisi Rızası Yanıtı" :headers="headerResponse"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
-                                        @response-event="changeTabs" :body="hesapBilgisiRizasiResponse" :tabs="responseTabsHBHRiza" />
+                                        @response-event="changeTabs" :body="hesapBilgisiRizasiResponse" :tabs="responseTabsHBHRiza" nextButtonVisible="true" />
                                 </div>
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                                 <div class="col" style="width: 50%;">
                                     <Response title="Erişim Belirteci  Yanıtı" :headers="headerHesapBilgiRiza"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
-                                        @response-event="erisimBelirteciChangeTab" :body="erisimBelirteciResponseBody"  :tabs="erisimBelirteciTabs"/>
+                                        @response-event="erisimBelirteciChangeTab" :body="erisimBelirteciResponseBody"  :tabs="erisimBelirteciTabs" nextButtonVisible="true"/>
                                 </div>
                             </div>
                         </div>
@@ -90,7 +90,7 @@
                                 <div class="col" style="width: 50%;">
                                     <Response title="Hesaplar Yanıtı" :headers="headerResponse"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
-                                        @response-event="hesaplarChangeTab" :body="hesaplarResponseBody"  :tabs="erisimBelirteciTabs"/>
+                                        @response-event="hesaplarChangeTab" :body="hesaplarResponseBody"  :tabs="erisimBelirteciTabs" nextButtonVisible="true"/>
                                 </div>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                                 <div class="col" style="width: 50%;">
                                     <Response title="Bakiye Yanıtı" :headers="headerResponse"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
-                                        @response-event="bakiyeChangeTab" :body="bakiyeResponse"  :tabs="erisimBelirteciTabs"/>
+                                        @response-event="bakiyeChangeTab" :body="bakiyeResponse"  :tabs="erisimBelirteciTabs" nextButtonVisible="true"/>
                                 </div>
                             </div>
                         </div>
@@ -120,7 +120,7 @@
                                 <div class="col" style="width: 50%;">
                                     <Response title="İşlemler Yanıtı" :headers="headerResponse"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
-                                        @response-event="islemlerChangeTab" :body="islemlerResponse"  :tabs="erisimBelirteciTabs"/>
+                                        @response-event="islemlerChangeTab" :body="islemlerResponse"  :tabs="erisimBelirteciTabs" nextButtonVisible="true"/>
                                 </div>
                             </div>
                         </div>
@@ -135,7 +135,7 @@
                                 <div class="col" style="width: 50%;">
                                     <Response title="Yenileme Belirteci  Yanıtı" :headers="headerResponse"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
-                                        @response-event="erisimBelirteciChangeTab" :body="erisimBelirteciResponseBody"  :tabs="erisimBelirteciTabs"/>
+                                        @response-event="erisimBelirteciChangeTab" :body="erisimBelirteciResponseBody"  :tabs="erisimBelirteciTabs" nextButtonVisible="false"/>
                                 </div>
                             </div>
                         </div>

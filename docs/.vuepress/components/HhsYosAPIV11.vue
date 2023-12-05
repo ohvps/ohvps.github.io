@@ -22,7 +22,7 @@
                                 <div class="col" style="width: 50%;">
                                     <Response title="HHS Yanıtı" :headers="responseHeaders"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
-                                        @response-event="oasChangeTabs" :body="oasResponse" :tabs="responseTabs" />
+                                        @response-event="oasChangeTabs" :body="oasResponse" :tabs="responseTabs"  nextButtonVisible="true"/>
                                 </div>
                             </div>
                         </div>
@@ -36,7 +36,7 @@
                                 <div class="col" style="width: 50%;">
                                     <Response title="YÖS Yanıtı" :headers="responseHeaders"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
-                                        @response-event="odsChangeTabs" :body="odsResponse" :tabs="responseTabsOds" />
+                                        @response-event="odsChangeTabs" :body="odsResponse" :tabs="responseTabsOds" nextButtonVisible="false"/>
                                 </div>
                             </div>
                         </div>

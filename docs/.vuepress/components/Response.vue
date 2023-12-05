@@ -31,7 +31,7 @@
                 </template>
             </DxTabPanel>
 
-            <div style="margin-top: 40px;text-align: right;">
+            <div style="margin-top: 40px;text-align: right;"  v-if="nextButtonVisible == 'true'">
                 <ProcessButton content="Bir Sonraki İşlem" @process-event="nextStep" />
             </div>
 
@@ -46,7 +46,7 @@ import { defineComponent } from 'vue'
 import DxTabPanel, { DxItem } from 'devextreme-vue/tab-panel';
 export default defineComponent({
     name: 'Response',
-    props: ['title', 'headers', 'body', 'actionButtonText','tabs'],
+    props: ['title', 'headers', 'body', 'actionButtonText','tabs','nextButtonVisible'],
    
     methods: {
         callParentMethod() {
