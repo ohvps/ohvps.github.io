@@ -557,19 +557,3 @@ srlmYon=A
 |>>> Karşı Maskeli IBAN	|krsMskIBAN	|AN26	|K	|İlgili hesap hareketinin karşı tarafının maskeli IBAN bilgisi.|
 |>>> Karşı Unvan|	krsMskUnvan	|AN3..140|	K	|İlgili hesap hareketinin karşı tarafının ad-soyad ya da ticari unvan bilgisi.|
 
-
-
-## 7.9	Healthcheck API
-
-GET /health
-
-HHS’lerin sunacağı bu servis, düzenli olarak BKM tarafından çağırılarak servislerin ayakta olup olmadıklarının kontrolünün sağlanması planlanmaktadır
-
-Başarılı yanıtta Http 200 kodu dönülmelidir.  
-
-### Başarılı Yanıt:
-
-
-| Alan Adı | JSON Alan Adı |Format: Veri modeli İsmi  |Zorunlu / Koşullu / İsteğe bağlı |Açıklama |
-| --- |--- |--- |--- |--- |
-| status | status |AN2..20 | Z | “UP”, “DOWN” değerlerini alabilir |

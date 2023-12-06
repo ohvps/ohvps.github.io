@@ -116,16 +116,3 @@ YÖS API Tablo 20’deki istek parametrelerine göre sorgulanabilir.
 | > logoFormat | logoFormat | AN3 | Z | TR.OHVPS.DataCode.LogoFormat sıralı veri türü değerlerlerinden birini alır. | 
 | Durum | durum | AN1 | Z |YÖS'ün durum bilgisidir.<br> TR.OHVPS.DataCode.YOSDurumu sıralı veri tipinde alabileceği değerler belirtilmiştir.| 
 
-## Healthcheck API
-
-GET /health
-
-HHS ve YÖS API için health servisleri aşağıdaki servislerle kontrol edilebilir.
-
- Başarılı yanıtta Http 200 kodu dönülecektir
- Başarılı Yanıt:
-
-    
-| Alan Adı | JSON Alan Adı |Format: Veri modeli İsmi  |Zorunlu / Koşullu / İsteğe bağlı |Açıklama |
-| --- |--- |--- |--- |--- |
-| status | status |AN2..20 | Z | “UP”, “DOWN” değerlerini alabilir |

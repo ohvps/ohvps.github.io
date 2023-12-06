@@ -822,29 +822,6 @@ Maskeli olarak iletilmesi gereken verilerin maskeleme kuralları şu şekildedir
 
 - HHS'ler, çağrım limitlerini aşan istekler için HTTP 429 - Too Many Request hatasını dönmelidir. Örnek hata mesajı **3.18 HTTP Durum Kodları** bölümünde bulunmaktadır. Rate Limit özelinde tanımlanmış parametreler olan X-RateLimit-Limit, X-RateLimit-Remaining ve X-RateLimit-Reset alanları da  **3.16 Yanıt Başlığı** bölümünde açıklanmıştır. YÖS'ler de HHS'nin belirlediği rate limit kurallarına uymakla yükümlüdür. 
 
-- HHS’ler aynı zamanda servislerin ayakta olup olmadığına yönelik olarak bir healthcheck servisi kurmalıdır.  HHS’lerin bu servis ile tüm network ve veritabanı ya da servislerinin ihtiyaç duydukları altyapısal erişimleri modellemeli ve bu servisi BKM ile paylaşmaları beklenmektedir. Bu servis düzenli olarak BKM tarafından çağırılarak servislerin ayakta olup olmadıklarının kontrolünün sağlanması planlanmaktadır.  
-
-Sunulan her API için /health endpointi ile aşağıdaki bilgileri vermeleri beklenmektedir.     
-
-[GET /{api ismi}/{versiyon}/health]()
-
-**Örnek:**  
-[GET /obh/s1.0/health]()  
-[GET /hbh/s1.0/health]()  
-[GET /gkd/s1.0/health]()  
-
-HHS ve YÖS API için health servisleri aşağıdaki servislerle kontrol edilebilir.
-
-[GET /hhs-api/s1.0/health]()  
-[GET /yos-api/s1.0/health]()  
-
-
-Başarılı yanıtta Http 200 kodu dönülmelidir.  
-Başarılı Yanıt:
-|Alan Adı|	JSON Alan Adı|	Format	|Koşullu  / İsteğe Bağlı|	Açıklama|
-| --- | --- | --- | --- | --- |
-|status | 	status |  	AN2..20	 | Z | 	“UP”, “DOWN” değerlerini alabilir.|
-
 
 ## 3.21. Otomatik Sorgular
 

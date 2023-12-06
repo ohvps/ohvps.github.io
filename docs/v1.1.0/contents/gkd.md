@@ -223,22 +223,8 @@ CSRF Ataklarından korunmak için ve YÖS uygulamasının bir önceki durumunu r
 
 Durum kodu, rıza isteğindeki yönlendirme adresine parametre olarak eklenir.  GKD süreci sonrasında yetki kodu ile birlikte bu bilgi, HHS tarafından YÖS’e iletilir. YÖS sakladığı değer ile parametre olarak gelen değerin eşitliğini kontrol eder. Aynı ise erişim belirteci almak üzere akışı ilerletir. Farklı ise işlemi keser. 
 
-## 5.4	Healthcheck API  
 
-**GET /health**
-
-HHS’lerin sunacağı bu servis, düzenli olarak BKM tarafından çağırılarak servislerin ayakta olup olmadıklarının kontrolünün sağlanması planlanmaktadır.
-
-Başarılı yanıtta Http 200 kodu dönülmelidir.  
-Başarılı Yanıt:
-
-
-|Alan Adı |JSON Alan Adı |Format |Koşullu  / İsteğe Bağlı|Açıklama|
-| --- | --- | --- | --- |--- |
-| status | status | AN2..20 | Z |“UP”, “DOWN” değerlerini alabilir.|
-
-
-## 5.5  Güçlü Kimlik Doğrulama Kontrolleri 
+## 5.4  Güçlü Kimlik Doğrulama Kontrolleri 
 
 ÖHK, GKD için HHS uygulamasına yönlendirildiğinde, HHS’nin çeşitli kontroller yaparak işlemin doğruluğunu teyit etmesi gerekmektedir.
 Yapılması gereken kontrollere ait temel senaryolar aşağıdaki tabloda belirtilmiştir. Bu senaryolar baz alınarak HHS’ler tarafından zenginleştirilebilir.   

@@ -137,9 +137,6 @@ Kişiden kişiye para transferi akışı örneği: QR veya diğer yöntemler ile
 | **>> Ödeme Amacı** |  odmAmc   |   AN2  | Z  |  **TR.OHVPS.DataCode.OdemeAmaci** sıralı veri değerlerinden birini alır. Karekod akışında, FAST Karekod Veri Organizasyonundaki 62-08: alanında tanımlı Ödeme Amacı verisi kullanılır. | HHS geçerli bir Ödeme Amacı kodu olduğunu kontrol eder. |
 | **>> Referans Bilgisi**	|  refBlg   |  AN1..140   | K  |  Ödemeye özel **Referans Bilgisi** alanıdır. Karekod işlemi değil ise zorunludur.<br> -	Kişiden kişiye fon aktarımlarında: Gün içerisinde ÖHK özelinde, her işleme özel biricik olarak oluşturulan referans bilgisidir. <br>Karekod P2P akışı için referans bilgisi (Karekod referans numarası değil, işleme özel üretilecek referans bilgisidir.) YÖS tarafından atanacaktır. <br> -	E-ticaret işlemlerinde sipariş/takip numarası/müşteri/abone numarası<br> -	İşyeri Ödemesi Karekod akışında, FAST Karekod Veri Organizasyonundaki<br> -	62-01: alanında tanımlı Fatura Numarası <br> -	62-06: alanında tanımlı Müşteri Numarası <br> verilerinden biri kullanılır. | YÖS bu değeri ÖHK’yı HHS’ye yönlendirmeden önceki ekranda göstermeli, ve HHS bu değeri GKD için kullandığı önyüzünde “işlem doğrulama kodunun” bir unsuru olarak yine ÖHK’ya göstermelidir.  |
 | **>> Açıklama**	|  odmAcklm   | AN1..200    | K  | ÖBHS’nin ÖHK’dan aldığı ya da kendisinin atadığı işlem açıklaması bilgisi. <br> FAST/PÖS sistemi üzerinden yapılan ödemeler için en az 1 alfasayısal karakter girilmesi zorunludur.<br>  |  |
-| **> ÖBHS Masraf Tutarı**	 |  obhsMsrfTtr   |   Kompleks:Tutar  | İ  | API İlke ve Kuralları 1.0 sürümünde bu nesnenin API deseninde gönderilmemesi gerekmektedir.  |  |
-| **>> Para Birimi** |   prBrm  |  AN3   | Z  | Para birimi (TRY, USD, EUR vb.).   |  |
-| **>> Tutar**|  ttr   | AN1..24   |  Z | ÖBHS’nin işlemle ilgili ÖHK’nın borçlandırılmasını belirttiği masraf tutarı. İşlem Tutarı ile aynı para biriminde olmalıdır. <br> Tutar alanı regex patterni şu şekildedir: '^\d{1,18}$\|^\d{1,18}\\.\d{1,5}$'  |  |
 | **İşyeri Ödeme Bilgileri**	|  isyOdmBlg   | Kompleks:IsyeriOdemeBilgileri  | İ  |  İşyeri ödemelerinde kullanılabilecek alanlardır. Karekodlu işyeri ödemesi akışında bu alanlar dolu geldiği için isteğe bağlı olarak gönderilebilir. isyOdmBlg alanlarının en az birinin dolu olması durumunda istekte yer alır.<br> İşyeri Ödeme Bilgileri, YÖS uygulama önyüzünde ÖHK’nın bildiği ve girişi yapılması beklenen bir bilgi olmamalıdır. YÖS tarafından sistemsel olarak doldurulması gereklidir.  | |
 | **> İşyeri Kategori Kodu** |   isyKtgKod  | AN4    |İ   | İşlemin, ISO 18245:2003 uyumlu İşyeri Kategori Kodudur (Merchant Category Code, MCC). Ödeme Amacı = ‘06’ ya da ‘04’ olan ödeme işlemleri için doldurulabilir. <br>4 karakterden küçük değerlerin başına 0 eklenerek iletilmesi gereklidir. |  |
 | **> Alt İşyeri Kategori Kodu** |   altIsyKtgKod  |   AN4  | İ  | İşlem alt işyerinden gerçekleştiriliyorsa, ISO 18245:2003 uyumlu İşyeri Kategori Kodudur (Merchant Category Code, MCC).<br>4 karakterden küçük değerlerin başına 0 eklenerek iletilmesi gereklidir. |  |
@@ -209,12 +206,6 @@ POST işleminin RESPONSE gövdesini (BODY) oluşturan “OdemeEmriRizasi” nesn
 | **>> ÖHK Mesaj Alanı**	|  ohkMsj   | AN1..200    | İ  | HHS’nin ÖHK’ya göstermek üzere ilettiği mesaj.|
 | **>> Ödeme Sistemi**	|  odmStm   | AN1    | Z  | **TR.OHVPS.DataCode.OdemeSistemi** sıralı veri değerlerinden birini alır. |
 | **>> Beklenen Ödeme Zamanı**	|  bekOdmZmn   | ISODateTime   | K  | İşlemin yönlendirildiği ödeme sistemi PÖS ise ve PÖS işlem saatleri dışında ise işlemin yapılabileceği ilk zaman bilgisidir. Bu alan ileri vadeli ödemeler için düşünülmüştür. İlk fazda doldurulmasına gerek olmadığı düşünülmektedir.|
-| **> ÖBHS Masraf Tutarı**	 |  obhsMsrfTtr   |   Kompleks:Tutar  | İ  | API İlke ve Kuralları 1.0 sürümünde bu nesnenin API deseninde gönderilmemesi gerekmektedir. |
-| **>> Para Birimi** | prBrm  | AN3   | Z  | Para birimi (TRY, USD, EUR vb.).    |
-| **>> Tutar**| ttr  | AN1..24   |  Z | ÖBHS’nin işlemle ilgili ÖHK’nın borçlandırılmasını belirttiği masraf tutarı. İşlem Tutarı ile aynı para biriminde olmalıdır. <br> Tutar alanı regex patterni şu şekildedir: '^\d{1,18}$\|^\d{1,18}\\.\d{1,5}$' |
-| **> HHS Masraf Tutarı**	 |  hhsMsrfTtr   |   Kompleks:Tutar  | İ  | API İlke ve Kuralları 1.0 sürümünde bu nesnenin API deseninde gönderilmemesi gerekmektedir. |
-| **>> Para Birimi** | prBrm  | AN3   | Z  | Para birimi (TRY, USD, EUR vb.).    |
-| **>> Tutar**| ttr  | AN1..24   |  Z | HHS’nin işlemle ilgili ÖHK’nın borçlandırılmasını belirttiği masraf tutarı. İşlem Tutarı ile aynı para biriminde olmalıdır. <br> Tutar alanı regex patterni şu şekildedir: '^\d{1,18}$\|^\d{1,18}\\.\d{1,5}$' |
 | **İşyeri Ödeme Bilgileri**	|  isyOdmBlg   | Kompleks:IsyeriOdemeBilgileri  | İ  |  İşyeri ödemelerinde kullanılabilecek alanlardır. Karekodlu işyeri ödemesi akışında bu alanlar dolu geldiği için isteğe bağlı olarak gönderilebilir. isyOdmBlg alanlarının en az birinin dolu olması durumunda yanıtta yer alır.  |
 | **> İşyeri Kategori Kodu** |   isyKtgKod  | AN4    |İ   | İşlemin, ISO 18245:2003 uyumlu İşyeri Kategori Kodudur (Merchant Category Code, MCC). Ödeme Amacı = ‘06’ ya da ‘04’ olan ödeme işlemleri için doldurulabilir.  |
 | **> Alt İşyeri Kategori Kodu** |   altIsyKtgKod  |   AN4  | İ  | İşlem alt işyerinden gerçekleştiriliyorsa, ISO 18245:2003 uyumlu İşyeri Kategori Kodudur (Merchant Category Code, MCC).  |
@@ -383,12 +374,6 @@ Gönderen Hesap Bilgisinin, ADIM 2 (Ödeme Emri Rızasının Yetkilendirilmesi) 
 | **>> ÖHK Mesaj Alanı**	|  ohkMsj   | AN1..200    | İ  | HHS’nin ÖHK’ya göstermek üzere ilettiği mesaj.| | |
 | **>> Ödeme Sistemi**	|  odmStm   | AN1    | Z  | **TR.OHVPS.DataCode.OdemeSistemi** sıralı veri değerlerinden birini alır. |Ödeme Emri Rizası Nesnesindeki Ödeme Sistemi verisi ile aynı olmalıdır. | |
 | **>> Beklenen Ödeme Zamanı**	|  bekOdmZmn   | ISODateTime   | K  | İşlemin yönlendirildiği ödeme sistemi PÖS ise ve PÖS işlem saatleri dışında ise işlemin yapılabileceği ilk zaman bilgisi| | |
-| **> ÖBHS Masraf Tutarı**	 |  obhsMsrfTtr   |   Kompleks:Tutar  | İ  | API İlke ve Kuralları 1.0 sürümünde bu nesnenin API deseninde gönderilmemesi gerekmektedir.  | | |
-| **>> Para Birimi** | prBrm  | AN3   | Z  | Para birimi (TRY, USD, EUR vb.).| Ödeme Emri Rizası Nesnesindeki ÖBHS Masraf Para Birimi verisi ile aynı olmalıdır.| |
-| **>> Tutar**| ttr  | AN1..24   |  Z | ÖBHS’nin işlemle ilgili ÖHK’nın borçlandırılmasını belirttiği masraf tutarı. İşlem Tutarı ile aynı para biriminde olmalıdır. <br> Tutar alanı regex patterni şu şekildedir: '^\d{1,18}$\|^\d{1,18}\\.\d{1,5}$' |Ödeme Emri Rizası Nesnesindeki ÖBHS Masraf Tutarı verisi ile aynı olmalıdır. | |
-| **> HHS Masraf Tutarı**	 |  hhsMsrfTtr   |   Kompleks:Tutar  | İ  | API İlke ve Kuralları 1.0 sürümünde bu nesnenin API deseninde gönderilmemesi gerekmektedir. | | |
-| **>> Para Birimi** | prBrm  | AN3   | Z  | Para birimi (TRY, USD, EUR vb.).    |Ödeme Emri Rizası Nesnesindeki HHS Masraf Para Birimi verisi ile aynı olmalıdır. | |
-| **>> Tutar**| ttr  | AN1..24  |  Z | HHS’nin işlemle ilgili ÖHK’nın borçlandırılmasını belirttiği masraf tutarı. İşlem Tutarı ile aynı para biriminde olmalıdır. <br> Tutar alanı regex patterni şu şekildedir: '^\d{1,18}$\|^\d{1,18}\\.\d{1,5}$'| Ödeme Emri Rizası Nesnesindeki HHS Masraf Tutarı verisi ile aynı olmalıdır.| |
 | **İşyeri Ödeme Bilgileri**	|  isyOdmBlg   | Kompleks:IsyeriOdemeBilgileri  | İ  |  İşyeri ödemelerinde kullanılabilecek alanlardır. Karekodlu işyeri ödemesi akışında bu alanlar dolu geldiği için isteğe bağlı olarak gönderilebilir. isyOdmBlg alanlarının en az birinin dolu olması durumunda istekte yer alır. <br>İşyeri Ödeme Bilgileri, YÖS uygulama önyüzünde ÖHK’nın bildiği ve girişi yapılması beklenen bir bilgi olmamalıdır. YÖS tarafından sistemsel olarak doldurulması gereklidir. | | |
 | **> İşyeri Kategori Kodu** |   isyKtgKod  | AN4    |İ   | İşlemin, ISO 18245:2003 uyumlu İşyeri Kategori Kodudur (Merchant Category Code, MCC). Ödeme Amacı = ‘06’ ya da ‘04’ olan ödeme işlemleri için doldurulabilir.<br>4 karakterden küçük değerlerin başına 0 eklenerek iletilmesi gereklidir.  | | |
 | **> Alt İşyeri Kategori Kodu** |   altIsyKtgKod  |   AN4  | İ  | İşlem alt işyerinden gerçekleştiriliyorsa, ISO 18245:2003 uyumlu İşyeri Kategori Kodudur (Merchant Category Code, MCC).<br>4 karakterden küçük değerlerin başına 0 eklenerek iletilmesi gereklidir.  | | |
@@ -458,12 +443,6 @@ POST işleminin RESPONSE gövdesini (BODY) oluşturan “OdemeEmri” nesnesi Ta
 | **>> Ödeme Sistemi**	|  odmStm   | AN1    | Z  | **TR.OHVPS.DataCode.OdemeSistemi** sıralı veri değerlerinden birini alır. |
 | **>> Ödeme Sistem Numarası**	|  odmStmNo   | AN10..50    | K  | Ödeme başarılı başlatıldıysa, ödemenin başlatıldığı sistemdeki referans numarası. Gerektiğinde ilgili ödeme sisteminde/HHS’de söz konusu ödemeye karşılık gelen mesajla bağlantı kurmada kullanılır. <br> Ödeme Hizmeti kullanıcısına işlemin takibi için gösterilebilir. <br>İşlemin yönlendirildiği ödeme sistemi FAST ya da PÖS ise sistemdeki ilgili mesajın Tarih, GönderenKatilimKodu ve SorguNumarasi değerlerinin birleşiminden oluşur. Bu 3 alan mevcutta kullanıldığı formatta aralarına dikey çizgi (Unicode U+2223) işareti koyularak, birleştirmeli ve iletilmelidir. Örn : Tarih\|GönderenKatilimKodu\|SorguNumarasi  <br>Ödeme Havale/Virman işlemi ise HHS’nin üretmiş olduğu havale/virman numarasını içerir. Buradaki format da Tarih\|GönderenKatilimKodu\|Havale-virman numarası şeklinde olmalıdır.<br>Havale/FAST/PÖS  ödeme yöntemleri için tarih alanı yyyy-aa-gg formatında 10 karakter olarak iletilmelidir. |
 | **>> Beklenen Ödeme Zamanı**	|  bekOdmZmn   | ISODateTime   | K  | İşlemin yönlendirildiği ödeme sistemi PÖS ise ve PÖS işlem saatleri dışında ise işlemin yapılabileceği ilk zaman bilgisi|
-| **> ÖBHS Masraf Tutarı**	 |  obhsMsrfTtr   |   Kompleks:Tutar  | İ  | API İlke ve Kuralları 1.0 sürümünde bu nesnenin API deseninde gönderilmemesi gerekmektedir. |
-| **>> Para Birimi** | prBrm  | AN3   | Z  | Para birimi (TRY, USD, EUR vb.).|
-| **>> Tutar**| ttr  | AN1..24   |  Z | ÖBHS’nin işlemle ilgili ÖHK’nın borçlandırılmasını belirttiği masraf tutarı. İşlem Tutarı ile aynı para biriminde olmalıdır. <br> Tutar alanı regex patterni şu şekildedir: '^\d{1,18}$\|^\d{1,18}\\.\d{1,5}$' |
-| **> HHS Masraf Tutarı**	 |  hhsMsrfTtr   |   Kompleks:Tutar  | İ  | API İlke ve Kuralları 1.0 sürümünde bu nesnenin API deseninde gönderilmemesi gerekmektedir. |
-| **>> Para Birimi** | prBrm  | AN3   | Z  | Para birimi (TRY, USD, EUR vb.).    |
-| **>> Tutar**| ttr  | AN1..24   |  Z | HHS’nin işlemle ilgili ÖHK’nın borçlandırılmasını belirttiği masraf tutarı. İşlem Tutarı ile aynı para biriminde olmalıdır. <br> Tutar alanı regex patterni şu şekildedir: '^\d{1,18}$\|^\d{1,18}\\.\d{1,5}$' | 
 | **İşyeri Ödeme Bilgileri**	|  isyOdmBlg   | Kompleks:IsyeriOdemeBilgileri  | İ  |  İşyeri ödemelerinde kullanılabilecek alanlardır. Karekodlu işyeri ödemesi akışında bu alanlar dolu geldiği için isteğe bağlı olarak gönderilebilir. isyOdmBlg alanlarının en az birinin dolu olması durumunda yanıtta yer alır.  | 
 | **> İşyeri Kategori Kodu** |   isyKtgKod  | AN4    |İ   | İşlemin, ISO 18245:2003 uyumlu İşyeri Kategori Kodudur (Merchant Category Code, MCC). Ödeme Amacı = ‘06’ ya da ‘04’ olan ödeme işlemleri için doldurulabilir.  | 
 | **> Alt İşyeri Kategori Kodu** |   altIsyKtgKod  |   AN4  | İ  | İşlem alt işyerinden gerçekleştiriliyorsa, ISO 18245:2003 uyumlu İşyeri Kategori Kodudur (Merchant Category Code, MCC).  | 
@@ -485,17 +464,3 @@ POST işleminin RESPONSE gövdesini (BODY) oluşturan “OdemeEmri” nesnesi Ta
 **BAŞARILI YANIT:**
 
 GET /odeme-emri/{odemeEmriNo} yanıtının (RESPONSE) gövdesinde (BODY)  “OdemeEmri” nesnesi bulunur. İstek başarıyla sonuçlanırsa HHS kaynak sunucusunda Tablo-10’da yer alan parametreleri içeren “OdemeEmri” nesnesi döner.
-
-## 6.7	Healthcheck API
-
-### GET /health
-
-HHS’lerin sunacağı bu servis, düzenli olarak BKM tarafından çağırılarak servislerin ayakta olup olmadıklarının kontrolünün sağlanması planlanmaktadır
-
-Başarılı yanıtta Http 200 kodu dönülmelidir.  
-
-Başarılı Yanıt:
-
-| Alan Adı | JSON Alan Adı |Format: Veri modeli İsmi  |Zorunlu / Koşullu / İsteğe bağlı |Açıklama |
-| --- |--- |--- |--- |--- |
-| status | status |AN2..20 | Z | “UP”, “DOWN” değerlerini alabilir |
