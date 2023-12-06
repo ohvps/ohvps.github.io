@@ -14,7 +14,7 @@ YÖS'ler için sertifikasyon başlangıç tarihi 1 Ocak 2024 olmakla beraber 202
 <br/>
 <br/>
 
-SÜRÜM 1.1.0 (TASLAK) sürüm gerçiş tarihleri şu şekildedir.
+SÜRÜM 1.1.0 geçiş tarihleri şu şekildedir.
 
 - Sürüm Geçiş Tarihi : 1 Aralık 2023
 
