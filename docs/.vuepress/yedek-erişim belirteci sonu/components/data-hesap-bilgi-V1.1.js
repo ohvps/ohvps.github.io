@@ -47,8 +47,6 @@ export const mainTabs = [{
    
 }
 ];
-
-
 export const responseTabs = [{
     ID: 1,
     Name: '201',
@@ -71,10 +69,9 @@ export const responseTabs = [{
     Color: 'red'
 }
 ];
-
 export const erisimBelirteciResponseTabs = [{
     ID: 1,
-    Name: '200',
+    Name: '200dd',
     Color: 'black'
 }, {
     ID: 2,
@@ -94,7 +91,6 @@ export const erisimBelirteciResponseTabs = [{
     Color: 'red'
 }
 ];
-
 export const odemeEmriRizaHeader = [
     {
         ID: 3,
@@ -137,8 +133,7 @@ export const odemeEmriRizaHeader = [
         Value: 'Bearer ey..............'
     },
 
-   ];
-
+];
 export const odemeEmriErisimBelirteciHeader = [
     {
         ID: 9,
@@ -187,10 +182,7 @@ export const odemeEmriErisimBelirteciHeader = [
         Value: 'Bearer ey..............'
     },
 
-   ];
-
-
-
+];
 export const odemeEmriRizaResponseHeader = [
     {
         ID: 3,
@@ -221,8 +213,8 @@ export const odemeEmriRizaResponseHeader = [
         ID: 7,
         Key: 'x-group-id',
         Value: 'ee396d39-5fdf-45ac-80e0-fe3a4ced6267'
-    },];
-
+    },
+];
 export const hesapBilgisiRızasiRequest={
   "katilimciBlg": {
     "hhsKod": "8000",
@@ -301,7 +293,6 @@ export const HesapBilgisiRizasi400 = {
     }
   ]
 }
-
 export const HesapBilgisiRizasi401 = {
   "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
   "path": "/hbh/hesap-bilgisi",
@@ -321,7 +312,6 @@ export const HesapBilgisiRizasi401 = {
     }
   ]
 }
-
 export const HesapBilgisiRizasi403 = {
   "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
   "path": "/hbh/hesap-bilgisi",
@@ -341,7 +331,6 @@ export const HesapBilgisiRizasi403 = {
     }
   ]
 }
-
 export const HesapBilgisiRizasi404 = {
   "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
   "path": "/hbh/hesap-bilgisi",
@@ -361,8 +350,7 @@ export const HesapBilgisiRizasi404 = {
     }
   ]
 }
-
-export const ErisimBerliteciRequest ={
+export const ErisimBelirteciRequest ={
     "rizaNo": "1178d476afc24468a7411019ea411053",
     "yetKod": "a238307640ba4b8ebbdc4835ca9a021c",
     "yetTip": "yet_kod",
@@ -375,7 +363,6 @@ export const ErisimBelirteciResponse200=
   "yenilemeBelirteci": "eyJ...",
   "yenilemeBelirteciGecerlilikSuresi": 86400
 };
-
 export const ErisimBelirteciResponse400={
     "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
     "path": "/gkd/erisim-belirteci",
@@ -395,568 +382,535 @@ export const ErisimBelirteciResponse400={
       }
     ]
   }
-
-  export const ErisimBelirteciResponse401={
-    "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-    "path": "/gkd/erisim-belirteci",
-    "timestamp": "2021-08-13T09:55:23+03:00",
-    "httpCode": 401,
-    "httpMessage": "Not Found",
-    "moreInformation": "Resource Schema validation error",
-    "moreInformationTr": "Alan doğrulama hatası",
-    "errorCode": "TR.OHVPS.Resource.InvalidFormat",
-    "fieldErrors": [
-      {
-        "objectName": "erisimBelirteci",
-        "field": "rizaNo",
-        "messageTr": "boyut '1' ile '128' arasında olmalı",
-        "message": "size must be between '1' and '128'",
-        "code": "TR.OHVPS.Field.Invalid"
-      }
-    ]
-  }
-
-  export const ErisimBelirteciResponse403={
-    "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-    "path": "/gkd/erisim-belirteci",
-    "timestamp": "2021-08-13T09:55:23+03:00",
-    "httpCode": 403,
-    "httpMessage": "Not Found",
-    "moreInformation": "Resource Schema validation error",
-    "moreInformationTr": "Alan doğrulama hatası",
-    "errorCode": "TR.OHVPS.Resource.InvalidFormat",
-    "fieldErrors": [
-      {
-        "objectName": "erisimBelirteci",
-        "field": "rizaNo",
-        "messageTr": "boyut '1' ile '128' arasında olmalı",
-        "message": "size must be between '1' and '128'",
-        "code": "TR.OHVPS.Field.Invalid"
-      }
-    ]
-  }
-
-  export const ErisimBelirteciResponse404={
-    "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-    "path": "/gkd/erisim-belirteci",
-    "timestamp": "2021-08-13T09:55:23+03:00",
-    "httpCode": 403,
-    "httpMessage": "Not Found",
-    "moreInformation": "Resource Schema validation error",
-    "moreInformationTr": "Alan doğrulama hatası",
-    "errorCode": "TR.OHVPS.Resource.InvalidFormat",
-    "fieldErrors": [
-      {
-        "objectName": "erisimBelirteci",
-        "field": "rizaNo",
-        "messageTr": "boyut '1' ile '128' arasında olmalı",
-        "message": "size must be between '1' and '128'",
-        "code": "TR.OHVPS.Field.Invalid"
-      }
-    ]
-  }
-
+export const ErisimBelirteciResponse401={
+  "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+  "path": "/gkd/erisim-belirteci",
+  "timestamp": "2021-08-13T09:55:23+03:00",
+  "httpCode": 401,
+  "httpMessage": "Not Found",
+  "moreInformation": "Resource Schema validation error",
+  "moreInformationTr": "Alan doğrulama hatası",
+  "errorCode": "TR.OHVPS.Resource.InvalidFormat",
+  "fieldErrors": [
+    {
+      "objectName": "erisimBelirteci",
+      "field": "rizaNo",
+      "messageTr": "boyut '1' ile '128' arasında olmalı",
+      "message": "size must be between '1' and '128'",
+      "code": "TR.OHVPS.Field.Invalid"
+    }
+  ]
+}
+export const ErisimBelirteciResponse403={
+  "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+  "path": "/gkd/erisim-belirteci",
+  "timestamp": "2021-08-13T09:55:23+03:00",
+  "httpCode": 403,
+  "httpMessage": "Not Found",
+  "moreInformation": "Resource Schema validation error",
+  "moreInformationTr": "Alan doğrulama hatası",
+  "errorCode": "TR.OHVPS.Resource.InvalidFormat",
+  "fieldErrors": [
+    {
+      "objectName": "erisimBelirteci",
+      "field": "rizaNo",
+      "messageTr": "boyut '1' ile '128' arasında olmalı",
+      "message": "size must be between '1' and '128'",
+      "code": "TR.OHVPS.Field.Invalid"
+    }
+  ]
+}
+export const ErisimBelirteciResponse404={
+  "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+  "path": "/gkd/erisim-belirteci",
+  "timestamp": "2021-08-13T09:55:23+03:00",
+  "httpCode": 403,
+  "httpMessage": "Not Found",
+  "moreInformation": "Resource Schema validation error",
+  "moreInformationTr": "Alan doğrulama hatası",
+  "errorCode": "TR.OHVPS.Resource.InvalidFormat",
+  "fieldErrors": [
+    {
+      "objectName": "erisimBelirteci",
+      "field": "rizaNo",
+      "messageTr": "boyut '1' ile '128' arasında olmalı",
+      "message": "size must be between '1' and '128'",
+      "code": "TR.OHVPS.Field.Invalid"
+    }
+  ]
+}
 export const odemeEmriYenilemeBelirteci={
-    "rizaNo": "c8231dac7bf84bc999a8e3f1eeb21114",
-    "yetTip": "yenileme_belirteci",
-    "rizaTip": "H",
-    "yenilemeBelirteci": "eyJ..."
+  "rizaNo": "c8231dac7bf84bc999a8e3f1eeb21114",
+  "yetTip": "yenileme_belirteci",
+  "rizaTip": "H",
+  "yenilemeBelirteci": "eyJ..."
+}
+export const OdemeEmriRequestBody={
+  "rzBlg": {
+    "rizaNo": "ecc75c946a9a4531a54df887de0c70c5",
+    "olusZmn": "2023-11-15T10:09:47+03:00",
+    "gnclZmn": "2023-11-15T10:10:09+03:00",
+    "rizaDrm": "K"
+  },
+  "katilimciBlg": {
+    "hhsKod": "8000",
+    "yosKod": "8000"
+  },
+  "gkd": {
+    "yetYntm": "Y",
+    "yonAdr": "https://tripsit.bkm.com.tr/boss/ab/yos-simulator-ui-v11/8000?drmKod=da18b3a5-0cf2-4629-9854-d551e1aa0671",
+    "yetTmmZmn": "2023-11-15T10:14:47+03:00",
+    "hhsYonAdr": "https://tripsit.bkm.com.tr/boss/ab/hhs-simulator-ui-v11/8000/odeme-emri-rizasi/ecc75c946a9a4531a54df887de0c70c5/goruntule"
+  },
+  "odmBsltm": {
+    "kmlk": {
+      "kmlkTur": "K",
+      "kmlkVrs": "77121323400",
+      "ohkTur": "B"
+    },
+    "islTtr": {
+      "prBrm": "TRY",
+      "ttr": "0.09"
+    },
+    "gon": {
+      "unv": "AHMET YILMAZ",
+      "hspNo": "TR8008000G2BGNZ90MXSE96SW2"
+    },
+    "alc": {
+      "unv": "Serkan Eren",
+      "hspNo": "TR320010009999901234567890"
+    },
+    "odmAyr": {
+      "odmKynk": "O",
+      "odmAmc": "04",
+      "refBlg": "Y-2701852-202302",
+      "odmAcklm": "İıçöğüş ÇÖĞÜŞ",
+      "ohkMsj": "ÖHK Mesajı",
+      "odmStm": "F",
+      "bekOdmZmn": "2023-11-15T10:19:47+03:00"
+    }
+  },
+  "isyOdmBlg": {
+    "isyKtgKod": "5732",
+    "altIsyKtgKod": "5732",
+    "genelUyeIsyeriNo": "01234567"
   }
-
-  
-
-
-  export const OdemeEmriRequestBody={
-    "rzBlg": {
-      "rizaNo": "ecc75c946a9a4531a54df887de0c70c5",
-      "olusZmn": "2023-11-15T10:09:47+03:00",
-      "gnclZmn": "2023-11-15T10:10:09+03:00",
-      "rizaDrm": "K"
+}
+export const odemeEmriResponse201 = {
+  "rzBlg": {
+    "rizaNo": "33ef1107003540faa4a8c917a711e6da",
+    "olusZmn": "2021-07-09T14:11:55+03:00",
+    "gnclZmn": "2021-07-09T14:13:55+03:00",
+    "rizaDrm": "E"
+  },
+  "katilimciBlg": {
+    "hhsKod": "8000",
+    "yosKod": "8000"
+  },
+  "gkd": {
+    "yetYntm": "Y",
+    "yonAdr": "https://boss-test.bkm.com.tr/boss/ab/yosSimulator/8000/odeme-emri-rizasi/onay",
+    "hhsYonAdr": "https://boss-test.bkm.com.tr/boss/ab/hhsSimulator/8000/odeme-emri-rizasi/33ef1107003540faa4a8c917a711e6da/goruntule",
+    "yetTmmZmn": "2021-07-09T14:16:55+03:00"
+  },
+  "emrBlg": {
+    "odmEmriNo": "3234dfge235235werwe43543534ef",
+    "odmEmriZmn": "2021-07-09T14:16:55+03:00"
+  },
+  "odmBsltm": {
+    "kmlk": {
+      "kmlkTur": "K",
+      "kmlkVrs": "77121323400",
+      "ohkTur": "B"
     },
-    "katilimciBlg": {
-      "hhsKod": "8000",
-      "yosKod": "8000"
+    "islTtr": {
+      "prBrm": "TRY",
+      "ttr": "13.21"
     },
-    "gkd": {
-      "yetYntm": "Y",
-      "yonAdr": "https://tripsit.bkm.com.tr/boss/ab/yos-simulator-ui-v11/8000?drmKod=da18b3a5-0cf2-4629-9854-d551e1aa0671",
-      "yetTmmZmn": "2023-11-15T10:14:47+03:00",
-      "hhsYonAdr": "https://tripsit.bkm.com.tr/boss/ab/hhs-simulator-ui-v11/8000/odeme-emri-rizasi/ecc75c946a9a4531a54df887de0c70c5/goruntule"
+    "gon": {
+      "unv": "AHMET YILMAZ",
+      "hspNo": "TR1000010XP9UDWM4Z6LVJKS45"
     },
-    "odmBsltm": {
-      "kmlk": {
-        "kmlkTur": "K",
-        "kmlkVrs": "77121323400",
-        "ohkTur": "B"
-      },
-      "islTtr": {
-        "prBrm": "TRY",
-        "ttr": "0.09"
-      },
-      "gon": {
-        "unv": "AHMET YILMAZ",
-        "hspNo": "TR8008000G2BGNZ90MXSE96SW2"
-      },
-      "alc": {
-        "unv": "Serkan Eren",
-        "hspNo": "TR320010009999901234567890"
-      },
-      "odmAyr": {
-        "odmKynk": "O",
-        "odmAmc": "04",
-        "refBlg": "Y-2701852-202302",
-        "odmAcklm": "İıçöğüş ÇÖĞÜŞ",
-        "ohkMsj": "ÖHK Mesajı",
-        "odmStm": "F",
-        "bekOdmZmn": "2023-11-15T10:19:47+03:00"
-      }
+    "alc": {
+      "unv": "AHMET YILMAZ",
+      "hspNo": "TR1000010XP9UDWM4Z6LVJKS45"
     },
-    "isyOdmBlg": {
-      "isyKtgKod": "5732",
-      "altIsyKtgKod": "5732",
-      "genelUyeIsyeriNo": "01234567"
+    "odmAyr": {
+      "odmKynk": "A",
+      "odmDrm": "01",
+      "odmAmc": "01",
+      "refBlg": "Y-2701852-202011",
+      "odmAcklm": "Kira bedeli",
+      "odmStm": "F"
+    },
+    "obhsMsrfTtr": {
+      "prBrm": "TRY",
+      "ttr": "1.00"
     }
   }
-
-  export const odemeEmriResponse201 = {
-    "rzBlg": {
-      "rizaNo": "33ef1107003540faa4a8c917a711e6da",
-      "olusZmn": "2021-07-09T14:11:55+03:00",
-      "gnclZmn": "2021-07-09T14:13:55+03:00",
-      "rizaDrm": "E"
-    },
-    "katilimciBlg": {
-      "hhsKod": "8000",
-      "yosKod": "8000"
-    },
-    "gkd": {
-      "yetYntm": "Y",
-      "yonAdr": "https://boss-test.bkm.com.tr/boss/ab/yosSimulator/8000/odeme-emri-rizasi/onay",
-      "hhsYonAdr": "https://boss-test.bkm.com.tr/boss/ab/hhsSimulator/8000/odeme-emri-rizasi/33ef1107003540faa4a8c917a711e6da/goruntule",
-      "yetTmmZmn": "2021-07-09T14:16:55+03:00"
-    },
-    "emrBlg": {
-      "odmEmriNo": "3234dfge235235werwe43543534ef",
-      "odmEmriZmn": "2021-07-09T14:16:55+03:00"
-    },
-    "odmBsltm": {
-      "kmlk": {
-        "kmlkTur": "K",
-        "kmlkVrs": "77121323400",
-        "ohkTur": "B"
-      },
-      "islTtr": {
-        "prBrm": "TRY",
-        "ttr": "13.21"
-      },
-      "gon": {
-        "unv": "AHMET YILMAZ",
-        "hspNo": "TR1000010XP9UDWM4Z6LVJKS45"
-      },
-      "alc": {
-        "unv": "AHMET YILMAZ",
-        "hspNo": "TR1000010XP9UDWM4Z6LVJKS45"
-      },
-      "odmAyr": {
-        "odmKynk": "A",
-        "odmDrm": "01",
-        "odmAmc": "01",
-        "refBlg": "Y-2701852-202011",
-        "odmAcklm": "Kira bedeli",
-        "odmStm": "F"
-      },
-      "obhsMsrfTtr": {
-        "prBrm": "TRY",
-        "ttr": "1.00"
-      }
-    }
-  }
-
-  export const odemeEmriResponse400={
-    "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-    "path": "/obh/odeme-emri",
-    "timestamp": "2021-08-13T09:55:23+03:00",
-    "httpCode": 400,
-    "httpMessage": "Not Found",
-    "moreInformation": "Resource Schema validation error",
-    "moreInformationTr": "Alan doğrulama hatası",
-    "errorCode": "TR.OHVPS.Resource.InvalidFormat",
-    "fieldErrors": [
-      {
-        "objectName": "odemeEmriRizasi",
-        "field": "rizaNo",
-        "messageTr": "boyut '1' ile '128' arasında olmalı",
-        "message": "size must be between '1' and '128'",
-        "code": "TR.OHVPS.Field.Invalid"
-      }
-    ]
-  }
-
-  export const odemeEmriResponse401 ={
-    "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-    "path": "/obh/odeme-emri",
-    "timestamp": "2021-08-13T09:55:23+03:00",
-    "httpCode": 401,
-    "httpMessage": "Not Found",
-    "moreInformation": "Resource Schema validation error",
-    "moreInformationTr": "Alan doğrulama hatası",
-    "errorCode": "TR.OHVPS.Resource.InvalidFormat",
-    "fieldErrors": [
-      {
-        "objectName": "odemeEmriRizasi",
-        "field": "rizaNo",
-        "messageTr": "boyut '1' ile '128' arasında olmalı",
-        "message": "size must be between '1' and '128'",
-        "code": "TR.OHVPS.Field.Invalid"
-      }
-    ]
-  }
-
-  export const odemeEmriResponse403={
-    "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-    "path": "/obh/odeme-emri",
-    "timestamp": "2021-08-13T09:55:23+03:00",
-    "httpCode": 403,
-    "httpMessage": "Not Found",
-    "moreInformation": "Resource Schema validation error",
-    "moreInformationTr": "Alan doğrulama hatası",
-    "errorCode": "TR.OHVPS.Resource.InvalidFormat",
-    "fieldErrors": [
-      {
-        "objectName": "odemeEmriRizasi",
-        "field": "rizaNo",
-        "messageTr": "boyut '1' ile '128' arasında olmalı",
-        "message": "size must be between '1' and '128'",
-        "code": "TR.OHVPS.Field.Invalid"
-      }
-    ]
-  }
-
-  export const odemeEmriResponse404= {
-    "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-    "path": "/obh/odeme-emri",
-    "timestamp": "2021-08-13T09:55:23+03:00",
-    "httpCode": 401,
-    "httpMessage": "Not Found",
-    "moreInformation": "Resource Schema validation error",
-    "moreInformationTr": "Alan doğrulama hatası",
-    "errorCode": "TR.OHVPS.Resource.InvalidFormat",
-    "fieldErrors": [
-      {
-        "objectName": "odemeEmriRizasi",
-        "field": "rizaNo",
-        "messageTr": "boyut '1' ile '128' arasında olmalı",
-        "message": "size must be between '1' and '128'",
-        "code": "TR.OHVPS.Field.Invalid"
-      }
-    ]
-  }
-
-  export const HesaplarResponse200=[
+}
+export const odemeEmriResponse400={
+  "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+  "path": "/obh/odeme-emri",
+  "timestamp": "2021-08-13T09:55:23+03:00",
+  "httpCode": 400,
+  "httpMessage": "Not Found",
+  "moreInformation": "Resource Schema validation error",
+  "moreInformationTr": "Alan doğrulama hatası",
+  "errorCode": "TR.OHVPS.Resource.InvalidFormat",
+  "fieldErrors": [
     {
-      "rizaNo": "e785e48e345f4e91a1d611f4b65c521a",
-      "hspTml": {
-        "hspRef": "22SDKJ29DJW32EDJ3EJ2E3JIU8SDDS2",
-        "subeAdi": "Ulus Şubesi",
-        "hspNo": "TR123456789012345678901234",
-        "kisaAd": "Maaş Hesabım",
-        "prBrm": "TRY",
-        "hspTur": "T",
-        "hspTip": "VADESIZ",
-        "hspUrunAdi": "string",
-        "hspDrm": "AKTIF",
-        "hspShb": "AHMET YILMAZ"
-      },
-      "hspDty": {
-        "hspAclsTrh": "2021-03-25T06:30:22+03:00"
-      }
+      "objectName": "odemeEmriRizasi",
+      "field": "rizaNo",
+      "messageTr": "boyut '1' ile '128' arasında olmalı",
+      "message": "size must be between '1' and '128'",
+      "code": "TR.OHVPS.Field.Invalid"
     }
   ]
-
-  export const HesaplarResponse400={
-    "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-    "path": "/hbh/hesap-bilgisi",
-    "timestamp": "2021-08-13T09:55:23+03:00",
-    "httpCode": 401,
-    "httpMessage": "Not Found",
-    "moreInformation": "Resource Schema validation error",
-    "moreInformationTr": "Alan doğrulama hatası",
-    "errorCode": "TR.OHVPS.Resource.InvalidFormat",
-    "fieldErrors": [
-      {
-        "objectName": "odemeEmriRizasi",
-        "field": "rizaNo",
-        "messageTr": "boyut '1' ile '128' arasında olmalı",
-        "message": "size must be between '1' and '128'",
-        "code": "TR.OHVPS.Field.Invalid"
-      }
-    ]
-  }
-
-  export const HesaplarResponse401={
-    "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-    "path": "/hbh/hesap-bilgisi",
-    "timestamp": "2021-08-13T09:55:23+03:00",
-    "httpCode": 401,
-    "httpMessage": "Not Found",
-    "moreInformation": "Resource Schema validation error",
-    "moreInformationTr": "Alan doğrulama hatası",
-    "errorCode": "TR.OHVPS.Resource.InvalidFormat",
-    "fieldErrors": [
-      {
-        "objectName": "odemeEmriRizasi",
-        "field": "rizaNo",
-        "messageTr": "boyut '1' ile '128' arasında olmalı",
-        "message": "size must be between '1' and '128'",
-        "code": "TR.OHVPS.Field.Invalid"
-      }
-    ]
-  }
-
-
-  export const HesaplarResponse403={
-    "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-    "path": "/hbh/hesap-bilgisi",
-    "timestamp": "2021-08-13T09:55:23+03:00",
-    "httpCode": 401,
-    "httpMessage": "Not Found",
-    "moreInformation": "Resource Schema validation error",
-    "moreInformationTr": "Alan doğrulama hatası",
-    "errorCode": "TR.OHVPS.Resource.InvalidFormat",
-    "fieldErrors": [
-      {
-        "objectName": "odemeEmriRizasi",
-        "field": "rizaNo",
-        "messageTr": "boyut '1' ile '128' arasında olmalı",
-        "message": "size must be between '1' and '128'",
-        "code": "TR.OHVPS.Field.Invalid"
-      }
-    ]
-  }
-
-  export const HesaplarResponse404={
-    "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-    "path": "/hbh/hesap-bilgisi",
-    "timestamp": "2021-08-13T09:55:23+03:00",
-    "httpCode": 401,
-    "httpMessage": "Not Found",
-    "moreInformation": "Resource Schema validation error",
-    "moreInformationTr": "Alan doğrulama hatası",
-    "errorCode": "TR.OHVPS.Resource.InvalidFormat",
-    "fieldErrors": [
-      {
-        "objectName": "odemeEmriRizasi",
-        "field": "rizaNo",
-        "messageTr": "boyut '1' ile '128' arasında olmalı",
-        "message": "size must be between '1' and '128'",
-        "code": "TR.OHVPS.Field.Invalid"
-      }
-    ]
-  }
-
-
-  export const BakiyeResponse200=[
+}
+export const odemeEmriResponse401 ={
+  "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+  "path": "/obh/odeme-emri",
+  "timestamp": "2021-08-13T09:55:23+03:00",
+  "httpCode": 401,
+  "httpMessage": "Not Found",
+  "moreInformation": "Resource Schema validation error",
+  "moreInformationTr": "Alan doğrulama hatası",
+  "errorCode": "TR.OHVPS.Resource.InvalidFormat",
+  "fieldErrors": [
     {
+      "objectName": "odemeEmriRizasi",
+      "field": "rizaNo",
+      "messageTr": "boyut '1' ile '128' arasında olmalı",
+      "message": "size must be between '1' and '128'",
+      "code": "TR.OHVPS.Field.Invalid"
+    }
+  ]
+}
+export const odemeEmriResponse403={
+  "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+  "path": "/obh/odeme-emri",
+  "timestamp": "2021-08-13T09:55:23+03:00",
+  "httpCode": 403,
+  "httpMessage": "Not Found",
+  "moreInformation": "Resource Schema validation error",
+  "moreInformationTr": "Alan doğrulama hatası",
+  "errorCode": "TR.OHVPS.Resource.InvalidFormat",
+  "fieldErrors": [
+    {
+      "objectName": "odemeEmriRizasi",
+      "field": "rizaNo",
+      "messageTr": "boyut '1' ile '128' arasında olmalı",
+      "message": "size must be between '1' and '128'",
+      "code": "TR.OHVPS.Field.Invalid"
+    }
+  ]
+}
+export const odemeEmriResponse404= {
+  "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+  "path": "/obh/odeme-emri",
+  "timestamp": "2021-08-13T09:55:23+03:00",
+  "httpCode": 401,
+  "httpMessage": "Not Found",
+  "moreInformation": "Resource Schema validation error",
+  "moreInformationTr": "Alan doğrulama hatası",
+  "errorCode": "TR.OHVPS.Resource.InvalidFormat",
+  "fieldErrors": [
+    {
+      "objectName": "odemeEmriRizasi",
+      "field": "rizaNo",
+      "messageTr": "boyut '1' ile '128' arasında olmalı",
+      "message": "size must be between '1' and '128'",
+      "code": "TR.OHVPS.Field.Invalid"
+    }
+  ]
+}
+export const HesaplarResponse200=[
+  {
+    "rizaNo": "e785e48e345f4e91a1d611f4b65c521a",
+    "hspTml": {
       "hspRef": "22SDKJ29DJW32EDJ3EJ2E3JIU8SDDS2",
-      "bky": {
-        "bkyTtr": "13.21",
-        "blkTtr": "13.21",
+      "subeAdi": "Ulus Şubesi",
+      "hspNo": "TR123456789012345678901234",
+      "kisaAd": "Maaş Hesabım",
+      "prBrm": "TRY",
+      "hspTur": "T",
+      "hspTip": "VADESIZ",
+      "hspUrunAdi": "string",
+      "hspDrm": "AKTIF",
+      "hspShb": "AHMET YILMAZ"
+    },
+    "hspDty": {
+      "hspAclsTrh": "2021-03-25T06:30:22+03:00"
+    }
+  }
+]
+export const HesaplarResponse400={
+  "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+  "path": "/hbh/hesap-bilgisi",
+  "timestamp": "2021-08-13T09:55:23+03:00",
+  "httpCode": 401,
+  "httpMessage": "Not Found",
+  "moreInformation": "Resource Schema validation error",
+  "moreInformationTr": "Alan doğrulama hatası",
+  "errorCode": "TR.OHVPS.Resource.InvalidFormat",
+  "fieldErrors": [
+    {
+      "objectName": "odemeEmriRizasi",
+      "field": "rizaNo",
+      "messageTr": "boyut '1' ile '128' arasında olmalı",
+      "message": "size must be between '1' and '128'",
+      "code": "TR.OHVPS.Field.Invalid"
+    }
+  ]
+}
+export const HesaplarResponse401={
+  "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+  "path": "/hbh/hesap-bilgisi",
+  "timestamp": "2021-08-13T09:55:23+03:00",
+  "httpCode": 401,
+  "httpMessage": "Not Found",
+  "moreInformation": "Resource Schema validation error",
+  "moreInformationTr": "Alan doğrulama hatası",
+  "errorCode": "TR.OHVPS.Resource.InvalidFormat",
+  "fieldErrors": [
+    {
+      "objectName": "odemeEmriRizasi",
+      "field": "rizaNo",
+      "messageTr": "boyut '1' ile '128' arasında olmalı",
+      "message": "size must be between '1' and '128'",
+      "code": "TR.OHVPS.Field.Invalid"
+    }
+  ]
+}
+export const HesaplarResponse403={
+  "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+  "path": "/hbh/hesap-bilgisi",
+  "timestamp": "2021-08-13T09:55:23+03:00",
+  "httpCode": 401,
+  "httpMessage": "Not Found",
+  "moreInformation": "Resource Schema validation error",
+  "moreInformationTr": "Alan doğrulama hatası",
+  "errorCode": "TR.OHVPS.Resource.InvalidFormat",
+  "fieldErrors": [
+    {
+      "objectName": "odemeEmriRizasi",
+      "field": "rizaNo",
+      "messageTr": "boyut '1' ile '128' arasında olmalı",
+      "message": "size must be between '1' and '128'",
+      "code": "TR.OHVPS.Field.Invalid"
+    }
+  ]
+}
+export const HesaplarResponse404={
+  "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+  "path": "/hbh/hesap-bilgisi",
+  "timestamp": "2021-08-13T09:55:23+03:00",
+  "httpCode": 401,
+  "httpMessage": "Not Found",
+  "moreInformation": "Resource Schema validation error",
+  "moreInformationTr": "Alan doğrulama hatası",
+  "errorCode": "TR.OHVPS.Resource.InvalidFormat",
+  "fieldErrors": [
+    {
+      "objectName": "odemeEmriRizasi",
+      "field": "rizaNo",
+      "messageTr": "boyut '1' ile '128' arasında olmalı",
+      "message": "size must be between '1' and '128'",
+      "code": "TR.OHVPS.Field.Invalid"
+    }
+  ]
+}
+export const BakiyeResponse200=[
+  {
+    "hspRef": "22SDKJ29DJW32EDJ3EJ2E3JIU8SDDS2",
+    "bky": {
+      "bkyTtr": "13.21",
+      "blkTtr": "13.21",
+      "prBrm": "TRY",
+      "bkyZmn": "2021-03-25T06:30:22+03:00",
+      "krdHsp": {
+        "kulKrdTtr": "13.21",
+        "krdDhlGstr": "1"
+      }
+    }
+  }
+]
+export const BakiyeResponse400={
+  "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+  "path": "/hbh/hesap-bilgisi",
+  "timestamp": "2021-08-13T09:55:23+03:00",
+  "httpCode": 401,
+  "httpMessage": "Not Found",
+  "moreInformation": "Resource Schema validation error",
+  "moreInformationTr": "Alan doğrulama hatası",
+  "errorCode": "TR.OHVPS.Resource.InvalidFormat",
+  "fieldErrors": [
+    {
+      "objectName": "odemeEmriRizasi",
+      "field": "rizaNo",
+      "messageTr": "boyut '1' ile '128' arasında olmalı",
+      "message": "size must be between '1' and '128'",
+      "code": "TR.OHVPS.Field.Invalid"
+    }
+  ]
+}
+export const BakiyeResponse401={
+  "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+  "path": "/hbh/hesap-bilgisi",
+  "timestamp": "2021-08-13T09:55:23+03:00",
+  "httpCode": 401,
+  "httpMessage": "Not Found",
+  "moreInformation": "Resource Schema validation error",
+  "moreInformationTr": "Alan doğrulama hatası",
+  "errorCode": "TR.OHVPS.Resource.InvalidFormat",
+  "fieldErrors": [
+    {
+      "objectName": "odemeEmriRizasi",
+      "field": "rizaNo",
+      "messageTr": "boyut '1' ile '128' arasında olmalı",
+      "message": "size must be between '1' and '128'",
+      "code": "TR.OHVPS.Field.Invalid"
+    }
+  ]
+}
+export const BakiyeResponse403= {
+  "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+  "path": "/hbh/hesap-bilgisi",
+  "timestamp": "2021-08-13T09:55:23+03:00",
+  "httpCode": 401,
+  "httpMessage": "Not Found",
+  "moreInformation": "Resource Schema validation error",
+  "moreInformationTr": "Alan doğrulama hatası",
+  "errorCode": "TR.OHVPS.Resource.InvalidFormat",
+  "fieldErrors": [
+    {
+      "objectName": "odemeEmriRizasi",
+      "field": "rizaNo",
+      "messageTr": "boyut '1' ile '128' arasında olmalı",
+      "message": "size must be between '1' and '128'",
+      "code": "TR.OHVPS.Field.Invalid"
+    }
+  ]
+}
+export const BakiyeResponse404={
+  "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+  "path": "/hbh/hesap-bilgisi",
+  "timestamp": "2021-08-13T09:55:23+03:00",
+  "httpCode": 401,
+  "httpMessage": "Not Found",
+  "moreInformation": "Resource Schema validation error",
+  "moreInformationTr": "Alan doğrulama hatası",
+  "errorCode": "TR.OHVPS.Resource.InvalidFormat",
+  "fieldErrors": [
+    {
+      "objectName": "odemeEmriRizasi",
+      "field": "rizaNo",
+      "messageTr": "boyut '1' ile '128' arasında olmalı",
+      "message": "size must be between '1' and '128'",
+      "code": "TR.OHVPS.Field.Invalid"
+    }
+  ]
+}
+export const IslemlerResponse200={
+  "hspRef": "22SDKJ29DJW32EDJ3EJ2E3JIU8SDDS2",
+  "isller": [
+    {
+      "islTml": {
+        "islNo": "AB1234567890",
+        "refNo": "CD0987654321",
+        "islTtr": "1.99",
         "prBrm": "TRY",
-        "bkyZmn": "2021-03-25T06:30:22+03:00",
-        "krdHsp": {
-          "kulKrdTtr": "13.21",
-          "krdDhlGstr": "1"
+        "islGrckZaman": "2021-03-25T06:30:22+03:00",
+        "brcAlc": "B",
+        "kanal": "A",
+        "islTur": "PARA_YATIRMA",
+        "islAmc": "12",
+        "odmStmNo": "xxxxx-xxxxx-yyyy"
+      },
+      "islDty": {
+        "islAcklm": "Maaş Ödemesi",
+        "krsTrf": {
+          "krsMskIBAN": "-",
+          "krsMskUnvan": "A**"
         }
       }
     }
   ]
-
-  export const BakiyeResponse400={
-    "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-    "path": "/hbh/hesap-bilgisi",
-    "timestamp": "2021-08-13T09:55:23+03:00",
-    "httpCode": 401,
-    "httpMessage": "Not Found",
-    "moreInformation": "Resource Schema validation error",
-    "moreInformationTr": "Alan doğrulama hatası",
-    "errorCode": "TR.OHVPS.Resource.InvalidFormat",
-    "fieldErrors": [
-      {
-        "objectName": "odemeEmriRizasi",
-        "field": "rizaNo",
-        "messageTr": "boyut '1' ile '128' arasında olmalı",
-        "message": "size must be between '1' and '128'",
-        "code": "TR.OHVPS.Field.Invalid"
-      }
-    ]
-  }
-
-  export const BakiyeResponse401={
-    "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-    "path": "/hbh/hesap-bilgisi",
-    "timestamp": "2021-08-13T09:55:23+03:00",
-    "httpCode": 401,
-    "httpMessage": "Not Found",
-    "moreInformation": "Resource Schema validation error",
-    "moreInformationTr": "Alan doğrulama hatası",
-    "errorCode": "TR.OHVPS.Resource.InvalidFormat",
-    "fieldErrors": [
-      {
-        "objectName": "odemeEmriRizasi",
-        "field": "rizaNo",
-        "messageTr": "boyut '1' ile '128' arasında olmalı",
-        "message": "size must be between '1' and '128'",
-        "code": "TR.OHVPS.Field.Invalid"
-      }
-    ]
-  }
-
-
-  export const BakiyeResponse403= {
-    "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-    "path": "/hbh/hesap-bilgisi",
-    "timestamp": "2021-08-13T09:55:23+03:00",
-    "httpCode": 401,
-    "httpMessage": "Not Found",
-    "moreInformation": "Resource Schema validation error",
-    "moreInformationTr": "Alan doğrulama hatası",
-    "errorCode": "TR.OHVPS.Resource.InvalidFormat",
-    "fieldErrors": [
-      {
-        "objectName": "odemeEmriRizasi",
-        "field": "rizaNo",
-        "messageTr": "boyut '1' ile '128' arasında olmalı",
-        "message": "size must be between '1' and '128'",
-        "code": "TR.OHVPS.Field.Invalid"
-      }
-    ]
-  }
-
-
-  export const BakiyeResponse404={
-    "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-    "path": "/hbh/hesap-bilgisi",
-    "timestamp": "2021-08-13T09:55:23+03:00",
-    "httpCode": 401,
-    "httpMessage": "Not Found",
-    "moreInformation": "Resource Schema validation error",
-    "moreInformationTr": "Alan doğrulama hatası",
-    "errorCode": "TR.OHVPS.Resource.InvalidFormat",
-    "fieldErrors": [
-      {
-        "objectName": "odemeEmriRizasi",
-        "field": "rizaNo",
-        "messageTr": "boyut '1' ile '128' arasında olmalı",
-        "message": "size must be between '1' and '128'",
-        "code": "TR.OHVPS.Field.Invalid"
-      }
-    ]
-  }
-
-
-  export const IslemlerResponse200={
-    "hspRef": "22SDKJ29DJW32EDJ3EJ2E3JIU8SDDS2",
-    "isller": [
-      {
-        "islTml": {
-          "islNo": "AB1234567890",
-          "refNo": "CD0987654321",
-          "islTtr": "1.99",
-          "prBrm": "TRY",
-          "islGrckZaman": "2021-03-25T06:30:22+03:00",
-          "brcAlc": "B",
-          "kanal": "A",
-          "islTur": "PARA_YATIRMA",
-          "islAmc": "12",
-          "odmStmNo": "xxxxx-xxxxx-yyyy"
-        },
-        "islDty": {
-          "islAcklm": "Maaş Ödemesi",
-          "krsTrf": {
-            "krsMskIBAN": "-",
-            "krsMskUnvan": "A**"
-          }
-        }
-      }
-    ]
-  }
-
-  export const IslemlerResponse400={
-    "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-    "path": "/hbh/hesap-bilgisi",
-    "timestamp": "2021-08-13T09:55:23+03:00",
-    "httpCode": 401,
-    "httpMessage": "Not Found",
-    "moreInformation": "Resource Schema validation error",
-    "moreInformationTr": "Alan doğrulama hatası",
-    "errorCode": "TR.OHVPS.Resource.InvalidFormat",
-    "fieldErrors": [
-      {
-        "objectName": "odemeEmriRizasi",
-        "field": "rizaNo",
-        "messageTr": "boyut '1' ile '128' arasında olmalı",
-        "message": "size must be between '1' and '128'",
-        "code": "TR.OHVPS.Field.Invalid"
-      }
-    ]
-  }
-
-  export const IslemlerResponse401={
-    "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-    "path": "/hbh/hesap-bilgisi",
-    "timestamp": "2021-08-13T09:55:23+03:00",
-    "httpCode": 401,
-    "httpMessage": "Not Found",
-    "moreInformation": "Resource Schema validation error",
-    "moreInformationTr": "Alan doğrulama hatası",
-    "errorCode": "TR.OHVPS.Resource.InvalidFormat",
-    "fieldErrors": [
-      {
-        "objectName": "odemeEmriRizasi",
-        "field": "rizaNo",
-        "messageTr": "boyut '1' ile '128' arasında olmalı",
-        "message": "size must be between '1' and '128'",
-        "code": "TR.OHVPS.Field.Invalid"
-      }
-    ]
-  }
-
-  export const IslemlerResponse403={
-    "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-    "path": "/hbh/hesap-bilgisi",
-    "timestamp": "2021-08-13T09:55:23+03:00",
-    "httpCode": 401,
-    "httpMessage": "Not Found",
-    "moreInformation": "Resource Schema validation error",
-    "moreInformationTr": "Alan doğrulama hatası",
-    "errorCode": "TR.OHVPS.Resource.InvalidFormat",
-    "fieldErrors": [
-      {
-        "objectName": "odemeEmriRizasi",
-        "field": "rizaNo",
-        "messageTr": "boyut '1' ile '128' arasında olmalı",
-        "message": "size must be between '1' and '128'",
-        "code": "TR.OHVPS.Field.Invalid"
-      }
-    ]
-  }
-
-  export const IslemlerResponse404={
-    "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-    "path": "/hbh/hesap-bilgisi",
-    "timestamp": "2021-08-13T09:55:23+03:00",
-    "httpCode": 401,
-    "httpMessage": "Not Found",
-    "moreInformation": "Resource Schema validation error",
-    "moreInformationTr": "Alan doğrulama hatası",
-    "errorCode": "TR.OHVPS.Resource.InvalidFormat",
-    "fieldErrors": [
-      {
-        "objectName": "odemeEmriRizasi",
-        "field": "rizaNo",
-        "messageTr": "boyut '1' ile '128' arasında olmalı",
-        "message": "size must be between '1' and '128'",
-        "code": "TR.OHVPS.Field.Invalid"
-      }
-    ]
-  }
+}
+export const IslemlerResponse400={
+  "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+  "path": "/hbh/hesap-bilgisi",
+  "timestamp": "2021-08-13T09:55:23+03:00",
+  "httpCode": 401,
+  "httpMessage": "Not Found",
+  "moreInformation": "Resource Schema validation error",
+  "moreInformationTr": "Alan doğrulama hatası",
+  "errorCode": "TR.OHVPS.Resource.InvalidFormat",
+  "fieldErrors": [
+    {
+      "objectName": "odemeEmriRizasi",
+      "field": "rizaNo",
+      "messageTr": "boyut '1' ile '128' arasında olmalı",
+      "message": "size must be between '1' and '128'",
+      "code": "TR.OHVPS.Field.Invalid"
+    }
+  ]
+}
+export const IslemlerResponse401={
+  "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+  "path": "/hbh/hesap-bilgisi",
+  "timestamp": "2021-08-13T09:55:23+03:00",
+  "httpCode": 401,
+  "httpMessage": "Not Found",
+  "moreInformation": "Resource Schema validation error",
+  "moreInformationTr": "Alan doğrulama hatası",
+  "errorCode": "TR.OHVPS.Resource.InvalidFormat",
+  "fieldErrors": [
+    {
+      "objectName": "odemeEmriRizasi",
+      "field": "rizaNo",
+      "messageTr": "boyut '1' ile '128' arasında olmalı",
+      "message": "size must be between '1' and '128'",
+      "code": "TR.OHVPS.Field.Invalid"
+    }
+  ]
+}
+export const IslemlerResponse403={
+  "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+  "path": "/hbh/hesap-bilgisi",
+  "timestamp": "2021-08-13T09:55:23+03:00",
+  "httpCode": 401,
+  "httpMessage": "Not Found",
+  "moreInformation": "Resource Schema validation error",
+  "moreInformationTr": "Alan doğrulama hatası",
+  "errorCode": "TR.OHVPS.Resource.InvalidFormat",
+  "fieldErrors": [
+    {
+      "objectName": "odemeEmriRizasi",
+      "field": "rizaNo",
+      "messageTr": "boyut '1' ile '128' arasında olmalı",
+      "message": "size must be between '1' and '128'",
+      "code": "TR.OHVPS.Field.Invalid"
+    }
+  ]
+}
+export const IslemlerResponse404={
+  "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+  "path": "/hbh/hesap-bilgisi",
+  "timestamp": "2021-08-13T09:55:23+03:00",
+  "httpCode": 401,
+  "httpMessage": "Not Found",
+  "moreInformation": "Resource Schema validation error",
+  "moreInformationTr": "Alan doğrulama hatası",
+  "errorCode": "TR.OHVPS.Resource.InvalidFormat",
+  "fieldErrors": [
+    {
+      "objectName": "odemeEmriRizasi",
+      "field": "rizaNo",
+      "messageTr": "boyut '1' ile '128' arasında olmalı",
+      "message": "size must be between '1' and '128'",
+      "code": "TR.OHVPS.Field.Invalid"
+    }
+  ]
+}

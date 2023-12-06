@@ -84,43 +84,45 @@
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
                                     <Request title="Hesaplar İsteği" actionButtonText="Hesaplar" isGet="true"
-                                        path="/hesaplar" :requestBody="odemeEmriBody"
+                                        path="/hesaplar"  :requestBody="hesapBilgisiBody"
                                         :headers="requestHeadersAfterToken" @request-event="getHesaplar" />
                                 </div>
                                 <div class="col" style="width: 50%;">
                                     <Response title="Hesaplar Yanıtı" :headers="headerResponse"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
-                                        @response-event="hesaplarChangeTab" :body="hesaplarResponseBody"  :tabs="erisimBelirteciTabs" nextButtonVisible="true"/>
+                                        @response-event="hesaplarChangeTab" :body="hesaplarResponseBody"  :tabs="responseTabsHesaplar" nextButtonVisible="true"/>
                                 </div>
                             </div>
                         </div>
 
                         <div v-if="tab.ID === 6" style="width: 100%;">
+                            <div><p>Rıza durumu "Yetki Kullanıldı " ise YÖS, ÖHK'ya ait tüm hesapların veya belirli bir hesabın bakiyesi bu servis ile sorgular.</p></div>
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
                                     <Request title="Bakiye İsteği" actionButtonText="Bakiye" isGet="true"
-                                        path="/bakiye" :requestBody="odemeEmriBody"
-                                        :headers="erisimBelirteciRequestHeader" @request-event="getBakiye" />
+                                        path="/bakiye" :requestBody="hesapBilgisiBody"
+                                        :headers="requestHeadersAfterToken" @request-event="getBakiye" />
                                 </div>
                                 <div class="col" style="width: 50%;">
                                     <Response title="Bakiye Yanıtı" :headers="headerResponse"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
-                                        @response-event="bakiyeChangeTab" :body="bakiyeResponse"  :tabs="erisimBelirteciTabs" nextButtonVisible="true"/>
+                                        @response-event="bakiyeChangeTab" :body="bakiyeResponse"  :tabs="responseTabsHesaplar" nextButtonVisible="true"/>
                                 </div>
                             </div>
                         </div>
 
                         <div v-if="tab.ID === 7" style="width: 100%;">
+                            <div><p>YÖS, ÖHK'ya ait belirli bir hesabın işlemlerini bu servis ile sorgular. </p></div>
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
                                     <Request title="İşlemler İsteği" actionButtonText="İşlemler" isGet="true"
-                                        path="/hesaplar/1234/islemler" :requestBody="odemeEmriBody"
-                                        :headers="erisimBelirteciRequestHeader" @request-event="getIslemler" />
+                                        path="/hesaplar/1234/islemler" :requestBody="hesapBilgisiBody"
+                                        :headers="requestHeadersAfterToken" @request-event="getIslemler" />
                                 </div>
                                 <div class="col" style="width: 50%;">
                                     <Response title="İşlemler Yanıtı" :headers="headerResponse"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
-                                        @response-event="islemlerChangeTab" :body="islemlerResponse"  :tabs="erisimBelirteciTabs" nextButtonVisible="true"/>
+                                        @response-event="islemlerChangeTab" :body="islemlerResponse"  :tabs="responseTabsHesaplar" nextButtonVisible="true"/>
                                 </div>
                             </div>
                         </div>
@@ -129,20 +131,47 @@
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
                                     <Request title="Yenileme Belirteci İsteği" actionButtonText="Yenileme Belirteci Al" isGet="false"
-                                        path="/erisim-belirteci" :requestBody="yenilemeBelirteci"
-                                        :headers="headerHesapBilgiRiza" @request-event="erisimBelirteci" />
+                                        path="/erisim-belirteci" :requestBody="yenilemeBelirteciReuestBody"
+                                        :headers="requestHeadersAfterToken" @request-event="erisimBelirteci" />
                                 </div>
                                 <div class="col" style="width: 50%;">
                                     <Response title="Yenileme Belirteci  Yanıtı" :headers="headerResponse"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
-                                        @response-event="erisimBelirteciChangeTab" :body="erisimBelirteciResponseBody"  :tabs="erisimBelirteciTabs" nextButtonVisible="false"/>
+                                        @response-event="yenilemeBelirteciChangeTab" :body="erisimBelirteciResponseBody"  :tabs="erisimBelirteciTabs" nextButtonVisible="false"/>
                                 </div>
                             </div>
                         </div>
-
+                        <div v-if="tab.ID === 9" style="width: 100%;">
+                            <div class="row" style="width: 100%;">
+                                <div class="col" style="width: 50%;">
+                                    <Request title="Rıza Sorgulama" actionButtonText="Rıza Sorgulama" isGet="true"
+                                        path=" /hesap-bilgisi-rizasi/{RizaNo}" :requestBody="yenilemeBelirteciReuestBody"
+                                        :headers="requestHeadersAfterToken" @request-event="erisimBelirteci" />
+                                </div>
+                                <div class="col" style="width: 50%;">
+                                    <Response title="Yenileme Belirteci  Yanıtı" :headers="headerResponse"
+                                        @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
+                                        @response-event="yenilemeBelirteciChangeTab" :body="erisimBelirteciResponseBody"  :tabs="erisimBelirteciTabs" nextButtonVisible="false"/>
+                                </div>
+                            </div>
+                        </div>
+                         <div v-if="tab.ID === 10" style="width: 100%;">
+                            <div class="row" style="width: 100%;">
+                                <div class="col" style="width: 50%;">
+                                    <Request title="Rıza İptal" actionButtonText="Rıza İptal" isGet="false"
+                                        path="DELETE /hesap-bilgisi-rizasi/{RizaNo}" :requestBody="yenilemeBelirteciReuestBody"
+                                        :headers="requestHeadersAfterToken" @request-event="erisimBelirteci" />
+                                </div>
+                                <div class="col" style="width: 50%;">
+                                    <Response title="Yenileme Belirteci  Yanıtı" :headers="headerResponse"
+                                        @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
+                                        @response-event="yenilemeBelirteciChangeTab" :body="erisimBelirteciResponseBody"  :tabs="erisimBelirteciTabs" nextButtonVisible="false"/>
+                                </div>
+                            </div>
+                        </div>
                        
 
-                        <div v-if="tab.ID === 9">
+                        <div v-if="tab.ID === 19">
                             <DxScrollView id="scrollview" ref="scrollViewWidget" :height="1000"
                                 direction="both">
                                 <div id="swagger-ui-hbh"></div>
@@ -164,15 +193,15 @@ import DxTabPanel, { DxItem } from 'devextreme-vue/tab-panel';
 import { DxScrollView } from 'devextreme-vue/scroll-view';
 
 import { mainTabs } from './data-hesap-bilgi-V1.1.js';
-import {responseTabs,responseTabsHBHRiza, erisimBelirteciResponseTabs} from './data-hesap-bilgi-V1.1.js';
+import { ResponseTabsHBHRiza, ResponseTabsErisimBelirteci, ResponseTabsHesaplar} from './data-hesap-bilgi-V1.1.js';
 import { odemeEmriErisimBelirteciHeader } from './data-hesap-bilgi-V1.1.js';
 import { HesapBilgisiRizasi201, HesapBilgisiRizasi400, HesapBilgisiRizasi401, HesapBilgisiRizasi403, HesapBilgisiRizasi404, HesapBilgisiRizasi500, HesapBilgisiRizasi503, HesapBilgisiRizasi504 } from './data-hesap-bilgi-V1.1.js';
-import { hesapBilgisiRızasiRequest,HesaplarResponse200,HesaplarResponse400,HesaplarResponse401,HesaplarResponse403,HesaplarResponse404} from './data-hesap-bilgi-V1.1.js';
-import { BakiyeResponse200,BakiyeResponse400,BakiyeResponse401,BakiyeResponse403,BakiyeResponse404} from './data-hesap-bilgi-V1.1.js';
-import { IslemlerResponse200,IslemlerResponse400,IslemlerResponse401,IslemlerResponse403,IslemlerResponse404} from './data-hesap-bilgi-V1.1.js';
-import { odemeEmriYenilemeBelirteci,ErisimBelirteciRequest, ErisimBelirteciResponse200, ErisimBelirteciResponse400,ErisimBelirteciResponse401 ,  ErisimBelirteciResponse403,  ErisimBelirteciResponse404,  ErisimBelirteciResponse500 ,ErisimBelirteciResponse503,ErisimBelirteciResponse504} from './data-hesap-bilgi-V1.1.js';
+import { hesapBilgisiRizasiRequest,HesaplarResponse200,HesaplarResponse400,HesaplarResponse401,HesaplarResponse403,HesaplarResponse404, HesaplarResponse429, HesaplarResponse500, HesaplarResponse503, HesaplarResponse504} from './data-hesap-bilgi-V1.1.js';
+import { BakiyeResponse200,BakiyeResponse400,BakiyeResponse401,BakiyeResponse403,BakiyeResponse404,BakiyeResponse429,BakiyeResponse500,BakiyeResponse503,BakiyeResponse504} from './data-hesap-bilgi-V1.1.js';
+import { IslemlerResponse200,IslemlerResponse400,IslemlerResponse401,IslemlerResponse403,IslemlerResponse404,IslemlerResponse429,IslemlerResponse500,IslemlerResponse503,IslemlerResponse504} from './data-hesap-bilgi-V1.1.js';
+import { hesapBilgisiYenilemeBelirteciReuest,ErisimBelirteciRequest, ErisimBelirteciResponse200, ErisimBelirteciResponse400,ErisimBelirteciResponse401 ,  ErisimBelirteciResponse403,  ErisimBelirteciResponse404,  ErisimBelirteciResponse500 ,ErisimBelirteciResponse503,ErisimBelirteciResponse504} from './data-hesap-bilgi-V1.1.js';
 import { hesapBilgisiRizaHeader, hesapBilgisiRizaResponseHeader,YenilemeBelirteciResponse401 } from './data-hesap-bilgi-V1.1.js'
-import { requestHeadersAfterToken } from './data-hesap-bilgi-V1.1.js'
+import { RequestHeadersAfterToken } from './data-hesap-bilgi-V1.1.js'
 
 
 import '../public/assets/swagger-ui/swagger-ui.css'
@@ -195,23 +224,23 @@ export default {
             loop: false,
             animationEnabled: true,
             swipeEnabled: true,
-            mainTabs: mainTabs,
-            responseTabs: responseTabs,
-            responseTabsHBHRiza: responseTabsHBHRiza,
-            erisimBelirteciTabs: erisimBelirteciResponseTabs,
+            mainTabs: mainTabs,            
+            responseTabsHBHRiza: ResponseTabsHBHRiza,
+            erisimBelirteciTabs: ResponseTabsErisimBelirteci,
+            responseTabsHesaplar: ResponseTabsHesaplar,
             headerResponse: hesapBilgisiRizaResponseHeader,
             hesapBilgisiRizasiResponse: "",
             erisimBelirteciRequestHeader: odemeEmriErisimBelirteciHeader,
             erisimBelirteciBody: JSON.stringify(ErisimBelirteciRequest, null, 2),
             erisimBelirteciResponseBody: "",
-            yenilemeBelirteci: JSON.stringify(odemeEmriYenilemeBelirteci,null,2),
-            odemeEmriBody:JSON.stringify(null,null,2),
+            yenilemeBelirteciReuestBody: JSON.stringify(hesapBilgisiYenilemeBelirteciReuest,null,2),
+            hesapBilgisiBody:JSON.stringify(null,null,2),
             hesaplarResponseBody:"",
-            hesapBilgisiRequestBody: JSON.stringify(hesapBilgisiRızasiRequest, null, 2),
+            hesapBilgisiRequestBody: JSON.stringify(hesapBilgisiRizasiRequest, null, 2),
             headerHesapBilgiRiza: hesapBilgisiRizaHeader,
             bakiyeResponse:"",
             islemlerResponse:"",
-            requestHeadersAfterToken:requestHeadersAfterToken
+            requestHeadersAfterToken:RequestHeadersAfterToken
             
         };
     },
@@ -261,6 +290,27 @@ export default {
                     return this.erisimBelirteciResponseBody = JSON.stringify(ErisimBelirteciResponse504, null, 2);
             }
         },
+        yenilemeBelirteciChangeTab(step) {
+            
+            switch (step) {
+                case 1:
+                    return this.erisimBelirteciResponseBody = JSON.stringify(ErisimBelirteciResponse200, null, 2);
+                case 2:
+                    return this.erisimBelirteciResponseBody = JSON.stringify(ErisimBelirteciResponse400, null, 2);
+                case 3:
+                    return this.erisimBelirteciResponseBody = JSON.stringify(YenilemeBelirteciResponse401, null, 2);
+                case 4:
+                    return this.erisimBelirteciResponseBody = JSON.stringify(ErisimBelirteciResponse403, null, 2);
+                case 5:
+                    return this.erisimBelirteciResponseBody = JSON.stringify(ErisimBelirteciResponse404, null, 2);
+                case 6:
+                    return this.erisimBelirteciResponseBody = JSON.stringify(ErisimBelirteciResponse500, null, 2);
+                case 7:
+                    return this.erisimBelirteciResponseBody = JSON.stringify(ErisimBelirteciResponse503, null, 2);
+                case 8:
+                    return this.erisimBelirteciResponseBody = JSON.stringify(ErisimBelirteciResponse504, null, 2);
+            }
+        },
 
         hesaplarChangeTab(step) {
             
@@ -275,7 +325,14 @@ export default {
                     return this.hesaplarResponseBody = JSON.stringify(HesaplarResponse403, null, 2);
                 case 5:
                     return this.hesaplarResponseBody = JSON.stringify(HesaplarResponse404, null, 2);
-
+                case 6:
+                    return this.hesaplarResponseBody = JSON.stringify(HesaplarResponse429, null, 2);
+                case 7:
+                    return this.hesaplarResponseBody = JSON.stringify(HesaplarResponse500, null, 2);
+                case 8:
+                    return this.hesaplarResponseBody = JSON.stringify(HesaplarResponse503, null, 2);                
+                case 9:
+                    return this.hesaplarResponseBody = JSON.stringify(HesaplarResponse504, null, 2);       
             }
         },
 
@@ -292,6 +349,14 @@ export default {
                     return this.bakiyeResponse = JSON.stringify(BakiyeResponse403, null, 2);
                 case 5:
                     return this.bakiyeResponse = JSON.stringify(BakiyeResponse404, null, 2);
+                case 6:
+                    return this.bakiyeResponse = JSON.stringify(BakiyeResponse429, null, 2);
+                case 7:
+                    return this.bakiyeResponse = JSON.stringify(BakiyeResponse500, null, 2);
+                case 8:
+                    return this.bakiyeResponse = JSON.stringify(BakiyeResponse503, null, 2);                
+                case 9:
+                    return this.bakiyeResponse = JSON.stringify(BakiyeResponse504, null, 2);       
 
             }
         },
@@ -309,6 +374,14 @@ export default {
                     return this.islemlerResponse = JSON.stringify(IslemlerResponse403, null, 2);
                 case 5:
                     return this.islemlerResponse = JSON.stringify(IslemlerResponse404, null, 2);
+                case 6:
+                    return this.islemlerResponse = JSON.stringify(IslemlerResponse429, null, 2);
+                case 7:
+                    return this.islemlerResponse = JSON.stringify(IslemlerResponse500, null, 2);
+                case 8:
+                    return this.islemlerResponse = JSON.stringify(IslemlerResponse503, null, 2);                
+                case 9:
+                    return this.islemlerResponse = JSON.stringify(IslemlerResponse504, null, 2);       
 
             }
         },

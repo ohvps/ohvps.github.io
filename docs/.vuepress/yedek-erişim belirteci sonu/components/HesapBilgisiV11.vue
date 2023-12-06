@@ -41,7 +41,7 @@
                                 <div class="col" style="width: 50%;">
                                     <Response title="Erişim Belirteci  Yanıtı" :headers="headerResponse"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
-                                        @response-event="erisimBerliteciChangeTab" :body="erisimBelirteciResponseBody"  :tabs="erisimBelirteciTabs"/>
+                                        @response-event="erisimBelirteciChangeTab" :body="erisimBelirteciResponseBody"  :tabs="erisimBelirteciTabs"/>
                                 </div>
                             </div>
                         </div>
@@ -101,7 +101,7 @@
                                 <div class="col" style="width: 50%;">
                                     <Response title="Yenileme Belirteci  Yanıtı" :headers="headerResponse"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
-                                        @response-event="erisimBerliteciChangeTab" :body="erisimBelirteciResponseBody"  :tabs="erisimBelirteciTabs"/>
+                                        @response-event="erisimBelirteciChangeTab" :body="erisimBelirteciResponseBody"  :tabs="erisimBelirteciTabs"/>
                                 </div>
                             </div>
                         </div>
@@ -136,7 +136,7 @@ import { HesapBilgisiRizasi201, HesapBilgisiRizasi400, HesapBilgisiRizasi401, He
 import { hesapBilgisiRızasiRequest,HesaplarResponse200,HesaplarResponse400,HesaplarResponse401,HesaplarResponse403,HesaplarResponse404} from './data-hesap-bilgi-V1.1.js';
 import { BakiyeResponse200,BakiyeResponse400,BakiyeResponse401,BakiyeResponse403,BakiyeResponse404} from './data-hesap-bilgi-V1.1.js';
 import { IslemlerResponse200,IslemlerResponse400,IslemlerResponse401,IslemlerResponse403,IslemlerResponse404} from './data-hesap-bilgi-V1.1.js';
-import { odemeEmriYenilemeBelirteci,ErisimBerliteciRequest, ErisimBelirteciResponse200, ErisimBelirteciResponse400, ErisimBelirteciResponse401, ErisimBelirteciResponse403, ErisimBelirteciResponse404 } from './data-hesap-bilgi-V1.1.js';
+import { odemeEmriYenilemeBelirteci,ErisimBelirteciRequest, ErisimBelirteciResponse200, ErisimBelirteciResponse400, ErisimBelirteciResponse401, ErisimBelirteciResponse403, ErisimBelirteciResponse404 } from './data-hesap-bilgi-V1.1.js';
 import { odemeEmriRizaHeader, odemeEmriRizaResponseHeader } from './data-hesap-bilgi-V1.1.js'
 
 
@@ -166,7 +166,7 @@ export default {
             headerResponse: odemeEmriRizaResponseHeader,
             hesapBilgisiRizasiResponse: "",
             erisimBelirteciRequestHeader: odemeEmriErisimBelirteciHeader,
-            erisimBelirteciBody: JSON.stringify(ErisimBerliteciRequest, null, 2),
+            erisimBelirteciBody: JSON.stringify(ErisimBelirteciRequest, null, 2),
             erisimBelirteciResponseBody: "",
             yenilemeBelirteci: JSON.stringify(odemeEmriYenilemeBelirteci,null,2),
             odemeEmriBody:JSON.stringify(null,null,2),
@@ -203,7 +203,7 @@ export default {
             this.selectedIndex = this.selectedIndex + 1;
         },
 
-        erisimBerliteciChangeTab(step) {
+        erisimBelirteciChangeTab(step) {
             
             switch (step) {
                 case 1:
