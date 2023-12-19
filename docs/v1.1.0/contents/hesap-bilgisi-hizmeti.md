@@ -322,7 +322,11 @@ Müşteri rızası tesis edilmiş kullanıcı için HBHS API erişim adresinden 
 - RizaDurumu “Yetki Kullanıldı” ise işleme başlanır. RizaDurumu farklı bir değerde ise “TR.OHVPS.Resource.ConsentMismatch” hatasının iletilmesi gerekir. 
 - GET verisinin modele göre kontrolü yapılır (Örneğin: Alan kontrolleri)  
 
-GET verisinin mantıksal kontrolleri yapılır.  
+GET verisinin mantıksal kontrolleri yapılır.
+
+- Hesap bilgisi rızası alınmış ve erişim izni devam eden hesaplar içerisinden herhangi bir hesabın kapatılması ya da pasife alınması durumunda YÖS tarafından yapılan hesap isteğine HHS tarafından hesap bilgisi dönülmelidir.
+
+- Kapalı hesap için TR.OHVPS.DataCode.HspDrm veri türünden KAPALI değeri ile, pasif hesap için TR.OHVPS.DataCode.HspDrm veri türünden PASIF değeri ile dönülmelidir. 
 
 ## 7.6 ADIM 3.1 ve 3.2: Hesap Bilgilerinin Sorgulanması
 
@@ -371,6 +375,8 @@ srlmYon=A
 Bu erişim noktalarından tüm hesapların veya belirli bir hesabın bakiyesi sorgulanır.   
 İstek çağrısına dönülen “BakiyeBilgileri” nesnesi Tablo 17’de verilmiştir.  
 
+Hesap Bilgisi Rızası alınmış ve erişim izni devam eden hesaplar içerisinde yer alan hesaplardan kapatılmış ya da pasif duruma alınmış olan hesaplar için bakiye isteği yapıldığında HHS tarafından bakiye bilgisi dönülmelidir.
+
 Hesap bakiyelerinin gösterilmesi sırasında aşağıda verilen örnekler gözönünde bulundurulmalıdır.  
 
 Örnek 1 : ÖHK **Hesap Bakiye Tutarı** 0 TL, **Kredili Mevduat Hesabı Bakiyesi** 3000 TL. ÖHK 1000 TL para çıkışı gerçekleştirdi. Bakiye API'si yanıtı içerisinde iletilen **Kredi Dahil Göstergesi** 0 değerini içeriyorsa, **Hesap Bakiye Tutarı** -1000 TL, **Kredili Mevduat Hesabı Bakiyesi** 3000 TL olmalıdır.
@@ -414,7 +420,8 @@ srlmYon=A
 
 **GET /hesaplar/{hspRef}/islemler**  
 
-Belirli bir hesaba ilişkin işlem bilgileri Tablo 1’daki istek parametrelerine göre sorgulanır.   
+Belirli bir hesaba ilişkin işlem bilgileri Tablo 1’daki istek parametrelerine göre sorgulanır.<br>
+Hesap Bilgisi Rızası alınmış ve erişim izni devam eden hesaplar içerisinde yer alan hesaplardan kapatılmış ya da pasif duruma alınmış olan hesaplar için işlemler isteği yapıldığında HHS tarafından işlemler bilgisi dönülmelidir.   
 İşlem bilgisi için daha önce tanımlanmış izin türüne göre yanıtta dönen IslemBilgileri nesnesinin (Temel İşlem Bilgisi veya Temel İşlem Bilgisi ve Detaylı İşlem Bilgisi) içeriği değişir.   
 İşlemler servisi hem ÖHK’nın talebi ile YÖS uygulaması üzerinden çağrılabileceği gibi, YÖS’ün ÖHK’sız başlatabileceği otomatik çağrıları ile de yanıt dönebilmektedir.   
 HHS, işlemin sistemsel yapılıp yapılmadığını, istek parametreleri içerisinde yer alan PSU-Initiated parametresi ile anlar. Bu parametre “E” ise ÖHK’lı, “H” ise sistemsel yapılmış bir sorgu anlamına gelmektedir. 
@@ -432,8 +439,6 @@ bireysel ÖHK’lar  için en fazla 1 aylık,
 kurumsal ÖHK’lar için ise en fazla 1 haftalık bir pencere aralığında sorgulama yapılabilir.
 
 YÖS, otomatik yapacağı sorgularda hem bireysel hem de kurumsal ÖHK’lar için 24 saatlik bir pencere aralığında sorgulama yapabilir.   
-
-Hesap kapalı olduğu durumda hesap hareketlerini iletmek istemeyen HHS'lerin **TR.OHVPS.Business.InvalidAccount** hatası vermeleri beklenir.  
 
 Yeni günün başlangıç saatinin 00:00:00 olduğu kabul edilmiştir. 
 

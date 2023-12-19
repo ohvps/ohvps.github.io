@@ -176,7 +176,6 @@ RizaNesnesi
 ...
   "gkd": {
     "yetYntm": "A",
-    "yonAdr": "https://yosAdr?drmKod",
      "ayrikGkd" :{
          "ohkTanimTip" : "TCKN" 
          "ohkTanimDeger": "11232123212"
