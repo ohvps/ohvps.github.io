@@ -195,7 +195,7 @@ export const hesapBilgisiRizaHeader = [
   {
       ID: 8,
       Key: 'Authorization',
-      Value: 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJmdXRoWW5oTTBDd3FkY2FxUElQMWlHdXlGeDFackJZeElXZmRzTlN6dlZJIn0.eyJleHAiOjE3MDA1NzU3NzQsImlhdCI6MTcwMDU3MjE3NCwianRpIjoiMWYxMjFkMjItYTg5ZS00NzA4LTlmZjctMDRiMDhiZjcxMmQ0IiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmUuYXBpLXByZXByb2QuYmttLmNvbS50ci9hdXRoL3JlYWxtcy9ia21wcmVwcm9kcmVhbG0iLCJzdWIiOiJjYTZjOGQ1Mi0wNWNkLTQyNmMtODIxNS0yMzg2YjZiYTRkNTMiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiIyOGFhOTBjY2UzY2M2ZTIzMzU5NTY3N2Y5ODEyNGZmNyIsInNjb3BlIjoia29sYXNfd3JpdGUga29sYXNfcmVhZCIsImNsaWVudElkIjoiMjhhYTkwY2NlM2NjNmUyMzM1OTU2NzdmOTgxMjRmZjciLCJjbGllbnRIb3N0IjoiMTkyLjE2OC4xNTQuMzEiLCJjbGllbnRfb3JnYW5pemF0aW9uX3R5cGUiOiIyIiwiY2xpZW50QWRkcmVzcyI6IjE5Mi4xNjguMTU0LjMxIiwiY2xpZW50X2NvZGUiOiIwODA3In0.hOflRFxE2h9uKPRrn3DHU8pW9uJUgZMgK9j1T8eyYQSHggmPu3UKK_qqiHW3YAnSErBEDrqsS23XX_5_Qi2V6SM2-HMGYq14A_Z9GiQZRboDAls8U71boR6dU0CBIjYNTHOG876seOlG7ur7e5E_LW5jd7_4cecsegl8MAnIIFiKvMGhm-uP_kfAwbQiiyO5oSxdNMicvmi9S_AmW6wApW-mP-2vVmwoKZRdywhP8uCZnnWHkW1shsZaYoEjGG-B_2k8nckDUp7ag54Ow28gX-gGmQPwHSX4LGLxjw4AcrTP-cXSTnHayaL64a7tGXGBOfO_AsPB-R07yZjyv_BR2Q'
+      Value: 'Bearer eyJhb1234556I1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJmdXRoWW5oTTBDd3FkY2FxUElQMWlHdXlGeDFackJZeElXZmRzTlN6dlZJIn0.eyJleHAiOjE3MDA1NzU3NzQsImlhdCI6MTcwMDU3MjE3NCwianRpIjoiMWYxMjFkMjItYTg5ZS00NzA4LTlmZjctMDRiMDhiZjcxMmQ0IiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmUuYXBpLXByZXByb2QuYmttLmNvbS50ci9hdXRoL3JlYWxtcy9ia21wcmVwcm9kcmVhbG0iLCJzdWIiOiJjYTZjOGQ1Mi0wNWNkLTQyNmMtODIxNS0yMzg2YjZiYTRkNTMiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiIyOGFhOTBjY2UzY2M2ZTIzMzU5NTY3N2Y5ODEyNGZmNyIsInNjb3BlIjoia29sYXNfd3JpdGUga29sYXNfcmVhZCIsImNsaWVudElkIjoiMjhhYTkwY2NlM2NjNmUyMzM1OTU2NzdmOTgxMjRmZjciLCJjbGllbnRIb3N0IjoiMTkyLjE2OC4xNTQuMzEiLCJjbGllbnRfb3JnYW5pemF0aW9uX3R5cGUiOiIyIiwiY2xpZW50QWRkcmVzcyI6IjE5Mi4xNjguMTU0LjMxIiwiY2xpZW50X2NvZGUiOiIwODA3In0.hOflRFxE2h9uKPRrn3DHU8pW9uJUgZMgK9j1T8eyYQSHggmPu3UKK_qqiHW3YAnSErBEDrqsS23XX_5_Qi2V6SM2-HMGYq14A_Z9GiQZRboDAls8U71boR6dU0CBIjYNTHOG876seOlG7ur7e5E_LW5jd7_4cecsegl8MAnIIFiKvMGhm-uP_kfAwbQiiyO5oSxdNMicvmi9S_AmW6wApW-mP-2vVmwoKZRdywhP8uCZnnWHkW1shsZaYoEjGG-B_2k8nckDUp7ag54Ow28gX-gGmQPwHSX4LGLxjw4AcrTP-cXSTnHayaL64a7tGXGBOfO_AsPB-R07yZjyv_BR2Q'
   },
 ];
 export const hesapBilgisiRizaResponseHeader = [
@@ -279,7 +279,7 @@ export const odemeEmriErisimBelirteciHeader = [
         Value: 'Bearer ey..............'
     },
 ];
-export const hesapBilgisiRızasiRequest={
+export const hesapBilgisiRizasiRequest={
   "katilimciBlg": {
     "hhsKod": "8000",
     "yosKod": "8000"
@@ -290,7 +290,7 @@ export const hesapBilgisiRızasiRequest={
   },
   "kmlk": {
     "kmlkTur": "K",
-    "kmlkVrs": "77121323400",
+    "kmlkVrs": "11111111111",
     "ohkTur": "B"
   },
   "hspBlg": {
@@ -317,7 +317,7 @@ export const HesapBilgisiRizasi201 = {
   },
   "kmlk": {
     "kmlkTur": "K",
-    "kmlkVrs": "77121323400",
+    "kmlkVrs": "11111111111",
     "ohkTur": "B"
   },
   "katilimciBlg": {
@@ -571,7 +571,7 @@ export const YenilemeBelirteciResponse401 =
         "hspDrm": "AKTIF",
         "hspNo": "TR680003200000000073144415",
         "hspRef": "68c9ead2af99127e846a6a06ff41c026",
-        "hspShb": "AYŞE DEMİR",
+        "hspShb": "İsim Soyisim",
         "hspTip": "VADESIZ",
         "hspTur": "B",
         "hspUrunAdi": "Vadesiz Mevduat",
@@ -589,7 +589,7 @@ export const YenilemeBelirteciResponse401 =
         "hspDrm": "AKTIF",
         "hspNo": "TR880003200000000102589209",
         "hspRef": "88ae6c58d309567d0d54a34a4e5f57d3",
-        "hspShb": "AYŞE DEMİR",
+        "hspShb": "İsim Soyisim",
         "hspTip": "VADESIZ",
         "hspTur": "B",
         "hspUrunAdi": "Vadesiz Mevduat",
@@ -606,7 +606,7 @@ export const YenilemeBelirteciResponse401 =
         "hspDrm": "AKTIF",
         "hspNo": "TR980003200000000096785934",
         "hspRef": "98271970d10b0c4738b53308a5d8695f",
-        "hspShb": "AYŞE DEMİR",
+        "hspShb": "İsim Soyisim",
         "hspTip": "VADESIZ",
         "hspTur": "B",
         "hspUrunAdi": "Vadesiz Mevduat",
@@ -807,8 +807,8 @@ export const YenilemeBelirteciResponse401 =
     "isller": [
       {
         "islTml": {
-          "islNo": "AB1234567890",
-          "refNo": "CD0987654321",
+          "islNo": "31231256",
+          "refNo": "7657654435",
           "islTtr": "1000.99",
           "prBrm": "TRY",
           "islGrckZaman": "2021-03-25T06:30:22+03:00",
@@ -828,8 +828,8 @@ export const YenilemeBelirteciResponse401 =
       },
       {
         "islTml": {
-          "islNo": "244450000439",
-          "refNo": "fd4452866180",
+          "islNo": "2312321321",
+          "refNo": "6345324",
           "islTtr": "750",
           "prBrm": "TRY",
           "islGrckZaman": "2023-12-06T14:40:37+03:00",
@@ -837,20 +837,20 @@ export const YenilemeBelirteciResponse401 =
           "brcAlc": "B",
           "islTur": "FAST",
           "islAmc": "07",
-          "odmStmNo": "20231206|0067|1364202795"
+          "odmStmNo": "xxxxx-xxxxx-yyyy"
         },
         "islDty": {
-          "islAcklm": "GİDEN FAST - Fikret Çayır",
+          "islAcklm": "GİDEN FAST- İsim Soyisim",
           "krsTrf": {
             "krsMskIBAN": "TR35******************8888",
-            "krsMskUnvan": "Fi**** Ça****"
+            "krsMskUnvan": "İs**** So****"
           }
         }
       },
       {
         "islTml": {
-          "islNo": "456450000179",
-          "refNo": "753454092780",
+          "islNo": "123454534",
+          "refNo": "3123131233",
           "islTtr": "3500",
           "prBrm": "TRY",
           "islGrckZaman": "2023-12-06T16:11:21+03:00",
@@ -860,13 +860,13 @@ export const YenilemeBelirteciResponse401 =
           "islAmc": "12"
         },
         "islDty": {
-          "islAcklm": "2858735780347 no'lu kredi 3. taksit toplam ödeme tutarı ",
+          "islAcklm": "xxx no'lu kredi 3. taksit toplam ödeme tutarı ",
         }
       },
       {
         "islTml": {
-          "islNo": "8665450000182",
-          "refNo": "321553102004",
+          "islNo": "123345677",
+          "refNo": "545545545",
           "islTtr": "0.26",
           "prBrm": "TRY",
           "islGrckZaman": "2023-12-12T16:13:37+03:00",
@@ -874,13 +874,13 @@ export const YenilemeBelirteciResponse401 =
           "brcAlc": "B",
           "islTur": "VERGI_ODEMESI",
           "islAmc": "07",
-          "odmStmNo": "20231212|8000|1999529782"
+          "odmStmNo": "xxxxx-xxxxx-yyyy"
         },
         "islDty": {
-          "islAcklm": "BSMV ELEKTRONİK FON TRANSFERİ (EFT) ÜCRETİ-FAST/hakan kahraman",
+          "islAcklm": "BSMV ELEKTRONİK FON TRANSFERİ (EFT) ÜCRETİ-FAST/isim soyisim",
           "krsTrf": {
             "krsMskIBAN": "TR93******************9999",
-            "krsMskUnvan": "ha**** ka****"
+            "krsMskUnvan": "is**** so****"
           }
         }
       }

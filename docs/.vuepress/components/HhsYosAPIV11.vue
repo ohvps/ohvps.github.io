@@ -15,28 +15,28 @@
                         </div>
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
-                                    <Request title="HHS İsteği" actionButtonText="HHS Listesi" isGet="true"
-                                        path="/hhs" :requestBody="oasRequest" :headers="requestHeaders"
-                                        @request-event="requestClick" />
+                                    <Request title="HHS İsteği" actionButtonText="HHS Listesi" httpMethod="GET"
+                                        path="/hhs" :requestBody="hhsAPIRequest" :headers="requestHeadersHHSAPI"
+                                        @request-event="hhsAPIrequestClick" />
                                 </div>
                                 <div class="col" style="width: 50%;">
-                                    <Response title="HHS Yanıtı" :headers="responseHeaders"
+                                    <Response title="HHS Yanıtı" :headers="responseHeadersHHSAPI"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
-                                        @response-event="oasChangeTabs" :body="oasResponse" :tabs="responseTabs"  nextButtonVisible="true"/>
+                                        @response-event="hhsAPIChangeTabs" :body="hhsAPIResponse" :tabs="responseTabs"  nextButtonVisible="true"/>
                                 </div>
                             </div>
                         </div>
                         <div v-if="tab.ID === 2" style="width: 100%;">
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
-                                    <Request title="YÖS İsteği" actionButtonText="YÖS Listesi" isGet="true"
-                                        path="/yos" :requestBody="odsRequest" :headers="requestHeaders"
-                                        @request-event="odsRequestClick" />
+                                    <Request title="YÖS İsteği" actionButtonText="YÖS Listesi" httpMethod="GET"
+                                        path="/yos" :requestBody="yosAPIRequest" :headers="requestHeadersYOSAPI"
+                                        @request-event="yosAPIRequestClick" />
                                 </div>
                                 <div class="col" style="width: 50%;">
-                                    <Response title="YÖS Yanıtı" :headers="responseHeaders"
+                                    <Response title="YÖS Yanıtı" :headers="responseHeadersYOSAPI"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
-                                        @response-event="odsChangeTabs" :body="odsResponse" :tabs="responseTabsOds" nextButtonVisible="false"/>
+                                        @response-event="yosAPIChangeTabs" :body="yosAPIResponse" :tabs="responseTabs" nextButtonVisible="false"/>
                                 </div>
                             </div>
                         </div>
@@ -55,9 +55,9 @@ import DxTabPanel, { DxItem } from 'devextreme-vue/tab-panel';
 import { DxScrollView } from 'devextreme-vue/scroll-view';
 
 import { mainTabs } from './data-hhs-yos-V1.1';
-import { responseTabs, requestHeaders, responseHeaders, responseTabsOds } from './data-hhs-yos-V1.1'
-import { OlayAbonelikRequest, OlayAbonelikResponse201, OlayAbonelikResponse400, OlayAbonelikResponse401, OlayAbonelikResponse403, OlayAbonelikResponse404 } from './data-hhs-yos-V1.1'
-import { OlayDinlemeRequest, OlayDinlemeResponse202, OlayDinlemeResponse400, OlayDinlemeResponse401, OlayDinlemeResponse403, OlayDinlemeResponse404 } from './data-hhs-yos-V1.1'
+import { responseTabs, RequestHeadersHHSAPI, ResponseHeadersHHSAPI, RequestHeadersYOSAPI, ResponseHeadersYOSAPI } from './data-hhs-yos-V1.1'
+import { HHSAPIResponse200,HHSAPIResponse400,HHSAPIResponse401,HHSAPIResponse403,HHSAPIResponse404 } from './data-hhs-yos-V1.1'
+import { YOSAPIResponse200, YOSAPIResponse400,YOSAPIResponse401,YOSAPIResponse403,YOSAPIResponse404  } from './data-hhs-yos-V1.1'
 
 import 'devextreme/dist/css/dx.light.css';
 
@@ -82,14 +82,12 @@ export default {
             swipeEnabled: true,
             mainTabs: mainTabs,
             responseTabs: responseTabs,
-            requestHeaders: requestHeaders,
-            responseHeaders: responseHeaders,
-            responseTabsOds: responseTabsOds,
-
-            oasRequest: JSON.stringify(OlayAbonelikRequest, null, 2),
-            odsRequest: JSON.stringify(OlayDinlemeRequest, null, 2),
-            oasResponse: "",
-            odsResponse: "",
+            requestHeadersHHSAPI: RequestHeadersHHSAPI,
+            responseHeadersHHSAPI: ResponseHeadersHHSAPI,
+            requestHeadersYOSAPI: RequestHeadersYOSAPI,
+            responseHeadersYOSAPI: ResponseHeadersYOSAPI,
+            yosAPIResponse: "",
+            hhsAPIResponse: "",
 
         };
     },
@@ -108,46 +106,46 @@ export default {
     },
 
     methods: {
-        requestClick() {
-            this.oasResponse = JSON.stringify(OlayAbonelikResponse201, null, 2)
+        hhsAPIrequestClick() {
+            this.hhsAPIResponse = JSON.stringify(HHSAPIResponse200, null, 2)
         },
-        odsRequestClick() {
-            this.odsResponse = JSON.stringify(OlayDinlemeRequest, null, 2);
+        yosAPIRequestClick() {
+            this.yosAPIResponse = JSON.stringify(YOSAPIResponse200, null, 2);
         },
         nextStep() {
             this.selectedIndex = this.selectedIndex + 1;
         },
 
 
-        oasChangeTabs(step) {
+        hhsAPIChangeTabs(step) {
             
             switch (step) {
                 case 1:
-                    return this.oasResponse = JSON.stringify(OlayAbonelikResponse201, null, 2);
+                    return this.hhsAPIResponse = JSON.stringify(HHSAPIResponse200, null, 2);
                 case 2:
-                    return this.oasResponse = JSON.stringify(OlayAbonelikResponse400, null, 2);
+                    return this.hhsAPIResponse = JSON.stringify(HHSAPIResponse400, null, 2);
                 case 3:
-                    return this.oasResponse = JSON.stringify(OlayAbonelikResponse401, null, 2);
+                    return this.hhsAPIResponse = JSON.stringify(HHSAPIResponse401, null, 2);
                 case 4:
-                    return this.oasResponse = JSON.stringify(OlayAbonelikResponse403, null, 2);
+                    return this.hhsAPIResponse = JSON.stringify(HHSAPIResponse403, null, 2);
                 case 5:
-                    return this.oasResponse = JSON.stringify(OlayAbonelikResponse404, null, 2);
+                    return this.hhsAPIResponse = JSON.stringify(HHSAPIResponse404, null, 2);
 
             }
         },
-        odsChangeTabs(step) {
+        yosAPIChangeTabs(step) {
             
             switch (step) {
                 case 1:
-                    return this.odsResponse = JSON.stringify(OlayDinlemeResponse202, null, 2);
+                    return this.yosAPIResponse = JSON.stringify(YOSAPIResponse200, null, 2);
                 case 2:
-                    return this.odsResponse = JSON.stringify(OlayDinlemeResponse400, null, 2);
+                    return this.yosAPIResponse = JSON.stringify(YOSAPIResponse400, null, 2);
                 case 3:
-                    return this.odsResponse = JSON.stringify(OlayDinlemeResponse401, null, 2);
+                    return this.yosAPIResponse = JSON.stringify(YOSAPIResponse401, null, 2);
                 case 4:
-                    return this.odsResponse = JSON.stringify(OlayDinlemeResponse403, null, 2);
+                    return this.yosAPIResponse = JSON.stringify(YOSAPIResponse403, null, 2);
                 case 5:
-                    return this.odsResponse = JSON.stringify(OlayDinlemeResponse404, null, 2);
+                    return this.yosAPIResponse = JSON.stringify(YOSAPIResponse404, null, 2);
 
             }
         },

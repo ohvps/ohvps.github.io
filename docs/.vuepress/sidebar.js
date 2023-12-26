@@ -176,7 +176,7 @@ module.exports = [
                         path: '/v1.1.0/deneyalani/hhs-yos-api'
                     },
                     {
-                        title: '4. Olay Bildirim API',
+                        title: '4. Olay Bildirim',
                         path: '/v1.1.0/deneyalani/olay-bildirim-api'
                     },
                 ]

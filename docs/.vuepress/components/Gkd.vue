@@ -43,7 +43,7 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
     name: 'Request',
-    props: ['title','headers','requestBody','actionButtonText','path','isGet'],
+    props: ['title','headers','requestBody','actionButtonText','path','httpMethod'],
     methods: {
    
         nextStep(){

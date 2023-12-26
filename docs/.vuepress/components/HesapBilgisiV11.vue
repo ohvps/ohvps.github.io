@@ -19,7 +19,7 @@
                            </div>
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
-                                    <Request title="Hesap Bilgisi Rızası İsteği" actionButtonText="Hesap Bilgisi Rızası Al" isGet="false"
+                                    <Request title="Hesap Bilgisi Rızası İsteği" actionButtonText="Hesap Bilgisi Rızası Al" httpMethod="POST"
                                         path="/hesap-bilgisi-rizasi" :requestBody="hesapBilgisiRequestBody" :headers="headerHesapBilgiRiza"
                                         @request-event="requestClick" />
                                 </div>
@@ -64,7 +64,7 @@
                             </div>
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
-                                    <Request title="Erişim Belirteci İsteği" actionButtonText="Erişim Belirteci Al" isGet="false"
+                                    <Request title="Erişim Belirteci İsteği" actionButtonText="Erişim Belirteci Al" httpMethod="POST"
                                         path="/erisim-belirteci" :requestBody="erisimBelirteciBody"
                                         :headers="headerHesapBilgiRiza" @request-event="erisimBelirteci" />
                                 </div>
@@ -83,7 +83,7 @@
                             </div>
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
-                                    <Request title="Hesaplar İsteği" actionButtonText="Hesaplar" isGet="true"
+                                    <Request title="Hesaplar İsteği" actionButtonText="Hesaplar" httpMethod="GET"
                                         path="/hesaplar"  :requestBody="hesapBilgisiBody"
                                         :headers="requestHeadersAfterToken" @request-event="getHesaplar" />
                                 </div>
@@ -99,7 +99,7 @@
                             <div><p>Rıza durumu "Yetki Kullanıldı " ise YÖS, ÖHK'ya ait tüm hesapların veya belirli bir hesabın bakiyesi bu servis ile sorgular.</p></div>
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
-                                    <Request title="Bakiye İsteği" actionButtonText="Bakiye" isGet="true"
+                                    <Request title="Bakiye İsteği" actionButtonText="Bakiye" httpMethod="GET"
                                         path="/bakiye" :requestBody="hesapBilgisiBody"
                                         :headers="requestHeadersAfterToken" @request-event="getBakiye" />
                                 </div>
@@ -115,7 +115,7 @@
                             <div><p>YÖS, ÖHK'ya ait belirli bir hesabın işlemlerini bu servis ile sorgular. </p></div>
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
-                                    <Request title="İşlemler İsteği" actionButtonText="İşlemler" isGet="true"
+                                    <Request title="İşlemler İsteği" actionButtonText="İşlemler" httpMethod="GET"
                                         path="/hesaplar/1234/islemler" :requestBody="hesapBilgisiBody"
                                         :headers="requestHeadersAfterToken" @request-event="getIslemler" />
                                 </div>
@@ -130,7 +130,7 @@
                         <div v-if="tab.ID === 8" style="width: 100%;">
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
-                                    <Request title="Yenileme Belirteci İsteği" actionButtonText="Yenileme Belirteci Al" isGet="false"
+                                    <Request title="Yenileme Belirteci İsteği" actionButtonText="Yenileme Belirteci Al" httpMethod="POST"
                                         path="/erisim-belirteci" :requestBody="yenilemeBelirteciReuestBody"
                                         :headers="requestHeadersAfterToken" @request-event="erisimBelirteci" />
                                 </div>
@@ -144,7 +144,7 @@
                         <div v-if="tab.ID === 9" style="width: 100%;">
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
-                                    <Request title="Rıza Sorgulama" actionButtonText="Rıza Sorgulama" isGet="true"
+                                    <Request title="Rıza Sorgulama" actionButtonText="Rıza Sorgulama" httpMethod="GET"
                                         path=" /hesap-bilgisi-rizasi/{RizaNo}" :requestBody="yenilemeBelirteciReuestBody"
                                         :headers="requestHeadersAfterToken" @request-event="erisimBelirteci" />
                                 </div>
@@ -158,7 +158,7 @@
                          <div v-if="tab.ID === 10" style="width: 100%;">
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
-                                    <Request title="Rıza İptal" actionButtonText="Rıza İptal" isGet="false"
+                                    <Request title="Rıza İptal" actionButtonText="Rıza İptal" httpMethod="POST"
                                         path="DELETE /hesap-bilgisi-rizasi/{RizaNo}" :requestBody="yenilemeBelirteciReuestBody"
                                         :headers="requestHeadersAfterToken" @request-event="erisimBelirteci" />
                                 </div>

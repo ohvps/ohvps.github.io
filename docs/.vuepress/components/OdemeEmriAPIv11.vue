@@ -28,7 +28,7 @@
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
                                     <Request title="Ödeme Emri Rızası İsteği" actionButtonText="Ödeme Emri Rızası Al"
-                                        isGet="false" path="/odeme-emri-rizasi" :requestBody="odemeEmriRequestBody"
+                                        httpMethod="POST" path="/odeme-emri-rizasi" :requestBody="odemeEmriRequestBody"
                                         :headers="headersOdemeEmriRiza" @request-event="doneClick" />
                                 </div>
                                 <div class="col" style="width: 50%;">
@@ -78,7 +78,7 @@
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
                                     <Request title="Erişim Belirteci İsteği" actionButtonText="Erişim Belirteci Al"
-                                        isGet="false" path="/erisim-belirteci" :requestBody="erisimBelirteciBody"
+                                        httpMethod="POST" path="/erisim-belirteci" :requestBody="erisimBelirteciBody"
                                         :headers="headersOdemeEmriRiza" @request-event="erisimBelirteci" />
                                 </div>
                                 <div class="col" style="width: 50%;">
@@ -99,7 +99,7 @@
 
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
-                                    <Request title="Ödeme Emri İsteği" actionButtonText="Ödeme Emri İsteği" isGet="false"
+                                    <Request title="Ödeme Emri İsteği" actionButtonText="Ödeme Emri İsteği" httpMethod="POST"
                                         path="/odeme-emri" :requestBody="odemeEmriBody"
                                         :headers="requestHeadersAfterToken" @request-event="odemeEmri" />
                                 </div>
@@ -122,7 +122,7 @@
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
                                     <Request title="Yenileme Belirteci İsteği" actionButtonText="Yenileme Belirteci Al"
-                                        isGet="false" path="/erisim-belirteci" :requestBody="yenilemeBelirteci"
+                                        httpMethod="POST" path="/erisim-belirteci" :requestBody="yenilemeBelirteci"
                                         :headers="requestHeadersAfterToken" @request-event="erisimBelirteci" />
                                 </div>
                                 <div class="col" style="width: 50%;">
@@ -140,7 +140,7 @@
                             </div>
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
-                                    <Request title="Ödeme Emri Sorgulama" actionButtonText="Ödeme Emri Sorgula" isGet="true"
+                                    <Request title="Ödeme Emri Sorgulama" actionButtonText="Ödeme Emri Sorgula" httpMethod="GET"
                                         path="/odeme-emri/67d3fd73ae0b433c847201bbb1e5356d" :requestBody="yenilemeBelirteci"
                                         :headers="requestHeadersAfterToken" @request-event="odemeEmri" />
                                 </div>
