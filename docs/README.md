@@ -2,8 +2,9 @@
 
 **<font size=6>API İLKE VE KURALLARI  </font>**  
 
-<font size=4><b>SÜRÜM 1.0.2 aktif hale gelmiştir.<br>
-Sertifikasyon için geçerli olan SÜRÜM 1.0.2 olacaktır.<br>
+ <font size=4><b>SÜRÜM 1.1.0 aktif hale gelmiştir.<br>
+Sertifikasyon için geçerli olan SÜRÜM 1.1.0 olacaktır.<br>
+YÖS'ler için sertifikasyon başlangıç tarihi 1 Ocak 2024 olmakla beraber 2023 Aralık ayı içerisinde onaya gönderilen sertifikasyon taleplerinin 1.1.0 versiyonu için iletilmesi beklenmektedir.
 <br>
  <https://github.com/ohvps/> adresi üzerinden değişiklik açıklamaları ve tarihçesi incelenebilir.<br></b></font>
 
@@ -13,11 +14,13 @@ Sertifikasyon için geçerli olan SÜRÜM 1.0.2 olacaktır.<br>
 <br/>
 <br/>
 
-SÜRÜM 1.1.0 (TASLAK) sürüm gerçiş tarihleri şu şekildedir.
+SÜRÜM 1.1.0 geçiş tarihleri şu şekildedir.
 
 - Sürüm Geçiş Tarihi : 1 Aralık 2023
 
-- Sertifikasyona Başlangıç Tarihi : 1 Aralık 2023
+- HHS Sertifikasyon Başlangıç Tarihi : 1 Aralık 2023
+
+- YÖS Sertifikasyon Başlangıç Tarihi : 1 Ocak 2024
 
 - HHS Sertifikasyon Bitiş Tarihi : 23 Şubat 2024
 
@@ -33,9 +36,6 @@ SÜRÜM 1.1.0 (TASLAK) sürüm gerçiş tarihleri şu şekildedir.
 
 <br>
 
-**ÖNEMLİ BİLGİ : <br>HHS’nin mobil uygulamasının bulunması durumunda tarayıcı tabanlı yönlendirmenin yanında uygulama tabanlı yönlendirme yapması zorunludur. <br>Uygulama sahiplerinin uygulama tabanlı yönlendirme için uyumlanma son tarihleri 1 Ekim 2023’tür.**
-<br>
-<br>
 
 Üretim ortamında servis sunan HHS’lerin 29 Şubat 2024 - 30 Eylül 2024 tarihleri arasında aynı anda çift sürüm desteklemesi gerekmektedir!
 

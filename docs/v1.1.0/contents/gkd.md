@@ -119,6 +119,22 @@ YÖS rolünde Ayrık GKD akışının ÖHK’ya sorularak başlatılmasına gere
 Ayrık GKD sürecinde; HHS'nin yetkilendirme kodunu YÖS'e iletmesi için gerekli önkoşul olan ÖHK doğrulaması adımının tamamlanmasını olay bildirimi ile YÖS'e yapması gerekmektedir.
 Bu nedenle YÖS'lerin eğer Ayrık GKD sürecini destekleyecek ise;  /olay-dinleme endpointini açarak olay bildirimi alması zorunludur. 
 
+Özetle:
+
+**Yönlendirmeli GKD**
+
+-	HHS mobil uygulaması olması durumunda yönlendirme adresi olarak universalLink kullanmalı.
+-	Bu link tanımı  uygulama var ise uygulamayı aç yoksa webden devam et şeklinde olmalı.
+-	YÖS’ün mobilden mi webden mi geldiği HHS açısından önemli değildir. HHS olarak YÖS hangi adresi yonAdr değerinde göndermiş ise yetkilendirme süreci bittiğinde o adrese yönlendirme yapılmalıdır.
+
+**Ayrık GKD**
+
+-	Mobil uygulaması bulunan HHS'ler için Ayrık GKD desteklenmesi zorunludur. HHS’nin web olduğu durumda Ayrık GKD akışı uygulanmayacaktır. Mobil uygulaması bulunup müşteri özelinde mobil aktiflik kontrol süreci HHS inisiyatifindedir. Ayrık GKD sürecinde HHS tarafında sadece mobil uygulama üzerinden GKD yapılmalıdır. ÖHK’nın web uygulamasına yönlendirme yapmaması gerekmektedir.
+-	ÖHK’nin Mobil uygulamasının olmadığını tespit edebildiğiniz her durum için rıza oluşturma aşamasında “TR.OHVPS.Business.CustomerMobileApplicationNotFound” hatası döülür. 
+-	HHS, ÖHK’nın mobil uygulamasının bulunmadığı bilgisine ulaşamazsa kendisinin belirleyeceği bildirim yöntemlerinden biri ile ÖHK’ye bilgilendirme yapar. Bildirim yöntemi SMS ise ÖHK’ya mobil uygulamasını açtıracak şekilde adres iletir, Web uygulamayı açtıracak bir link iletilmemelidir. ÖHK bu bildirimi dikkate almazsa/alamazsa veya ÖHK’da mobil uygulama yok ise bu durumda rıza süre aşımından iptal olur. 
+-	ÖHK mevcut bankacılık işlemlerinde bildirimi nasıl gönderiyorsanız (Örneğin: Anlık bildirim gönderildi, alınmadı, SMS’e dönüldü gibi.) aynı şekilde bildirim göndererek ÖHK’nin uygulama üzerinden rızayı onaylaması beklenir. Buradaki akış HHS’nin diğer ürünleri için verdiği müşteri deneyimi ile paralel olmalıdır.
+
+
 
 ### 5.2.1	Statik Model
 
@@ -160,7 +176,6 @@ RizaNesnesi
 ...
   "gkd": {
     "yetYntm": "A",
-    "yonAdr": "https://yosAdr?drmKod",
      "ayrikGkd" :{
          "ohkTanimTip" : "TCKN" 
          "ohkTanimDeger": "11232123212"
@@ -207,22 +222,8 @@ CSRF Ataklarından korunmak için ve YÖS uygulamasının bir önceki durumunu r
 
 Durum kodu, rıza isteğindeki yönlendirme adresine parametre olarak eklenir.  GKD süreci sonrasında yetki kodu ile birlikte bu bilgi, HHS tarafından YÖS’e iletilir. YÖS sakladığı değer ile parametre olarak gelen değerin eşitliğini kontrol eder. Aynı ise erişim belirteci almak üzere akışı ilerletir. Farklı ise işlemi keser. 
 
-## 5.4	Healthcheck API  
 
-**GET /health**
-
-HHS’lerin sunacağı bu servis, düzenli olarak BKM tarafından çağırılarak servislerin ayakta olup olmadıklarının kontrolünün sağlanması planlanmaktadır.
-
-Başarılı yanıtta Http 200 kodu dönülmelidir.  
-Başarılı Yanıt:
-
-
-|Alan Adı |JSON Alan Adı |Format |Koşullu  / İsteğe Bağlı|Açıklama|
-| --- | --- | --- | --- |--- |
-| status | status | AN2..20 | Z |“UP”, “DOWN” değerlerini alabilir.|
-
-
-## 5.5  Güçlü Kimlik Doğrulama Kontrolleri 
+## 5.4  Güçlü Kimlik Doğrulama Kontrolleri 
 
 ÖHK, GKD için HHS uygulamasına yönlendirildiğinde, HHS’nin çeşitli kontroller yaparak işlemin doğruluğunu teyit etmesi gerekmektedir.
 Yapılması gereken kontrollere ait temel senaryolar aşağıdaki tabloda belirtilmiştir. Bu senaryolar baz alınarak HHS’ler tarafından zenginleştirilebilir.   

@@ -38,7 +38,7 @@ YÖS, "HESAP_BILGISI_RIZASI" kaynağı için bildirim yapıldı ise; GET /yetkil
 
 YÖS, rıza numarasını ve isteğin ÖBH ya da HBH olmasına göre değişen rıza tipini parametre olarak istek talebine ekler. Rıza tipinin alabileceği değerler **TR.OHVPS.DataCode.RizaTip** sıralı veri tiplerinde belirtilmiştir.
 
-HHS'nin, yetkilendirme yöntemi "Ayrık Gkd" ise  rıza numarası ile yetki kodu değerini dönmesi beklenmektedir. Yönlendirmeli GKD için bu endpoint "yetKod" değerini dönmemelidir. 
+HHS'nin, yetkilendirme yöntemi "Ayrık Gkd" ise  rıza numarası ile yetki kodu değerini dönmesi beklenmektedir. Yönlendirmeli GKD için bu endpoint "yetKod" değerini dönmemelidir. Yönlendirmeli GKD’ye ait bir rıza no ile yetkilendirme kodu API kullanılarak yet_kod alınmak istendiğinde HHS tarafından **TR.OHVPS.Resource.NotFound** hatası verilmelidir.
 
 **YANIT:**  
 
@@ -95,14 +95,12 @@ POST işleminin RESPONSE gövdesini (BODY) oluşturan “erisimBelirteci” nesn
 | --- | --- | --- | --- | --- | 
 | Erişim Belirteci | erisimBelirteci | AN1..4096 | Z | Yetkilendirme Kodu karşılığında HHS tarafından dönülen ve sonraki hesap bilgisi ve ödeme emri servislerine erişimde kullanılan bilgidir.<br>[Bölüm 3.6 Karakter Kodlama](temel-prensipler.html#_3-6-karakter-kodlama)  bölümünde açıklanan karakter formatında gönderilmesi beklenmektedir. Yenileme belirteci ile birden fazla erişim belirteci alınması durumunda verilen tüm erişim belirteçlerinin süreleri bitene kadar geçerli olmalıdır.  | 
 | Geçerlilik Süresi | gecerlilikSuresi | N1..9 | Z | Erişim Belirtecini saniye cinsinden geçerlilik süresidir.<br> Erişim belirteci geçerli olduğu son tarih ;<br>Hesap Bilgisi Rızası için en fazla 30 gün en az ise 1 gün olmalıdır.  Erişimin Geçerli Olduğu Son Tarih(erisimIzniSonTrh); Erişim Belirteci Geçerlilik Süresi'nden küçük ise Erişimin Geçerli Olduğu Son Tarih değeri ile sınırlıdır.<br>Ödeme Emri Rızası için 5 dakika olmalıdır. | 
-| Yenileme Belirteci | yenilemeBelirteci | AN1..4096 | Z | Erişim belirtecinin yenilenmesi amacıyla kullanılır.<br> [Bölüm 3.6 Karakter Kodlama](temel-prensipler.html#_3-6-karakter-kodlama) bölümünde açıklanan karakter formatında gönderilmesi beklenmektedir. | 
+| Yenileme Belirteci | yenilemeBelirteci | AN1..4096 | Z | Erişim belirtecinin yenilenmesi amacıyla kullanılır.<br> [Bölüm 3.6 Karakter Kodlama](temel-prensipler.html#_3-6-karakter-kodlama) bölümünde açıklanan karakter formatında gönderilmesi beklenmektedir. **Yenileme Belirteci ile Erişim Belirteci isteği yapıldığında HHS'nin döndüğü yanıt içerisindeki yenilemeBelirteci değerini kesinlikle değiştirmemesi gerekmektedir.Yenileme belirteci rıza süresi boyunca güncellenmemelidir.** | 
 | Yenileme Belirteci Geçerlik Süresi | yenilemeBelirteciGecerlilikSuresi | N1..9 | Z | Yenileme belirtecinin saniye cinsinden geçerlilik süresidir.<br>Yenileme belirtecinin geçerli olduğu son tarih ;<br>Hesap Bilgisi için Erişimin Geçerli Olduğu Son Tarih ile sınırlı olmalıdır.<br>Bu tarih geldiği zaman Hesap Bilgisi Rıza Durumunu ”Yetki Sonlandırıldı” statüsüne çekilmesi gerekir.<br>Ödeme Başlatma için Rıza Oluşturma Zamanından 15 gün sonrası olmalıdır.<br><br>15 gün süresi sorgulama servislerinin çağrımını destekleyecek şekilde uzun tutulmuştur. İleri vadeli işlemler bu kapsamda değildir. <br>Ödeme emri 5 dakika içinde gerçekleştirilmelidir. Gerçekleşmediğinde 4.2.8 bölümünde aktarılan rıza statü güncellemesi yapılmalıdır. | 
 
 erisim-belirteci erisim noktasından elde edilen erisimBelirteci, ilişkilendirildiği nesne veya işlem için gönderilen POST isteği başlığında x-access-token alanında iletilir.
 
 Yenilenme Belirteci (refreshToken) kullanılarak Erişim Belirteci (accessToken) alındığında, dönen yanıttaki Yenileme Belirteci Geçerlik Süresi (yenilemeBelirteciGecerlilikSuresi) geçen süre eksiltilerek, kalan zamanın saniye cinsinden hesaplanmasıyla iletilmelidir.
-
-Yenileme Belirteci ile Erişim Belirteci güncellendiğinde, HHS'den dönen yenilemeBelirteci değeri değişebilir, YÖS bu güncel anahtarı saklamalı ve sonraki erisimBelirteci isteğini yenilenmiş olan yenilemeBelirteci ile yapmalıdır.
 
 
 Erişim Belirteci API çağrımı sırasında rıza durumları kontrol edilmelidir. Bu kontrollerin nasıl yapılması gerektiği 4-Rıza Durumları bölümünde aktarılmıştır.
