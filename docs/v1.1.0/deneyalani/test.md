@@ -1,1 +1,3 @@
-<test/>
+<ClientOnly>
+  <test/>
+</ClientOnly>
