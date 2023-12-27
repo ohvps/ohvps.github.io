@@ -1,1 +1,3 @@
-<OlayDinlemeAPIV11/>
+<ClientOnly>
+  <OlayDinlemeAPIV11/>
+</ClientOnly>
