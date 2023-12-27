@@ -26,6 +26,7 @@
     "js-yaml": "^4.1.0",
     "js-yaml-loader": "^1.2.2",
     "node-sass": "^9.0.0",
+    "opencollective-postinstall": "^2.0.3",
     "swagger-client": "^3.10.12",
     "swagger-ui": "^4.13.0",
     "yaml": "^2.3.4"
