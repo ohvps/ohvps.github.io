@@ -1,0 +1,533 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "YOS API",
+        "version": "1.1.6",
+        "description": "YOS API dokümantasyonu.",
+        "contact": {
+            "url": "https://bkm.com.tr/"
+        }
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "basePath": "/yos-api/s1.1",
+    "produces": [
+        "application/json"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "security": [
+        {
+            "auth": [
+                "yos_read"
+            ]
+        }
+    ],
+    "securityDefinitions": {
+        "auth": {
+            "type": "oauth2",
+            "flow": "application",
+            "tokenUrl": "https://secure.api-preprod.bkm.com.tr/oauth-provider/oauth2/token",
+            "scopes": {
+                "yos_read": "YOS READ"
+            }
+        }
+    },
+    "paths": {
+        "/yos": {
+            "get": {
+                "description": "Yetkili Ödeme Hizmeti Sağlayıcı Listeleme",
+                "summary": "yosListeleme",
+                "tags": [
+                    "yosListeleme"
+                ],
+                "operationId": "yosListeleme",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "srlmKrtr",
+                        "in": "query",
+                        "required": false,
+                        "type": "string",
+                        "description": "Sıralama Kriteri * kod - Kod * unv - Unvan",
+                        "enum": [
+                            "kod",
+                            "unvan"
+                        ]
+                    },
+                    {
+                        "name": "srlmYon",
+                        "in": "query",
+                        "required": false,
+                        "type": "string",
+                        "description": "Sıralama Yönü * A - Azalan değerle sıralama * Y - Artan değerle sıralama",
+                        "enum": [
+                            "A",
+                            "Y"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Yetkili Ödeme Hizmet Sağlayıcı Listeleme Yanıtı",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/YosDTO"
+                            }
+                        },
+                        "headers": {}
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    }
+                }
+            }
+        },
+        "/yos/{yosKod}": {
+            "get": {
+                "description": "Yetkili Ödeme Hizmeti Sağlayıcı Sorgulama",
+                "summary": "yosSorgulama",
+                "tags": [
+                    "yosSorgulama"
+                ],
+                "operationId": "yosSorgulama",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "yosKod",
+                        "in": "path",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 4,
+                        "maxLength": 4,
+                        "description": "YOS Kodu"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Yetkili Ödeme Hizmeti Sağlayıcı Sorgulama Yanıtı",
+                        "schema": {
+                            "$ref": "#/definitions/YosDTO"
+                        },
+                        "headers": {}
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    }
+                }
+            }
+        },
+        "/health": {
+            "get": {
+                "description": "Health",
+                "summary": "Health",
+                "tags": [
+                    "yosHealth"
+                ],
+                "operationId": "health",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Health Yanıtı",
+                        "schema": {
+                            "$ref": "#/definitions/YosHealthResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "ProblemDTO": {
+            "title": "Problem",
+            "description": "Problem",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "Hatalı istek numarası.",
+                    "example": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+                    "type": "string"
+                },
+                "path": {
+                    "description": "Hata ile karşılaşılan url bilgisinin yer aldığı alandır.",
+                    "example": "/yos",
+                    "type": "string"
+                },
+                "timestamp": {
+                    "description": "yyyy-MM-dd'T'HH:mm:ssZ formatında, hatanın oluşma zamanı bilgisidir.",
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2021-08-13T09:55:23+03:00"
+                },
+                "httpCode": {
+                    "description": "HTTP durum kodu bilgisidir.",
+                    "example": 401,
+                    "type": "integer",
+                    "minimum": 100,
+                    "maximum": 600,
+                    "exclusiveMaximum": true,
+                    "format": "int32"
+                },
+                "httpMessage": {
+                    "description": "HTTP durum koduna ait açıklama bilgisinin yer aldığı alandır.",
+                    "example": "Not Found",
+                    "type": "string"
+                },
+                "moreInformation": {
+                    "description": "İngilizce hata mesajı bilgisidir.",
+                    "example": "Resource Schema validation error",
+                    "type": "string"
+                },
+                "moreInformationTr": {
+                    "description": "Türkçe Hata mesajı bilgisidir.",
+                    "example": "Alan doğrulama hatası",
+                    "type": "string"
+                },
+                "errorCode": {
+                    "description": "Hata kodu bilgisinin yer aldığı alandır.",
+                    "example": "TR.OHVPS.Resource.InvalidFormat",
+                    "type": "string"
+                },
+                "fieldErrors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/FieldErrorDTO"
+                    }
+                }
+            }
+        },
+        "FieldErrorDTO": {
+            "title": "FieldError",
+            "description": "Field Error",
+            "type": "object",
+            "properties": {
+                "objectName": {
+                    "description": "İstekte kullanılan nesne.",
+                    "example": "yos",
+                    "type": "string"
+                },
+                "field": {
+                    "description": "Hataya sebep olan alan",
+                    "example": "kod",
+                    "type": "string"
+                },
+                "messageTr": {
+                    "description": "Türkçe hata içeriği.",
+                    "example": "boyut '4' ile '4' arasında olmalı",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "İngilizce hata içeriği.",
+                    "example": "size must be between '4' and '4'",
+                    "type": "string"
+                },
+                "code": {
+                    "description": "Hata Kodu",
+                    "example": "TR.OHVPS.Field.Invalid",
+                    "type": "string"
+                }
+            }
+        },
+        "YosDTO": {
+            "title": "Yos",
+            "description": "Yetkili Ödeme Hizmeti Sağlayıcı Sorgulama Yanıtı",
+            "type": "object",
+            "properties": {
+                "kod": {
+                    "description": "Yetkili Ödeme Hizmeti Sağlayıcı Kodu",
+                    "example": "0001",
+                    "type": "string",
+                    "minLength": 4,
+                    "maxLength": 4,
+                    "pattern": "^[0-9]{4}$"
+                },
+                "unv": {
+                    "description": "Ünvan",
+                    "example": "OBHS Simulator1",
+                    "type": "string",
+                    "minLength": 6,
+                    "maxLength": 140
+                },
+                "marka": {
+                    "description": "Marka",
+                    "example": "ObhsSim01",
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 140
+                },
+                "acikAnahtar": {
+                    "description": "Açık Anahtar",
+                    "type": "string",
+                    "example": "MII...DAQAB",
+                    "minLength": 1,
+                    "maxLength": 1024
+                },
+                "roller": {
+                    "description": "Roller",
+                    "type": "array",
+                    "items": {
+                        "description": "* obhs - Ödeme Bilgisi Hizmet Sağlayıcı Rolü\n* hbhs - Hesap Bilgisi Hizmet Sağlayıcı Rolü\n",
+                        "example": "obhs",
+                        "type": "string",
+                        "enum": [
+                            "obhs",
+                            "hbhs"
+                        ]
+                    }
+                },
+                "adresler": {
+                    "description": "Adresler",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AdresDTO"
+                    }
+                },
+                "apiBilgileri": {
+                    "type": "array",
+                    "description": "Api sürüm bilgileri",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/YosApiBilgiDTO"
+                    }
+                },
+                "logoBilgileri": {
+                    "description": "Logo Bilgileri",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/LogoBilgisiDTO"
+                    }
+                },
+                "durum": {
+                    "description": "Açıklama: HHS Durumu\n * A - Açık\n * G - Geçici hizmet veremiyor\n * K - Kapalı",
+                    "example": "A",
+                    "type": "string",
+                    "enum": [
+                        "A",
+                        "G",
+                        "K"
+                    ]
+                }
+            },
+            "required": [
+                "kod",
+                "unv",
+                "marka",
+                "acikAnahtar",
+                "roller",
+                "adresler",
+                "logoBilgileri",
+                "apiBilgileri"
+            ],
+            "example": {
+                "roller": [
+                    "obhs",
+                    "hbhs"
+                ],
+                "kod": "0001",
+                "unv": "OBHS Simulator1",
+                "marka": "ObhsSim1",
+                "acikAnahtar": "MII...DAQAB",
+                "adresler": [
+                    {
+                        "yetYntm": "Y",
+                        "adresDetaylari": [
+                            {
+                                "tmlAdr": "https://example.com/",
+                                "aciklama": "WEB bireysel"
+                            }
+                        ]
+                    }
+                ],
+                "logoBilgileri": [
+                    {
+                        "logoTur": "FULL_LOGO",
+                        "logoAdr": "https://example.com/logo.png",
+                        "logoArkaPlan": "K",
+                        "logoFormat": "PNG"
+                    }
+                ],
+                "apiBilgileri": [
+                    {
+                        "api": "ods",
+                        "surum": "s1.1"
+                    }
+                ],
+                "durum": "A"
+            }
+        },
+        "YosApiBilgiDTO": {
+            "title": "YosApiBilgi",
+            "description": "Api Sürüm Bilgileri",
+            "type": "object",
+            "properties": {
+                "api": {
+                    "type": "string",
+                    "description": "API İsmi (ods)",
+                    "example": "ybs",
+                    "minLength": 1,
+                    "maxLength": 20
+                },
+                "surum": {
+                    "type": "string",
+                    "description": "API Sürüm Kodu",
+                    "example": "s1.1",
+                    "minLength": 1,
+                    "maxLength": 10
+                }
+            },
+            "required": [
+                "api",
+                "surum"
+            ]
+        },
+        "AdresDTO": {
+            "title": "Adres",
+            "type": "object",
+            "properties": {
+                "yetYntm": {
+                    "description": "Açıklama: GKD Yetkilendirme Yöntemi\n * A - Ayrık\n * Y - Yönlendirme",
+                    "example": "Y",
+                    "type": "string",
+                    "enum": [
+                        "A",
+                        "Y"
+                    ]
+                },
+                "adresDetaylari": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AdresDetayiDTO"
+                    }
+                }
+            },
+            "required": [
+                "yetYntm",
+                "adresDetaylari"
+            ]
+        },
+        "AdresDetayiDTO": {
+            "title": "AdresDetayi",
+            "type": "object",
+            "properties": {
+                "tmlAdr": {
+                    "description": "Temel Adres",
+                    "example": "https://example.com/",
+                    "type": "string",
+                    "format": "uri"
+                },
+                "aciklama": {
+                    "description": "Açıklama",
+                    "example": "WEB bireysel",
+                    "type": "string",
+                    "maxLength": 1024
+                }
+            },
+            "required": [
+                "tmlAdr"
+            ]
+        },
+        "LogoBilgisiDTO": {
+            "title": "LogoBilgisi",
+            "type": "object",
+            "properties": {
+                "logoTur": {
+                    "description": "Logo Türü",
+                    "example": "ICON_LOGO",
+                    "type": "string"
+                },
+                "logoAdr": {
+                    "description": "Logo Adresi",
+                    "example": "https://example.com/logo.png",
+                    "type": "string",
+                    "format": "uri"
+                },
+                "logoArkaPlan": {
+                    "description": "Logo Arka Plan",
+                    "example": "B",
+                    "type": "string"
+                },
+                "logoFormat": {
+                    "description": "Logo Format",
+                    "example": "PNG",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "logoTur",
+                "logoAdr",
+                "logoArkaPlan",
+                "logoFormat"
+            ]
+        },
+        "YosHealthResponse": {
+            "title": "Health",
+            "description": "Health",
+            "type": "object",
+            "properties": {
+                "status": {
+                    "description": "Application Health Status",
+                    "example": "UP",
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 20
+                }
+            }
+        }
+    },
+    "host": "gecit.api-preprod.bkm.com.tr"
+}
