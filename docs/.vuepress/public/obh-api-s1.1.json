@@ -1,0 +1,2001 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "OBH API",
+      "version": "1.1.44",
+      "description": "OBH API dokümantasyonu.",
+      "contact": {
+        "url": "https://bkm.com.tr/"
+      }
+    },
+    "schemes": [
+      "https"
+    ],
+    "basePath": "/ohvps/obh/s1.1",
+    "produces": [
+      "application/json"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "security": [
+      {
+        "auth": [
+          "odeme_emri"
+        ]
+      }
+    ],
+    "securityDefinitions": {
+      "auth": {
+        "type": "oauth2",
+        "flow": "application",
+        "tokenUrl": "https://secure.api-preprod.bkm.com.tr/oauth-provider/oauth2/token",
+        "scopes": {
+          "odeme_emri": "Odeme Emri"
+        }
+      }
+    },
+    "paths": {
+      "/odeme-emri-rizasi": {
+        "post": {
+          "description": "Ödeme Emri Rızasının Hazırlanması",
+          "summary": "odemeEmriRizasi",
+          "tags": [
+            "odemeEmriRizasi"
+          ],
+          "operationId": "odemeEmriRizasi",
+          "deprecated": false,
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "X-Request-ID",
+              "type": "string",
+              "required": true,
+              "description": "İsteği başlatan YÖS tarafından belirlenen çağrıya özgü talep kimliği",
+              "minLength": 1,
+              "maxLength": 36
+            },
+            {
+              "in": "header",
+              "name": "X-Group-ID",
+              "type": "string",
+              "required": true,
+              "description": "İsteği başlatan YÖS tarafından belirlenen işlem akışına özgü talep kimliği",
+              "minLength": 1,
+              "maxLength": 36
+            },
+            {
+              "in": "header",
+              "name": "PSU-Session-ID",
+              "type": "string",
+              "required": false,
+              "description": "İsteği başlatan YÖS tarafından belirlenen oturuma özgü talep kimliği",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            {
+              "in": "header",
+              "name": "X-ASPSP-Code",
+              "type": "string",
+              "required": true,
+              "description": "İsteğin iletildiği Hesap Hizmeti Sağlayıcısının kodudur",
+              "minLength": 4,
+              "maxLength": 4,
+              "pattern": "[0-9][0-9][0-9][0-9]"
+            },
+            {
+              "in": "header",
+              "name": "X-TPP-Code",
+              "type": "string",
+              "required": true,
+              "description": "İsteği gönderen Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur",
+              "minLength": 4,
+              "maxLength": 4,
+              "pattern": "[0-9][0-9][0-9][0-9]"
+            },
+            {
+              "in": "header",
+              "name": "PSU-Auth-Date",
+              "type": "string",
+              "format": "date-time",
+              "required": false,
+              "description": "Müşterinin YÖS üzerinde en son oturum açtığı saat. [RFC7231]"
+            },
+            {
+              "in": "header",
+              "name": "PSU-IP-Address",
+              "type": "string",
+              "required": false,
+              "description": "ÖHK YÖS üzerinde oturum açmışsa, işlemi başlattığı cihazın IP adresi.",
+              "minLength": 7,
+              "maxLength": 15
+            },
+            {
+              "in": "header",
+              "name": "PSU-IP-Port",
+              "type": "string",
+              "required": false,
+              "description": "ÖHK YÖS üzerinde oturum açmışsa, işlemi başlattığı cihazın Port adresi.",
+              "minLength": 1,
+              "maxLength": 5
+            },
+            {
+              "in": "header",
+              "name": "PSU-GEO-Location",
+              "type": "string",
+              "required": false,
+              "description": "ÖHK’nın işlemi başlattığı cihazın konum bilgisi. RFC2426 standartına uygun olarak paylaşılmalıdır. Örneğin GEO:\"<enlem>,< boylam > GEO:52.506931,13.144558",
+              "minLength": 1,
+              "maxLength": 36
+            },
+            {
+              "in": "header",
+              "name": "PSU-Initiated",
+              "type": "string",
+              "required": true,
+              "description": "İşlemler servisinde yapılacak sistemsel sorgulardaki işlem limitlerini kontrol amacıyla kullanılır.",
+              "minLength": 1,
+              "maxLength": 1
+            },
+            {
+              "in": "header",
+              "name": "PSU-Fraud-Check",
+              "type": "string",
+              "required": false,
+              "description": "Güvenlik bilgilerini içeren JWS imzası."
+            },
+            {
+              "in": "header",
+              "name": "PSU-User-Agent",
+              "type": "string",
+              "required": false,
+              "description": "Ödeme Hizmeti Kullanıcısının işlemi başlattığı cihazın sağladığı user-agent bilgisi. (Tarayıcı, versiyon, işletim sistemi bilgileri)",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            {
+              "in": "header",
+              "name": "PSU-Timestamp",
+              "type": "string",
+              "required": false,
+              "description": "ÖHK’nın işlemi başlattığı cihazın tarih saat içeren zaman bilgisi.",
+              "format": "date-time"
+            },
+            {
+              "in": "header",
+              "name": "PSU-Device-ID",
+              "type": "string",
+              "required": false,
+              "description": "Ödeme Hizmeti Kullanıcısı işlemi mobil uygulama aracılığıyla başlattıysa,kullanılan mobil uygulama ilk yüklendiğinde oluşturulan tekil cihaz veya uygulama belirteci. ÖHK cihazının UUID değeri kullanılabilir.",
+              "minLength": 5,
+              "maxLength": 40
+            },
+            {
+              "in": "header",
+              "name": "PSU-Device-Data",
+              "type": "string",
+              "required": false,
+              "description": "Ödeme Hizmeti Kullanıcısının işlemi başlattığı mobil cihaza ait veriler. Örnek alanlar Platform - (Android, iOS, Windows 10 Mobile) Device Model OS Name OS Version Locale Time zone",
+              "minLength": 1,
+              "maxLength": 1024
+            },
+            {
+              "in": "header",
+              "name": "X-JWS-Signature",
+              "type": "string",
+              "required": false,
+              "description": "Payload gövdesinin ayrılmış bir JWS imzasını içeren üstbilgi."
+            },
+            {
+              "name": "body",
+              "in": "body",
+              "required": true,
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/OdemeEmriRizasiIstegiDTO"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Ödeme Emri Rızası Cevabı",
+              "schema": {
+                "$ref": "#/definitions/OdemeEmriRizasiDTO"
+              },
+              "headers": {
+                "X-Request-ID": {
+                  "type": "string",
+                  "description": "Çağrıya özgü talep kimliği, ilgili istek başlığındaki bilgi geri dönülür.",
+                  "minLength": 1,
+                  "maxLength": 36
+                },
+                "X-Group-ID": {
+                  "type": "string",
+                  "description": "İsteği başlatan YÖS tarafından belirlenen işlem akışına özgü talep kimliği. ilgili istek başlığındaki bilgi geri dönülür.",
+                  "minLength": 1,
+                  "maxLength": 36
+                },
+                "X-ASPSP-Code": {
+                  "type": "string",
+                  "description": "İsteğin iletildiği Hesap Hizmeti Sağlayıcısının kodudur.",
+                  "minLength": 4,
+                  "maxLength": 4,
+                  "pattern": "[0-9][0-9][0-9][0-9]"
+                },
+                "X-TPP-Code": {
+                  "type": "string",
+                  "description": "İsteği gönderen Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur",
+                  "minLength": 4,
+                  "maxLength": 4,
+                  "pattern": "[0-9][0-9][0-9][0-9]"
+                },
+                "X-JWS-Signature": {
+                  "type": "string",
+                  "description": "X-JWS-Signature"
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "schema": {
+                "$ref": "#/definitions/ProblemDTO"
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "schema": {
+                "$ref": "#/definitions/ProblemDTO"
+              }
+            },
+            "403": {
+              "description": "Forbidden",
+              "schema": {
+                "$ref": "#/definitions/ProblemDTO"
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "schema": {
+                "$ref": "#/definitions/ProblemDTO"
+              }
+            }
+          },
+          "security": [
+            {
+              "auth": [
+                "odeme_emri"
+              ]
+            }
+          ]
+        }
+      },
+      "/odeme-emri-rizasi/{rizaNo}": {
+        "get": {
+          "description": "Ödeme Emri Rızası Sorgulama",
+          "summary": "odemeEmriRizasiSorgulama",
+          "tags": [
+            "odemeEmriRizasi"
+          ],
+          "operationId": "odemeEmriRizasiSorgulama",
+          "deprecated": false,
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "X-Request-ID",
+              "type": "string",
+              "required": true,
+              "description": "İsteği başlatan YÖS tarafından belirlenen çağrıya özgü talep kimliği",
+              "minLength": 1,
+              "maxLength": 36
+            },
+            {
+              "in": "header",
+              "name": "X-Group-ID",
+              "type": "string",
+              "required": true,
+              "description": "İsteği başlatan YÖS tarafından belirlenen işlem akışına özgü talep kimliği",
+              "minLength": 1,
+              "maxLength": 36
+            },
+            {
+              "in": "header",
+              "name": "PSU-Session-ID",
+              "type": "string",
+              "required": false,
+              "description": "İsteği başlatan YÖS tarafından belirlenen oturuma özgü talep kimliği",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            {
+              "in": "header",
+              "name": "X-ASPSP-Code",
+              "type": "string",
+              "required": true,
+              "description": "İsteğin iletildiği Hesap Hizmeti Sağlayıcısının kodudur",
+              "minLength": 4,
+              "maxLength": 4,
+              "pattern": "[0-9][0-9][0-9][0-9]"
+            },
+            {
+              "in": "header",
+              "name": "X-TPP-Code",
+              "type": "string",
+              "required": true,
+              "description": "İsteği gönderen Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur",
+              "minLength": 4,
+              "maxLength": 4,
+              "pattern": "[0-9][0-9][0-9][0-9]"
+            },
+            {
+              "name": "rizaNo",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "description": "Ödeme Emri Rızası Numarası"
+            },
+            {
+              "in": "header",
+              "name": "PSU-Auth-Date",
+              "type": "string",
+              "format": "date-time",
+              "required": false,
+              "description": "Müşterinin YÖS üzerinde en son oturum açtığı saat. [RFC7231]"
+            },
+            {
+              "in": "header",
+              "name": "PSU-IP-Address",
+              "type": "string",
+              "required": false,
+              "description": "ÖHK YÖS üzerinde oturum açmışsa, işlemi başlattığı cihazın IP adresi.",
+              "minLength": 7,
+              "maxLength": 15
+            },
+            {
+              "in": "header",
+              "name": "PSU-IP-Port",
+              "type": "string",
+              "required": false,
+              "description": "ÖHK YÖS üzerinde oturum açmışsa, işlemi başlattığı cihazın Port adresi.",
+              "minLength": 1,
+              "maxLength": 5
+            },
+            {
+              "in": "header",
+              "name": "PSU-GEO-Location",
+              "type": "string",
+              "required": false,
+              "description": "ÖHK’nın işlemi başlattığı cihazın konum bilgisi. RFC2426 standartına uygun olarak paylaşılmalıdır. Örneğin GEO:\"<enlem>,< boylam > GEO:52.506931,13.144558",
+              "minLength": 1,
+              "maxLength": 36
+            },
+            {
+              "in": "header",
+              "name": "PSU-Initiated",
+              "type": "string",
+              "required": true,
+              "description": "İşlemler servisinde yapılacak sistemsel sorgulardaki işlem limitlerini kontrol amacıyla kullanılır.",
+              "minLength": 1,
+              "maxLength": 1
+            },
+            {
+              "in": "header",
+              "name": "PSU-Fraud-Check",
+              "type": "string",
+              "required": false,
+              "description": "Güvenlik bilgilerini içeren JWS imzası."
+            },
+            {
+              "in": "header",
+              "name": "PSU-User-Agent",
+              "type": "string",
+              "required": false,
+              "description": "Ödeme Hizmeti Kullanıcısının işlemi başlattığı cihazın sağladığı user-agent bilgisi. (Tarayıcı, versiyon, işletim sistemi bilgileri)",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            {
+              "in": "header",
+              "name": "PSU-Timestamp",
+              "type": "string",
+              "required": false,
+              "description": "ÖHK’nın işlemi başlattığı cihazın tarih saat içeren zaman bilgisi.",
+              "format": "date-time"
+            },
+            {
+              "in": "header",
+              "name": "PSU-Device-ID",
+              "type": "string",
+              "required": false,
+              "description": "Ödeme Hizmeti Kullanıcısı işlemi mobil uygulama aracılığıyla başlattıysa,kullanılan mobil uygulama ilk yüklendiğinde oluşturulan tekil cihaz veya uygulama belirteci. ÖHK cihazının UUID değeri kullanılabilir.",
+              "minLength": 5,
+              "maxLength": 40
+            },
+            {
+              "in": "header",
+              "name": "PSU-Device-Data",
+              "type": "string",
+              "required": false,
+              "description": "Ödeme Hizmeti Kullanıcısının işlemi başlattığı mobil cihaza ait veriler. Örnek alanlar Platform -(Android, iOS, Windows 10 Mobile) Device Model OS Name OS Version Locale Time zone",
+              "minLength": 1,
+              "maxLength": 1024
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Ödeme Emri Rıza Yanıtı",
+              "schema": {
+                "$ref": "#/definitions/OdemeEmriRizasiDTO"
+              },
+              "headers": {
+                "X-Request-ID": {
+                  "type": "string",
+                  "description": "Çağrıya özgü talep kimliği, ilgili istek başlığındaki bilgi geri dönülür.",
+                  "minLength": 1,
+                  "maxLength": 36
+                },
+                "X-Group-ID": {
+                  "type": "string",
+                  "description": "İsteği başlatan YÖS tarafından belirlenen işlem akışına özgü talep kimliği. ilgili istek başlığındaki bilgi geri dönülür.",
+                  "minLength": 1,
+                  "maxLength": 36
+                },
+                "X-ASPSP-Code": {
+                  "type": "string",
+                  "description": "İsteğin iletildiği Hesap Hizmeti Sağlayıcısının kodudur.",
+                  "minLength": 4,
+                  "maxLength": 4,
+                  "pattern": "[0-9][0-9][0-9][0-9]"
+                },
+                "X-TPP-Code": {
+                  "type": "string",
+                  "description": "İsteği gönderen Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur",
+                  "minLength": 4,
+                  "maxLength": 4,
+                  "pattern": "[0-9][0-9][0-9][0-9]"
+                },
+                "X-JWS-Signature": {
+                  "type": "string",
+                  "description": "X-JWS-Signature"
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "schema": {
+                "$ref": "#/definitions/ProblemDTO"
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "schema": {
+                "$ref": "#/definitions/ProblemDTO"
+              }
+            },
+            "403": {
+              "description": "Forbidden",
+              "schema": {
+                "$ref": "#/definitions/ProblemDTO"
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "schema": {
+                "$ref": "#/definitions/ProblemDTO"
+              }
+            }
+          },
+          "security": [
+            {
+              "auth": [
+                "odeme_emri"
+              ]
+            }
+          ]
+        }
+      },
+      "/odeme-emri": {
+        "post": {
+          "description": "Ödeme Emrinin Oluşturulması",
+          "summary": "odemeEmri",
+          "tags": [
+            "odemeEmri"
+          ],
+          "operationId": "odemeEmri",
+          "deprecated": false,
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "X-Request-ID",
+              "type": "string",
+              "required": true,
+              "description": "İsteği başlatan YÖS tarafından belirlenen çağrıya özgü talep kimliği",
+              "minLength": 1,
+              "maxLength": 36
+            },
+            {
+              "in": "header",
+              "name": "X-Group-ID",
+              "type": "string",
+              "required": true,
+              "description": "İsteği başlatan YÖS tarafından belirlenen işlem akışına özgü talep kimliği",
+              "minLength": 1,
+              "maxLength": 36
+            },
+            {
+              "in": "header",
+              "name": "PSU-Session-ID",
+              "type": "string",
+              "required": false,
+              "description": "İsteği başlatan YÖS tarafından belirlenen oturuma özgü talep kimliği",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            {
+              "in": "header",
+              "name": "X-ASPSP-Code",
+              "type": "string",
+              "required": true,
+              "description": "İsteğin iletildiği Hesap Hizmeti Sağlayıcısının kodudur",
+              "minLength": 4,
+              "maxLength": 4,
+              "pattern": "[0-9][0-9][0-9][0-9]"
+            },
+            {
+              "in": "header",
+              "name": "X-TPP-Code",
+              "type": "string",
+              "required": true,
+              "description": "İsteği gönderen Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur",
+              "minLength": 4,
+              "maxLength": 4,
+              "pattern": "[0-9][0-9][0-9][0-9]"
+            },
+            {
+              "in": "header",
+              "name": "PSU-Auth-Date",
+              "type": "string",
+              "format": "date-time",
+              "required": false,
+              "description": "Müşterinin YÖS üzerinde en son oturum açtığı saat. [RFC7231]"
+            },
+            {
+              "in": "header",
+              "name": "PSU-IP-Address",
+              "type": "string",
+              "required": false,
+              "description": "ÖHK YÖS üzerinde oturum açmışsa, işlemi başlattığı cihazın IP adresi.",
+              "minLength": 7,
+              "maxLength": 15
+            },
+            {
+              "in": "header",
+              "name": "PSU-IP-Port",
+              "type": "string",
+              "required": false,
+              "description": "ÖHK YÖS üzerinde oturum açmışsa, işlemi başlattığı cihazın Port adresi.",
+              "minLength": 1,
+              "maxLength": 5
+            },
+            {
+              "in": "header",
+              "name": "PSU-GEO-Location",
+              "type": "string",
+              "required": false,
+              "description": "ÖHK’nın işlemi başlattığı cihazın konum bilgisi. RFC2426 standartına uygun olarak paylaşılmalıdır. Örneğin GEO:\"<enlem>,< boylam > GEO:52.506931,13.144558",
+              "minLength": 1,
+              "maxLength": 36
+            },
+            {
+              "in": "header",
+              "name": "PSU-Initiated",
+              "type": "string",
+              "required": true,
+              "description": "İşlemler servisinde yapılacak sistemsel sorgulardaki işlem limitlerini kontrol amacıyla kullanılır.",
+              "minLength": 1,
+              "maxLength": 1
+            },
+            {
+              "in": "header",
+              "name": "PSU-Fraud-Check",
+              "type": "string",
+              "required": false,
+              "description": "Güvenlik bilgilerini içeren JWS imzası."
+            },
+            {
+              "in": "header",
+              "name": "PSU-User-Agent",
+              "type": "string",
+              "required": false,
+              "description": "Ödeme Hizmeti Kullanıcısının işlemi başlattığı cihazın sağladığı user-agent bilgisi. (Tarayıcı, versiyon, işletim sistemi bilgileri)",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            {
+              "in": "header",
+              "name": "PSU-Timestamp",
+              "type": "string",
+              "required": false,
+              "description": "ÖHK’nın işlemi başlattığı cihazın tarih saat içeren zaman bilgisi.",
+              "format": "date-time"
+            },
+            {
+              "in": "header",
+              "name": "PSU-Device-ID",
+              "type": "string",
+              "required": false,
+              "description": "Ödeme Hizmeti Kullanıcısı işlemi mobil uygulama aracılığıyla başlattıysa, kullanılan mobil uygulama ilk yüklendiğinde oluşturulan tekil cihaz veya uygulama belirteci.ÖHK cihazının UUID değeri kullanılabilir.",
+              "minLength": 5,
+              "maxLength": 40
+            },
+            {
+              "in": "header",
+              "name": "PSU-Device-Data",
+              "type": "string",
+              "required": false,
+              "description": "Ödeme Hizmeti Kullanıcısının işlemi başlattığı mobil cihaza ait veriler. Örnek alanlar Platform -(Android, iOS, Windows 10 Mobile) Device Model OS Name OS Version Locale Time zone",
+              "minLength": 1,
+              "maxLength": 1024
+            },
+            {
+              "in": "header",
+              "name": "X-Access-Token",
+              "type": "string",
+              "required": true,
+              "description": "Ödeme Hizmeti Kullanıcısının GKD sürecinde doğrulanması sonrasında kullanılan erişim simgesi.",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            {
+              "in": "header",
+              "name": "X-JWS-Signature",
+              "type": "string",
+              "required": false,
+              "description": "Payload gövdesinin ayrılmış bir JWS imzasını içeren üstbilgi."
+            },
+            {
+              "name": "body",
+              "in": "body",
+              "required": true,
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/OdemeEmriIstegiDTO"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Ödeme Emri Cevabı",
+              "schema": {
+                "$ref": "#/definitions/OdemeEmriDTO"
+              },
+              "headers": {
+                "X-Request-ID": {
+                  "type": "string",
+                  "description": "Çağrıya özgü talep kimliği, ilgili istek başlığındaki bilgi geri dönülür.",
+                  "minLength": 1,
+                  "maxLength": 36
+                },
+                "X-Group-ID": {
+                  "type": "string",
+                  "description": "İsteği başlatan YÖS tarafından belirlenen işlem akışına özgü talep kimliği. ilgili istek başlığındaki bilgi geri dönülür.",
+                  "minLength": 1,
+                  "maxLength": 36
+                },
+                "X-ASPSP-Code": {
+                  "type": "string",
+                  "description": "İsteğin iletildiği Hesap Hizmeti Sağlayıcısının kodudur.",
+                  "minLength": 4,
+                  "maxLength": 4,
+                  "pattern": "[0-9][0-9][0-9][0-9]"
+                },
+                "X-TPP-Code": {
+                  "type": "string",
+                  "description": "İsteği gönderen Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur",
+                  "minLength": 4,
+                  "maxLength": 4,
+                  "pattern": "[0-9][0-9][0-9][0-9]"
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "schema": {
+                "$ref": "#/definitions/ProblemDTO"
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "schema": {
+                "$ref": "#/definitions/ProblemDTO"
+              }
+            },
+            "403": {
+              "description": "Forbidden",
+              "schema": {
+                "$ref": "#/definitions/ProblemDTO"
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "schema": {
+                "$ref": "#/definitions/ProblemDTO"
+              }
+            }
+          },
+          "security": [
+            {
+              "auth": [
+                "odeme_emri"
+              ]
+            }
+          ]
+        }
+      },
+      "/odeme-emri/{odmEmriNo}": {
+        "get": {
+          "description": "Ödeme Emri Sorgulama",
+          "summary": "odemeEmriSorgulama",
+          "tags": [
+            "odemeEmri"
+          ],
+          "operationId": "odemeEmriSorgulama",
+          "deprecated": false,
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "X-Request-ID",
+              "type": "string",
+              "required": true,
+              "description": "İsteği başlatan YÖS tarafından belirlenen çağrıya özgü talep kimliği",
+              "minLength": 1,
+              "maxLength": 36
+            },
+            {
+              "in": "header",
+              "name": "X-Group-ID",
+              "type": "string",
+              "required": true,
+              "description": "İsteği başlatan YÖS tarafından belirlenen işlem akışına özgü talep kimliği",
+              "minLength": 1,
+              "maxLength": 36
+            },
+            {
+              "in": "header",
+              "name": "PSU-Session-ID",
+              "type": "string",
+              "required": false,
+              "description": "İsteği başlatan YÖS tarafından belirlenen oturuma özgü talep kimliği",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            {
+              "in": "header",
+              "name": "X-ASPSP-Code",
+              "type": "string",
+              "required": true,
+              "description": "İsteğin iletildiği Hesap Hizmeti Sağlayıcısının kodudur",
+              "minLength": 4,
+              "maxLength": 4,
+              "pattern": "[0-9][0-9][0-9][0-9]"
+            },
+            {
+              "in": "header",
+              "name": "X-TPP-Code",
+              "type": "string",
+              "required": true,
+              "description": "İsteği gönderen Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur",
+              "minLength": 4,
+              "maxLength": 4,
+              "pattern": "[0-9][0-9][0-9][0-9]"
+            },
+            {
+              "in": "header",
+              "name": "PSU-Auth-Date",
+              "type": "string",
+              "format": "date-time",
+              "required": false,
+              "description": "Müşterinin YÖS üzerinde en son oturum açtığı saat. [RFC7231]"
+            },
+            {
+              "in": "header",
+              "name": "PSU-IP-Address",
+              "type": "string",
+              "required": false,
+              "description": "ÖHK YÖS üzerinde oturum açmışsa, işlemi başlattığı cihazın IP adresi.",
+              "minLength": 7,
+              "maxLength": 15
+            },
+            {
+              "in": "header",
+              "name": "PSU-IP-Port",
+              "type": "string",
+              "required": false,
+              "description": "ÖHK YÖS üzerinde oturum açmışsa, işlemi başlattığı cihazın Port adresi.",
+              "minLength": 1,
+              "maxLength": 5
+            },
+            {
+              "in": "header",
+              "name": "PSU-GEO-Location",
+              "type": "string",
+              "required": false,
+              "description": "ÖHK’nın işlemi başlattığı cihazın konum bilgisi. RFC2426 standartına uygun olarak paylaşılmalıdır. Örneğin GEO:\"<enlem>,< boylam > GEO:52.506931,13.144558",
+              "minLength": 1,
+              "maxLength": 36
+            },
+            {
+              "in": "header",
+              "name": "PSU-Initiated",
+              "type": "string",
+              "required": true,
+              "description": "İşlemler servisinde yapılacak sistemsel sorgulardaki işlem limitlerini kontrol amacıyla kullanılır.",
+              "minLength": 1,
+              "maxLength": 1
+            },
+            {
+              "in": "header",
+              "name": "PSU-Fraud-Check",
+              "type": "string",
+              "required": false,
+              "description": "Güvenlik bilgilerini içeren JWS imzası."
+            },
+            {
+              "in": "header",
+              "name": "PSU-User-Agent",
+              "type": "string",
+              "required": false,
+              "description": "Ödeme Hizmeti Kullanıcısının işlemi başlattığı cihazın sağladığı user-agent bilgisi. (Tarayıcı, versiyon, işletim sistemi bilgileri)",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            {
+              "in": "header",
+              "name": "PSU-Timestamp",
+              "type": "string",
+              "required": false,
+              "description": "ÖHK’nın işlemi başlattığı cihazın tarih saat içeren zaman bilgisi.",
+              "format": "date-time"
+            },
+            {
+              "in": "header",
+              "name": "PSU-Device-ID",
+              "type": "string",
+              "required": false,
+              "description": "Ödeme Hizmeti Kullanıcısı işlemi mobil uygulama aracılığıyla başlattıysa  kullanılan mobil uygulama ilk yüklendiğinde oluşturulan tekil cihaz veya uygulama belirteci. ÖHK cihazının UUID değeri kullanılabilir.",
+              "minLength": 5,
+              "maxLength": 40
+            },
+            {
+              "in": "header",
+              "name": "PSU-Device-Data",
+              "type": "string",
+              "required": false,
+              "description": "Ödeme Hizmeti Kullanıcısının işlemi başlattığı mobil cihaza ait veriler. Örnek alanlar Platform - (Android, iOS, Windows 10 Mobile) Device Model OS Name OS Version Locale Time zone",
+              "minLength": 1,
+              "maxLength": 1024
+            },
+            {
+              "in": "header",
+              "name": "X-Access-Token",
+              "type": "string",
+              "required": true,
+              "description": "Ödeme Hizmeti Kullanıcısının GKD sürecinde doğrulanması sonrasında kullanılan erişim simgesi.",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            {
+              "name": "odmEmriNo",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "description": "Ödeme Emri Numarası"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Ödeme Yanıtı",
+              "schema": {
+                "$ref": "#/definitions/OdemeEmriDTO"
+              },
+              "headers": {
+                "X-Request-ID": {
+                  "type": "string",
+                  "description": "Çağrıya özgü talep kimliği, ilgili istek başlığındaki bilgi geri dönülür.",
+                  "minLength": 1,
+                  "maxLength": 36
+                },
+                "X-Group-ID": {
+                  "type": "string",
+                  "description": "İsteği başlatan YÖS tarafından belirlenen işlem akışına özgü talep kimliği. ilgili istek başlığındaki bilgi geri dönülür.",
+                  "minLength": 1,
+                  "maxLength": 36
+                },
+                "X-ASPSP-Code": {
+                  "type": "string",
+                  "description": "İsteğin iletildiği Hesap Hizmeti Sağlayıcısının kodudur.",
+                  "minLength": 4,
+                  "maxLength": 4,
+                  "pattern": "[0-9][0-9][0-9][0-9]"
+                },
+                "X-TPP-Code": {
+                  "type": "string",
+                  "description": "İsteği gönderen Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur",
+                  "minLength": 4,
+                  "maxLength": 4,
+                  "pattern": "[0-9][0-9][0-9][0-9]"
+                },
+                "X-JWS-Signature": {
+                  "type": "string",
+                  "description": "X-JWS-Signature"
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "schema": {
+                "$ref": "#/definitions/ProblemDTO"
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "schema": {
+                "$ref": "#/definitions/ProblemDTO"
+              }
+            },
+            "403": {
+              "description": "Forbidden",
+              "schema": {
+                "$ref": "#/definitions/ProblemDTO"
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "schema": {
+                "$ref": "#/definitions/ProblemDTO"
+              }
+            }
+          },
+          "security": [
+            {
+              "auth": [
+                "odeme_emri"
+              ]
+            }
+          ]
+        }
+      },
+      "/health": {
+        "get": {
+          "description": "Health",
+          "summary": "Health",
+          "tags": [
+            "obhHealth"
+          ],
+          "operationId": "health",
+          "deprecated": false,
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "X-ASPSP-Code",
+              "type": "string",
+              "required": true,
+              "description": "İsteğin iletildiği Hesap Hizmeti Sağlayıcısının kodudur",
+              "minLength": 4,
+              "maxLength": 4,
+              "pattern": "[0-9][0-9][0-9][0-9]"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Health Yanıtı",
+              "schema": {
+                "$ref": "#/definitions/ObhHealthResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "ProblemDTO": {
+        "title": "Problem",
+        "description": "Problem",
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Hatalı istek numarası.",
+            "example": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+            "type": "string"
+          },
+          "path": {
+            "description": "Hata ile karşılaşılan url bilgisinin yer aldığı alandır.",
+            "example": "/obh/odeme-emri",
+            "type": "string"
+          },
+          "timestamp": {
+            "description": "yyyy-MM-dd'T'HH:mm:ssZ formatında, hatanın oluşma zamanı bilgisidir.",
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-08-13T09:55:23+03:00"
+          },
+          "httpCode": {
+            "description": "HTTP durum kodu bilgisidir.",
+            "example": 401,
+            "type": "integer",
+            "minimum": 100,
+            "maximum": 600,
+            "exclusiveMaximum": true,
+            "format": "int32"
+          },
+          "httpMessage": {
+            "description": "HTTP durum koduna ait açıklama bilgisinin yer aldığı alandır.",
+            "example": "Not Found",
+            "type": "string"
+          },
+          "moreInformation": {
+            "description": "İngilizce hata mesajı bilgisidir.",
+            "example": "Resource Schema validation error",
+            "type": "string"
+          },
+          "moreInformationTr": {
+            "description": "Türkçe Hata mesajı bilgisidir.",
+            "example": "Alan doğrulama hatası",
+            "type": "string"
+          },
+          "errorCode": {
+            "description": "Hata kodu bilgisinin yer aldığı alandır.",
+            "example": "TR.OHVPS.Resource.InvalidFormat",
+            "type": "string"
+          },
+          "fieldErrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/FieldErrorDTO"
+            }
+          }
+        }
+      },
+      "FieldErrorDTO": {
+        "title": "FieldError",
+        "description": "Field Error",
+        "type": "object",
+        "properties": {
+          "objectName": {
+            "description": "İstekte kullanılan nesne.",
+            "example": "odemeEmriRizasi",
+            "type": "string"
+          },
+          "field": {
+            "description": "Hataya sebep olan alan",
+            "example": "rizaNo",
+            "type": "string"
+          },
+          "messageTr": {
+            "description": "Türkçe hata içeriği.",
+            "example": "boyut '1' ile '128' arasında olmalı",
+            "type": "string"
+          },
+          "message": {
+            "description": "İngilizce hata içeriği.",
+            "example": "size must be between '1' and '128'",
+            "type": "string"
+          },
+          "code": {
+            "description": "Hata Kodu",
+            "example": "TR.OHVPS.Field.Invalid",
+            "type": "string"
+          }
+        }
+      },
+      "OdemeEmriRizasiIstegiDTO": {
+        "title": "OdemeEmriRizasiIstegi",
+        "description": "Ödeme Emri Rızası İsteği",
+        "type": "object",
+        "properties": {
+          "katilimciBlg": {
+            "type": "object",
+            "$ref": "#/definitions/KatilimciBilgisiDTO"
+          },
+          "gkd": {
+            "type": "object",
+            "$ref": "#/definitions/GkdDTO"
+          },
+          "odmBsltm": {
+            "type": "object",
+            "$ref": "#/definitions/OdemeBaslatmaDTO"
+          },
+          "isyOdmBlg": {
+            "type": "object",
+            "$ref": "#/definitions/IsyeriOdemeBilgileriDTO"
+          }
+        },
+        "required": [
+          "katilimciBlg",
+          "gkd",
+          "odmBsltm"
+        ],
+        "example": {
+          "katilimciBlg": {
+            "hhsKod": "8000",
+            "yosKod": "8000"
+          },
+          "gkd": {
+            "yetYntm": "Y",
+            "yonAdr": "https://boss-test.bkm.com.tr/boss/ab/yosSimulator/8000/odeme-emri-rizasi/onay"
+          },
+          "odmBsltm": {
+            "kmlk": {
+              "kmlkTur": "K",
+              "kmlkVrs": "77121323400",
+              "ohkTur": "B"
+            },
+            "islTtr": {
+              "prBrm": "TRY",
+              "ttr": "13.21"
+            },
+            "gon": {
+              "unv": "AHMET YILMAZ",
+              "hspNo": "TR1000010XP9UDWM4Z6LVJKS45"
+            },
+            "alc": {
+              "unv": "AHMET YILMAZ",
+              "hspNo": "TR1000010XP9UDWM4Z6LVJKS45"
+            },
+            "odmAyr": {
+              "odmKynk": "A",
+              "odmAmc": "01",
+              "refBlg": "Y-2701852-202011",
+              "odmAcklm": "Kira bedeli"
+            },
+            "obhsMsrfTtr": {
+              "prBrm": "TRY",
+              "ttr": "1.00"
+            }
+          }
+        }
+      },
+      "OdemeEmriRizasiDTO": {
+        "title": "OdemeEmriRizasi",
+        "description": "Ödeme Emri Rıza Yanıtı",
+        "type": "object",
+        "properties": {
+          "rzBlg": {
+            "type": "object",
+            "$ref": "#/definitions/RizaBilgileriDTO"
+          },
+          "katilimciBlg": {
+            "type": "object",
+            "$ref": "#/definitions/KatilimciBilgisiDTO"
+          },
+          "gkd": {
+            "type": "object",
+            "$ref": "#/definitions/GkdDTO"
+          },
+          "odmBsltm": {
+            "type": "object",
+            "$ref": "#/definitions/OdemeBaslatmaDTO"
+          },
+          "isyOdmBlg": {
+            "type": "object",
+            "$ref": "#/definitions/IsyeriOdemeBilgileriDTO"
+          }
+        },
+        "required": [
+          "rzBlg",
+          "katilimciBlg",
+          "gkd",
+          "odmBsltm"
+        ],
+        "example": {
+          "rzBlg": {
+            "rizaNo": "58af49355aee43e08c1b4e5aaca7d726",
+            "olusZmn": "2021-07-09T15:19:12+03:00",
+            "gnclZmn": "2021-07-09T16:19:12+03:00",
+            "rizaDrm": "B"
+          },
+          "katilimciBlg": {
+            "hhsKod": "8000",
+            "yosKod": "8000"
+          },
+          "gkd": {
+            "yetYntm": "Y",
+            "yonAdr": "https://boss-test.bkm.com.tr/boss/ab/yosSimulator/8000/odeme-emri-rizasi/onay",
+            "yetTmmZmn": "2021-07-09T12:42:44+03:00",
+            "hhsYonAdr": "https://boss-test.bkm.com.tr/boss/ab/hhsSimulator/8000/odeme-emri-rizasi/58af49355aee43e08c1b4e5aaca7d726/goruntule"
+          },
+          "odmBsltm": {
+            "kmlk": {
+              "kmlkTur": "K",
+              "kmlkVrs": "77121323400",
+              "ohkTur": "B"
+            },
+            "islTtr": {
+              "prBrm": "TRY",
+              "ttr": "13.21"
+            },
+            "gon": {
+              "unv": "AHMET YILMAZ",
+              "hspNo": "TR1000010XP9UDWM4Z6LVJKS45"
+            },
+            "alc": {
+              "unv": "AHMET YILMAZ",
+              "hspNo": "TR1000010XP9UDWM4Z6LVJKS45"
+            },
+            "odmAyr": {
+              "odmKynk": "A",
+              "odmAmc": "01",
+              "refBlg": "Y-2701852-202011",
+              "odmAcklm": "Kira bedeli",
+              "ohkMsj": "Ödeme rızası talebi alındı",
+              "odmStm": "H",
+              "bekOdmZmn": "2021-01-28T12:42:44+03:00"
+            },
+            "obhsMsrfTtr": {
+              "prBrm": "TRY",
+              "ttr": "1.00"
+            },
+            "hhsMsrfTtr": {
+              "prBrm": "TRY",
+              "ttr": "1.00"
+            }
+          }
+        }
+      },
+      "OdemeEmriIstegiDTO": {
+        "title": "OdemeEmriIstegi",
+        "description": "Ödeme Emri İsteği",
+        "type": "object",
+        "properties": {
+          "rzBlg": {
+            "type": "object",
+            "$ref": "#/definitions/RizaBilgileriDTO"
+          },
+          "katilimciBlg": {
+            "type": "object",
+            "$ref": "#/definitions/KatilimciBilgisiDTO"
+          },
+          "gkd": {
+            "type": "object",
+            "$ref": "#/definitions/GkdDTO"
+          },
+          "odmBsltm": {
+            "type": "object",
+            "$ref": "#/definitions/OdemeBaslatmaDTO"
+          },
+          "isyOdmBlg": {
+            "type": "object",
+            "$ref": "#/definitions/IsyeriOdemeBilgileriDTO"
+          }
+        },
+        "required": [
+          "rzBlg",
+          "katilimciBlg",
+          "gkd",
+          "odmBsltm"
+        ],
+        "example": {
+          "rzBlg": {
+            "rizaNo": "33ef1107003540faa4a8c917a711e6da",
+            "olusZmn": "2021-07-09T14:11:55+03:00",
+            "gnclZmn": "2021-07-09T14:12:55+03:00",
+            "rizaDrm": "K"
+          },
+          "katilimciBlg": {
+            "hhsKod": "8000",
+            "yosKod": "8000"
+          },
+          "gkd": {
+            "yetYntm": "Y",
+            "yonAdr": "https://boss-test.bkm.com.tr/boss/ab/yosSimulator/8000/odeme-emri-rizasi/onay",
+            "hhsYonAdr": "https://boss-test.bkm.com.tr/boss/ab/hhsSimulator/8000/odeme-emri-rizasi/33ef1107003540faa4a8c917a711e6da/goruntule",
+            "yetTmmZmn": "2021-07-09T14:16:55+03:00"
+          },
+          "odmBsltm": {
+            "kmlk": {
+              "kmlkTur": "K",
+              "kmlkVrs": "77121323400",
+              "ohkTur": "B"
+            },
+            "islTtr": {
+              "prBrm": "TRY",
+              "ttr": "13.21"
+            },
+            "gon": {
+              "unv": "AHMET YILMAZ",
+              "hspNo": "TR1000010XP9UDWM4Z6LVJKS45"
+            },
+            "alc": {
+              "unv": "AHMET YILMAZ",
+              "hspNo": "TR1000010XP9UDWM4Z6LVJKS45"
+            },
+            "odmAyr": {
+              "odmKynk": "A",
+              "odmAmc": "01",
+              "refBlg": "Y-2701852-202011",
+              "odmAcklm": "Kira bedeli",
+              "odmStm": "F"
+            },
+            "obhsMsrfTtr": {
+              "prBrm": "TRY",
+              "ttr": "1.00"
+            }
+          }
+        }
+      },
+      "OdemeEmriDTO": {
+        "title": "OdemeEmri",
+        "description": "Ödeme Emri Yanıtı",
+        "type": "object",
+        "properties": {
+          "emrBlg": {
+            "type": "object",
+            "$ref": "#/definitions/EmirBilgileriDTO"
+          },
+          "rzBlg": {
+            "type": "object",
+            "$ref": "#/definitions/RizaBilgileriDTO"
+          },
+          "katilimciBlg": {
+            "type": "object",
+            "$ref": "#/definitions/KatilimciBilgisiDTO"
+          },
+          "gkd": {
+            "type": "object",
+            "$ref": "#/definitions/GkdDTO"
+          },
+          "odmBsltm": {
+            "type": "object",
+            "$ref": "#/definitions/OdemeBaslatmaDTO"
+          },
+          "isyOdmBlg": {
+            "type": "object",
+            "$ref": "#/definitions/IsyeriOdemeBilgileriDTO"
+          }
+        },
+        "required": [
+          "emrBlg",
+          "rzBlg",
+          "katilimciBlg",
+          "gkd",
+          "odmBsltm"
+        ],
+        "example": {
+          "rzBlg": {
+            "rizaNo": "33ef1107003540faa4a8c917a711e6da",
+            "olusZmn": "2021-07-09T14:11:55+03:00",
+            "gnclZmn": "2021-07-09T14:13:55+03:00",
+            "rizaDrm": "E"
+          },
+          "katilimciBlg": {
+            "hhsKod": "8000",
+            "yosKod": "8000"
+          },
+          "gkd": {
+            "yetYntm": "Y",
+            "yonAdr": "https://boss-test.bkm.com.tr/boss/ab/yosSimulator/8000/odeme-emri-rizasi/onay",
+            "hhsYonAdr": "https://boss-test.bkm.com.tr/boss/ab/hhsSimulator/8000/odeme-emri-rizasi/33ef1107003540faa4a8c917a711e6da/goruntule",
+            "yetTmmZmn": "2021-07-09T14:16:55+03:00"
+          },
+          "emrBlg": {
+            "odmEmriNo": "3234dfge235235werwe43543534ef",
+            "odmEmriZmn": "2021-07-09T14:16:55+03:00"
+          },
+          "odmBsltm": {
+            "kmlk": {
+              "kmlkTur": "K",
+              "kmlkVrs": "77121323400",
+              "ohkTur": "B"
+            },
+            "islTtr": {
+              "prBrm": "TRY",
+              "ttr": "13.21"
+            },
+            "gon": {
+              "unv": "AHMET YILMAZ",
+              "hspNo": "TR1000010XP9UDWM4Z6LVJKS45"
+            },
+            "alc": {
+              "unv": "AHMET YILMAZ",
+              "hspNo": "TR1000010XP9UDWM4Z6LVJKS45"
+            },
+            "odmAyr": {
+              "odmKynk": "A",
+              "odmDrm": "01",
+              "odmAmc": "01",
+              "refBlg": "Y-2701852-202011",
+              "odmAcklm": "Kira bedeli",
+              "odmStm": "F"
+            },
+            "obhsMsrfTtr": {
+              "prBrm": "TRY",
+              "ttr": "1.00"
+            }
+          }
+        }
+      },
+      "GkdDTO": {
+        "title": "Gkd",
+        "description": "Güçlü Kimlik Doğrulama",
+        "type": "object",
+        "properties": {
+          "yetYntm": {
+            "description": "Açıklama: GKD Yetkilendirme Yöntemi\n * A - Ayrık\n * Y - Yönlendirme",
+            "example": "Y",
+            "type": "string",
+            "enum": [
+              "A",
+              "Y"
+            ]
+          },
+          "yonAdr": {
+            "description": "Yönlenme Adresi",
+            "example": "https://example.com",
+            "type": "string",
+            "format": "uri"
+          },
+          "bldAdr": {
+            "description": "Bildirim Adresi",
+            "example": "https://example.com",
+            "type": "string",
+            "format": "uri"
+          },
+          "yetTmmZmn": {
+            "description": "Yetkilendirme Tamamlanma Zamanı",
+            "type": "string",
+            "format": "date-time"
+          },
+          "hhsYonAdr": {
+            "description": "HHS Yönlenme Adresi",
+            "example": "https://example.com",
+            "type": "string",
+            "format": "uri"
+          },
+          "ayrikGkd": {
+            "type": "object",
+            "$ref": "#/definitions/AyrikGkdDTO"
+          }
+        }
+      },
+      "KimlikDTO": {
+        "title": "Kimlik",
+        "description": "Kimlik",
+        "type": "object",
+        "properties": {
+          "kmlkTur": {
+            "description": "Açıklama: Kimlik Türü\n * K - TCKN\n * M - MNO (HHS'ye özel bireysel veya kurum müşteri numarası)\n * Y - YKN\n * P - PNO",
+            "example": "K",
+            "type": "string",
+            "enum": [
+              "K",
+              "M",
+              "Y",
+              "P"
+            ]
+          },
+          "kmlkVrs": {
+            "description": "Kimlik Verisi",
+            "example": "77121323400",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 30
+          },
+          "krmKmlkTur": {
+            "description": "Açıklama: Kurum Kimlik Türü\n * K - TCKN\n * M - MNO (HHS'ye özel bireysel veya kurum müşteri numarası)\n * V - VKN",
+            "example": "V",
+            "type": "string",
+            "enum": [
+              "K",
+              "M",
+              "V"
+            ]
+          },
+          "krmKmlkVrs": {
+            "description": "Kurum Kimlik Verisi",
+            "example": "7981686911",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 30
+          },
+          "ohkTur": {
+            "description": "Açıklama: Ödeme Hizmeti Kullanıcısı Türü\n * B - Bireysel\n * K - Kurumsal",
+            "example": "B",
+            "type": "string",
+            "enum": [
+              "B",
+              "K"
+            ]
+          }
+        },
+        "required": [
+          "ohkTur"
+        ]
+      },
+      "TutarDTO": {
+        "title": "Tutar",
+        "description": "Tutar",
+        "type": "object",
+        "properties": {
+          "prBrm": {
+            "description": "İşlem Tutarı Para Birimi",
+            "example": "TRY",
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 3
+          },
+          "ttr": {
+            "description": "İşlem Tutarı",
+            "example": "13.21",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 24,
+            "pattern": "^\\d{1,18}$|^\\d{1,18}\\.\\d{1,5}$"
+          }
+        },
+        "required": [
+          "prBrm",
+          "ttr"
+        ]
+      },
+      "HesapDTO": {
+        "title": "Hesap",
+        "description": "Hesap",
+        "type": "object",
+        "properties": {
+          "unv": {
+            "description": "Ünvan",
+            "example": "AHMET YILMAZ",
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 140
+          },
+          "hspNo": {
+            "description": "Hesap Numarası",
+            "example": "TR1000010XP9UDWM4Z6LVJKS45",
+            "type": "string",
+            "minLength": 26,
+            "maxLength": 26
+          },
+          "hspRef": {
+            "description": "Hesap Referansı",
+            "example": "22SDKJ29DJW32EDJ3EJ2E3JIU8SDDS2",
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 40
+          },
+          "kolas": {
+            "type": "object",
+            "$ref": "#/definitions/KolasDTO"
+          }
+        }
+      },
+      "KolasDTO": {
+        "title": "Kolas",
+        "description": "Kolay Adres",
+        "type": "object",
+        "properties": {
+          "kolasTur": {
+            "description": "Açıklama:\n  *  T: Telefon Numarası\n  *  E: E-Posta\n  *  K: TCKN\n  *  V: VKN\n  *  Y: YKN\n  *  P: Pasaport Numarası",
+            "example": "T",
+            "type": "string",
+            "enum": [
+              "T",
+              "E",
+              "K",
+              "V",
+              "Y",
+              "P"
+            ]
+          },
+          "kolasDgr": {
+            "description": "Kolay Adres Değeri",
+            "example": "5000000000",
+            "type": "string",
+            "minLength": 7,
+            "maxLength": 50
+          },
+          "kolasRefNo": {
+            "description": "Kolas Referans Numarası",
+            "example": "123456789012",
+            "type": "integer",
+            "format": "int64"
+          },
+          "kolasHspTur": {
+            "description": "Açıklama: Kolay Adres Hesap Türü\n * B - Bireysel\n * T - Ticari",
+            "example": "B",
+            "type": "string",
+            "enum": [
+              "B",
+              "T"
+            ]
+          }
+        },
+        "required": [
+          "kolasTur",
+          "kolasDgr"
+        ]
+      },
+      "KarekodDTO": {
+        "title": "Karekod",
+        "description": "Karekod",
+        "type": "object",
+        "properties": {
+          "aksTur": {
+            "description": "Karekod Akış Türü\n* 01: FAST katılımcısından çevrim içi hizmet alınan işyeri ödemesi\n* 02: FAST katılımcısından çevrim içi hizmet alınmayan işyeri ödemesi\n* 03: Kişiden kişiye ödemeler",
+            "example": "01",
+            "type": "string",
+            "enum": [
+              "01",
+              "02",
+              "03"
+            ]
+          },
+          "kkodRef": {
+            "description": "Karekod Referansı",
+            "example": "123456789012",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 12
+          },
+          "kkodUrtcKod": {
+            "description": "Karekod üreticisinin kodu.\nÖdeme Hizmeti Sağlayıcıları ve TCMB tarafından uygun görülen ödeme sistemi işleticisi TR Karekod üretebilmek için BKM’ye kayıt başvurusu yaparak karekod üretici kodu alabileceklerdir. Bankalar EFT kodlarını kullanılacak olup ayrıca kayıt yaptırmalarına gerek bulunmamaktadır. 4 haneden kısa değerlerin sol tarafı ’0’ karakteri ile tamamlanmalıdır.",
+            "example": "0000",
+            "type": "string",
+            "minLength": 4,
+            "maxLength": 4
+          }
+        },
+        "required": [
+          "aksTur",
+          "kkodUrtcKod"
+        ]
+      },
+      "OdemeAyrintilariDTO": {
+        "title": "OdemeAyrintilari",
+        "description": "Ödeme Ayrıntıları",
+        "type": "object",
+        "properties": {
+          "odmKynk": {
+            "description": "Açıklama: Ödeme Kaynağı\n  * I - Internet Bankacılığı ile gönderilen ödemeler\n  * A - Otomatik para makineleri (ATM) ile gönderilen ödemeler\n  * T - Telefon bankacılığı ile gönderilen ödemeler\n  * K - Kiosklar aracılığıyla gönderilen ödemeler\n  * S - Şubeden girilen ödemeler\n  * M - Mobil uygulamadan gönderilen ödemeler\n  * O - Açık bankacılık aracılığı ile gönderilen ödemeler\n  * D - Yukarıdakiler dışındaki ödeme kaynaklarından gönderilen ödemeler",
+            "example": "A",
+            "type": "string",
+            "enum": [
+              "I",
+              "A",
+              "T",
+              "K",
+              "S",
+              "M",
+              "O",
+              "D"
+            ]
+          },
+          "odmDrm": {
+            "description": "Ödeme Durumu\n* 01 - Gerçekleşti\n* 02 - Gönderildi\n* 03 - Gerçekleşmedi\n* 04 - Onayda bekliyor\n* 05 - İşleme alındı",
+            "example": "01",
+            "type": "string",
+            "enum": [
+              "01",
+              "02",
+              "03",
+              "04",
+              "05"
+            ]
+          },
+          "odmAmc": {
+            "description": "Açıklama: Ödeme Amacı\n* 01: Konut Kirası Ödemesi\n* 02: İş yeri Kirası Ödemesi\n* 03: Diğer Kira Ödemesi\n* 04: E-Ticaret Ödemesi\n* 05: Çalışan Ödemesi\n* 06: Ticari ödeme\n* 07: Bireysel Ödeme\n* 08: Yatırım\n* 09: Finansal\n* 10: Eğitim ödemesi\n* 11: Aidat ödemesi",
+            "example": "01",
+            "type": "string",
+            "enum": [
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11"
+            ]
+          },
+          "refBlg": {
+            "description": "Referans Bilgisi",
+            "example": "Y-2701852-202011",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 140
+          },
+          "odmAcklm": {
+            "description": "Açıklama",
+            "example": "Kira bedeli",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "ohkMsj": {
+            "description": "ÖHK Mesaj Alanı",
+            "example": "Ödeme rızası talebi alındı",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "odmStm": {
+            "description": "Açıklama: Ödeme Sistemi\n  * H - Havale\n  * F - FAST\n  * E - EFT (PÖS)",
+            "example": "H",
+            "type": "string",
+            "enum": [
+              "H",
+              "F",
+              "E"
+            ]
+          },
+          "odmStmNo": {
+            "description": "Ödemenin gerçekleştiği ödeme sistemine özel referans/sorgu numarasıdır.",
+            "example": "xxxxx-xxxxx-yyyy",
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 50
+          },
+          "bekOdmZmn": {
+            "description": "Beklenen Ödeme Zamanı",
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "odmKynk",
+          "odmAmc"
+        ]
+      },
+      "RizaBilgileriDTO": {
+        "title": "RizaBilgileri",
+        "description": "Rıza Bilgileri",
+        "type": "object",
+        "properties": {
+          "rizaNo": {
+            "description": "Rıza No",
+            "example": "58af49355aee43e08c1b4e5aaca7d726",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "olusZmn": {
+            "description": "Oluşturma Zamanı",
+            "type": "string",
+            "format": "date-time"
+          },
+          "gnclZmn": {
+            "description": "Güncellenme Zamanı",
+            "type": "string",
+            "format": "date-time"
+          },
+          "rizaDrm": {
+            "description": "Açıklama: Rıza Durumu\n  * B: Yetki Bekleniyor\n  * Y: Yetkilendirildi\n  * K: Yetki Kullanıldı\n  * E: Yetki Ödeme Emrine Dönüştü\n  * S: Yetki Sonlandırıldı\n  * I: Yetki Iptal",
+            "example": "B",
+            "type": "string",
+            "enum": [
+              "B",
+              "Y",
+              "K",
+              "E",
+              "S",
+              "I"
+            ]
+          },
+          "rizaIptDtyKod": {
+            "description": "Açıklama: Rıza Iptal Detay Kodu\n  * '01' - Yeni Rıza Talebi ile İptal\n  * '02' - Kullanıcı İsteği ile HHS üzerinden İptal\n  * '03' - Kullanıcı İsteği ile YÖS üzerinden İptal\n  * '04' - Süre Aşımı : Yetki Bekleniyor\n  * '05' - Süre Aşımı : Yetkilendirildi\n  * '06' - Süre Aşımı : Yetki Ödemeye Dönüşmedi\n  * '07' - GKD iptali : Aynı rıza no ile mükerrer çağrımı\n  * '08' - GKD iptali : Rızano ile TCKN uyuşmaması\n  * '09' - GKD iptali : Uygun ürünü bulunmuyor\n  * '10' - GKD iptali : HHS Açık Bankacılık kanalı işleme kapalı\n  * '11' - GKD iptali : Hesap Yetki Sorunu\n  * '12' - GKD iptali : ÖHK HHS kontrollerini aşamadı\n  * '13' - GKD iptali : ÖHK isteği ile GKD’den vazgeçildi\n  * '14' - GKD iptali : Fraud Şüphesi\n  * '99' - GKD iptali : Diğer",
+            "type": "string",
+            "enum": [
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "12",
+              "13",
+              "14",
+              "99"
+            ]
+          }
+        },
+        "required": [
+          "rizaNo",
+          "olusZmn",
+          "rizaDrm"
+        ]
+      },
+      "EmirBilgileriDTO": {
+        "title": "EmirBilgileri",
+        "description": "Emir Bilgileri",
+        "type": "object",
+        "properties": {
+          "odmEmriNo": {
+            "description": "Ödeme Emri No",
+            "example": "x",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "odmEmriZmn": {
+            "description": "Ödeme Emri Zamanı",
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "odmEmriNo",
+          "odmEmriZmn"
+        ]
+      },
+      "OdemeBaslatmaDTO": {
+        "title": "OdemeBaslatma",
+        "description": "Ödeme Başlatma Bilgileri",
+        "type": "object",
+        "properties": {
+          "kmlk": {
+            "type": "object",
+            "$ref": "#/definitions/KimlikDTO"
+          },
+          "islTtr": {
+            "type": "object",
+            "$ref": "#/definitions/TutarDTO"
+          },
+          "gon": {
+            "type": "object",
+            "$ref": "#/definitions/HesapDTO"
+          },
+          "alc": {
+            "type": "object",
+            "$ref": "#/definitions/HesapDTO"
+          },
+          "kkod": {
+            "type": "object",
+            "$ref": "#/definitions/KarekodDTO"
+          },
+          "odmAyr": {
+            "type": "object",
+            "$ref": "#/definitions/OdemeAyrintilariDTO"
+          },
+          "obhsMsrfTtr": {
+            "type": "object",
+            "$ref": "#/definitions/TutarDTO"
+          },
+          "hhsMsrfTtr": {
+            "type": "object",
+            "$ref": "#/definitions/TutarDTO"
+          }
+        },
+        "required": [
+          "kmlk",
+          "islTtr",
+          "alc",
+          "odmAyr"
+        ]
+      },
+      "IsyeriOdemeBilgileriDTO": {
+        "title": "IsyeriOdemeBilgileri",
+        "description": "İşyeri Ödeme Bilgileri",
+        "type": "object",
+        "properties": {
+          "isyKtgKod": {
+            "description": "İşlemin, ISO 18245:2003 uyumlu İşyeri Kategori Kodudur (Merchant Category Code, MCC). Ödeme Amacı = \"06\" ya da \"04\" olan ödeme işlemleri için zorunlu",
+            "type": "string",
+            "minLength": 4,
+            "maxLength": 4,
+            "pattern": "[0-9][0-9][0-9][0-9]"
+          },
+          "altIsyKtgKod": {
+            "description": "İşlem alt işyerinden gerçekleştiriliyorsa, ISO 18245:2003 uyumlu İşyeri Kategori Kodudur (Merchant Category Code, MCC).",
+            "type": "string",
+            "minLength": 4,
+            "maxLength": 4,
+            "pattern": "[0-9][0-9][0-9][0-9]"
+          },
+          "genelUyeIsyeriNo": {
+            "description": "İşyeri kayıt sisteminde kayıtlı İşyeri için BKM tarafından üretilmiş olan genel işyeri numarasıdır (GlobalMerchantId) Örnek değer ‘81630618’",
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 8
+          }
+        }
+      },
+      "ObhHealthResponse": {
+        "title": "Health",
+        "description": "Health",
+        "type": "object",
+        "properties": {
+          "status": {
+            "description": "Application Health Status",
+            "example": "UP",
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 20
+          }
+        }
+      },
+      "KatilimciBilgisiDTO": {
+        "title": "KatilimciBilgisi",
+        "description": "Katılımcı Bilgisi Detayı",
+        "type": "object",
+        "properties": {
+          "hhsKod": {
+            "description": "İsteğin iletildiği Hesap Hizmeti Sağlayıcısının kodudur",
+            "example": "8000",
+            "type": "string",
+            "minLength": 4,
+            "maxLength": 4,
+            "pattern": "[0-9][0-9][0-9][0-9]"
+          },
+          "yosKod": {
+            "description": "İsteği gönderen Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur",
+            "example": "8000",
+            "type": "string",
+            "minLength": 4,
+            "maxLength": 4,
+            "pattern": "[0-9][0-9][0-9][0-9]"
+          }
+        },
+        "required": [
+          "hhsKod",
+          "yosKod"
+        ]
+      },
+      "AyrikGkdDTO": {
+        "title": "AyrıkGkd",
+        "description": "Ayrık Güçlü Kimlik Detay",
+        "type": "object",
+        "properties": {
+          "ohkTanimTip": {
+            "description": "Açıklama: Ayrık GKD ohkTanimTip\n  * TCKN: TCKN\n  * GSM: Telefon\n  * MNO: MNO\n  * YKN: YKN",
+            "example": "K",
+            "type": "string",
+            "enum": [
+              "TCKN",
+              "GSM",
+              "MNO",
+              "YKN",
+              "PNO",
+              "IBAN"
+            ]
+          },
+          "ohkTanimDeger": {
+            "description": "ohkTanimDeger",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "host": "gecit.api-preprod.bkm.com.tr"
+  }

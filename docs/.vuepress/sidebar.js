@@ -54,6 +54,28 @@ module.exports = [
                 path: '/v1.1.0/contents/ekler',
             
             },
+            {
+                title: '12. Deney Alanı',
+                path: '/v1.1.0/deneyalani/genel-bilgiler',
+                children:[
+                    {
+                        title: '1. Ödeme Emri Başlatma API',
+                        path: '/v1.1.0/deneyalani/odeme-emri-api'
+                    },
+                    {
+                        title: '2. Hesap Bilgisi API',
+                        path: '/v1.1.0/deneyalani/hesap-bilgisi-api'
+                    },
+                    {
+                        title: '3. HHS - YÖS API',
+                        path: '/v1.1.0/deneyalani/hhs-yos-api'
+                    },
+                    {
+                        title: '4. Olay Bildirim',
+                        path: '/v1.1.0/deneyalani/olay-bildirim-api'
+                    },
+                ]
+            }
         ]
     },
     {
@@ -114,6 +136,7 @@ module.exports = [
                 path: '/v1.0.1/contents/ekler',
             
             },
+           
         ]
     } ,
     {
@@ -165,8 +188,9 @@ module.exports = [
                 path: '/v1.0.2/contents/ekler',
             
             },
+       
         ]
     },
 
- 
+   
 ];

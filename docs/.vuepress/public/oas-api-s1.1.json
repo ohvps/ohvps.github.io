@@ -1,0 +1,1027 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "OAS API",
+        "version": "1.1.0",
+        "description": "Olay Abonelik Servisleri",
+        "contact": {
+            "url": "https://bkm.com.tr/"
+        }
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "basePath": "/ohvps/oas/s1.1",
+    "produces": [
+        "application/json"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "security": [
+        {
+            "auth": [
+                "hesap_bilgisi"
+            ]
+        },
+        {
+            "auth": [
+                "odeme_emri"
+            ]
+        }
+    ],
+    "securityDefinitions": {
+        "auth": {
+            "type": "oauth2",
+            "flow": "application",
+            "tokenUrl": "https://gecit.api-preprod.bkm.com.tr/oauth-provider/oauth2/token",
+            "scopes": {
+                "odeme_emri": "Ödeme Emri",
+                "hesap_bilgisi": "Hesap Bilgisi"
+            }
+        }
+    },
+    "paths": {
+        "/olay-abonelik": {
+            "post": {
+                "description": "Olay Abonelik",
+                "summary": "olayAbonelik",
+                "tags": [
+                    "olayAbonelikS11"
+                ],
+                "operationId": "olayAbonelik",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "X-Request-ID",
+                        "type": "string",
+                        "required": true,
+                        "description": "İsteği başlatan tarafından belirlenen çağrıya özgü talep kimliği.",
+                        "minLength": 1,
+                        "maxLength": 36
+                    },
+                    {
+                        "in": "header",
+                        "name": "X-ASPSP-Code",
+                        "type": "string",
+                        "required": true,
+                        "description": "Hesap Hizmeti Sağlayıcısının (HHS) kodudur.",
+                        "minLength": 4,
+                        "maxLength": 4,
+                        "pattern": "[0-9][0-9][0-9][0-9]"
+                    },
+                    {
+                        "in": "header",
+                        "name": "X-TPP-Code",
+                        "type": "string",
+                        "required": true,
+                        "description": "Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.",
+                        "minLength": 4,
+                        "maxLength": 4,
+                        "pattern": "[0-9][0-9][0-9][0-9]"
+                    },
+                    {
+                        "in": "header",
+                        "name": "X-JWS-Signature",
+                        "type": "string",
+                        "required": true,
+                        "description": "İstek gövdesinin sağlama toplamını içeren JWS imzası."
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "description": "Olay Abonelik İsteği",
+                        "schema": {
+                            "$ref": "#/definitions/OlayAbonelikIstegiDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/OlayAbonelikDTO"
+                        },
+                        "headers": {
+                            "X-Request-ID": {
+                                "type": "string",
+                                "description": "Çağrıya özgü talep kimliği, istek başlığındaki bilgi geri dönülür.",
+                                "minLength": 1,
+                                "maxLength": 36
+                            },
+                            "X-ASPSP-Code": {
+                                "type": "string",
+                                "description": "Hesap Hizmeti Sağlayıcısının (HHS) kodudur.",
+                                "minLength": 4,
+                                "maxLength": 4,
+                                "pattern": "[0-9][0-9][0-9][0-9]"
+                            },
+                            "X-TPP-Code": {
+                                "type": "string",
+                                "description": "Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.",
+                                "minLength": 4,
+                                "maxLength": 4,
+                                "pattern": "[0-9][0-9][0-9][0-9]"
+                            },
+                            "X-JWS-Signature": {
+                                "type": "string",
+                                "description": "Yanıt gövdesinin sağlama toplamını içeren JWS imzası."
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "description": "Olay Abonelik Görüntüle",
+                "summary": "olayAbonelikGoruntule",
+                "tags": [
+                    "olayAbonelikS11"
+                ],
+                "operationId": "olayAbonelikGoruntule",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "X-Request-ID",
+                        "type": "string",
+                        "required": true,
+                        "description": "İsteği başlatan tarafından belirlenen çağrıya özgü talep kimliği.",
+                        "minLength": 1,
+                        "maxLength": 36
+                    },
+                    {
+                        "in": "header",
+                        "name": "X-ASPSP-Code",
+                        "type": "string",
+                        "required": true,
+                        "description": "Hesap Hizmeti Sağlayıcısının (HHS) kodudur.",
+                        "minLength": 4,
+                        "maxLength": 4,
+                        "pattern": "[0-9][0-9][0-9][0-9]"
+                    },
+                    {
+                        "in": "header",
+                        "name": "X-TPP-Code",
+                        "type": "string",
+                        "required": true,
+                        "description": "Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.",
+                        "minLength": 4,
+                        "maxLength": 4,
+                        "pattern": "[0-9][0-9][0-9][0-9]"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/OlayAbonelikDTO"
+                        },
+                        "headers": {
+                            "X-Request-ID": {
+                                "type": "string",
+                                "description": "Çağrıya özgü talep kimliği, istek başlığındaki bilgi geri dönülür.",
+                                "minLength": 1,
+                                "maxLength": 36
+                            },
+                            "X-ASPSP-Code": {
+                                "type": "string",
+                                "description": "Hesap Hizmeti Sağlayıcısının (HHS) kodudur.",
+                                "minLength": 4,
+                                "maxLength": 4,
+                                "pattern": "[0-9][0-9][0-9][0-9]"
+                            },
+                            "X-TPP-Code": {
+                                "type": "string",
+                                "description": "Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.",
+                                "minLength": 4,
+                                "maxLength": 4,
+                                "pattern": "[0-9][0-9][0-9][0-9]"
+                            },
+                            "X-JWS-Signature": {
+                                "type": "string",
+                                "description": "Yanıt gövdesinin sağlama toplamını içeren JWS imzası."
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    }
+                }
+            }
+        },
+        "/olay-abonelik/{olayAbonelikNo}": {
+            "put": {
+                "description": "Olay Aboneliği Güncelleme",
+                "summary": "olayAbonelikGuncelle",
+                "tags": [
+                    "olayAbonelikS11"
+                ],
+                "operationId": "olayAbonelikGuncelle",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "X-Request-ID",
+                        "type": "string",
+                        "required": true,
+                        "description": "İsteği başlatan tarafından belirlenen çağrıya özgü talep kimliği.",
+                        "minLength": 1,
+                        "maxLength": 36
+                    },
+                    {
+                        "in": "header",
+                        "name": "X-ASPSP-Code",
+                        "type": "string",
+                        "required": true,
+                        "description": "Hesap Hizmeti Sağlayıcısının (HHS) kodudur.",
+                        "minLength": 4,
+                        "maxLength": 4,
+                        "pattern": "[0-9][0-9][0-9][0-9]"
+                    },
+                    {
+                        "in": "header",
+                        "name": "X-TPP-Code",
+                        "type": "string",
+                        "required": true,
+                        "description": "Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.",
+                        "minLength": 4,
+                        "maxLength": 4,
+                        "pattern": "[0-9][0-9][0-9][0-9]"
+                    },
+                    {
+                        "in": "header",
+                        "name": "X-JWS-Signature",
+                        "type": "string",
+                        "required": true,
+                        "description": "İstek gövdesinin sağlama toplamını içeren JWS imzası."
+                    },
+                    {
+                        "in": "path",
+                        "name": "olayAbonelikNo",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 64
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "description": "Olay Abonelik Bilgisi",
+                        "schema": {
+                            "$ref": "#/definitions/OlayAbonelikDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/OlayAbonelikDTO"
+                        },
+                        "headers": {
+                            "X-Request-ID": {
+                                "type": "string",
+                                "description": "Çağrıya özgü talep kimliği, istek başlığındaki bilgi geri dönülür.",
+                                "minLength": 1,
+                                "maxLength": 36
+                            },
+                            "X-ASPSP-Code": {
+                                "type": "string",
+                                "description": "Hesap Hizmeti Sağlayıcısının (HHS) kodudur.",
+                                "minLength": 4,
+                                "maxLength": 4,
+                                "pattern": "[0-9][0-9][0-9][0-9]"
+                            },
+                            "X-TPP-Code": {
+                                "type": "string",
+                                "description": "Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.",
+                                "minLength": 4,
+                                "maxLength": 4,
+                                "pattern": "[0-9][0-9][0-9][0-9]"
+                            },
+                            "X-JWS-Signature": {
+                                "type": "string",
+                                "description": "Yanıt gövdesinin sağlama toplamını içeren JWS imzası."
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Olay Aboneliği Silme",
+                "summary": "olayAbonelikSilme",
+                "tags": [
+                    "olayAbonelikS11"
+                ],
+                "operationId": "olayAbonelikSilme",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "X-Request-ID",
+                        "type": "string",
+                        "required": true,
+                        "description": "İsteği başlatan tarafından belirlenen çağrıya özgü talep kimliği.",
+                        "minLength": 1,
+                        "maxLength": 36
+                    },
+                    {
+                        "in": "header",
+                        "name": "X-ASPSP-Code",
+                        "type": "string",
+                        "required": true,
+                        "description": "Hesap Hizmeti Sağlayıcısının (HHS) kodudur.",
+                        "minLength": 4,
+                        "maxLength": 4,
+                        "pattern": "[0-9][0-9][0-9][0-9]"
+                    },
+                    {
+                        "in": "header",
+                        "name": "X-TPP-Code",
+                        "type": "string",
+                        "required": true,
+                        "description": "Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.",
+                        "minLength": 4,
+                        "maxLength": 4,
+                        "pattern": "[0-9][0-9][0-9][0-9]"
+                    },
+                    {
+                        "in": "path",
+                        "name": "olayAbonelikNo",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 64
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content",
+                        "headers": {
+                            "X-Request-ID": {
+                                "type": "string",
+                                "description": "Çağrıya özgü talep kimliği, istek başlığındaki bilgi geri dönülür.",
+                                "minLength": 1,
+                                "maxLength": 36
+                            },
+                            "X-ASPSP-Code": {
+                                "type": "string",
+                                "description": "Hesap Hizmeti Sağlayıcısının (HHS) kodudur.",
+                                "minLength": 4,
+                                "maxLength": 4,
+                                "pattern": "[0-9][0-9][0-9][0-9]"
+                            },
+                            "X-TPP-Code": {
+                                "type": "string",
+                                "description": "Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.",
+                                "minLength": 4,
+                                "maxLength": 4,
+                                "pattern": "[0-9][0-9][0-9][0-9]"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    }
+                }
+            }
+        },
+        "/olay-abonelik/{olayAbonelikNo}/iletilemeyen-olaylar": {
+            "get": {
+                "description": "İletilemeyen Olaylar",
+                "summary": "iletilemeyenOlaylar",
+                "tags": [
+                    "olayAbonelikS11"
+                ],
+                "operationId": "iletilemeyenOlaylar",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "X-Request-ID",
+                        "type": "string",
+                        "required": true,
+                        "description": "İsteği başlatan tarafından belirlenen çağrıya özgü talep kimliği.",
+                        "minLength": 1,
+                        "maxLength": 36
+                    },
+                    {
+                        "in": "header",
+                        "name": "X-ASPSP-Code",
+                        "type": "string",
+                        "required": true,
+                        "description": "Hesap Hizmeti Sağlayıcısının (HHS) kodudur.",
+                        "minLength": 4,
+                        "maxLength": 4,
+                        "pattern": "[0-9][0-9][0-9][0-9]"
+                    },
+                    {
+                        "in": "header",
+                        "name": "X-TPP-Code",
+                        "type": "string",
+                        "required": true,
+                        "description": "Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.",
+                        "minLength": 4,
+                        "maxLength": 4,
+                        "pattern": "[0-9][0-9][0-9][0-9]"
+                    },
+                    {
+                        "in": "path",
+                        "name": "olayAbonelikNo",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 64
+                    },
+                    {
+                        "name": "syfNo",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "maximum": 999,
+                        "description": "İstenen Sayfa Numarasi"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/OlayIstegiDTO"
+                        },
+                        "headers": {
+                            "X-Request-ID": {
+                                "type": "string",
+                                "description": "Çağrıya özgü talep kimliği, istek başlığındaki bilgi geri dönülür.",
+                                "minLength": 1,
+                                "maxLength": 36
+                            },
+                            "X-ASPSP-Code": {
+                                "type": "string",
+                                "description": "Hesap Hizmeti Sağlayıcısının (HHS) kodudur.",
+                                "minLength": 4,
+                                "maxLength": 4,
+                                "pattern": "[0-9][0-9][0-9][0-9]"
+                            },
+                            "X-TPP-Code": {
+                                "type": "string",
+                                "description": "Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.",
+                                "minLength": 4,
+                                "maxLength": 4,
+                                "pattern": "[0-9][0-9][0-9][0-9]"
+                            },
+                            "Link": {
+                                "type": "string",
+                                "description": "Sayfalama yapısında kullanılan link bilgisidir."
+                            },
+                            "x-total-count": {
+                                "type": "integer",
+                                "description": "Sayfalama yapısında kullanılan toplam kayıt adedi bilgisir."
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    }
+                }
+            }
+        },
+        "/sistem-olay-dinleme": {
+            "post": {
+                "description": "Sistem Olay Dinleme",
+                "summary": "sistemOlayDinleme",
+                "tags": [
+                    "olayAbonelikS11"
+                ],
+                "operationId": "sistemOlayDinleme",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "X-Request-ID",
+                        "type": "string",
+                        "required": true,
+                        "description": "İsteği başlatan tarafından belirlenen çağrıya özgü talep kimliği.",
+                        "minLength": 1,
+                        "maxLength": 36
+                    },
+                    {
+                        "in": "header",
+                        "name": "X-ASPSP-Code",
+                        "type": "string",
+                        "required": true,
+                        "description": "Hesap Hizmeti Sağlayıcısının (HHS) kodudur.",
+                        "minLength": 4,
+                        "maxLength": 4,
+                        "pattern": "[0-9][0-9][0-9][0-9]"
+                    },
+                    {
+                        "in": "header",
+                        "name": "X-TPP-Code",
+                        "type": "string",
+                        "required": true,
+                        "description": "Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.",
+                        "minLength": 4,
+                        "maxLength": 4,
+                        "pattern": "[0-9][0-9][0-9][0-9]"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "description": "Olay İsteği",
+                        "schema": {
+                            "$ref": "#/definitions/OlayIstegiDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted",
+                        "headers": {
+                            "X-Request-ID": {
+                                "type": "string",
+                                "description": "Çağrıya özgü talep kimliği, ilgili istek başlığındaki bilgi geri dönülür.",
+                                "minLength": 1,
+                                "maxLength": 36
+                            },
+                            "X-ASPSP-Code": {
+                                "type": "string",
+                                "description": "Hesap Hizmeti Sağlayıcısının (HHS) kodudur.",
+                                "minLength": 4,
+                                "maxLength": 4,
+                                "pattern": "[0-9][0-9][0-9][0-9]"
+                            },
+                            "X-TPP-Code": {
+                                "type": "string",
+                                "description": "Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.",
+                                "minLength": 4,
+                                "maxLength": 4,
+                                "pattern": "[0-9][0-9][0-9][0-9]"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/ProblemDTO"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "ProblemDTO": {
+            "title": "Problem",
+            "description": "Problem",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "Hatalı istek numarası.",
+                    "example": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+                    "type": "string"
+                },
+                "path": {
+                    "description": "Hata ile karşılaşılan url bilgisinin yer aldığı alandır.",
+                    "example": "/ohvps/oas/s1.1/olay-abonelik",
+                    "type": "string"
+                },
+                "timestamp": {
+                    "description": "yyyy-MM-dd'T'HH:mm:ssZ formatında, hatanın oluşma zamanı bilgisidir.",
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2023-04-13T09:55:23+03:00"
+                },
+                "httpCode": {
+                    "description": "HTTP durum kodu bilgisidir.",
+                    "example": 400,
+                    "type": "integer",
+                    "minimum": 100,
+                    "maximum": 600,
+                    "exclusiveMaximum": true,
+                    "format": "int32"
+                },
+                "httpMessage": {
+                    "description": "HTTP durum koduna ait açıklama bilgisinin yer aldığı alandır.",
+                    "example": "Bad Request",
+                    "type": "string"
+                },
+                "moreInformation": {
+                    "description": "İngilizce hata mesajı bilgisidir.",
+                    "example": "Resource Schema validation error",
+                    "type": "string"
+                },
+                "moreInformationTr": {
+                    "description": "Türkçe Hata mesajı bilgisidir.",
+                    "example": "Alan doğrulama hatası",
+                    "type": "string"
+                },
+                "errorCode": {
+                    "description": "Hata kodu bilgisinin yer aldığı alandır.",
+                    "example": "TR.OHVPS.Resource.InvalidFormat",
+                    "type": "string"
+                },
+                "fieldErrors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/FieldErrorDTO"
+                    }
+                }
+            }
+        },
+        "FieldErrorDTO": {
+            "title": "FieldError",
+            "description": "Field Error",
+            "type": "object",
+            "properties": {
+                "objectName": {
+                    "description": "İstekte kullanılan nesne.",
+                    "example": "yos",
+                    "type": "string"
+                },
+                "field": {
+                    "description": "Hataya sebep olan alan",
+                    "example": "kod",
+                    "type": "string"
+                },
+                "messageTr": {
+                    "description": "Türkçe hata içeriği.",
+                    "example": "boyut '4' ile '4' arasında olmalı",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "İngilizce hata içeriği.",
+                    "example": "size must be between '4' and '4'",
+                    "type": "string"
+                },
+                "code": {
+                    "description": "Hata Kodu",
+                    "example": "TR.OHVPS.Field.Invalid",
+                    "type": "string"
+                }
+            }
+        },
+        "OlayAbonelikIstegiDTO": {
+            "title": "Olay Abonelik İsteği",
+            "description": "Olay Abonelik İsteği",
+            "type": "object",
+            "properties": {
+                "katilimciBlg": {
+                    "type": "object",
+                    "$ref": "#/definitions/KatilimciBilgisiDTO"
+                },
+                "abonelikTipleri": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AbonelikTipDTO"
+                    }
+                }
+            },
+            "required": [
+                "katilimciBlg",
+                "abonelikTipleri"
+            ]
+        },
+        "OlayAbonelikDTO": {
+            "title": "Olay Aboneliği",
+            "description": "Olay Aboneliği",
+            "type": "object",
+            "properties": {
+                "katilimciBlg": {
+                    "type": "object",
+                    "$ref": "#/definitions/KatilimciBilgisiDTO"
+                },
+                "olayAbonelikNo": {
+                    "description": "Tekil tanımlayıcıdır.",
+                    "type": "string",
+                    "example": "e486da8c-9896-427e-84e3-6118c8b193f7"
+                },
+                "olusturmaZamani": {
+                    "description": "yyyy-MM-dd'T'HH:mm:ssZ formatında, nesne oluşturma zaman damgası.",
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2023-04-13T09:55:23+03:00"
+                },
+                "guncellemeZamani": {
+                    "description": "yyyy-MM-dd'T'HH:mm:ssZ formatında, nesne güncelleme zaman damgası.",
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2023-04-13T09:55:23+03:00"
+                },
+                "abonelikTipleri": {
+                    "description": "Tüm olay tiplerine abone olmak istendiğinde bu nesne gönderilmez.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AbonelikTipDTO"
+                    }
+                }
+            },
+            "required": [
+                "katilimciBlg",
+                "olayAbonelikNo",
+                "abonelikTipleri"
+            ]
+        },
+        "AbonelikTipDTO": {
+            "title": "Abonelik Tipi",
+            "description": "Abonelik Tipi",
+            "type": "object",
+            "properties": {
+                "olayTipi": {
+                    "$ref": "#/definitions/OlayTipEnum"
+                },
+                "kaynakTipi": {
+                    "$ref": "#/definitions/KaynakTipEnum"
+                }
+            },
+            "required": [
+                "olayTipi",
+                "kaynakTipi"
+            ]
+        },
+        "OlayIstegiDTO": {
+            "title": "Olay İsteği",
+            "description": "Olay İsteği",
+            "type": "object",
+            "properties": {
+                "katilimciBlg": {
+                    "type": "object",
+                    "$ref": "#/definitions/KatilimciBilgisiDTO"
+                },
+                "olaylar": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/OlayDTO"
+                    }
+                }
+            },
+            "required": [
+                "katilimciBlg",
+                "olaylar"
+            ]
+        },
+        "OlayDTO": {
+            "title": "Olay",
+            "description": "Olay Nesnesi",
+            "type": "object",
+            "properties": {
+                "olayNo": {
+                    "description": "Belirteç",
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 64,
+                    "example": "a9ca2110-23c2-4685-ad76-563f7f1cf75b"
+                },
+                "olayZamani": {
+                    "description": "yyyy-MM-dd'T'HH:mm:ssZ formatında, nesne oluşma zamanı bilgisidir.",
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2023-04-13T09:55:23+03:00"
+                },
+                "olayTipi": {
+                    "$ref": "#/definitions/OlayTipEnum"
+                },
+                "kaynakTipi": {
+                    "$ref": "#/definitions/KaynakTipEnum"
+                },
+                "kaynakNo": {
+                    "description": "Güncellenen kaynağa ait tekil tanımlayıcı.",
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128,
+                    "example": "c7050930-f77f-4644-b546-964583aebdc3"
+                }
+            },
+            "required": [
+                "olayZamani",
+                "olayTipi",
+                "kaynakTipi",
+                "kaynakNo"
+            ]
+        },
+        "OlayTipEnum": {
+            "title": "Olay Tipi",
+            "description": "Açıklama: Olay Tipi\n * KAYNAK_GUNCELLENDI - ÖBH ve HBH kaynaklarındaki değişiklikler.\n * AYRIK_GKD_BASARILI - ÖBH ve HBH rıza ayrık GKD süreci başarılı bilgilendirmesi.\n * AYRIK_GKD_BASARISIZ - ÖBH ve HBH rıza ayrık GKD süreci başarısız bilgilendirmesi.\n * HHS_YOS_GUNCELLENDI - BKM tarafından iletilecek HHS ve YÖS güncellemeleri.",
+            "type": "string",
+            "example": "KAYNAK_GUNCELLENDI",
+            "enum": [
+                "KAYNAK_GUNCELLENDI",
+                "AYRIK_GKD_BASARILI",
+                "AYRIK_GKD_BASARISIZ",
+                "HHS_YOS_GUNCELLENDI"
+            ]
+        },
+        "KaynakTipEnum": {
+            "title": "Kaynak Tipi",
+            "description": "Açıklama: Kaynak Tipi\n * HESAP_BILGISI_RIZASI - Hesap Bilgisi Rızası güncellemelerinde\n * ODEME_EMRI_RIZASI - Ödeme Emri Rızası güncellemelerinde\n * ODEME_EMRI - Tüm ödeme durum değişikliklerinde\n * BAKIYE - Bakiye değiştiğinde\n * COKLU_ISLEM_TALEBI - Bulk Data API için kullanılacak\n * HHS - HHS durum, açık anahtar, marka, logo vb değişikliklerinde kullanılacak.\n * YOS - YÖS rol, açık anahtar, marka, adres, logo vb değişikliklerinde kullanılacak.",
+            "type": "string",
+            "example": "BAKIYE",
+            "enum": [
+                "HESAP_BILGISI_RIZASI",
+                "ODEME_EMRI_RIZASI",
+                "ODEME_EMRI",
+                "BAKIYE",
+                "COKLU_ISLEM_TALEBI",
+                "HHS",
+                "YOS"
+            ]
+        },
+        "KatilimciBilgisiDTO": {
+            "title": "KatilimciBilgisi",
+            "description": "Katılımcı Bilgisi Detayı",
+            "type": "object",
+            "properties": {
+                "hhsKod": {
+                    "description": "Hesap Hizmeti Sağlayıcısının (HHS) kodudur",
+                    "example": "8000",
+                    "type": "string",
+                    "minLength": 4,
+                    "maxLength": 4,
+                    "pattern": "[0-9][0-9][0-9][0-9]"
+                },
+                "yosKod": {
+                    "description": "Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur",
+                    "example": "8000",
+                    "type": "string",
+                    "minLength": 4,
+                    "maxLength": 4,
+                    "pattern": "[0-9][0-9][0-9][0-9]"
+                }
+            },
+            "required": [
+                "hhsKod",
+                "yosKod"
+            ]
+        }
+    },
+    "host": "gecit.api-preprod.bkm.com.tr"
+}
