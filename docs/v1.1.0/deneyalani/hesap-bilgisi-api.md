@@ -1,1 +1,3 @@
-<HesapBilgisiV11/>
+<ClientOnly>
+  <HesapBilgisiV11/>
+</ClientOnly>

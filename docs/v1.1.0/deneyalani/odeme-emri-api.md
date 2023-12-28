@@ -1,1 +1,3 @@
-<OdemeEmriAPIv11/>
+<ClientOnly>
+  <OdemeEmriAPIv11/>
+</ClientOnly>

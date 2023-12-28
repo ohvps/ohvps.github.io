@@ -1,1 +1,3 @@
-<HhsYosAPIV11/>
+<ClientOnly>
+  <HhsYosAPIV11/>
+</ClientOnly>
