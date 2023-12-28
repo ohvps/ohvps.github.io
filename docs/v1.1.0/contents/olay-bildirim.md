@@ -284,17 +284,16 @@ HHS kendi sistemini yormayacak şekilde, belirleyeceği kurallar dahilinde bu ge
 
 **Tablo 17: Olaylar nesnesi**  
 |Alan Adı |JSON Alan Adı	|Format	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|
-| --- | --- | --- | --- | --- | 
-|OlayIstegi|	olayIstegi|	Kompleks: olayIstegi	|Z|	 |
-|>Katılımcı Bilgisi|	katilimciBlg|	Kompleks:KatilimciBilgisi	|Z|	Katılımcılara atanmış kod bilgileridir.| 
-|>>Hesap Hizmeti Sağlayıcısı Kodu|	hhsKod|	AN4|	Z	|Hesap Hizmeti Sağlayıcısının kodudur. (Nezdinde ÖH bulunduran kuruluş kodu. Örneğin, Banka, Elektronik Para Kuruluşu ve Ödeme Kuruluşu)| 
-|>> Yetkili Ödeme Hizmeti Sağlayıcısı Kodu	|yosKod	|AN4|	Z	| Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.| 
-|>Olaylar |	olaylar|	Kompleks: Olaylar	|Z|	 |
-|>>Olay Numarası|	 olayNo	|AN1..64|	Z	| Olaya ait atanmış tekil kimlik numarası|
-|>>Olay Zamanı	| olayZamani	| ISODateTime |	Z	| Olayın oluşma zamanı |
-|>>Olay Tipi	| olayTipi	| AN1..36 |>|TR.OHVPS.DataCode.OlayTip sıralı veri tiplerinden birini alır. |
-|>>Kaynak Tipi|	kaynakTipi |	AN1..36|Z|	TR.OHVPS.DataCode.KaynakTip sıralı veri tiplerinden birini alır. |
-|>>Kaynak Numarası| kaynakNo|AN1..128|Z|Güncellenen kaynağa ait HHS sistemindeki tekil tanımlayıcı.|
+| --- | --- | --- | --- | --- |
+|Katılımcı Bilgisi|	katilimciBlg|	Kompleks:KatilimciBilgisi	|Z|	Katılımcılara atanmış kod bilgileridir.| 
+|>Hesap Hizmeti Sağlayıcısı Kodu|	hhsKod|	AN4|	Z	|Hesap Hizmeti Sağlayıcısının kodudur. (Nezdinde ÖH bulunduran kuruluş kodu. Örneğin, Banka, Elektronik Para Kuruluşu ve Ödeme Kuruluşu)| 
+|> Yetkili Ödeme Hizmeti Sağlayıcısı Kodu	|yosKod	|AN4|	Z	| Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.| 
+|Olaylar |	olaylar|	Kompleks: Olaylar	|Z|	 |
+|>Olay Numarası|	 olayNo	|AN1..64|	Z	| Olaya ait atanmış tekil kimlik numarası|
+|>Olay Zamanı	| olayZamani	| ISODateTime |	Z	| Olayın oluşma zamanı |
+|>Olay Tipi	| olayTipi	| AN1..36 |>|TR.OHVPS.DataCode.OlayTip sıralı veri tiplerinden birini alır. |
+|>Kaynak Tipi|	kaynakTipi |	AN1..36|Z|	TR.OHVPS.DataCode.KaynakTip sıralı veri tiplerinden birini alır. |
+|>Kaynak Numarası| kaynakNo|AN1..128|Z|Güncellenen kaynağa ait HHS sistemindeki tekil tanımlayıcı.|
 
 ## ADIM 2:  Sistem Olay Dinleme
 
