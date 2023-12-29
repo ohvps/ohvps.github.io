@@ -1,4 +1,4 @@
-#  Dijital Cüzdan’dan TR Karekod ile Ödeme
+#  Dijital Cüzdanlardan TR Karekod ile Ödeme
 
  
 
@@ -10,7 +10,7 @@ Bu sayede Kart Çıkaran Kuruluşlar, otorizasyon öncesinde işlemin POS’ta K
 
  
 
-## 1.      Dijital Cüzdan'a Kart Ekleme Akışı
+## 1.      Dijital Cüzdana Kart Ekleme Akışı
 
  
 

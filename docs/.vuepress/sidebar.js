@@ -160,6 +160,14 @@ module.exports = [
 
     {
 
+        title: 'Dijital Cüzdanlardan TR Karekod ile Ödeme',
+
+        path: '/dijital-cuzdan'
+
+    },
+
+    {
+
         title: 'Sürüm Yönetimi',
 
         path: '/surum-yonetimi'
@@ -174,15 +182,6 @@ module.exports = [
 
     },
 
-    {
-
-        title: 'Dijital Cüzdan TR Karekod ile Ödeme',
-
-        path: '/dijital-cuzdan'
-
-    },
-
- 
 
     {
 
