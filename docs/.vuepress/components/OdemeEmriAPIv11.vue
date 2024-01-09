@@ -141,7 +141,7 @@
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
                                     <Request title="Ödeme Emri Sorgulama" actionButtonText="Ödeme Emri Sorgula" httpMethod="GET"
-                                        path="/odeme-emri/67d3fd73ae0b433c847201bbb1e5356d" :requestBody="yenilemeBelirteci"
+                                        path="/odeme-emri/{odemeEmriNo}" :requestBody="yenilemeBelirteci"
                                         :headers="requestHeadersAfterToken" @request-event="odemeEmri" />
                                 </div>
                                 <div class="col" style="width: 50%;">
@@ -258,7 +258,7 @@ export default {
                 case 2:
                     return this.erisimBelirteciResponseBody = JSON.stringify(ErisimBelirteciResponse400, null, 2);
                 case 3:
-                    return this.erisimBelirteciResponseBody = JSON.stringify(ErisimBelirteciResponse401, null, 2);
+                    return this.erisimBelirteciResponseBody = JSON.stringify(YenilemeBelirteciResponse401, null, 2);
                 case 4:
                     return this.erisimBelirteciResponseBody = JSON.stringify(ErisimBelirteciResponse403, null, 2);
                 case 5:
