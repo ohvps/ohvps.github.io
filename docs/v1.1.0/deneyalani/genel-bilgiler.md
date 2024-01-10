@@ -25,3 +25,5 @@ Deney Alanı ile sunulan imkanlar şu şekildedir:
  
 
 Not: Deney Alanı’nın kapsamı genişletilmiş versiyonu – “BKM ÖHVPS Simülatör” uygulaması hem HHS hem de YÖS katılımcılarının; test uygulamalarını uçtan uca test edebilebileceği bir ortamdır. Simülatör uygulaması üzerinden dinamik veri girişi yaparak, geliştirilen servisler ile zorunlu senaryoların tümünün simülasyonu gerçekleştirilebilir. Simülatör ortamındaki API’ler, üretim ortamının bir kopyası olacak şekilde oluşturulmuştur ve kurumların üretim ortamına hazır hale gelmelerine aracılık eder. Bu uygulama, pürüzsüz bir üretim ortamı geçişi imkanı sağlar ve ÖHVPS BKM Teknik Sertifikasyonu geçmek için koşulması gereken sertifikasyon senaryoları BKM ÖHVPS Simülatör’ü üzerinden sunulmaktadır. BKM Simülatör kullanımı için ayrı bir süreç işletilmekte olup daha fazla detaylı bilgi almak için ohvps@bkm.com.tr adresine taleplerinizi iletmeniz gerekmektedir.
+
+[Ödeme Emri Başlatma API Deney Alanı](odeme-emri-api.html)
