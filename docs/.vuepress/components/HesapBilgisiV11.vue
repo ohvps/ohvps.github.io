@@ -116,7 +116,7 @@
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="width: 50%;">
                                     <Request title="İşlemler İsteği" actionButtonText="İşlemler" httpMethod="GET"
-                                        path="/hesaplar/{hspRef}/islemler" :requestBody="hesapBilgisiBody"
+                                        path="/hesaplar/{hspRef}}/islemler" :requestBody="hesapBilgisiBody"
                                         :headers="requestHeadersAfterToken" @request-event="getIslemler" />
                                 </div>
                                 <div class="col" style="width: 50%;">
