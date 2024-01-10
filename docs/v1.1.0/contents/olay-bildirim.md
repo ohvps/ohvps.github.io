@@ -60,7 +60,7 @@ Olay Abonelik Servisine ait API Endpointleri aşağıdaki tabloda listelenmişti
 | 2 |olay-abonelik |GET |/olay-abonelik| Z |İstemci Kimlik Bilgileri |İmzalı Yanıt | | -  | OlayAbonelik|
 | 3 |olay-abonelik/{olayAbonelikNo} |PUT |/olay-abonelik/{olayAbonelikNo} | Z |İstemci Kimlik Bilgileri |İmzalı İstek ve Yanıt | |OlayAbonelik | OlayAbonelik|
 | 4 | olay-abonelik/{olayAbonelikNo} |DELETE |/olay-abonelik/{olayAbonelikNo} | Z |İstemci Kimlik Bilgileri | - |- | -| -|
-| 5 |olay-abonelik/{olayAbonelikNo}/Iletilemeyen-olaylar |GET |/olay-abonelik/{olayAbonelikNo}/Iletilemeyen-olaylar | Z |İstemci Kimlik Bilgileri | - | Sayfalama | |Olaylar|
+| 5 |olay-abonelik/{olayAbonelikNo}/iletilemeyen-olaylar |GET |/olay-abonelik/{olayAbonelikNo}/iletilemeyen-olaylar | Z |İstemci Kimlik Bilgileri | - | Sayfalama | |Olaylar|
 | 6 | sistem-olay-dinleme   |POST | sistem-olay-dinleme   | Z |İstemci Kimlik Bilgileri | - | - |Olaylar | - |
 
 
@@ -208,15 +208,27 @@ Sıralama yönü olay tarihine göre artan şekilde olmalıdır. Sayfalama 100'e
 
 YÖS tarafından iletilemeyen olaylar isteği 10 dakikada bir olacak şekilde yapılabilir. HHS bu limite uygun işlem kısıtı uygulayabilir.
 
-İşlem Sorgu Örneği GET /iletilemeyen-olaylar?syfNo=1
+İşlem Sorgu Örneği GET İşlem Sorgu Örneği  : /iletilemeyen-olaylar?syfNo=1&olyZmnBslTrh=2024-01-08T16:42:00+03:00&olyZmnBtsTrh=2024-01-09T17:09:00+03:00
 
+Örneğin;
+
+olyZmnBslTrh : 07/01/2024 10:00:00+03:00
+<br>olyZmnBtsTrh : 09/01/2024 16:00:00+03:00
+<br>Sorgu Zamanı : 09/01/2024 10:15:00+03:00
+
+Yanıt içerisinde yer alan veriye ait tarih aralığı : 08/01/2024 00:00:00+03:00 - 09/01/2024 10:15:00+03:00 olmalıdır.
+
+Başlangıç ve bitiş zaman aralığı örnekte yer alan şekilde seçilse dahi ilgili servis yanıtı için öncelikle sorgu zamanına bakılıp 1 gün öncesinden sorgu anına kadar tüm kayıtların iletilemeyen olaylar içerisinde listelenmesi sağlanmalıdır.
+
+İlgili tarih aralığında uygun veri olmaması halinde yanıt gövdesi boş olacak şekilde dönülmelidir.
 
 **İletilemeyen Olaylar Sorgulama İsteği Sorgu Parametreleri**  
 
 |Alan Adı |Parametre Adı	|Format	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|HHS tarafından yapılması gereken kontrol ve işlemler|
 | --- | --- | --- | --- | --- | --- |
 | İstenen Sayfa Numarasi | syfNo | N3 | İ | Cevapta dönecek sayfa numarası 1’den başlayarak artan değerlerle iletilmelidir. | Bu veri gönderildiği durumda, HHS İletilemeyen Olaylar listesine ait bu sayfadaki kayıtları göndermelidir. Gönderilmediğinde, HHS ilk sayfadaki kayıtları göndermelidir.  |
-
+| Olay Zamanı Başlangıç Tarihi | olyZmnBslTrh | ISODateTime | İ | Sorgulanacak Olay Zamanına ait başlangıç tarihi| HHS'ler iletilemeyen olaylar listesi dönüşünü bu kritere göre filtreleyerek iletmek zorundadır. YÖS tarafından tetiklenen sorgularda; olyZmnBslTrh iletilmediği durumda ya da 1 gün öncesinin başlangıç saatine göre daha geri bir zaman dilimi gönderildiğinde, başlangıç zamanı(olyZmnBslTrh) değeri sorgu zamanından 1 gün öncesine ait günün başlangıç zamanı olarak kabul edilmelidir. |
+| Olay Zamanı Bitiş Tarihi | olyZmnBtsTrh | ISODateTime | İ | Sorgulanacak Olay Zamanına ait bitiş tarihi| HHS'ler iletilemeyen olaylar listesi dönüşünü bu kritere göre filtreleyerek iletmek zorundadır. YÖS tarafından tetiklenen sorgularda; olyZmnBtsTrh iletilmediği durumda ya da sorgu zamanından daha ileri bir zaman dilimi gönderildiğinde, bitiş zamanı(olyZmnBtsTrh) değeri sorgu zamanı olarak kabul edilmelidir.  |
 
 **Tablo 17: Olaylar nesnesi**  
 |Alan Adı |JSON Alan Adı	|Format	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|
