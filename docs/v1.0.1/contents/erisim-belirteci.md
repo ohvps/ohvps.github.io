@@ -1,4 +1,4 @@
-**POST /erisim-belirteci** 
+# POST /erisim-belirteci 
 
 
 **İSTEK:**

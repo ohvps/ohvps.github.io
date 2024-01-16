@@ -1,4 +1,4 @@
-<h1> 2.	Kapsam ve Dayanak</h1>  
+# 2.Kapsam ve Dayanak 
 
 12 Kasım 2019’da güncellenen “**6493 sayılı Ödeme ve Menkul Kıymet Mutabakat Sistemleri, Ödeme Hizmetleri ve Elektronik Para Kuruluşları Hakkında Kanun**”un (Kanun) 12’nci maddesine yeni eklenen ve **Ödeme Hizmetleri Direktifi 2**'de (Payment Services Directive 2, PSD2) bulunan iki yeni ödeme hizmeti aşağıdaki gibi tanımlanmıştır (Şekil-1: Ödeme Hizmetleri Veri Paylaşım Servisleri):
 - **Ödeme Emri Başlatma Hizmeti**: ÖHK’nın isteği üzerine başka bir ödeme hizmeti sağlayıcısında bulunan **ödeme hesabıyla** ilgili sunulan ödeme emri başlatma hizmeti [Madde 12, birinci fıkra, (f) bendi]
