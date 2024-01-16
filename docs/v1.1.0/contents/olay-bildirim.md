@@ -72,7 +72,7 @@ Olay Abonelik Servisine ait API Endpointleri aşağıdaki tabloda listelenmişti
 HHS'nin olay abonelik hizmeti sunduğu servistir.
 YÖS, seçeceği olay-kaynak tipleri için bu servis aracılığı ile abone olabilir. HHS POST işlemi sonucunda, YÖS adına bir olay abonelik kaynağı oluşturur ve tekil tanımlayıcı olan olayAbonelikNo değerini döner. olayAbonelikNo üretilirken farklı YÖS'ler için aynı değer kullanılamaz. olayAbonelikNo evrensel tekil olmalıdır.  
 1 YÖS'ün 1 HHS'de 1 adet abonelik kaydı olabilir.  
-Başarılı POST isteği sonucu HTTP 201 cevabı ile iletilmelidir.   
+Başarılı POST isteği sonucu HTTP 200 cevabı ile iletilmelidir.   
 
 YÖS tarafından daha önce oluşturulmuş olay abonelik kaydı varsa "HTTP 400 -TR.OHVPS.Business.InvalidContent -Kaynak Çakışması" hatasıyla uyarı mesajını döner.
 
@@ -296,16 +296,17 @@ HHS kendi sistemini yormayacak şekilde, belirleyeceği kurallar dahilinde bu ge
 
 **Tablo 17: Olaylar nesnesi**  
 |Alan Adı |JSON Alan Adı	|Format	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|
-| --- | --- | --- | --- | --- |
-|Katılımcı Bilgisi|	katilimciBlg|	Kompleks:KatilimciBilgisi	|Z|	Katılımcılara atanmış kod bilgileridir.| 
-|>Hesap Hizmeti Sağlayıcısı Kodu|	hhsKod|	AN4|	Z	|Hesap Hizmeti Sağlayıcısının kodudur. (Nezdinde ÖH bulunduran kuruluş kodu. Örneğin, Banka, Elektronik Para Kuruluşu ve Ödeme Kuruluşu)| 
-|> Yetkili Ödeme Hizmeti Sağlayıcısı Kodu	|yosKod	|AN4|	Z	| Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.| 
-|Olaylar |	olaylar|	Kompleks: Olaylar	|Z|	 |
-|>Olay Numarası|	 olayNo	|AN1..64|	Z	| Olaya ait atanmış tekil kimlik numarası|
-|>Olay Zamanı	| olayZamani	| ISODateTime |	Z	| Olayın oluşma zamanı |
-|>Olay Tipi	| olayTipi	| AN1..36 |>|TR.OHVPS.DataCode.OlayTip sıralı veri tiplerinden birini alır. |
-|>Kaynak Tipi|	kaynakTipi |	AN1..36|Z|	TR.OHVPS.DataCode.KaynakTip sıralı veri tiplerinden birini alır. |
-|>Kaynak Numarası| kaynakNo|AN1..128|Z|Güncellenen kaynağa ait HHS sistemindeki tekil tanımlayıcı.|
+| --- | --- | --- | --- | --- | 
+|OlayIstegi|	olayIstegi|	Kompleks: olayIstegi	|Z|	 |
+|>Katılımcı Bilgisi|	katilimciBlg|	Kompleks:KatilimciBilgisi	|Z|	Katılımcılara atanmış kod bilgileridir.| 
+|>>Hesap Hizmeti Sağlayıcısı Kodu|	hhsKod|	AN4|	Z	|Hesap Hizmeti Sağlayıcısının kodudur. (Nezdinde ÖH bulunduran kuruluş kodu. Örneğin, Banka, Elektronik Para Kuruluşu ve Ödeme Kuruluşu)| 
+|>> Yetkili Ödeme Hizmeti Sağlayıcısı Kodu	|yosKod	|AN4|	Z	| Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.| 
+|>Olaylar |	olaylar|	Kompleks: Olaylar	|Z|	 |
+|>>Olay Numarası|	 olayNo	|AN1..64|	Z	| Olaya ait atanmış tekil kimlik numarası|
+|>>Olay Zamanı	| olayZamani	| ISODateTime |	Z	| Olayın oluşma zamanı |
+|>>Olay Tipi	| olayTipi	| AN1..36 |>|TR.OHVPS.DataCode.OlayTip sıralı veri tiplerinden birini alır. |
+|>>Kaynak Tipi|	kaynakTipi |	AN1..36|Z|	TR.OHVPS.DataCode.KaynakTip sıralı veri tiplerinden birini alır. |
+|>>Kaynak Numarası| kaynakNo|AN1..128|Z|Güncellenen kaynağa ait HHS sistemindeki tekil tanımlayıcı.|
 
 ## ADIM 2:  Sistem Olay Dinleme
 
