@@ -42,7 +42,7 @@ Bu akışlarda;<br>
 2) Kart PIN (POS cihazında kart şifresi girilerek) veya <br>
 
 3) Anlık Bildirim (mobil telefonda yüklü olan kart çıkaran kuruluşa ait uygulama üzerinden ile müşteri doğrulaması yer almaktadır.)
-   - Anlık Bildirim ile ilgili akışlar taslak olarak talep edilen katılımcılarla paylaşılacak olup BKM (Kartlı Ödemeler) TR Karekod Teknik İlke ve Kuralları Rehberinde (opens new window)yer alan 5.2 altına ayrıca eklenecektir.
+   - Anlık Bildirim ile ilgili akışlar taslak olarak talep edilen katılımcılarla paylaşılacak olup [BKM (Kartlı Ödemeler) TR Karekod Teknik İlke ve Kuralları Rehberinde](https://www.tcmb.gov.tr/wps/wcm/connect/ec9fb83b-6e4c-479f-ac69-a11ba3f0c558/BKM_TR_Karekod_Rehberi.pdf?MOD=AJPERES&CACHEID=ROOTWORKSPACE-ec9fb83b-6e4c-479f-ac69-a11ba3f0c558-o3gOR1s)yer alan 5.2 altına ayrıca eklenecektir.
 
  
 

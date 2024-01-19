@@ -104,7 +104,7 @@ BKM'nin sunacağı abonelik servisleri için HHS ve YÖS'lerin abonelik isteği 
 | --- | --- | --- | --- | --- | 
 | Olay Abonelik Numarası  | olayAbonelikNo |AN1..64 | Z | YÖS özelinde oluşturulan tekil tanımlayıcıdır. Farklı YÖS'ler için aynı değer kullanılamaz.|  
 | Olay Abonelik Oluşturulma zamanı  | olusturmaZamani | ISODateTime | Z | Olay Abonelik nesnesinin oluşturulma zaman damgası |
-| Olay Abonelik Güncelleme zamanı  | guncellemeZamani | ISODateTime | İ | Olay Abonelik nesnesinin güncelleme zaman damgası iletilebilir. İlk değeri olay abonelik oluşturma zamanı bilgisidir.|
+| Olay Abonelik Güncelleme zamanı  | guncellemeZamani | ISODateTime | Z | Olay Abonelik nesnesinin güncelleme zaman damgası iletilebilir. İlk değeri olay abonelik oluşturma zamanı bilgisidir.|
 |Katılımcı Bilgisi|	katilimciBlg|	Kompleks:KatilimciBilgisi	|Z|	Katılımcılara atanmış kod bilgileridir.| 
 |>Hesap Hizmeti Sağlayıcısı Kodu|	hhsKod|	AN4|	Z	|Hesap Hizmeti Sağlayıcısının kodudur. (Nezdinde ÖH bulunduran kuruluş kodu. Örneğin, Banka, Elektronik Para Kuruluşu ve Ödeme Kuruluşu)| 
 |> Yetkili Ödeme Hizmeti Sağlayıcısı Kodu	|yosKod	|AN4|	Z	|Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.| 
