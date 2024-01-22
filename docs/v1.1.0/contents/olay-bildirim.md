@@ -72,7 +72,7 @@ Olay Abonelik Servisine ait API Endpointleri aşağıdaki tabloda listelenmişti
 HHS'nin olay abonelik hizmeti sunduğu servistir.
 YÖS, seçeceği olay-kaynak tipleri için bu servis aracılığı ile abone olabilir. HHS POST işlemi sonucunda, YÖS adına bir olay abonelik kaynağı oluşturur ve tekil tanımlayıcı olan olayAbonelikNo değerini döner. olayAbonelikNo üretilirken farklı YÖS'ler için aynı değer kullanılamaz. olayAbonelikNo evrensel tekil olmalıdır.  
 1 YÖS'ün 1 HHS'de 1 adet abonelik kaydı olabilir.  
-Başarılı POST isteği sonucu HTTP 200 cevabı ile iletilmelidir.   
+Başarılı POST isteği sonucu HTTP 201 cevabı ile iletilmelidir.   
 
 YÖS tarafından daha önce oluşturulmuş olay abonelik kaydı varsa "HTTP 400 -TR.OHVPS.Business.InvalidContent -Kaynak Çakışması" hatasıyla uyarı mesajını döner.
 

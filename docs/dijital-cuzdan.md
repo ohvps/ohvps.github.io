@@ -14,7 +14,7 @@ Bu sayede Kart Çıkaran Kuruluşlar, otorizasyon öncesinde işlemin POS’ta K
 
  
 
-Dijital Cüzdanlardan ödeme yapılabilmesi için kullanıcıların ilk olarak kartı Dijital Cüzdana eklemesi gerekmektedir. Dijital Cüzdana eklenecek olan karta ait bilgiler kullanıcı tarafından cüzdana girilmektedir. Kart bilgilerinin Dijital Cüzdana eklenmesinin ardından kart hamili iki faktörlü doğrulama yöntemi (GO Güvelin Öde, 3D Secure  vb.) ile doğrulanması gerekmektedir.  Kart hamilinin iki faktörlü doğrulanmasının ardından kart cüzdana eklenir ve eklenen bu kartlar ile ödeme işlemleri yapılabilir. Dijital Cüzdanlarla yapılabilen işlemler aşağıdaki görselde bilgi amaçlı özetlenmiştir. Bu belgede TR Karekod ile yapılan işlemler için kullanılacak doğrulama akışlarına yer verilecektir.
+Dijital Cüzdanlardan ödeme yapılabilmesi için kullanıcıların ilk olarak kartı Dijital Cüzdana eklemesi gerekmektedir. Dijital Cüzdana eklenecek olan karta ait bilgiler kullanıcı tarafından cüzdana girilmektedir. Kart bilgilerinin Dijital Cüzdana eklenmesinin ardından kart hamili iki faktörlü doğrulama yöntemi (GO Güvelin Öde, 3D Secure  vb.) ile doğrulanması gerekmektedir.  Kart hamilinin iki faktörlü doğrulanmasının ardından kart cüzdana eklenir ve eklenen bu kartlar ile ödeme işlemleri yapılabilir. Dijital Cüzdanlarla yapılabilen işlemler aşağıda bilgi amaçlı özetlenmiştir. Bu belgenin Uyum Tarihi başlığında TR Karekod ile yapılan işlemler için kullanılacak doğrulama akışlarına yer verilmiştir.
  
 
 - Dijital cüzdanlar ile fiziksel mağazalarda POS terminali üzerinden, e-ticaret sitelerinde ise online kanallar üzerinden  ödeme yapmak mümkündür.
@@ -41,7 +41,7 @@ Bu akışlarda;<br>
 
 2) Kart PIN (POS cihazında kart şifresi girilerek) veya <br>
 
-3) Anlık Bildirim (mobil telefonda yüklü olan kart çıkaran kuruluşa ait uygulama üzerinden ile müşteri doğrulaması yer almaktadır.)
+3) Anlık Bildirim (mobil telefonda yüklü olan kart çıkaran kuruluşa ait uygulama üzerinden ile müşteri doğrulaması yer almaktadır.) müşteri doğrulaması yer almaktadır.
    - Anlık Bildirim ile ilgili akışlar taslak olarak talep edilen katılımcılarla paylaşılacak olup [BKM (Kartlı Ödemeler) TR Karekod Teknik İlke ve Kuralları Rehberinde](https://www.tcmb.gov.tr/wps/wcm/connect/ec9fb83b-6e4c-479f-ac69-a11ba3f0c558/BKM_TR_Karekod_Rehberi.pdf?MOD=AJPERES&CACHEID=ROOTWORKSPACE-ec9fb83b-6e4c-479f-ac69-a11ba3f0c558-o3gOR1s)yer alan 5.2 altına ayrıca eklenecektir.
 
  
