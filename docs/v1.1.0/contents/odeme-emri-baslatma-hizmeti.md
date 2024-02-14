@@ -80,7 +80,7 @@ HHS’nin base pathi/alt-dizin/GKD Karşılama Ekranı?rizano={rızano}
 - ÖBHS, ödeme emri başlatma isteği olduğunu HHS’ye bildirir.  
 - ÖBHS, ÖHK’nın, ÖBHS arayüzünden verdiği rızanın (“Ön Onay”) bir kopyasının HHS nezdinde müşteri tarafından onaylanması için HHS’ye gönderilmesini sağlar.  
 - HHS; istek mesajında yer alan alanların ÖHVPS API İlke ve Kuralları dökümanında belirtilen şartları sağlayacak şekilde zorunluluk, uzunluk ve içerik kontrollerini yapar. (Zorunlu)  
-- HHS; YÖS API ile alınan ÖBHS bilgilerinin içerisinde yer alan yönlendirme ve bildirim adresleri ile ödeme emri rızası nesnesi request mesajında paylaşılan adreslerin uyumlu olup olmadığının kontrollerini yapar. (Zorunlu)  
+- HHS; YÖS API ile alınan ÖBHS bilgilerinin içerisinde yer alan yönlendirme adresleri ile ödeme emri rızası nesnesi request mesajında paylaşılan adreslerin uyumlu olup olmadığının kontrollerini yapar. (Zorunlu)  
 - HHS; kimlik bilgileri nesnesinde eğer kimlik bilgileri iletilmiş ise; bu veri ile ÖHK’nın HHS müşterisi olup olmadığının kontrollerini yapar. Bu kontrol hem bireysel hem de kurumsal ÖHK’lar için yapılmalıdır.  (Koşullu Zorunlu)  
 - HHS kimlik bilgisi ile gönderen unvanının uyumlu olduğunun kontrol eder. HHS'ler EFT/FAST işlemlerinde kabul ettikleri kontrol kriterleri ile işleme izin verebilirler. (Zorunlu)  
 - Gönderen Hesap Numarası ile ilgili Tablo7’de belirtilen kontroller yapılmalıdır. (Zorunlu)  

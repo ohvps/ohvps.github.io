@@ -2,7 +2,7 @@
 
  
 
-Dijital cüzdanlara eklenmiş ve cüzdan sahibi kuruluşun kendisinin ihraç etmediği, diğer Kart Çıkaran Kuruluşlar tarafından ihraç edilmiş kartlar ile TR Karekod ödemesi yapılabilmesi için HHS olarak GEÇİT’e bağlanmış olan Kart Çıkaran Kuruluşların, [BKM (Kartlı Ödemeler) TR Karekod Teknik İlke ve Kuralları Rehberinde](https://www.tcmb.gov.tr/wps/wcm/connect/ec9fb83b-6e4c-479f-ac69-a11ba3f0c558/BKM_TR_Karekod_Rehberi.pdf?MOD=AJPERES&CACHEID=ROOTWORKSPACE-ec9fb83b-6e4c-479f-ac69-a11ba3f0c558-o3gOR1s) yer alan 5.2 maddelerindeki belirtilen akışlar için BKM Karekod Yönetim Sistemi (KYS) entegrasyonu yapması gerekmektedir. <br>
+Dijital cüzdanlara eklenmiş ve cüzdan sahibi kuruluşun kendisinin ihraç etmediği, diğer Kart Çıkaran Kuruluşlar tarafından ihraç edilmiş kartlar ile TR Karekod ödemesi yapılabilmesi için HHS olarak GEÇİT’e bağlanmış olan Kart Çıkaran Kuruluşların, [BKM (Kartlı Ödemeler) TR Karekod Teknik İlke ve Kuralları Rehberinde](https://www.tcmb.gov.tr/wps/wcm/connect/ec9fb83b-6e4c-479f-ac69-a11ba3f0c558/BKM_TR_Karekod_Rehberi.pdf?MOD=AJPERES&CACHEID=ROOTWORKSPACE-ec9fb83b-6e4c-479f-ac69-a11ba3f0c558-o3gOR1s) yer alan 5.2 maddelerindeki belirtilen akışlar için BKM Karekod Yönlendirme Sistemi (KYS) entegrasyonu yapması gerekmektedir. <br>
 
  
 
