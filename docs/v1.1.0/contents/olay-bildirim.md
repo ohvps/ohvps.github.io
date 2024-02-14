@@ -46,6 +46,8 @@ HHS'ler "Olay Tipleri ve Kaynak Tipleri İlişkisi" tablosunda belirlenen olay v
 
 Olay Abonelik Servislerinde Idempotency kurallarının işletilmesine gerek bulunmamaktadır.
 
+Nezdinde ödeme hesabı bulunduran bazı hesap hizmeti sağlayıcılar(EPK, Ödeme Kuruluşları) müşterilerine ait hesapları, diğer HHS'lerdeki havuz hesaplarını kullanarak yönetiyor olabilir. Bu durum ilgili hesap hizmeti sağlayıcılarının, ÖHVPS kapsamında HHS olduğu rolde sunması gereken olay bildirim servisleri ile ilgili uyması gereken kuralları değiştirmemektedir. İlgili hesap hizmeti sağlayıcılarının standartlara uygun şekilde YÖS'lere bildirimleri yapması gerekmektedir.
+
 YÖS'ler sahip oldukları rol özelinde olay abonelik servislerinden faydalanabilir. Bu yüzden olay bildirim etki alanı (scope) değerleri hesap_bilgisi ve/veya odeme_emri olarak belirlenmiştir. 
 
 

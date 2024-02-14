@@ -52,13 +52,16 @@ Hesap bilgisi için müşteri rızasına ilişkin temel ilkeler şunlardır:
 - 1 ÖHK'nın 1 YÖS için 1HHS'de Yetki Bekleniyor, Yetkilendirildi, Yetki Kullanıldı statüsünde 1 rızası olabilir. 
 - Müşteri rızasının ayrıntıları ÖHK ile HBHS arasında belirlenir. Bu nedenle müşteri rızasının ayrıntıları HHS ekranında değiştirilmemelidir. 
 - ÖHK, hesap erişim izni ayrıntılarını yalnızca bir bütün olarak yetkilendirebilir veya geri alabilir.
-- Müşteri rızası tesisi esnasında, müşteri HHS arayüzünde erişim için yetkilendirecek hesapları seçer.
+- Müşteri rızası tesisi esnasında, müşteri HHS arayüzünde erişim için yetkilendirecek hesapları seçer. 
+- Ödeme Sistemine doğrudan katılımcı olmayan HHS'ler, müşterilerine IBAN hizmeti sunmayabildikleri için hesap referansı ile akışlarını kurgulayabilirler. YÖS önyüzlerinde yapılan bilgilendirmelerde, IBAN harici hesap referansı ile işlem yapılabilmesine dikkat edilmelidir.  
 
 **2.1	Hesap bilgisi rızasının sorgulanması:** Müşteri rızası **GET/hesap-bilgisi-rizasi/{RizaNo}** çağrısı yapılarak sorgulanır.
 
 **2.2	Hesap bilgisi müşteri rızasının iptali:** Müşteri rızası **DELETE/hesap-bilgisi-rizasi/{RizaNo}** çağrısı yapılarak iptal edilir.
 
 **3.	Hesap bilgilerinin alınması:** Hesap bilgileri ilgili kaynağa (hesaplar, bakiye, işlemler) GET isteği yapılarak gerçekleştirilir. HBHS, müşteri rızasının tesisinden sonrasında (geçerli bir erişim belirticine sahip olduğunda) öncelikle **GET/hesaplar** çağrısı yapacaktır.
+
+Nezdinde ödeme hesabı bulunduran hesap hizmeti sağlayıcılar(Banka, EPK, Ödeme Kuruluşları) müşterilerine ait hesapları hesap referansı ya da hesap numarası üzerinden takip etmektedir. YÖS'lerin HBH servisleri için hesap referansı veya hesap numarası üzerinden işlem yapılabileceğini bilmeleri, sistemlerini API dokümanında belirtilen akışlara göre uyumlandırmaları ve müşteri bilgilendirmesini (önyüzlerinde hesap no ve hesap referansı ayrımını gözeterek) buna paralel yapmaları beklenmektedir.  
 
 ## Hesap Bilgisi Hizmeti İçin Erişim Adresleri
 
@@ -112,7 +115,7 @@ HBHS, bu API erişim adresinden HHS’ye yeni bir HesapBilgisiRizasi oluşturulm
 -	HBHS, ÖHK’nın hesap bilgilerine yönelik rıza başlatma isteği olduğunu HHS’ye bildirir.
 -	HBHS, ÖHK’nın, HBHS arayüzünden verdiği rızanın (“Ön Onay”) bir kopyasının HHS nezdinde müşteri tarafından onaylanması için HHS’ye gönderilmesini sağlar.
 -	HHS; istek mesajında yer alan alanların API dökümanında belirtilen şartları sağlayacak şekilde zorunluluk ve uzunluk kontrollerini yapar. (Zorunlu)
--	HHS; YÖS API ile alınan HBHS bilgilerinin içerisinde yer alan yönlendirme ve bildirim adresleri ile ödeme emri rızası nesnesi request mesajında paylaşılan adreslerin uyumlu olup olmadığının kontrollerini yapar. (Zorunlu)
+-	HHS; YÖS API ile alınan HBHS bilgilerinin içerisinde yer alan yönlendirme adresleri ile hesap bilgisi rızası nesnesi request mesajında paylaşılan adreslerin uyumlu olup olmadığının kontrollerini yapar. (Zorunlu)  
 -	HHS; kimlik bilgileri nesnesinde iletilen kimlik bilgileri ile ÖHK’nın HHS müşterisi olup olmadığının kontrollerini yapar. Bu kontrol hem bireysel hem de kurumsal ÖHK’lar için yapılmalıdır.  (Zorunlu)
 -	Erişimin Geçerli Olduğu Son Tarih, İşlem Sorgulama Başlangıç Zamanı, İşlem Sorgulama Bitiş Zamanı alanları ile ilgili Tablo 12’de belirtilen kontroller yapılmalıdır. (Zorunlu)
 -	HHS, benzersiz “RizaNo” ile “HesapBilgisiRizasi” nesnesi oluşturur ve HBHS’ye döner.
@@ -240,7 +243,7 @@ Rıza tesisinin başarıyla sonuçlanması için HBHS'nin istemci kimlik bilgile
 
           ÖHK’yı doğrularsa,
 
-          - ÖHK HBHS üzerinden işlem yapılmasına izin vereceği hesap seçimini yapar. HBHS üzerinden ÖHK’nın verdiği izin bilgilerini ve erişim izninin bitiş tarihi bilgilerini, HHS bilgilendirme amaçlı ÖHK’ya gösterir.
+          - ÖHK HBHS üzerinden işlem yapılmasına izin vereceği hesap seçimini, hesap numarası ya da hesap referansı bilgisi ile yapar. HBHS üzerinden ÖHK’nın verdiği izin bilgilerini ve erişim izninin bitiş tarihi bilgilerini, HHS bilgilendirme amaçlı ÖHK’ya gösterir.  
           - HHS hesap bilgisiri rıza kaynağının durumunu “Yetkilendirildi” olarak günceller. 
           - HHS, ÖHK’yı “olumlu yönlendirme akışı” ile HBHS tarafından tanımlanan yönlendirme adresine yönlendirir:  
 

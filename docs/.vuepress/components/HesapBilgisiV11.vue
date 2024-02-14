@@ -439,7 +439,7 @@ export default {
 };
 </script>
 <style>
-@import "~swagger-ui/dist/swagger-ui.css";
+
 
 :root {
     --renk1: #dcebeb;
