@@ -41,15 +41,13 @@ Bu akışlarda;<br>
 
 2) Kart PIN (POS cihazında kart şifresi girilerek) veya <br>
 
-3) Anlık Bildirim (mobil telefonda yüklü olan kart çıkaran kuruluşa ait uygulama üzerinden ile müşteri doğrulaması yer almaktadır.) müşteri doğrulaması yer almaktadır.
-   - Anlık Bildirim ile ilgili akışlar taslak olarak talep edilen katılımcılarla paylaşılacak olup [BKM (Kartlı Ödemeler) TR Karekod Teknik İlke ve Kuralları Rehberinde](https://www.tcmb.gov.tr/wps/wcm/connect/ec9fb83b-6e4c-479f-ac69-a11ba3f0c558/BKM_TR_Karekod_Rehberi.pdf?MOD=AJPERES&CACHEID=ROOTWORKSPACE-ec9fb83b-6e4c-479f-ac69-a11ba3f0c558-o3gOR1s)yer alan 5.2 altına ayrıca eklenecektir.
-
+3) Anlık Bildirim ile (mobil telefonda yüklü olan kart çıkaran kuruluşa ait uygulama üzerinden ile müşteri doğrulaması yer almaktadır.) müşteri doğrulaması yer almaktadır.
  
 
 <br>Kuruluşların tercihine göre yukarıda tariflenmiş olan akışlardan biri veya tamamı kuruluşlar tarafından desteklenebilir. Kuruluşların tercih ettiği akışlar için Karekod Yönlendirme Sistemi sertifikasyonlarını tamamlanması gerekmektedir. Yukarıda tariflenmiş akışlarda görüleceği üzere kart çıkaran kuruluşlar otorizasyon öncesinde kendi risk değerlendirmesini yaparak “No cvm” ilave bir doğrulama yöntemine gerek kalmadan da işlemleri sonlandırılmasını isteyebilmektedir.
 
  
 
-** Halen HHS olarak GEÇİT’e bağlanmış olan Kart Çıkaran Kuruluşların [BKM (Kartlı Ödemeler) TR Karekod Teknik İlke ve Kuralları Rehberinde](https://www.tcmb.gov.tr/wps/wcm/connect/ec9fb83b-6e4c-479f-ac69-a11ba3f0c558/BKM_TR_Karekod_Rehberi.pdf?MOD=AJPERES&CACHEID=ROOTWORKSPACE-ec9fb83b-6e4c-479f-ac69-a11ba3f0c558-o3gOR1s) yer alan madde 5.2’de tarifli akış/akışlar için Karekod Yönlendirme Sistemi sertifikasyonunun tamamlanarak en geç <ins>**30 Haziran 2024**</ins> tarihinde üretime geçmiş olması zorunludur.
+** 31.12.2023 tarihinden önce HHS olarak GEÇİT’e bağlanmış olan Kart Çıkaran Kuruluşların [BKM (Kartlı Ödemeler) TR Karekod Teknik İlke ve Kuralları Rehberinde](https://www.tcmb.gov.tr/wps/wcm/connect/ec9fb83b-6e4c-479f-ac69-a11ba3f0c558/BKM_TR_Karekod_Rehberi.pdf?MOD=AJPERES&CACHEID=ROOTWORKSPACE-ec9fb83b-6e4c-479f-ac69-a11ba3f0c558-o3gOR1s) yer alan madde 5.2’de tarifli akış/akışlar için Karekod Yönlendirme Sistemi sertifikasyonunun tamamlanarak en geç <ins>**30 Haziran 2024**</ins> tarihinde üretime geçmiş olması zorunludur.
 
 Nezdinde Ödeme hesabı bulunduran Kart Çıkaran diğer tüm Ödeme Hizmeti Sağlayıcıların da GEÇİT’e bağlantı sağlamaları sonrası ilk 6 ay içerisinde KYS sertifikasyonunu tamamlaması gerekmektedir.**

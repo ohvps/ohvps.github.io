@@ -46,12 +46,13 @@ SÜRÜM 1.1.0 geçiş tarihleri şu şekildedir.
 <br>
 
 
-Üretim ortamında servis sunan HHS’lerin 29 Şubat 2024 - 30 Eylül 2024 tarihleri arasında aynı anda çift sürüm desteklemesi gerekmektedir!
+Üretim ortamında servis sunan HHS’lerin 29 Şubat 2024 - 30 Eylül 2024 tarihleri arasında aynı anda çift sürüm desteklemesi gerekmektedir! 1.0 sürümünde alınan bir rızanın 1.1 sürümü için de yaşaması gerekmektedir.
 
 İlk kez üretim ortamına 1.1 sürümü ile geçecek HHS'ler, 1.1 sürümünü destekleyen YÖS'ler tarafından listenebileceklerdir.
 
 YÖS’lerin sadece kendilerinin destekledikleri API sürümünü destekleyen HHS’leri listelemesi gerekmektedir.
 
+1.1.0 sürümü için hesap bilgisi rızası ve ödeme emri rızası oluşturmak isteyen YÖS kurumu için YOS API içerisinde apiBilgileri olarak "ODS" tanımı HHS tarafından kontrol edilmelidir. YÖS'ün ilgili tanımı olmaması halinde rıza isteğinde "TR.OHVPS.Resource.APIVersionNotSupported" hatası verilmelidir.
 
 [Sürüm Yönetimi](surum-yonetimi) bölümünden tarih bilgilerinin açıklamalarına ulaşılabilir.
 

@@ -101,7 +101,7 @@ Başarıyla oluşturulan hesap bilgisi rıza kaynağının rıza durumu “Yetki
 
 **Şekil 11: Hesap Bilgisi Müşteri Rızasının Hazırlanması**
 
-
+- Sürüm 1.1.0 için POST /hesap-bilgisi-rizasi isteğinde 06- Anlık Bakiye Bildirimi izin türü için YÖS’ün BAKİYE kaynak tipinde olay abonelik kaydının olması gerekmektedir. BAKİYE kaynak tipinde olay abonelik kaydı olmayan YÖS kurumu ; sürüm 1.1.0 için 06 izin türünü kapsayan Hesap Bilgisi Rızası isteği gönderdiğinde HHS tarafından **TR.OHVPS.Business.EventSubscriptionNotFound** hatası verilmeli ve rıza oluşturulmamalıdır.
 
 - POST /hesap-bilgisi-rizasi isteğinin (REQUEST) gövdesinde (BODY)  “HesapBilgisiRizasıIstegi” nesnesi (Tablo-12) kullanılır. İstek başarıyla sonuçlanırsa HHS kaynak sunucusunda “HesapBilgisiRizasi” (Tablo-13) nesnesi oluşturulur.
 
