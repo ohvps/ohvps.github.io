@@ -14,7 +14,7 @@ Bu sayede Kart Çıkaran Kuruluşlar, otorizasyon öncesinde işlemin POS’ta K
 
  
 
-Dijital Cüzdanlardan ödeme yapılabilmesi için kullanıcıların ilk olarak kartı Dijital Cüzdana eklemesi gerekmektedir. Dijital Cüzdana eklenecek olan karta ait bilgiler kullanıcı tarafından cüzdana girilmektedir. Kart bilgilerinin Dijital Cüzdana eklenmesinin ardından kart hamili iki faktörlü doğrulama yöntemi (GO Güvelin Öde, 3D Secure  vb.) ile doğrulanması gerekmektedir.  Kart hamilinin iki faktörlü doğrulanmasının ardından kart cüzdana eklenir ve eklenen bu kartlar ile ödeme işlemleri yapılabilir. Dijital Cüzdanlarla yapılabilen işlemler aşağıda bilgi amaçlı özetlenmiştir. Bu belgenin Uyum Tarihi başlığında TR Karekod ile yapılan işlemler için kullanılacak doğrulama akışlarına yer verilmiştir.
+Dijital Cüzdanlardan ödeme yapılabilmesi için kullanıcıların ilk olarak kartı Dijital Cüzdana eklemesi gerekmektedir. Dijital Cüzdana eklenecek olan karta ait bilgiler kullanıcı tarafından cüzdana girilmektedir. Kart bilgilerinin Dijital Cüzdana eklenmesinin ardından kart hamili iki faktörlü doğrulama yöntemi (GO Güvenli Öde, 3D Secure  vb.) ile doğrulanması gerekmektedir.  Kart hamilinin iki faktörlü doğrulanmasının ardından kart cüzdana eklenir ve eklenen bu kartlar ile ödeme işlemleri yapılabilir. Dijital Cüzdanlarla yapılabilen işlemler aşağıda bilgi amaçlı özetlenmiştir. Bu belgenin Uyum Tarihi başlığında TR Karekod ile yapılan işlemler için kullanılacak doğrulama akışlarına yer verilmiştir.
  
 
 - Dijital cüzdanlar ile fiziksel mağazalarda POS terminali üzerinden, e-ticaret sitelerinde ise online kanallar üzerinden  ödeme yapmak mümkündür.

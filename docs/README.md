@@ -6,7 +6,7 @@
 Sertifikasyon için geçerli olan SÜRÜM 1.1.0 olacaktır.<br>
 YÖS'ler için sertifikasyon başlangıç tarihi 1 Ocak 2024 olmakla beraber 2023 Aralık ayı içerisinde onaya gönderilen sertifikasyon taleplerinin 1.1.0 versiyonu için iletilmesi beklenmektedir.
 <br>
- <https://github.com/ohvps/> adresi üzerinden değişiklik açıklamaları ve tarihçesi incelenebilir.<br></b></font>
+ <https://github.com/ohvps/ohvps.github.io/commits/master> adresi üzerinden değişiklik açıklamaları ve tarihçesi incelenebilir.<br></b></font>
 
 <br/>
 

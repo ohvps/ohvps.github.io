@@ -199,5 +199,8 @@ module.exports = [
         ]
     },
 
-   
+    {
+        title: 'ÖHVPS Sık Sorulan Sorular',
+        path: '/sorulan-sorular'
+    },
 ];
