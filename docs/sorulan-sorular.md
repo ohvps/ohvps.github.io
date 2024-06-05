@@ -1,4 +1,4 @@
-# Sık Sorulan Sorular
+# Sıkça Sorulan Sorular
 
 <b>1)	ÖHVPS kapsamında Hesap Bilgisi Hizmeti ve Ödeme Emri Başlatma Hizmeti’ni kullanabilmemiz için hangi şartların sağlanması beklenmektedir?</b><br>
 
