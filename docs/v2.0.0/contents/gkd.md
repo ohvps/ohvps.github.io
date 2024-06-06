@@ -153,7 +153,7 @@ Akış aşağıdaki gibi kurgulanmıştır:
 YÖS’ün ilgili kullanıcıya ait “ÖHK Tanım Değer” verisinin yanında işleme ait ve ilgili ÖHK ile eşleştirilmiş olan  ve sadece YÖS ile ÖHK’nın bilebileceği bir değerin daha ÖHK tarafından sağlanması ve YÖS tarafından kontrol edilerek eşleşen Ödeme emrinin HHS’ye iletilmesi gerekmektedir. Örneğin; bu değer YÖS tarafında yapılan tek seferlik ödeme işlemine ait fatura numarası.** 
 -  YÖS önyüzde ÖHK'dan aldığı ohkTanimTip ve ohkTanimDeger değerlerini kimlik tür ve kimlik değeri alanlarına atamamalıdır.
  
-- YÖS, ayrık GKD ile işlem başlatabileceği HHS'lerin listesini HHS API'de yer alan "ayrikGKD"="E" parametresi ile alabilir.
+- YÖS, ayrık GKD ile işlem başlatabileceği HHS'lerin listesini HHS API'de yer alan "hizmetTipi"="01" parametresi ile alabilir.
 - YÖS, ÖHK bilgileri ile rıza oluşturur. Rıza nesnesi içerisinde yer alan GKD nesnesinde ilgili parametreler aşağıdaki şekilde doldurulur:<br><br>
     - **ohkTanimTip ve ohkTanimDeger parametreleri**  
           Bu metodda; ayrikGkd nesnesi içerisindeki "ohkTanimTip" parametresi TR.OHVPS.DataCode.ohkTanimTip sıralı veri tiplerinden TCKN, MNO , YKN, PNO, GSM, IBAN değerlerinden birini alabilir. ohkTanimDeger parametresi de seçilen tipe ait ÖHK'ya ait değeri içermelidir.Rıza başlatma akışı içerisinde kimlik bilgisinin olduğu durumlarda; ÖHK'ya ait kimlik verisi(kmlk.kmlkVrs) ile ayrık GKD içerisinde yer alan OHK Tanım Değer alanı (ayrikGkd.ohkTanimDeger) birebir aynı olmalıdır.Kimlik alanı içermeyen tek seferlik ödeme emri akışlarında bu kural geçerli değildir. GSM ve IBAN değerleri sadece tek seferlik ödemelerde kullanılabilir.<br>
@@ -167,7 +167,7 @@ YÖS’ün ilgili kullanıcıya ait “ÖHK Tanım Değer” verisinin yanında 
   
 
 Örnek bir istek :  
-POST/ohvps/obh/s1.1/odeme-emri-rizasi  
+POST/ohvps/obh/s2.0/odeme-emri-rizasi  
 
 RizaNesnesi
 
@@ -184,7 +184,7 @@ RizaNesnesi
 ...
 }
 ```
-- YÖS, ayrık GKD ile işlem başlatabileceği HHS'lerin listesini HHS API'de yer alan "ayrikGKD"="E" parametresi ile alabilir.
+- YÖS, ayrık GKD ile işlem başlatabileceği HHS'lerin listesini HHS API'de yer alan "hizmetTipi":"01" parametresi ile alabilir.
   YÖS, ayrık GKD desteklemeyen HHS'ye Ayrık GKD yöntemiyle rıza başlatma isteği yapması durumunda HHS tarafından **TR.OHVPS.Business.DecoupledAuthenticationNotSupported** hatası iletilmelidir. YÖS ilgili işlemi “Yönlendirmeli” akışa çekip süreci ilerletebilir.
 
 - HHS tarafında ÖHK'nın mobil uygulaması bulunmaması durumu tespit edilebildiği durumda Ayrık GKD ile başlatılan rıza akışlarında hata mesajı vermelidir. HHS tarafından **TR.OHVPS.Business.CustomerMobileApplicationNotFound** hatası iletilmelidir. YÖS ilgili işlemi “Yönlendirmeli” akışa çekip süreci ilerletebilir. HHS, ÖHK’nın mobil uygulamasının bulunmadığı bilgisine ulaşamazsa kendisinin belirleyeceği bildirim yöntemlerinden biri ile ÖHK’ye bilgilendirme yapar. Bildirim yöntemi SMS ise ÖHK’ya mobil uygulamasını açtıracak şekilde adres iletir, Web uygulamayı açtıracak bir link iletilmemelidir.

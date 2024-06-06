@@ -34,13 +34,15 @@ HHS ve YÖS API Tablo 20’deki istek parametrelerine göre sorgulanabilir.
 | Açık anahtar | acikAnahtar | AN1..1024 | Z | HHS’nin mesaj imzalama için paylaştığı açık anahtar | 
 | HHS Api Bilgileri | apiBilgileri | Kompleks: HhsApiBilgi[Array][0..N] | Z |Desteklenen Api ve sürüm bilgileri dönülecektir. | 
 | > api | api | AN1..20 | Z | Api İsmi Örnek :obh, hbh,gkd | 
-| > surum | surum | AN1..10 | Z | Api Sürüm Kodu Örnek: s1.0, s2.0 s1.0 | 
+| > surum | surum | AN1..10 | Z | Api Sürüm Kodu Örnek: s1.0, s1.0, s2.0 | 
+| HHS Hizmet Bilgileri | hizmetBilgileri | Kompleks: HhsHizmetBilgi[Array][0..N] | Z |Desteklenen hizmet ve sürüm bilgileri dönülecektir. |
+| > hizmetTipi | hizmetTipi | AN1..20 | Z | Hizmet Tipi bilgileri.TR.OHVPS.DataCode.HizmetTipi sıralı veri türü değerlerinden birini alır.| 
+| > surum | surum | AN1..10 | Z | Api Sürüm Kodu Örnek: s1.0, s1.1, s2.0 | 
 | Logo Bilgileri | logoBilgileri | Kompleks: LogoBilgisi [Array][1..N] | Z | HHS'ye ait logo bilgileri.| 
 | > logoTur | logoTur | AN3..50 | Z | Logonun türünü belirler.<br>TR.OHVPS.DataCode.LogoTur sıralı veri türü değerlerlerinden birini alır. | 
 | > logoAdr | logoAdr | AN1..255 | Z | HHS tarafında tutulan ve YÖS'lerle paylaşılacak olan url adres bilgisidir. <br>Örnek: https://via.placeholder.com/150?text=0001 | 
 | > logoArkaPlan | logoArkaPlan | AN1 | Z | TR.OHVPS.DataCode.LogoArkaPlan sıralı veri türü değerlerlerinden birini alır. | 
 | > logoFormat | logoFormat | AN3 | Z | TR.OHVPS.DataCode.LogoFormat sıralı veri türü değerlerlerinden birini alır. | 
-| Ayrık GKD | ayrikGKD | AN1 | Z |HHS'nin Ayrık GKD desteklediğini BKM'ye bildirmesi ile bu alan E değerini alır.<br> TR.OHVPS.DataCode.EvetHayir sıralı veri tiplerinden birini alır. | 
 | Durum | durum | AN1 | Z |HHS'nin durum bilgisidir.<br> TR.OHVPS.DataCode.HHSDurumu sıralı veri tipinde alabileceği değerler belirtilmiştir.| 
 
 HHS API'de; Açık, Yaygınlaştırma, Geçici Hizmet Veremiyor, Kapalı durumlarındaki HHS'ler listelenecektir. <br>

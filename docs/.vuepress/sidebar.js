@@ -108,32 +108,37 @@ module.exports = [
                
             },
             {
-                title: '7. Hesap Bilgisi Hizmeti',
+                title: '7. İleri Tarihli Ödeme Emri Başlatma Hizmeti',
+                path: '/v2.0.0/contents/ileri-tarihli-odeme-emri-hizmeti',
+               
+            },
+            {
+                title: '8. Hesap Bilgisi Hizmeti',
                 path: '/v2.0.0/contents/hesap-bilgisi-hizmeti',
             
             },
             {
-                title: '8. HHS ve YÖS API',
+                title: '9. HHS ve YÖS API',
                 path: '/v2.0.0/contents/hhs-yos-api',
             
             },
             {
-                title: '9. Güçlü Kimlik Doğrulama API',
+                title: '10. Güçlü Kimlik Doğrulama API',
                 path: '/v2.0.0/contents/erisim-belirteci',
             
             },
             {
-                title: '10. Olay Bildirim',
+                title: '11. Olay Bildirim',
                 path: '/v2.0.0/contents/olay-bildirim',
             
             },
             {
-                title: '11. Ekler',
+                title: '12. Ekler',
                 path: '/v2.0.0/contents/ekler',
             
             },
             {
-                title: '12. Deney Alanı',
+                title: '13. Deney Alanı',
                 path: '/v2.0.0/deneyalani/genel-bilgiler',
                 children:[
                     {

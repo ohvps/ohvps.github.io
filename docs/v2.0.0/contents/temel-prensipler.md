@@ -100,6 +100,8 @@ yer almaktadır.
 API v1.1.0 sürümünde ;
  -   API v1.0.2 sürümüne ek Olay Bildirim ve Ayrık GKD özellikleri eklenmiştir. Süreçlerin daha iyi işlemesi için çeşitli güncellemeler yapılmıştır.
 
+API v2.0 sürümünde ileri tarihli ödeme ve düzenli ödeme talimatı bölümleri ve ilişkili olarak deney alanları eklenmiştir.
+
 **Her sürüm değişikliğinde bir önceki sürüm belirli bir süre desteklenecektir. Diğer bir ifadeyle, sadece belirli bir süre için mevcut ve bir önceki sürüm aynı anda erişilebilir olacaktır.**
 
 
@@ -130,46 +132,46 @@ HHS, tüm kaynakları için aynı katılımcı yolu ön ekini ve sistem adını 
 BKM API’lerine erişmek isteyen uygulamaların yetkilerine göre aşağıdaki API’lere abone olmaları gerekmektedir:  
 
 OBH:  
-[https://gecit.api-preprod.bkm.com.tr/ohvps/obh/s1.1/odeme-emri-rizasi]()  
-[https://gecit.api-preprod.bkm.com.tr/ohvps/obh/s1.1/odeme-emri]()  
+[https://gecit.api-preprod.bkm.com.tr/ohvps/obh/s2.0/odeme-emri-rizasi]()  
+[https://gecit.api-preprod.bkm.com.tr/ohvps/obh/s2.0/odeme-emri]()  
 HBH:  
-[https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s1.1/hesap-bilgisi-rizasi]()  
-[https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s1.1/hesaplar]()  
-[https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s1.1/hesaplar/1234/islemler]()  
-[https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s1.1/hesaplar/1234/bakiye]()  
+[https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s2.0/hesap-bilgisi-rizasi]()  
+[https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s2.0/hesaplar]()  
+[https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s2.0/hesaplar/1234/islemler]()  
+[https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s2.0/hesaplar/1234/bakiye]()  
 GKD  
-[https://gecit.api-preprod.bkm.com.tr/ohvps/gkd/s1.1/erisim-belirteci]()  
+[https://gecit.api-preprod.bkm.com.tr/ohvps/gkd/s2.0/erisim-belirteci]()  
 HHS – YÖS API  
-[https://gecit.api-preprod.bkm.com.tr/hhs-api/s1.1/hhs]()  
-[https://gecit.api-preprod.bkm.com.tr/hhs-api/s1.1/hhs/1234]()  
-[https://gecit.api-preprod.bkm.com.tr/yos-api/s1.1/yos]()  
-[https://gecit.api-preprod.bkm.com.tr/yos-api/s1.1/yos/1234]()  
+[https://gecit.api-preprod.bkm.com.tr/hhs-api/s2.0/hhs]()  
+[https://gecit.api-preprod.bkm.com.tr/hhs-api/s2.0/hhs/1234]()  
+[https://gecit.api-preprod.bkm.com.tr/yos-api/s2.0/yos]()  
+[https://gecit.api-preprod.bkm.com.tr/yos-api/s2.0/yos/1234]()  
 
   
 HHS’lerin sağlayacakları API’lerdeki URI çevrimi örnekleri aşağıdaki gibidir.  
 
-- [https://xbank.com.tr/api-portal/ohvps/obh/s1.1/odeme-emri]() 
-- [https://gecit.api-preprod.bkm.com.tr/ohvps/obh/s1.1/odeme-emri]() (BKM API) 
-- [https://xbank.com.tr/api-portal/ohvps/hbh/s1.1/hesap-bilgisi-rizasi]() 
-- [https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s1.1/hesap-bilgisi-rizasi]() (BKM API) 
-- [https://xbank.com.tr/api-portal/ohvps/hbh/s1.1/hesaplar]() 
-- [https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s1.1/hesaplar]()  (BKM API)  
-- [https://xbank.com.tr/api-portal/ohvps/hbh/s1.1/hesaplar/1234]() 
-- [https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s1.1/hesaplar/1234]() (BKM API)
+- [https://xbank.com.tr/api-portal/ohvps/obh/s2.0/odeme-emri]() 
+- [https://gecit.api-preprod.bkm.com.tr/ohvps/obh/s2.0/odeme-emri]() (BKM API) 
+- [https://xbank.com.tr/api-portal/ohvps/hbh/s2.0/hesap-bilgisi-rizasi]() 
+- [https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s2.0/hesap-bilgisi-rizasi]() (BKM API) 
+- [https://xbank.com.tr/api-portal/ohvps/hbh/s2.0/hesaplar]() 
+- [https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s2.0/hesaplar]()  (BKM API)  
+- [https://xbank.com.tr/api-portal/ohvps/hbh/s2.0/hesaplar/1234]() 
+- [https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s2.0/hesaplar/1234]() (BKM API)
 
 GEÇİT üzerinden yapılan çağrılarda, istek başlığında bulunan “x-aspsp-code” (isteğin iletildiği Hesap Hizmeti Sağlayıcısının kodu) değerine göre HHS API’de standart olarak tanımlanmış olan “basePath” bilgisine servis uzantısı eklenerek HHS’ye yönlendirme yapılır.
 
   Örneğin, istek başlığında **xbank**’ın kodu varsa, YÖS tarafından yapılan   
-    [https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s1.1/hesap-bilgisi-rizasi]()  
+    [https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s2.0/hesap-bilgisi-rizasi]()  
     çağrısı GEÇİT tarafından karşılanarak  
-    [https://xbank.com.tr/api-portal/ohvps/hbh/s1.1/hesap-bilgisi-rizasi]()  
+    [https://xbank.com.tr/api-portal/ohvps/hbh/s2.0/hesap-bilgisi-rizasi]()  
     adresine yönlendirilir.   
 
 
    Bu örnekte, [https://xbank.com.tr/api-portal]() basePath bilgisi HHS tarafından HHS API’ye girilen değerdir.
 
 **ÖNEMLİ :** URI Query parametreleri GET ile iletilirken değerlerde url-encode yapılmalıdır. Örnek bir API isteği;  
-GET /ohvps/hbh/s1.1/hesaplar/xxx/islemler?hesapIslemBslTrh=2023-02-07T16:42:38%2B03:00&hesapIslemBtsTrh=2023-02-07T17:09:18%2B03:00&srlmKrtr=islGrckZaman&srlmYon=Y&syfKytSayi=10&syfNo=1  
+GET /ohvps/hbh/s2.0/hesaplar/xxx/islemler?hesapIslemBslTrh=2023-02-07T16:42:38%2B03:00&hesapIslemBtsTrh=2023-02-07T17:09:18%2B03:00&srlmKrtr=islGrckZaman&srlmYon=Y&syfKytSayi=10&syfNo=1  
 
 Burada '+' karakterinin boşluk olarak algılanmaması için %2B değeri ile iletilmiştir.
 
@@ -389,7 +391,7 @@ Erişim adreslerinin ve alanların kullanımı Zorunlu(Z), İsteğe Bağlı(İ) 
 | X-RateLimit-Remaining  | N 1..18 | İstek kısıtı uygulanan servislerde kaç adet istek hakkı kaldığını gösterir. Kısıt uygulanan servislerde bu başlığın dönmesi zorunludur. | K |-|
 |X-RateLimit-Reset |AN 1..255|İstek kısıtı uygulanan servislerde çağrım hakkı bittikten sonra yeniden denemeden önce beklemesi gereken süreyi (saniye cinsinden) gösterir. HTTP 429 durum kodu (Too Many Requests) ile dönülen yanıtların başlığında dönülmesi zorunludur.<br> YÖS olarak yaptığınız sistemsel sorgularda; HTTP 429 durum kodu (Too Many Requests) ile dönülen yanıt aldığınızda tekrar sorgu yapmadan önce “X-RateLimit-Reset” yanıt başlığını kontrol ederek, bu başlıktaki süre kadar bekledikten sonra yeniden sorgulama yapılması gerekmektedir. |K|-|
 |x-total-count |N 1..18|Hesaplar, İşlemler, Bakiye, İletilemeyen Olaylar servislerinde sayfalama kullanıldığı durumda, sorgu sonucu dönecek toplam kayıt sayısı bilgisi, bu alanda HHS isteğine bağlı olarak gönderilebilir. <br> Kayıt sayısı 0 olduğu durumda gönderimi zorunludur. |K|K|
-|Link|1..4096|“Link” alanının [Hesap Bilgisi Hizmeti için Erişim Adresleri](hesap-bilgisi-hizmeti.html#hesap-bilgisi-hizmeti-icin-erisim-adresleri) <br> tablosundaki parametre  = Sayfalama olan API’lerde ve İletilemeyen Olaylar API'sinde gönderim yapılması zorunludur.<br> Sayfalama yapısı kullanıldığında gelen yanıtta birden fazla sayfa var ise; önceki, sonraki, ilk, son sayfalara gitmek için gerekli referanslar link headerında aşağıdaki örnekteki gibi doldurulabilir. <br>x-total-count alanının gönderimi kayıt sayısı 0 olduğu durum dışında isteğe bağlı olduğu için; Link içerisindeki son sayfa bilgisi  (last) isteğe bağlı hale getirilmiştir. “Önceki”( prev) ve “Sonraki” (next) adımlarının uygun olan her durumda yer alması zorunludur.<br>İlk sayfada “Önceki” seçeneği olmamalı, son sayfada ise “Sonraki” seçeneği olmamalıdır. <br><br> **&lt;/ohvps/hbh/s1.1/hesaplar/hspref/islemler?hesapIslemBslTrh=2022-01-01T00:00:00+03:00&hesapIslemBtsTrh=2023-12-12T23:59:59+03:00&srlmKrtr=islGrckZaman&srlmYon=Y&syfNo=6&syfKytSayi=100&gt;; rel="next",<br> &lt;/ohvps/hbh/s1.1/hesaplar/hspref/islemler?hesapIslemBslTrh=2022-01-01T00:00:00+03:00&hesapIslemBtsTrh=2023-12-12T23:59:59+03:00&srlmKrtr=islGrckZaman&srlmYon=Y&syfNo=4&syfKytSayi=100&gt;; rel="prev",<br> &lt;/ohvps/hbh/s1.1/hesaplar/hspref/islemler?hesapIslemBslTrh=2022-01-01T00:00:00+03:00&hesapIslemBtsTrh=2023-12-12T23:59:59+03:00&srlmKrtr=islGrckZaman&srlmYon=Y&syfNo=14&syfKytSayi=100&gt;; rel="last",<br> &lt;/ohvps/hbh/s1.1/hesaplar/hspref/islemler?hesapIslemBslTrh=2022-01-01T00:00:00+03:00&hesapIslemBtsTrh=2023-12-12T23:59:59+03:00&srlmKrtr=islGrckZaman&srlmYon=Y&syfNo=0&syfKytSayi=100&gt;; rel="first"** <br><br> Hiç hesap hareketinin olmadığı durumda dönen yanıt başlığınızın şu şekilde olması beklenmektedir.<br> Response body:<br>[]<br>Response header:<br>Link: </ohvps/hbh/s1.1/hesaplar?srlmKrtr=hspRef&srlmYon=A&syfNo=1&syfKytSayi=100>; rel="last",</ohvps/hbh/s1.1/hesaplar?srlmKrtr=hspRef&srlmYon=A&syfNo=1&syfKytSayi=100>; rel="first"<br> x-total-count alanı da 0 olarak iletilmelidir.|K|K|
+|Link|1..4096|“Link” alanının [Hesap Bilgisi Hizmeti için Erişim Adresleri](hesap-bilgisi-hizmeti.html#hesap-bilgisi-hizmeti-icin-erisim-adresleri) <br> tablosundaki parametre  = Sayfalama olan API’lerde ve İletilemeyen Olaylar API'sinde gönderim yapılması zorunludur.<br> Sayfalama yapısı kullanıldığında gelen yanıtta birden fazla sayfa var ise; önceki, sonraki, ilk, son sayfalara gitmek için gerekli referanslar link headerında aşağıdaki örnekteki gibi doldurulabilir. <br>x-total-count alanının gönderimi kayıt sayısı 0 olduğu durum dışında isteğe bağlı olduğu için; Link içerisindeki son sayfa bilgisi  (last) isteğe bağlı hale getirilmiştir. “Önceki”( prev) ve “Sonraki” (next) adımlarının uygun olan her durumda yer alması zorunludur.<br>İlk sayfada “Önceki” seçeneği olmamalı, son sayfada ise “Sonraki” seçeneği olmamalıdır. <br><br> **&lt;/ohvps/hbh/s2.0/hesaplar/hspref/islemler?hesapIslemBslTrh=2022-01-01T00:00:00+03:00&hesapIslemBtsTrh=2023-12-12T23:59:59+03:00&srlmKrtr=islGrckZaman&srlmYon=Y&syfNo=6&syfKytSayi=100&gt;; rel="next",<br> &lt;/ohvps/hbh/s2.0/hesaplar/hspref/islemler?hesapIslemBslTrh=2022-01-01T00:00:00+03:00&hesapIslemBtsTrh=2023-12-12T23:59:59+03:00&srlmKrtr=islGrckZaman&srlmYon=Y&syfNo=4&syfKytSayi=100&gt;; rel="prev",<br> &lt;/ohvps/hbh/s2.0/hesaplar/hspref/islemler?hesapIslemBslTrh=2022-01-01T00:00:00+03:00&hesapIslemBtsTrh=2023-12-12T23:59:59+03:00&srlmKrtr=islGrckZaman&srlmYon=Y&syfNo=14&syfKytSayi=100&gt;; rel="last",<br> &lt;/ohvps/hbh/s2.0/hesaplar/hspref/islemler?hesapIslemBslTrh=2022-01-01T00:00:00+03:00&hesapIslemBtsTrh=2023-12-12T23:59:59+03:00&srlmKrtr=islGrckZaman&srlmYon=Y&syfNo=0&syfKytSayi=100&gt;; rel="first"** <br><br> Hiç hesap hareketinin olmadığı durumda dönen yanıt başlığınızın şu şekilde olması beklenmektedir.<br> Response body:<br>[]<br>Response header:<br>Link: </ohvps/hbh/s2.0/hesaplar?srlmKrtr=hspRef&srlmYon=A&syfNo=1&syfKytSayi=100>; rel="last",</ohvps/hbh/s2.0/hesaplar?srlmKrtr=hspRef&srlmYon=A&syfNo=1&syfKytSayi=100>; rel="first"<br> x-total-count alanı da 0 olarak iletilmelidir.|K|K|
 
 
 ## 3.17. Idempotency Kuralları
@@ -463,7 +465,7 @@ TR.OHVPS.Resource.InvalidFormat hatası alındığı durumda; fieldErrors nesnes
 
 ```JSON
 {
-    "path": "/ohvps/obh/s1.1/odeme-emri-rizasi",
+    "path": "/ohvps/obh/s2.0/odeme-emri-rizasi",
     "id": "d8bd4e5f-f094-48a6-aee1-3a800e2709d9",
     "timestamp": "2022-12-22T10:33:15+03:00",
     "httpCode": 400,
@@ -518,7 +520,7 @@ TR.OHVPS.Resource.InvalidFormat hatası alındığı durumda; fieldErrors nesnes
 ```JSON 
 
 {
-    "path": "/ohvps/obh/s1.1/odeme-emri-rizasi",
+    "path": "/ohvps/obh/s2.0/odeme-emri-rizasi",
     "id": "7f115b9c-d7c2-4a2a-bc45-5a9891c79072",
     "timestamp": "2022-12-22T10:47:57+03:00",
     "httpCode": 400,
@@ -552,7 +554,7 @@ HHS uygulaması tarafından dönülebilecek hata örnekleri:
 ```JSON 
 
 {
-    "path": "/ohvps/obh/s1.1/odeme-emri-rizasi",
+    "path": "/ohvps/obh/s2.0/odeme-emri-rizasi",
     "id": "2005515d-f0e6-4a07-a439-0ef3b0f56011",
     "timestamp": "2022-12-22T10:39:26+03:00",
     "httpCode": 400,
@@ -575,7 +577,7 @@ HHS uygulaması tarafından dönülebilecek hata örnekleri:
 Business hata örneği - 1:  
 ```JSON 
 {
-    "path": "/ohvps/obh/s1.1/odeme-emri-rizasi",
+    "path": "/ohvps/obh/s2.0/odeme-emri-rizasi",
     "id": "677cfd9d-77c1-4ea3-8bdf-74a6e9887177",
     "timestamp": "2022-12-22T11:05:59+03:00",
     "httpCode": 400,
@@ -589,7 +591,7 @@ Business hata örneği - 1:
 Business hata örneği - 2:  
 ```JSON 
 {
-    "path": "/ohvps/obh/s1.1/odeme-emri-rizasi",
+    "path": "/ohvps/obh/s2.0/odeme-emri-rizasi",
     "id": "5df3b402-3aca-4305-a35b-5af0f3184b40",
     "timestamp": "2022-12-22T11:06:47+03:00",
     "httpCode": 400,
@@ -606,7 +608,7 @@ GEÇİT'te yapılan zorunlu header kontrollerinde aşağıdaki hatalar dönebili
 
 {
     "timestamp": "2022-12-22T10:40:28+03:00",
-    "path": "/ohvps/obh/s1.1/odeme-emri-rizasi",
+    "path": "/ohvps/obh/s2.0/odeme-emri-rizasi",
     "id": "d4375748-6fc7-4f7e-94f3-6411cab1d59f",
     "moreInformationTr": "Geçersiz HHS kodu.",
     "errorCode": "TR.OHVPS.Connection.InvalidASPSP",
@@ -620,7 +622,7 @@ GEÇİT tarafından dönülecek hata örneği:
 
 {
     "timestamp": "2022-12-22T10:40:28+03:00",
-    "path": "/ohvps/obh/s1.1/odeme-emri-rizasi",
+    "path": "/ohvps/obh/s2.0/odeme-emri-rizasi",
     "id": "d4375748-6fc7-4f7e-94f3-6411cab1d59f",
     "moreInformationTr": "Geçersiz HHS kodu.",
     "errorCode": "TR.OHVPS.Connection.InvalidTPP",
@@ -635,7 +637,7 @@ GEÇİT tarafından dönülecek hata örneği:
 
 {
     "timestamp": "2022-12-22T11:14:05+03:00",
-    "path": "/ohvps/hbh/s1.1/hesap-bilgisi-rizasi",
+    "path": "/ohvps/hbh/s2.0/hesap-bilgisi-rizasi",
     "id": "ee1e3ea7-a5e5-468b-bb02-314148f84e6a",
     "moreInformationTr": "Geçersiz yös rolü. İlgili api çağrısı için yetkisi yok.",
     "errorCode": "TR.OHVPS.Connection.InvalidTPPRole",
@@ -658,7 +660,7 @@ Bu hata, müşteriden doğru izinlerle yeniden kimlik doğrulaması isteyerek ç
 ```json 
 
 {
-    "path": "/ohvps/gkd/s1.1/erisim-belirteci",
+    "path": "/ohvps/gkd/s2.0/erisim-belirteci",
     "id": "ed3fd667-fc58-40ad-a982-e8937faccd15",
     "timestamp": "2022-12-22T11:17:33+03:00",
     "httpCode": 401,
@@ -678,7 +680,7 @@ Bu hata, müşteriden doğru izinlerle yeniden kimlik doğrulaması isteyerek ç
 
 ```json 
 {
-  "path": "/ohvps/hbh/s1.1/bakiye",
+  "path": "/ohvps/hbh/s2.0/bakiye",
   "id": "3e48ea98-f889-48b9-aa6e-28aabc6cfb14",
   "timestamp": "2022-12-22T11:20:05+03:00",
   "httpCode": 403,
@@ -695,7 +697,7 @@ Bu hata, müşteriden doğru izinlerle yeniden kimlik doğrulaması isteyerek ç
 
 ```JSON 
 {
-    "path": "/ohvps/obh/s1.1/odeme-emri-rizasi/123456",
+    "path": "/ohvps/obh/s2.0/odeme-emri-rizasi/123456",
     "id": "22f52b2d-d442-4a6a-8f39-d23eba45a34b",
     "timestamp": "2022-12-22T10:53:53+03:00",
     "httpCode": 404,
@@ -709,7 +711,7 @@ Bu hata, müşteriden doğru izinlerle yeniden kimlik doğrulaması isteyerek ç
 <ins>**405 Method Not Allowed**</ins>
 ```json 
 {
-    "path": "/ohvps/obh/s1.1/odeme-emri-rizasi",
+    "path": "/ohvps/obh/s2.0/odeme-emri-rizasi",
     "id": "3e5c6b28-7ee4-4469-b541-843fb4a94eec",
     "timestamp": "2022-12-22T11:35:10+03:00",
     "httpCode": 405,
@@ -722,7 +724,7 @@ Bu hata, müşteriden doğru izinlerle yeniden kimlik doğrulaması isteyerek ç
 <ins>**406 Not Acceptable**</ins>
 ```json 
 {
-    "path": "/ohvps/obh/s1.1/odeme-emri-rizasi",
+    "path": "/ohvps/obh/s2.0/odeme-emri-rizasi",
     "id": "3e5c6b28-7ee4-4469-b541-843fb4a94eec",
     "timestamp": "2022-12-22T11:35:10+03:00",
     "httpCode": 406,
@@ -739,7 +741,7 @@ Bu hata, müşteriden doğru izinlerle yeniden kimlik doğrulaması isteyerek ç
 ```json 
 
 {
-    "path": "/ohvps/obh/s1.1/odeme-emri-rizasi",
+    "path": "/ohvps/obh/s2.0/odeme-emri-rizasi",
     "id": "63cc94b6-1b51-4648-9671-95e6e2e7e03d",
     "timestamp": "2022-12-22T11:37:12+03:00",
     "httpCode": 415,
@@ -754,7 +756,7 @@ Bu hata, müşteriden doğru izinlerle yeniden kimlik doğrulaması isteyerek ç
 <ins>**429 Too Many Requests**</ins>
 ```json 
 {
-  "path": "/ohvps/hbh/s1.1/hesaplar/aef6061f-2978-4bb4-980d-b4c634c8055b/islemler",
+  "path": "/ohvps/hbh/s2.0/hesaplar/aef6061f-2978-4bb4-980d-b4c634c8055b/islemler",
   "id": "20473c5f-2f4f-4b2e-8b66-7978aec442f7",
   "timestamp": "2022-12-22T00:21:07+03:00",
   "httpCode": 429,
@@ -770,7 +772,7 @@ Bu hata, müşteriden doğru izinlerle yeniden kimlik doğrulaması isteyerek ç
 ```json 
 {
   "id": "1b90c6dc-0277-4755-8b05-9297ddfab743",
-  "path": "/ohvps/obh/s1.1/odeme-emri-rizasi",
+  "path": "/ohvps/obh/s2.0/odeme-emri-rizasi",
   "timestamp": "2022-12-22T11:41:34+03:00",
   "httpCode": 500,
   "httpMessage": "Internal Server Error",
@@ -786,7 +788,7 @@ Bu hata, müşteriden doğru izinlerle yeniden kimlik doğrulaması isteyerek ç
 ```json 
 
   "timestamp": "2022-12-20T23:18:56+03:00",
-  "path": "/ohvps/hbh/s1.1/hesap-bilgisi-rizasi/2a72678ee3d24de2be47887e4903a8c6",
+  "path": "/ohvps/hbh/s2.0/hesap-bilgisi-rizasi/2a72678ee3d24de2be47887e4903a8c6",
   "id": "e76315b7-09f4-4295-b6d8-1f7fec632159",
   "moreInformationTr": "HHS şu anda hizmet veremiyor.",
   "errorCode": "TR.OHVPS.Server.ServiceUnavailable",
@@ -845,13 +847,16 @@ HHS tarafından izin verilen sorgu sayısının üzerinde yapılan bir sorgu iç
 | 1 | erisim-belirteci | POST |/erisim-belirteci|  --- |
 | 2 | odeme-emri-rizasi | GET |/odeme-emri-rizasi/{rizaNo}| Rıza bazında günde 4 | 
 | 3 | odeme-emri | GET |/odeme-emri/{odemeEmriNo}| Rıza bazında günde 24  | 
-| 4 | hesap-bilgisi-rizasi | GET | /hesap-bilgisi-rizasi/{RizaNo} | Rıza bazında günde 4 |  
-| 5 | hesap-bilgisi-rizasi | DELETE | /hesap-bilgisi-rizasi/{RizaNo} | --- |
-| 6 | hesaplar | GET |/hesaplar| Bireysel günde 4<br> Kurumsal günde 4 | 
-| 7 | hesaplar | GET |/hesaplar/{hspRef}| Bireysel günde 4<br>Kurumsal günde 4 | 
-| 8 | bakiye | GET |/hesaplar/{hspRef}/bakiye| Bireysel günde 24<br>Kurumsal ÖHK - günde 24 | 
-| 9 | bakiye | GET |/bakiye| Bireysel günde 24<br>Kurumsal ÖHK - günde 24 | 
-| 10 | islemler | GET |/hesaplar/{hspRef}/işlemler| Bireysel günde 4<br>Kurumsal ÖHK - saatte 12 | 
+| 4 | ileri-tarihli-odeme-emri-rizasi | GET |/ileri-tarihli-odeme-emri-rizasi/{rizaNo}| Rıza bazında günde 4 | 
+| 5 | ileri-tarihli-odeme-emri | GET |/ileri-tarihli-odeme-emri/{odemeEmriNo}| Rıza bazında günde 24  |
+| 6 | ileri-tarihli-odeme-emri-rizasi | DELETE | /ileri-tarihli-odeme-emri-rizasi/{RizaNo} | --- |
+| 7 | hesap-bilgisi-rizasi | GET | /hesap-bilgisi-rizasi/{RizaNo} | Rıza bazında günde 4 |  
+| 8 | hesap-bilgisi-rizasi | DELETE | /hesap-bilgisi-rizasi/{RizaNo} | --- |
+| 9 | hesaplar | GET |/hesaplar| Bireysel günde 4<br> Kurumsal günde 4 | 
+| 10 | hesaplar | GET |/hesaplar/{hspRef}| Bireysel günde 4<br>Kurumsal günde 4 | 
+| 11 | bakiye | GET |/hesaplar/{hspRef}/bakiye| Bireysel günde 24<br>Kurumsal ÖHK - günde 24 | 
+| 12 | bakiye | GET |/bakiye| Bireysel günde 24<br>Kurumsal ÖHK - günde 24 | 
+| 13 | islemler | GET |/hesaplar/{hspRef}/işlemler| Bireysel günde 4<br>Kurumsal ÖHK - saatte 12 | 
 
 YÖS ve HHS son 24 saat içerisindeki sorgu sayılarını toplayarak elde ettiği sonuçlarla limit kontrolü yapmalıdır (Pencere yöntemi).  
 

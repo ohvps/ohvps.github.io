@@ -1,4 +1,4 @@
-# 10.	Olay Bildirim <!-- omit in toc -->
+# 12.	Olay Bildirim <!-- omit in toc -->
 <!--
 - [Genel Bilgiler](#genel-bilgiler)
 - [Olay Abonelik Servisleri](#olay-abonelik-servisleri)
@@ -120,8 +120,10 @@ BKM'nin sunacağı abonelik servisleri için HHS ve YÖS'lerin abonelik isteği 
 <br>* Anlık : Olay gerçekleştikten sonra maksimum 5 saniye içerisindeki zaman
 |Olay Tipleri |YÖS Rolü	|Kaynak Tipleri	|Olay Oluşturulma durumu	|KaynakNo 	| Asıl verinin elde edileceği API |Olay Bildirimini Yapan| Olay Bildirim Zamanı | Retry Policy |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| KAYNAK_GUNCELLENDI | ÖBH |   ODEME_EMRI | Tüm ödeme durum değişikliklerinde | odemeEmriNo |  GET /odeme-emri/{odemeEmriNo} | HHS | Anlık|30 Dakika - 3 Deneme |
-|   | HBH | HESAP_BILGISI_RIZASI |Rıza iptal detay kodu ‘02’ : Kullanıcı İsteği ile HHS üzerinden İptal durumunda| RizaNo | GET /hesap-bilgisi-rizasi/{RizaNo}| HHS |*Anlık|30 Dakika - 3 Deneme|
+| KAYNAK_GUNCELLENDI | ÖBH |   ODEME_EMRI | Tüm ödeme durum değişikliklerinde | odemeEmriNo |  GET /odeme-emri/{odemeEmriNo} | HHS | *Anlık|30 Dakika - 3 Deneme |
+|   | ÖBH | ILERI_TARIHLI_ODEME_EMRI_RIZASI |Rıza iptal detay kodu ‘02’ : Kullanıcı İsteği ile HHS üzerinden İptal durumunda| rizaNo | GET /ileri-tarihli-odeme-emri-rizasi/{rizaNo}| HHS |*Anlık|30 Dakika - 3 Deneme|
+|   | ÖBH |   ILERI_TARIHLI_ODEME_EMRI | Tüm ödeme durum değişikliklerinde | odemeEmriNo |  GET /ileri-tarihli-odeme-emri/{odemeEmriNo} | HHS | *Anlık|30 Dakika - 3 Deneme |
+|   | HBH | HESAP_BILGISI_RIZASI |Rıza iptal detay kodu ‘02’ : Kullanıcı İsteği ile HHS üzerinden İptal durumunda| rizaNo | GET /hesap-bilgisi-rizasi/{rizaNo}| HHS |*Anlık|30 Dakika - 3 Deneme|
 |   | HBH | BAKIYE | Bakiye nesnesindeki tutarla ilgili bir bilgi değiştiğinde ve HBH rızası içerisinde "06-Anlık Bakiye Bildirimi" izin türü varsa oluşturulur.<br><br>Mevcutta alınmış rızalar için  bakiye kaynak tipi özelinde 06 izin türü gerektiğinden; mevcut rızanın yenilenmesine dair müşteriye bilgilendirme yapılarak 06 izin türünü kapsayan yeni rıza alınması süreci YÖS tarafından gerçekleştirilebilir.<br><br>Bloke tutar değişikliği için olay oluşturma ve bildirimi HHS inisiyatifindedir.<br><br>KrdHsp içerisinde yer alan kulKrdTtr değerinin değiştiği durumda olay bildirim gönderilmesi gerekmektedir.| hspRef |  GET /hesaplar/{hspRef}/bakiye | HHS | Maksimum 10 dakika içerisinde | Retry policy uygulanmamalıdır. İlk istek gönderilemediği durumda İletilemeyen Olaylara eklenmelidir.|
 |   | HBH |   COKLU_ISLEM_TALEBI ( bulk-data)   |İlgili API İlke ve kurallarına eklendiğinde güncellenecektir. |  | | HHS | |30 Dakika - 3 Deneme|
 | AYRIK_GKD_BASARILI | ÖBH |  ODEME_EMRI_RIZASI   | HHS sisteminde ÖHK kendini doğruladığında rıza oluşturulur. YÖS'e rıza oluşturulduğuna dair bildirim yapılır. YÖS yetkod değerini sorgulama sonucunda elde eder. | RizaNo | GET /yetkilendirme-kodu?rizaNo={rizaNo}}&rizaTip=O| HHS | *Anlık|1 Dakika 3 kez|
