@@ -40,7 +40,7 @@ YÖS'ler gönderen hesap seçimini aşağıdaki yöntemlerden biri ya da birkaç
 | 2|erisim-belirteci (GKD için)|POST | /erisim-belirteci |Z |İstemci Kimlik Bilgileri |İmzalı İstek ve Yanıt |ErisimBelirteciIstegi |ErisimBelirteci |
 | 3 |ileri-tarihli-odeme-emri-rizasi |GET | /ileri-tarihli-odeme-emri-rizasi/{rizaNo} |Z |İstemci Kimlik Bilgileri  |İmzalı Yanıt |- |IleriTarihliOdemeEmriRizaYaniti |
 | 4 |ileri-tarihli-odeme-emri |POST | /ileri-tarihli-odeme-emri |Z |İstemci Kimlik Bilgileri & Yetkilendirme Kodu (GKD) |İmzalı İstek ve Yanıt |IleriTarihliOdemeEmriIstegi |IleriTarihliOdemeEmri |
-| 5 |ileri-tarihli-odeme-emri |GET | /ileri-tarihli-odeme-emri/{odemeEmriNo}|Z |İstemci Kimlik Bilgileri & Yetkilendirme Kodu (GKD) |İmzalı Yanıt |- |IleriTarihliOdemeEmri |
+| 5 |ileri-tarihli-odeme-emri |GET | /ileri-tarihli-odeme-emri/{odmEmriNo}|Z |İstemci Kimlik Bilgileri & Yetkilendirme Kodu (GKD) |İmzalı Yanıt |- |IleriTarihliOdemeEmri |
 | 6 |ileri-tarihli-odeme-emri-rizasi-iptal |DELETE | /ileri-tarihli-odeme-emri-rizasi/{rizaNo}|Z |İstemci Kimlik Bilgileri | - |- |- |
 
 ## 7.1.	ADIM 0 - İleri Tarihli Ödeme Emri Rızası Başlatma Isteği
@@ -315,7 +315,7 @@ Gönderen Hesap Bilgisinin, ADIM 2 (İleri Tarihli Ödeme Emri Rızasının Yetk
   - POST verisinin modele göre kontrolü yapılır (alan kontrolleri)
   -	POST verisinin mantıksal kontrolleri yapılır (IBAN kontrolü, çapraz alan kontroller)
   -	OdemeEmriDurumu bilgisi iletilir.
-- POST başarılı olursa, içerisinde OdemeEmriNo ve OdemeEmriDurumu değişkenleri de bulunan IleriTarihliOdemeEmri nesnesi ÖBHS’ye döner ve RizaDurumu değişkenin değeri “Yetki Ödeme Emrine/Talimata Dönüştü” olarak güncellenir.
+- POST başarılı olursa, içerisinde odmEmriNo ve odmDrm değişkenleri de bulunan IleriTarihliOdemeEmri nesnesi ÖBHS’ye döner ve RizaDurumu değişkenin değeri “Yetki Ödeme Emrine/Talimata Dönüştü” olarak güncellenir.
 
 **BAŞARILI İSTEK:**  
 
@@ -452,7 +452,7 @@ POST işleminin RESPONSE gövdesini (BODY) oluşturan “IleriTarihliOdemeEmri�
 
 **Şekil 9: İleri Tarihli Ödeme Emri Sorgusu**  
 
-**GET /ileri-tarihli-odeme-emri/{odemeEmriNo}**  
+**GET /ileri-tarihli-odeme-emri/{odmEmriNo}**  
 
 ÖBHS, bu erişim adresi aracılığıyla ileri tarihli ödeme emrini sorgulayabilir. Maksimum ödemenin gerçekleşeceği günün 15 gün sonrasına kadar sorgulama yapılabilir. Sonrasında yapılacak sorgulamalarda erişim belirtecinin yetki süresi sonlandığı için HHS **TR.OHVPS.Resource.ConsentRevoked** hatasını dönmelidir.
 İptal edilmiş talimatın bilgileri sorgulanmak istendiğinde de yine **TR.OHVPS.Resource.ConsentRevoked** hatası verilmelidir.
@@ -465,7 +465,7 @@ Gerçekleşen işlem tutarı ve para birimi, ödeme gerçekleşme zamanı alanla
 
 **BAŞARILI YANIT:**
 
-GET /ileri-tarihli-odeme-emri/{odemeEmriNo} yanıtının (RESPONSE) gövdesinde (BODY)  “IleriTarihliOdemeEmri” nesnesi bulunur. İstek başarıyla sonuçlanırsa HHS kaynak sunucusunda Tablo-10’da yer alan parametreleri içeren “IleriTarihliOdemeEmri” nesnesi döner.
+GET /ileri-tarihli-odeme-emri/{odmEmriNo} yanıtının (RESPONSE) gövdesinde (BODY)  “IleriTarihliOdemeEmri” nesnesi bulunur. İstek başarıyla sonuçlanırsa HHS kaynak sunucusunda Tablo-10’da yer alan parametreleri içeren “IleriTarihliOdemeEmri” nesnesi döner.
 
 ## 7.7.	ADIM 4- İleri Tarihli Ödeme Emri Rıza İptali
 
