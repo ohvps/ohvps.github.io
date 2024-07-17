@@ -295,7 +295,7 @@ GKD işleminin başarıyla tamamlanıp İleri Tarihli Ödeme Emri Rızasının y
 
 **BAŞARILI YANIT:**
 
-**GET /ileri-tarihli-odeme-emri-rizasi/{rizaNo}** yanıtının (RESPONSE) gövdesinde (BODY)  “IleriTarihliOdemeEmriRizasiİstegi” nesnesi kullanılır. İstek başarıyla sonuçlanırsa HHS kaynak sunucusunda Tablo-8’de yer alan parametreleri içeren “OdemeEmriRizasi” oluşturulur.  
+**GET /ileri-tarihli-odeme-emri-rizasi/{rizaNo}** yanıtının (RESPONSE) gövdesinde (BODY)  “IleriTarihliOdemeEmriRizasiİstegi” nesnesi kullanılır. İstek başarıyla sonuçlanırsa HHS kaynak sunucusunda Tablo-8’de yer alan parametreleri içeren “IleriTarihliOdemeEmriRizasi” oluşturulur.  
 
 Gönderen Hesap Bilgisinin, ADIM 2 (İleri Tarihli Ödeme Emri Rızasının Yetkilendirilmesi) sonrasında HHS ekranından seçildiği akışta “IleriTarihliOdemeEmriRizasi” nesnesi güncellenir ve ÖBHS **GET /ileri-tarihli-odeme-emri-rizasi/{rizaNo}** isteği yaparak güncel gönderen hesap bilgisi bilgisini de içeren “IleriTarihliOdemeEmriRizasi” nesnesini çekmelidir.
  

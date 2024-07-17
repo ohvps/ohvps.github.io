@@ -415,7 +415,9 @@ Aşağıdaki Public Post işlemleri için bu kural setinin işletilmesi gerekmek
 1- Ödeme emri rızası oluşturma  
 2- Erişim belirteci oluşturma   
 3- Ödeme emri   
-4- Hesap bilgisi rızası oluşturma   
+4- Hesap bilgisi rızası oluşturma
+5- İleri Tarihli Ödeme Emri Rızası oluşturma
+6- İleri Tarihli Ödeme Emri 
 
 ## 3.18. HTTP Durum Kodları
 
