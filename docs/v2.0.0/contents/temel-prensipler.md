@@ -386,7 +386,7 @@ Erişim adreslerinin ve alanların kullanımı Zorunlu(Z), İsteğe Bağlı(İ) 
 |X-ASPSP-Code  | AN4| Hesap Hizmeti Sağlayıcısının (HHS) kodudur. (Nezdinde ÖH bulunduran kuruluş kodu. Örneğin, Banka, Elektronik Para Kuruluşu ve Ödeme Kuruluşu)|Z|Z|
 |X-TPP-Code |AN4| Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur|Z|Z|
 |Content-Type |AN1..20|Standart HTTP Başlığı; Talepte sağlanan payload’ın biçimini temsil eder: **application/json**|Z|Z|
-|X-JWS-Signature |AN1..4096|JWS imzasını içeren üstbilgi. Bu başlığın hangi yanıtlar için kullanılması gerektiği ilgili endpoint için belirtilmiştir. <br>Hata durumlarında, yanıt gövdesi değeri dönülüyor ise imzalanmalı ve imza bilgisi x-jws-signature alanında iletilmelidir.<br> Ancak uygulama katmanı tarafından yakalanamayan dolayısı ile imzalanamayan hata durumlarında x-jws-signature alanı HHS'ler tarafından boş gönderilebilir. |K|K|
+|X-JWS-Signature |AN1..4096|JWS imzasını içeren üstbilgi. Bu başlığın hangi yanıtlar için kullanılması gerektiği ilgili endpoint için belirtilmiştir. <br>Hata durumlarında, yanıt gövdesi değeri dönülüyor ise imzalanmalı ve imza bilgisi x-jws-signature alanında iletilmelidir.<br> Ancak uygulama katmanı tarafından yakalanamayan dolayısı ile imzalanamayan hata durumlarında x-jws-signature alanı HHS'ler tarafından boş gönderilebilir.<br> Hatalı yanıt alındığı durumlarda ise X-JWS-Signature başlık değeri dolu ise doğrulama yapılmalıdır. (4**, 5**) |K|K|
 | X-RateLimit-Limit | N 1..18 | İstek kısıtı uygulanan servislerde en fazla kaç adet istek yapılabileceğini gösterir. Kısıt uygulanan servislerde bu başlığın dönmesi zorunludur. | K |-|
 | X-RateLimit-Remaining  | N 1..18 | İstek kısıtı uygulanan servislerde kaç adet istek hakkı kaldığını gösterir. Kısıt uygulanan servislerde bu başlığın dönmesi zorunludur. | K |-|
 |X-RateLimit-Reset |AN 1..255|İstek kısıtı uygulanan servislerde çağrım hakkı bittikten sonra yeniden denemeden önce beklemesi gereken süreyi (saniye cinsinden) gösterir. HTTP 429 durum kodu (Too Many Requests) ile dönülen yanıtların başlığında dönülmesi zorunludur.<br> YÖS olarak yaptığınız sistemsel sorgularda; HTTP 429 durum kodu (Too Many Requests) ile dönülen yanıt aldığınızda tekrar sorgu yapmadan önce “X-RateLimit-Reset” yanıt başlığını kontrol ederek, bu başlıktaki süre kadar bekledikten sonra yeniden sorgulama yapılması gerekmektedir. |K|-|
@@ -415,9 +415,11 @@ Aşağıdaki Public Post işlemleri için bu kural setinin işletilmesi gerekmek
 1- Ödeme emri rızası oluşturma  
 2- Erişim belirteci oluşturma   
 3- Ödeme emri   
-4- Hesap bilgisi rızası oluşturma
-5- İleri Tarihli Ödeme Emri Rızası oluşturma
-6- İleri Tarihli Ödeme Emri 
+4- Hesap bilgisi rızası oluşturma  
+5- İleri Tarihli Ödeme Emri Rızası oluşturma  
+6- İleri Tarihli Ödeme Emri  
+7- Düzenli Tekrarlı Ödeme Emri Rızası oluşturma  
+8- Düzenli Tekrarlı Ödeme Emri 
 
 ## 3.18. HTTP Durum Kodları
 

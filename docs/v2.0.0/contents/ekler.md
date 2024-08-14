@@ -18,7 +18,7 @@ Açık Bankacılık simülatör uygulaması üzerinde swagger dökümanlarının
 | TR.OHVPS.DataCode.IslemTuru | Hesap hareketleri (işlemler) sorgusunda dönülen İşlem Türü (islTur) parametresi aşağıdaki değerlerden birini alabilir:<br>HAVALE<br>EFT<br>FAST<br>PARA_YATIRMA<br>PARA_CEKME<br>YABANCI_PARA_HAVALE<br>YATIRIM_HESABINA_AKTARIM<br>YATIRIM_HESABINDAN_AKTARIM<br>KURUM_FATURA_ODEMESI<br>CEK<br>SENET<br>SIGORTA_ODEMESI<br>UCRET_KOMISYON_FAIZ<br>SGK_ODEMESI<br>VERGI_ODEMESI<br>DOVIZ_ALIM<br>DOVIZ_SATIM<br>KREDI_ODEMESI<br>KREDI_KULLANIM<br>KK_ODEMESI<br>KK_NAKIT_AVANS<br>SANS_OYUNU<br>UYE_ISYERI_ISLEMLERI<br>HGS_OGS_ISLEMLERI<br>DOGRUDAN_BORCLANDIRMA_SISTEMI<br>DIGER<br>|
 | TR.OHVPS.DataCode.IzinTur | 01: Temel Hesap Bilgisi<br>02: Ayrıntılı Hesap Bilgisi<br>03: Bakiye Bilgisi<br>04: Temel İşlem (Hesap Hareketleri) Bilgisi<br>05: Ayrıntılı İşlem Bilgisi<br>06: Anlık Bakiye Bildirimi|
 | TR.OHVPS.DataCode.KareKodAksTur | Karekod Akış Türü Karekod ödemesinin hangi akışla gerçekleştirildiğini gösterir.<br> 01: FAST katılımcısından dinamik doğrulamalı hizmet alınan işyeri ödemesi<br>02: FAST katılımcısından statik doğrulamalı işyeri ödemesi<br>03: Kişiden kişiye ödemeler |
-| TR.OHVPS.DataCode.KaynakTip | HESAP_BILGISI_RIZASI<br> ODEME_EMRI_RIZASI <br> ODEME_EMRI <br> ILERI_TARIHLI_ODEME_EMRI_RIZASI <br> ILERI_TARIHLI_ODEME_EMRI <br>  BAKIYE <br>  COKLU_ISLEM_TALEBI <br>  HHS <br>  YOS |
+| TR.OHVPS.DataCode.KaynakTip | HESAP_BILGISI_RIZASI<br> ODEME_EMRI_RIZASI <br> ODEME_EMRI <br> ILERI_TARIHLI_ODEME_EMRI_RIZASI <br> ILERI_TARIHLI_ODEME_EMRI <br> DUZENLI_ODEME_EMRI_RIZASI <br> BAKIYE <br>  COKLU_ISLEM_TALEBI <br>  HHS <br>  YOS |
 | TR.OHVPS.DataCode.KimlikTur | Kod, Tip, Format<br>K , TCKN , N11<br>M , MNO , AN1..30 (HHS’ye özel bireysel veya kurum müşteri numarası)<br>Y , YKN , N11<br>P , PNO , AN7..9 |
 | TR.OHVPS.DataCode.KolasHspTur | Hesabın bireysel veya ticari nitelikte olduğunu belirtir:<br>B: Bireysel<br>T: Ticari |
 | TR.OHVPS.DataCode.KolasTur | Müşterinin sorgulama istediği Kolay Adres Tipi değeridir. Alabileceği değerler BKM “Kolay Adresleme Sistemi Uygulama Kuralları” belgesinde tanımlıdır:<br>T: Telefon Numarası<br>E: E-Posta<br>K: TCKN<br>V: VKN<br>Y: YKN<br>P: Pasaport Numarası |
@@ -37,12 +37,13 @@ Açık Bankacılık simülatör uygulaması üzerinde swagger dökümanlarının
 | TR.OHVPS.DataCode.PSUInitiated | ‘E’ : Evet<br> ‘H’ : Hayır <br> ‘O’ : Olay Bildirim|
 | TR.OHVPS.DataCode.RizaDurumu | B: Yetki Bekleniyor<br>Y: Yetkilendirildi<br>K: Yetki Kullanıldı<br>E: Yetki Ödeme Emrine/Talimata Dönüştü<br>S: Yetki Sonlandırıldı<br>I :Yetki Iptal |
 | TR.OHVPS.DataCode.RizaIptDtyKod | ‘01’ :Yeni Rıza Talebi ile İptal<br>‘02’ :Kullanıcı İsteği ile HHS üzerinden İptal<br>‘03’ :Kullanıcı İsteği ile YÖS üzerinden İptal<br>‘04’ :Süre Aşımı : Yetki Bekleniyor<br>‘05’ :Süre Aşımı : Yetkilendirildi<br>‘06’ :Süre Aşımı : Yetki Ödemeye Dönüşmedi<br>‘07’ :GKD iptali : Aynı rıza no ile mükerrer çağrımı<br>‘08’ :GKD iptali : Rızano ile TCKN uyuşmaması<br>‘09’ :GKD iptali : Uygun ürünü bulunmuyor<br>‘10’ :GKD iptali : HHS Açık Bankacılık kanalı işleme kapalı<br>’11’ :GKD iptali : Hesap Yetki Sorunu<br>‘12’ :GKD iptali : ÖHK HHS kontrollerini aşamadı<br>‘13’ :GKD iptali : ÖHK isteği ile GKD’den vazgeçildi<br>‘14’ :GKD iptali : Fraud Şüphesi<br>‘99’ :GKD iptali : Diğer<br>|
-| TR.OHVPS.DataCode.RizaTip | H: Hesap Bilgisi Rızası<br>O: Ödeme Emri Rızası<br> I: İleri Tarihli Ödeme Emri Rızası<br>D: Düzenli Ödeme Talimatı |
+| TR.OHVPS.DataCode.RizaTip | H: Hesap Bilgisi Rızası<br>O: Ödeme Emri Rızası<br> I: İleri Tarihli Ödeme Emri Rızası<br>D: Düzenli Ödeme Emri Rızası |
 | TR.OHVPS.DataCode.SrlmYon | ‘A’: Azalan değerle sıralama<br>‘Y’: Artan değerle sıralama |
 | TR.OHVPS.DataCode.VarYok | 0 : Kayıt Yok <br> 1 : Kayıt Var |
 | TR.OHVPS.DataCode.YetTip | Alabileceği değerlere göre hangi belirtecin döneceğine karar verilir.<br>yet_kod<br>yenileme_belirteci |
 | TR.OHVPS.DataCode.ZmnAralik | 0 : Kayıt Yok <br>1 : 0-2 saat<br>2 : 2 saat 1 dakika-24 saat<br> 3 : 1-3 gün <br> 4 : 4-15 gün	<br> 5 : 16 gün ve üstü |
-| TR.OHVPS.DataCode.HizmetTipi | 01:  Ayrık GKD <br>02 : İleri Tarihli Ödeme<br>03 : Düzenli Tekrarlı Ödeme|
+| TR.OHVPS.DataCode.HizmetTipi | 01:  Ayrık GKD <br>02 : İleri Tarihli Ödeme<br>03 : Düzenli Ödeme|
+| TR.OHVPS.DataCode.OdemePeriyodu | G:  Günlük <br>H : Haftalık<br>A : Aylık<br>Y : Yıllık<br>D : Diğer|
 
 
 
