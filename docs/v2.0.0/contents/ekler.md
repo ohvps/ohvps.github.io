@@ -43,7 +43,7 @@ Açık Bankacılık simülatör uygulaması üzerinde swagger dökümanlarının
 | TR.OHVPS.DataCode.YetTip | Alabileceği değerlere göre hangi belirtecin döneceğine karar verilir.<br>yet_kod<br>yenileme_belirteci |
 | TR.OHVPS.DataCode.ZmnAralik | 0 : Kayıt Yok <br>1 : 0-2 saat<br>2 : 2 saat 1 dakika-24 saat<br> 3 : 1-3 gün <br> 4 : 4-15 gün	<br> 5 : 16 gün ve üstü |
 | TR.OHVPS.DataCode.HizmetTipi | 01:  Ayrık GKD <br>02 : İleri Tarihli Ödeme<br>03 : Düzenli Ödeme|
-| TR.OHVPS.DataCode.OdemePeriyodu | G:  Günlük <br>H : Haftalık<br>A : Aylık<br>Y : Yıllık<br>D : Diğer|
+| TR.OHVPS.DataCode.OdemePeriyodu | G:  Günlük <br>H : Haftalık<br>A : Aylık<br>D : Diğer|
 
 
 
@@ -84,21 +84,24 @@ Hizmet sağlayıcı olan HHS'ler tarafından sunucu sertifikaları uygulanmalıd
 
 ## EK-5: Mesaj İmzalama Akışı
 
-Dijital imzalama yapısı, ÖHVPS API’de gerçekleştirilen işlemlerin ve taşınan verilerin bütünlük ve inkâr edilemezliğini sağlamak amacıyla kurgulanmıştır. 
-Bu kapsamda imzalama akışı aşağıdaki gibi olmalıdır:  
+Dijital imzalama yapısı, ÖHVPS API’de gerçekleştirilen işlemlerin ve taşınan verilerin bütünlük ve inkâr edilemezliğini sağlamak amacıyla kurgulanmıştır.  İmzaların kaynak bazında hangi istek ve yanıtlara uygulandığı belirlidir.
 
-- HHS ya da YÖS öncelikle özel ve açık anahtarlarını oluşturmalıdır. Bu anahtarları oluşturmak için aşağıda “openssl” kullanılarak oluşturma örneği paylaşılmıştır.  Bu anahtarlardan özel olan anahtar mesajı imzalamak için kullanılacak olup, açık anahtar ise mesajı doğrulamak amacıyla mesajın alıcısı tarafından kullanılacaktır.
+API yalnızca TLS'ye dayanırsa, dijital kayıtları ve inkâr edilemezlik kanıtlarını tutmak zor olur. Bu nedenle, TLS'ye dayanmayan bir inkâr edilemezlik çözümü olarak API isteğinin HTTP başlığında bir JWS kullanılarak sağlanabilir.
 
-private_key.pem ve public_key.pem dosyasinin içerikleri kod tarafında kullanılacaktır.
+HTTP isteğinin gövdesinin hash fonksiyonu (SHA256) ile özeti alınacaktır. Elde edilen özet, asimetrik anahtarları destekleyen bir algoritma kullanılarak imzalanacak ve JWS elde edilecektir. İsteğin kendinize geldiği durumda body üzerinde hiç bir değişikliğe tabi tutmadan (serialize/deserialize, minify, trim, vb yapmadan) doğrulama yapmanız gerekmektedir. Aynı şekilde isteğin kendinizden çıktığı aşamada da response body üzerinde hiç bir değişikliğe tabi tutmadan (serialize/deserialize, minify, trim, vb yapmadan) mesaj imzalama yapılmalıdır.
 
---private.pem => Özel anahtarın ismi
-openssl genrsa -out private.pem 2048
+Bu kapsamda imzalama akışı aşağıdaki gibi olmalıdır:
 
+-	HHS ve YÖS öncelikle özel ve açık anahtarlarını oluşturmalıdır. Bu anahtarları oluşturmak için aşağıda “openssl” kullanılarak oluşturma örneği paylaşılmıştır. Bu anahtarlardan özel olan anahtar mesajı imzalamak için kullanılacak olup, açık anahtar ise mesajı doğrulamak amacıyla mesajın alıcısı tarafından kullanılacaktır.
 
---public_key.pem => Açık anahtarın ismi
-openssl rsa -in private.pem -pubout -outform PEM -out public_key.pem
+Özel anahtarın oluşturulması. private.pem => Özel anahtar <br>
+**```openssl genrsa -out private.pem 2048```**<br><br>
 
---private_key.pem => Özel anahtarın PCKS8 formatına çevrilmesi (Java açısından PCKS8 formatında olma ihtiyacı nedeniyle) openssl pkcs8 -topk8 -inform PEM -in private.pem -out private_key.pem -nocrypt
+Özel anahtardan açık anahtarın oluşturulması. public_key.pem => Açık anahtar (BKM ile paylaşılacak açık anahtar)<br>
+**```openssl rsa -in private.pem -pubout -outform PEM -out public_key.pem```**<br><br>
+
+Opsiyonel olarak özel anahtarın PCKS8 formatına çevrilmesi (Java açısından PCKS8 formatında olma ihtiyacı nedeniyle). private_key.pem => Özel anahtarın formatlanmış hali. <br>
+**```openssl pkcs8 -topk8 -inform PEM -in private.pem -out private_key.pem –nocrypt```**<br><br>
 
 - Açık ve Özel anahtarlar oluşturulduktan sonra Açık Anahtar BKM ile paylaşılır. BKM bu açık anahtarı diğer katılımcıların ulaşabilmesi ve alabilmesi için bir Anahtar Deposu yaklaşımı ile bünyesinde tutar. İlgili anahtarı iletebilmek ve alabilmek için kullanılacak HHS/YOS API ye erişim detayları EK-6 bölümünde detaylı olarak paylaşılmıştır.  Eğer kurumun ilgili anahtar çiftinin yenilenme durumu söz konusu ise yenilemenin hemen ardından açık anahtar yeni bir imzalama yapılmadan önce mutlaka BKM ile paylaşılmalıdır.
 

@@ -287,11 +287,8 @@ Düzenli Ödeme emri rıza durum değişiklikleri 4.2 bölümünde detaylandır�
 
 **GET /duzenli-odeme-emri-rizasi/{rizaNo}** yanıtının (RESPONSE) gövdesinde (BODY)  “DuzenliOdemeEmriRizasiİstegi” nesnesi kullanılır. İstek başarıyla sonuçlanırsa HHS kaynak sunucusunda Tablo-8’de yer alan parametreleri içeren “DuzenliOdemeEmriRizasi” oluşturulur.  
 
-YÖS'te girişi yapılan İlk Ödeme Günü ve Tutar bilgileri HHS uygulamasında ÖHK tarafından güncellenebileceği için güncel bilgilerin ADIM 2 (Düzenli Ödeme Emri Rızasının Yetkilendirilmesi) sonrasında YÖS tarafından **GET /duzenli-odeme-emri-rizasi/{rizaNo}** isteği yapılarak güncel bilgileri çekmelidir.
 
-YÖS uygulamasında girişi yapılmayıp, HHS uygulamasında ÖHK tarafından girişi yapılan son ödeme günü , ödeme sayısı ve ödeme periyodu alanlarının YÖS tarafından **GET /duzenli-odeme-emri-rizasi/{rizaNo}** isteği yapılarak erişmesi gerekmektedir. Bu bilgilerle POST/duzenli-odeme-emri isteğinde zorunlu alanlar olduğu için öncesinde sorgulama ile alınmalıdır.
-
-Gönderen Hesap Bilgisinin, ADIM 2 (İleri Tarihli Ödeme Emri Rızasının Yetkilendirilmesi) sonrasında HHS ekranından seçildiği akışta “IleriTarihliOdemeEmriRizasi” nesnesi güncellenir ve ÖBHS **GET /duzenli-odeme-emri-rizasi/{rizaNo}** isteği yaparak güncel gönderen hesap bilgisi bilgisini de içeren “DuzenliOdemeEmriRizasi” nesnesini çekmelidir.
+Gönderen Hesap Bilgisinin, ADIM 2 (İleri Tarihli Ödeme Emri Rızasının Yetkilendirilmesi) sonrasında HHS ekranından seçildiği akışta “DuzenliOdemeEmriRizasi” nesnesi güncellenir ve ÖBHS **GET /duzenli-odeme-emri-rizasi/{rizaNo}** isteği yaparak güncel gönderen hesap bilgisi bilgisini de içeren “DuzenliOdemeEmriRizasi” nesnesini çekmelidir.
  
 
 ## 8.5.	ADIM 3- Duzenli Ödeme Emrinin Oluşturulması
@@ -484,7 +481,9 @@ POST işleminin RESPONSE gövdesini (BODY) oluşturan "DuzenliOdemeEmriPlani" ne
 
 **DELETE /duzenli-odeme-emri-rizasi/{rizaNo}**
 
-ÖBHS, bu erişim adresi aracılığıyla düzenli ödeme emri rızasını iptal edebilir. Rıza iptal edilirken, ilişkili düzenli ödeme emri talimatları da iptal edilmelidir. Ödeme durumunun iptal edilebilecek statüde olması gerekmektedir. 04 ve 05 ödeme durumları için iptal sağlanabilir.
+ÖBHS, bu erişim adresi aracılığıyla düzenli ödeme emri rızasını iptal edebilir. Rıza iptal edilirken, ilişkili düzenli ödeme emri talimatları da iptal edilmelidir. Düzenli ödeme talimat planı içerisinde yer alan odmDrm değeri 04 ve 05 olan kayıtlar 07 durum kodu ile güncellenecektir. Diğer durum kodları için 07 durum kod güncellemesi yapılmayacaktır.
+
+Rıza durumu I ve S olmayan kayıtlar için rıza iptali sağlanacaktır. I ve S olan kayıtlar için rıza iptal edilmek istendiğinde HHS'ler tarafından **TR.OHVPS.Resource.ConsentRevoked** hatası dönülecektir.
 
 DELETE /duzenli-odeme-emri-rizasi çağrısı, bir ÖBHS'nin önceden oluşturulmuş bir düzenli ödeme emri rızasını silmesine izin verir. Müşteri, rızasını HHS üzerinden iptal etmek yerine, ÖBHS üzerinden bu rızasını kaldırmak isteyebilir.
 

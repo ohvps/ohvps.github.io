@@ -32,9 +32,9 @@ SÜRÜM 1.1.0 geçiş tarihleri şu şekildedir.
 
 -	Mevcut durumda teknik gereklilikleri belirlenmiş veri paylaşım hizmetlerini standart olmayan servislerle sunan HHS’ler (30 Haziran 2024 standart olmayan servislerin kapatılma tarihine uyumlanması gerekenler) Standart Uyumlu Üretime Geçiş Son Tarihi : 30 Haziran 2024
 
--	Diğer HHS’ler (30 Eylül 2024 üretime geçiş zorunluluğu olan ve ilk defa sertifikasyona gelecek olan) Sertifikasyon Bitiş Tarihi : 20 Eylül 2024
+-	Diğer HHS’ler (31 Mart 2025 üretime geçiş zorunluluğu olan ve ilk defa sertifikasyona gelecek olan) Sertifikasyon Bitiş Tarihi : 20 Mart 2025
 
--	Diğer HHS’ler (30 Eylül 2024 üretime geçiş zorunluluğu olan ve ilk defa sertifikasyona gelecek olan) Üretime Geçiş Tarihi : 30 Eylül 2024
+-	Diğer HHS’ler (31 Mart 2025 üretime geçiş zorunluluğu olan ve ilk defa sertifikasyona gelecek olan) Üretime Geçiş Tarihi : 31 Mart 2025
 
 -	YÖS(1.0.2’den 1.1.0’a geçecek olan ve 30 Eylül 2024 üretime geçiş uyum tarihi zorunluluğu olan) Sertifikasyon Bitiş Tarihi : 20 Eylül 2024
 

@@ -28,7 +28,8 @@ Müşteri için güçlü kimlik doğrulama, ÖHK’nın (müşterinin) kimliğin
      - Yönlendirmeli (Redirect) GKD Yöntemi 
      - Ayrık (Decoupled) GKD Yöntemi  
 
-10.	HHS asgari olarak tarayıcı tabanlı Yönlendirmeli GKD yöntemini desteklemek zorundadır.  
+10.	HHS asgari olarak tarayıcı tabanlı Yönlendirmeli GKD yöntemini desteklemek zorundadır. Hem web hem mobil uygulama hizmeti bulunan katılımcılar için her iki uygulama özelinde de yönlendirme yapılması zorunludur. Web ya da mobil uygulamalardan sadece birinin olması durumunda ilgili uygulama özelinde yönlendirme yapılması zorunludur.
+
 11.  HHS’nin mobil uygulamasının bulunması durumunda tarayıcı tabanlı yönlendirmenin yanında uygulama tabanlı yönlendirme yapması zorunludur. Uygulama sahiplerinin uygulama tabanlı yönlendirme için uyumlanma son tarihleri 1 Ekim 2023’tür.    
 
 
@@ -37,7 +38,7 @@ Müşteri için güçlü kimlik doğrulama, ÖHK’nın (müşterinin) kimliğin
 
 Yönlendirmeli GKD Yönteminde, müşteri kimlik doğrulama için YÖS tarafından HHS arayüzüne yönlendirilir.   
 
-Müşteri HHS’ye (uygulama veya web arayüzü vasıtasıyla) yönlendirildikten sonra müşterinin güçlü kimlik doğrulaması adım adım ve doğrudan HHS ile müşteri arasında yürütülür. GKD’nin tamamlanmasından sonra müşteri tekrar YÖS uygulamasına yönlendirilir.  
+Müşteri HHS’ye (app veya web arayüzü vasıtasıyla) yönlendirildikten sonra müşterinin güçlü kimlik doğrulaması adım adım ve doğrudan HHS ile müşteri arasında yürütülür. GKD’nin tamamlanmasından sonra müşteri tekrar YÖS uygulamasına yönlendirilir.  
 
 Yönlendirmeli GKD Yöntemi için üst düzey örnek iş akışı aşağıdaki adımlardan oluşur: 
 
@@ -47,7 +48,7 @@ Yönlendirmeli GKD Yöntemi için üst düzey örnek iş akışı aşağıdaki a
 
 Yönlendirmeli GKD için temel gereklilikler şunlardır:  
 
-- Ödeme hizmeti (hesap bilgisi veya ödeme emri başlatma hizmeti) tarayıcı ya da uygulama tabanlı bir şekilde sunulabilir. Bu nedenle, **YÖS ve HHS’lerin Yönlendirmeli GKD için asgari olarak tarayıcı tabanlı yönlendirme akışını desteklemeleri gerekmektedir.**
+- Ödeme hizmeti (hesap bilgisi veya ödeme emri başlatma hizmeti) tarayıcı ya da uygulama tabanlı bir şekilde sunulabilir. Bu nedenle, YÖS ve HHS’lerin Yönlendirmeli GKD için asgari olarak tarayıcı tabanlı yönlendirme akışını desteklemeleri gerekmektedir. Web ya da mobil uygulamalardan sadece birinin olması durumunda ilgili uygulama özelinde yönlendirme yapılması zorunludur.
 
 
 
@@ -64,7 +65,7 @@ Location: {{hhsYonAdr}}
 
 ÖHK, HHS’ye (uygulama veya web arayüzü vasıtasıyla) yönlendirildikten sonra ÖHK'nin güçlü kimlik doğrulaması HHS ile ÖHK arasında yürütülür. GKD’nin tamamlanmasından sonra ÖHK tekrar YÖS uygulamasına yönlendirilir. 
 
-HHS, yönlendirme akışını kendi sunucusundan karşılayacağı bir istek ile başlatmalıdır. HHS web arayüzündeki bu yapı, ÖHK'nin oturumunu güvenli bir şekilde kapatmalıdır. Ardından 302 yanıt kodu ve yanıt başlığındaki Location değeri ile ÖHK tarayıcısını YÖS adresine yönlendirmelidir.
+HHS, yönlendirme akışını kendi sunucusundan karşılayacağı bir istek ile başlatmalıdır. HHS web/app arayüzündeki bu yapı, ÖHK'nin oturumunu güvenli bir şekilde kapatmalıdır. Ardından 302 yanıt kodu ve yanıt başlığındaki Location değeri ile ÖHK tarayıcısını YÖS adresine yönlendirmelidir.
 
 ```
 HTTP/1.1 302 Found
