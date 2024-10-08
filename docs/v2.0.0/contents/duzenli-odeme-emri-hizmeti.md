@@ -305,8 +305,7 @@ Gönderen Hesap Bilgisinin, ADIM 2 (İleri Tarihli Ödeme Emri Rızasının Yetk
   - POST /duzenli-odeme-emri-rizasi ile POST /duzenli-odeme-emri isteklerinde istek alanların aynı olması beklenmektedir. HHS tarafından kontrolü sağlanmalıdır.POST verisindeki Gönderen Hesap Numarası ve Alıcı Hesap Numarasının aynı bankaya aitse HAVALE değilse FAST veya PÖS iş akışına geçilir.
   - POST verisinin modele göre kontrolü yapılır (alan kontrolleri)
   -	POST verisinin mantıksal kontrolleri yapılır (IBAN kontrolü, çapraz alan kontroller)
-  -	OdemeEmriDurumu bilgisi iletilir.
-- POST başarılı olursa, içerisinde tlmtNo ve odmDrm değişkenleri de bulunan DuzenliOdemeEmri nesnesi ÖBHS’ye döner ve RizaDurumu değişkenin değeri “Yetki Ödeme Emrine/Talimata Dönüştü” olarak güncellenir.
+- POST başarılı olursa, içerisinde tlmtNo değişkeni bulunan DuzenliOdemeEmri nesnesi ÖBHS’ye döner ve RizaDurumu değişkenin değeri “Yetki Ödeme Emrine/Talimata Dönüştü” olarak güncellenir.
 
 **BAŞARILI İSTEK:**  
 
@@ -487,13 +486,13 @@ Rıza durumu I ve S olmayan kayıtlar için rıza iptali sağlanacaktır. I ve S
 
 DELETE /duzenli-odeme-emri-rizasi çağrısı, bir ÖBHS'nin önceden oluşturulmuş bir düzenli ödeme emri rızasını silmesine izin verir. Müşteri, rızasını HHS üzerinden iptal etmek yerine, ÖBHS üzerinden bu rızasını kaldırmak isteyebilir.
 
-Bu API çağrısı, müşterinin ÖBHS üzerinden hesap bilgisi rızasını iptal etmesine ve HHS nezdindeki hesap bilgisi rızası nesnesinin silinmesini sağlar.
+Bu API çağrısı, müşterinin ÖBHS üzerinden düzenli ödeme emri rızasını iptal etmesine ve HHS nezdindeki düzenli ödeme emri rızası nesnesinin silinmesini sağlar.
 Müşterinin ÖBHS’nin veri erişim iznini iptal etmesi durumunda ÖBHS, HHS’de mevcut olan DuzenliOdemeEmriRizasi'na dair rıza ve talimat bilgilerini pratik olarak mümkün olan en kısa sürede silmelidir. Bu ise, ilgili kaynağa
 DELETE /duzenli-odeme-emri-rizasi/{RizaNo}
 çağrısı aracılığı ile yerine getirilir.
 
 Servis istek parametresi olarak sadece path’de iletilen Rıza No bilgisine ihtiyaç duymaktadır.
-ÖHK rızası başarı ile silindiğinde HTTP 204 response kodu ile işlem sonucu iletilir. Rıza tipi “I” yani “Yetki İptal” ve durum kodu "02" olarak güncellenir ve gnclZmn zaman damgası vurularak güncellenir.
+ÖHK rızası başarı ile silindiğinde HTTP 204 response kodu ile işlem sonucu iletilir. Rıza tipi “I” yani “Yetki İptal” olarak ve gnclZmn zaman damgası vurularak güncellenir.
 ÖHK ile rıza iptali sırasında kurulacak iletişimde (e-posta, sms gibi) aşağıdaki alanların iletilmesi tavsiye edilmektedir:
 YÖS Adı, HHS adı, Rıza Oluşturma Zamanı, Servis Tipi Bilgisi (ÖBHS)
 

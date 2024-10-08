@@ -345,6 +345,8 @@ Erişim adreslerinin ve alanların kullanımı Zorunlu(Z), İsteğe Bağlı(İ) 
 - "Başlık isimleri" yorumlanırken küçük büyük harfe duyarlı olmamalıdır. Örneğin "x-ReQuEsT-Id" geçerli bir başlık ismidir.
 - "Başlık değerleri" yorumlanırken ise küçük büyük harf duyarlılığı olmalıdır. Örneğin "xyz123" ile "XYZ123" değerleri farklıdır.
 -  Başlık değerlerinde ISO-8859-1 standartında yer alan karakter kümesi kullanılmalıdır. Örneğin "PSU-Device-Data" değerinde "İOS12" yazmak, büyük "İ" harfinin ISO-8859-1 içerisinde yer almamasından dolayı, hataya yol açacaktır. 
+- İstek başlığında aşağıdaki tabloda belirtilen alanlar dışında gönderim yapılmamalıdır.
+- İstek başlığında boş değer içeren bir başlık ismiyle gönderim yapılmamalıdır. Örnek; "PSU-Initiated":""
 - İstek ve Yanıt başlığında yer alan alanların; POST GET DELETE methodlarında, OBH,HBH,GKD,OAS,ODS API'leri bazında Zorunlu/Koşullu/İsteğe Bağlı kullanım durumları aşağıdaki tabloda listelenmiştir.
  
 **Tablo 2: İstek Başlığında Yer Alan Veriler**  
@@ -376,6 +378,8 @@ Erişim adreslerinin ve alanların kullanımı Zorunlu(Z), İsteğe Bağlı(İ) 
 - "Başlık isimleri" yorumlanırken küçük büyük harfe duyarlı olmamalıdır. Örneğin "x-ReQuEsT-Id" geçerli bir başlık ismidir.
 - "Başlık değerleri" yorumlanırken ise küçük büyük harf duyarlılığı olmalıdır. Örneğin "xyz123" ile "XYZ123" değerleri farklıdır.
 -  Başlık değerlerinde ISO-8859-1 standartında yer alan karakter kümesi kullanılmalıdır. Örneğin "Link" değerinde "İOS12" yazmak, büyük "İ" harfinin ISO-8859-1 içerisinde yer almamasından dolayı, hataya yol açacaktır. 
+- Yanıt başlığında aşağıdaki tabloda belirtilen alanlar dışında gönderim yapılmamalıdır.
+- Yanıt başlığında boş değer içeren bir başlık ismiyle gönderim yapılmamalıdır. Örnek; "PSU-Initiated":""
 
 **Tablo 3: Yanıt Başlığında Yer Alan Veriler**
 

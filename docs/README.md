@@ -46,7 +46,7 @@ SÜRÜM 1.1.0 geçiş tarihleri şu şekildedir.
 <br>
 
 
-Üretim ortamında servis sunan HHS’lerin 29 Şubat 2024 - 30 Eylül 2024 tarihleri arasında aynı anda çift sürüm desteklemesi gerekmektedir! 1.0 sürümünde alınan bir rızanın 1.1 sürümü için de yaşaması gerekmektedir.
+Üretim ortamında servis sunan HHS’lerin 29 Şubat 2024 - 31 Ekim 2024 tarihleri arasında aynı anda çift sürüm desteklemesi gerekmektedir! 1.0 sürümünde alınan bir rızanın 1.1 sürümü için de yaşaması gerekmektedir.
 
 İlk kez üretim ortamına 1.1 sürümü ile geçecek HHS'ler, 1.1 sürümünü destekleyen YÖS'ler tarafından listenebileceklerdir.
 
