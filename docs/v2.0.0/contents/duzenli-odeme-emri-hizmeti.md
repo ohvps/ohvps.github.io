@@ -414,16 +414,16 @@ POST işleminin RESPONSE gövdesini (BODY) oluşturan “DuzenliOdemeEmri” nes
 | **>> Ödeme Amacı** |  odmAmc   |   AN2  | Z  |  **TR.OHVPS.DataCode.OdemeAmaci** sıralı veri değerlerinden birini alır.  | 
 | **>> Referans Bilgisi**	|  refBlg   |  AN1..140   | K  |  Ödemeye özel **Referans Bilgisi** alanıdır. Karekod işlemi değil ise zorunludur.<br> -	Kişiden kişiye fon aktarımlarda: Gün içerisinde ÖHK özelinde, her işleme özel biricik olarak oluşturulan referans bilgisidir.<br> Karekod P2P akışı için referans bilgisi (Karekod referans numarası değil, işleme özel üretilecek referans bilgisidir.) YÖS tarafından atanacaktır.<br> -	E-ticaret işlemlerinde sipariş/takip numarası/müşteri/abone numarası<br> - İşyeri Ödemesi Karekod akışında, FAST Karekod Veri Organizasyonundaki<br> -	62-01: alanında tanımlı Fatura Numarası <br> -	62-06: alanında tanımlı Müşteri Numarası <br> verilerinden biri kullanılır. | 
 | **>> Açıklama**	|  odmAcklm   | AN1..200    | İ  | ÖBHS’nin ÖHK’dan aldığı ya da kendisinin atadığı işlem açıklaması bilgisi. <br>FAST/PÖS sistemi üzerinden yapılan ödemeler için açıklama bilgisi girilirse boşluk karakteri girilerek geçilemez. En az bir alfasayısal karakter girilmesi zorunludur.|
-| **> Talimat Bilgileri**	|  tlmtBlg   | Kompleks: TalimatBilgileri  | -  | | |
-| **>> Talimat Numarası**  | tlmtNo  | AN1..128   | Z |  Düzenli Ödeme Emri nesnesinin UID'sidir. Düzenli Ödeme Emri kaydı'na dair İlişkin sorgular bu ID üzerinden yapılır. |
-| **>> Talimat Oluşma Zamanı**  | tlmtOlsZmn  | ISODateTime   | Z |  duzenliOdemeEmri nesnesinin oluşturulma zamanıdır.|
-| **>> Talimat Tutarı**  | tlmtTtr   | AN1..24   | Z |  ÖBHS'nin HHS'de belirlediği tutar bilgisidir. Talimata ait ilk ödeme emri kaydının tutar bilgisi iletilmelidir. <br> Karekod akışında, FAST Karekod Veri Organizasyonundaki **54: (Tutar)** alanında tanımlı Tutar verisi kullanılır. <br> Tutar alanı regex patterni şu şekildedir: '^\d{1,18}$\|^\d{1,18}\\.\d{1,5}$'|  |  
-| **>> Para Birimi** 	| prBrm   |  AN3  | Z | Para Birimi. <br> Karekod akışında, FAST Karekod Veri Organizasyonundaki **53: (Para Birimi)** alanında tanımlı Para Birimi verisi kullanılır.  | HHS geçerli bir para birimi olduğu kontrol eder.|
-| **>> İlk Ödeme Günü**  | ilkOdmGun   | ISODate  | Z | ÖBHS'nin HHS'de belirlediği ilk ödeme günü bilgisidir.   Alabileceği minimum tarih değeri düzenli ödemenin verildiği tarihin 1 gün sonrası olabilir. Maksimum değer ise 30 gün olacak şekilde seçilebilir. <br>
-| **>> Son Ödeme Günü**  | sonOdmGun   | ISODate  | Z |  ÖBHS'nin HHS'de belirlediği son ödeme günü bilgisidir. Alabileceği minimum gün değeri ilk ödeme gününün 1 gün sonrası olabilir. Maksimum değer ise 2 yıl olmalıdır. <br>
-| **>> Ödeme Sayısı**	|  odmSayi   | AN1..200  | Z  | ÖBHS'nin HHS'de belirlediği ödeme sayısıdır. Minimum değer 2 adet olmalıdır.|
-| **>> Ödeme Periyodu**	|  odmPryt   | AN1  | Z  | ÖBHS'nin HHS'de belirlediği ödeme periyot bilgisidir. TR.OHVPS.DataCode.OdemePeriyodu sıralı veri değerlerinden birini alır. |
-| **>> Talimat Rumuzu**	|  tlmtRmz   | AN1..180  | İ  | ÖBHS'nin HHS'de belirlediği talimata dair rumuz açıklamasıdır. İlgili alan isteğe bağlı olup HHS'lerin inisiyatifindedir. |
+| **Talimat Bilgileri**	|  tlmtBlg   | Kompleks: TalimatBilgileri  | -  | | |
+| **> Talimat Numarası**  | tlmtNo  | AN1..128   | Z |  Düzenli Ödeme Emri nesnesinin UID'sidir. Düzenli Ödeme Emri kaydı'na dair İlişkin sorgular bu ID üzerinden yapılır. |
+| **> Talimat Oluşma Zamanı**  | tlmtOlsZmn  | ISODateTime   | Z |  duzenliOdemeEmri nesnesinin oluşturulma zamanıdır.|
+| **> Talimat Tutarı**  | tlmtTtr   | AN1..24   | Z |  ÖBHS'nin HHS'de belirlediği tutar bilgisidir. Talimata ait ilk ödeme emri kaydının tutar bilgisi iletilmelidir. <br> Karekod akışında, FAST Karekod Veri Organizasyonundaki **54: (Tutar)** alanında tanımlı Tutar verisi kullanılır. <br> Tutar alanı regex patterni şu şekildedir: '^\d{1,18}$\|^\d{1,18}\\.\d{1,5}$'|  |  
+| **> Para Birimi** 	| prBrm   |  AN3  | Z | Para Birimi. <br> Karekod akışında, FAST Karekod Veri Organizasyonundaki **53: (Para Birimi)** alanında tanımlı Para Birimi verisi kullanılır.  | HHS geçerli bir para birimi olduğu kontrol eder.|
+| **> İlk Ödeme Günü**  | ilkOdmGun   | ISODate  | Z | ÖBHS'nin HHS'de belirlediği ilk ödeme günü bilgisidir.   Alabileceği minimum tarih değeri düzenli ödemenin verildiği tarihin 1 gün sonrası olabilir. Maksimum değer ise 30 gün olacak şekilde seçilebilir. <br>
+| **> Son Ödeme Günü**  | sonOdmGun   | ISODate  | Z |  ÖBHS'nin HHS'de belirlediği son ödeme günü bilgisidir. Alabileceği minimum gün değeri ilk ödeme gününün 1 gün sonrası olabilir. Maksimum değer ise 2 yıl olmalıdır. <br>
+| **> Ödeme Sayısı**	|  odmSayi   | AN1..200  | Z  | ÖBHS'nin HHS'de belirlediği ödeme sayısıdır. Minimum değer 2 adet olmalıdır.|
+| **> Ödeme Periyodu**	|  odmPryt   | AN1  | Z  | ÖBHS'nin HHS'de belirlediği ödeme periyot bilgisidir. TR.OHVPS.DataCode.OdemePeriyodu sıralı veri değerlerinden birini alır. |
+| **> Talimat Rumuzu**	|  tlmtRmz   | AN1..180  | İ  | ÖBHS'nin HHS'de belirlediği talimata dair rumuz açıklamasıdır. İlgili alan isteğe bağlı olup HHS'lerin inisiyatifindedir. |
 
 
 
