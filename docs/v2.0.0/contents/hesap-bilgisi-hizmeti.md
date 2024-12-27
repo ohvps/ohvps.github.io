@@ -28,7 +28,7 @@ Hesap bilgisi sorgulama için HBHS tarafından müşteri rızası tesisinin HHS 
 ![Şekil 10: Hesap Bilgisi Hizmeti Üst Düzey Akışı ](./images/HesapBilgisiHizmetiUstDuzeyAkisi.png)
 -->
 
-<img src="./images/HesapBilgisiHizmetiUstDuzeyAkisi2.png" width="50%" >
+<img src="./images/HesapBilgisiHizmetiUstDuzeyAkisiv2.png" width="50%" >
 
 
 Şekil 10: Hesap Bilgisi Hizmeti Üst Düzey Akışı
@@ -104,7 +104,7 @@ Başarıyla oluşturulan hesap bilgisi rıza kaynağının rıza durumu “Yetki
 <!---
 ![Şekil 11: Hesap Bilgisi Müşteri Rızasının Hazırlanması](./images/HesapBilgisiMusteriRizasininHazirlanmasi.png)
 -->
-<img src="./images/HesapBilgisiMusteriRizasininHazirlanmasi2.png" width="80%" >
+<img src="./images/HesapBilgisiMusteriRizasininHazirlanmasiv2.png" width="80%" >
 
 **Şekil 11: Hesap/Kart Bilgisi Müşteri Rızasının Hazırlanması**
 
@@ -248,7 +248,7 @@ Aşağıdaki durumlarda, izin kombinasyonlarına izin verilmez. HHS, bu hesap er
 <!--
 ![Şekil 12: Hesap Bilgisi Müşteri Rızasının Tesisi](./images/HesapBilgisiMusteriRizasininTesisi.png)
 -->
-<img src="./images/HesapBilgisiMusteriRizasininTesisi2.png" width="80%" >
+<img src="./images/HesapBilgisiMusteriRizasininTesisiv2.png" width="80%" >
 
 **Şekil 12: Hesap Bilgisi ÖHK Rızasının Tesisi**
 
@@ -306,7 +306,7 @@ HesapBilgisiRizasi kaynağı için kullanılabilecek durum göstergeleri şu şe
 ## 9.4 ADIM 2.2: Hesap Bilgisi Rızasının İptali
 
 <br>
-<img src="./images/HesapBilgisiMusteriRizasininGeriAlinmasi2.png" width="80%" >
+<img src="./images/HesapBilgisiMusteriRizasininGeriAlinmasiv2.png" width="80%" >
 <br>
 
 **Şekil 13: Hesap Bilgisi Müşteri Rızasının Geri Alınması**  
@@ -588,7 +588,7 @@ srlmYon=A
 
 ## 9.9 ADIM 4: Kart Bilgilerinin Sorgulanması 
 
-<img src="./images/KartBilgilerininAlinmasi.png" width="80%" >   
+<img src="./images/KartBilgilerininAlinmasiv2.png" width="80%" >   
 
 **GET /kartlar**
 
