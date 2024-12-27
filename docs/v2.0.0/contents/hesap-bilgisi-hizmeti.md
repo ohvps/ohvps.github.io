@@ -64,7 +64,7 @@ Nezdinde ödeme hesabı bulunduran hesap hizmeti sağlayıcılar(Banka, EPK, Öd
 
 **3.2	Kart bilgilerinin alınması:**  Kart bilgileri ilgili kaynağa (kartlar, kart detayı, kart hareketleri) GET isteği yapılarak gerçekleştirilir. HBHS, müşteri rızasının tesisinden sonrasında (geçerli bir erişim belirticine sahip olduğunda) öncelikle **GET/kartlar** çağrısı yapacaktır.
 
-## Hesap/Kart Bilgisi Hizmeti İçin Erişim Adresleri
+## Hesap Bilgisi Hizmeti İçin Erişim Adresleri
 
 **Etki Alanı (Scope) =“hesap_bilgisi”**
 
