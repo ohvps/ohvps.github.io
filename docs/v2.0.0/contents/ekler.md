@@ -16,9 +16,9 @@ Açık Bankacılık simülatör uygulaması üzerinde swagger dökümanlarının
 | TR.OHVPS.DataCode.HspTur | Hesabın bireysel veya ticari nitelikte olduğunu belirtir:<br>B: Bireysel<br>T: Ticari |
 | TR.OHVPS.DataCode.IslemAmaci | Ödemenin Amacına yönelik olarak aşağıdaki değerlerden birini alır:<br>01: Konut Kirası Ödemesi<br>02: İş yeri Kirası Ödemesi<br>03: Diğer Kira Ödemesi<br>04: E-Ticaret Ödemesi: Elektronik ticaret işlem amaçlı aktarımlar<br>05: Çalışan Ödemesi: Maaş, harcırah, prim gibi çalışan ödemeleri<br>06: Ticari ödeme: Ticari işletmelerin birbirlerine, kendi hesaplarına veya müşterilerine ödemeleri, borç, ithalat, ihracat, şirket satın alma, vb. kapsamında ödemeler<br>07: Bireysel Ödeme: Özel amaçlı (aile bireylerine, hediye, bağış, borç, alışveriş vs.) ödemeler<br>08: Yatırım: Mevduat, menkul kıymet, döviz, gayrı menkul, taşıt, varlık alımı, temettü ödeme, tahsilat vb. gibi yatırım amaçlı ödemeler<br>09: Finansal: Kredi, depo, repo, türev, finansal varlık alım/satımı vb. ödemeler<br>10: Eğitim ödemesi<br>11: Aidat ödemesi<br>12: Diğer |
 | TR.OHVPS.DataCode.IslemTuru | Hesap hareketleri (işlemler) sorgusunda dönülen İşlem Türü (islTur) parametresi aşağıdaki değerlerden birini alabilir:<br>HAVALE<br>EFT<br>FAST<br>PARA_YATIRMA<br>PARA_CEKME<br>YABANCI_PARA_HAVALE<br>YATIRIM_HESABINA_AKTARIM<br>YATIRIM_HESABINDAN_AKTARIM<br>KURUM_FATURA_ODEMESI<br>CEK<br>SENET<br>SIGORTA_ODEMESI<br>UCRET_KOMISYON_FAIZ<br>SGK_ODEMESI<br>VERGI_ODEMESI<br>DOVIZ_ALIM<br>DOVIZ_SATIM<br>KREDI_ODEMESI<br>KREDI_KULLANIM<br>KK_ODEMESI<br>KK_NAKIT_AVANS<br>SANS_OYUNU<br>UYE_ISYERI_ISLEMLERI<br>HGS_OGS_ISLEMLERI<br>DOGRUDAN_BORCLANDIRMA_SISTEMI<br>DIGER<br>|
-| TR.OHVPS.DataCode.IzinTur | 01: Temel Hesap Bilgisi<br>02: Ayrıntılı Hesap Bilgisi<br>03: Bakiye Bilgisi<br>04: Temel İşlem (Hesap Hareketleri) Bilgisi<br>05: Ayrıntılı İşlem Bilgisi<br>06: Anlık Bakiye Bildirimi|
+| TR.OHVPS.DataCode.IzinTur | 01: Temel Hesap Bilgisi<br>02: Ayrıntılı Hesap Bilgisi<br>03: Bakiye Bilgisi<br>04: Temel İşlem (Hesap Hareketleri) Bilgisi<br>05: Ayrıntılı İşlem Bilgisi<br>06: Anlık Bakiye Bildirimi<br>07: Temel Kart Bilgisi<br>08: Detaylı Kart Bilgisi<br>09: Ayrıntılı Kart İşlem Bilgisi|
 | TR.OHVPS.DataCode.KareKodAksTur | Karekod Akış Türü Karekod ödemesinin hangi akışla gerçekleştirildiğini gösterir.<br> 01: FAST katılımcısından dinamik doğrulamalı hizmet alınan işyeri ödemesi<br>02: FAST katılımcısından statik doğrulamalı işyeri ödemesi<br>03: Kişiden kişiye ödemeler |
-| TR.OHVPS.DataCode.KaynakTip | HESAP_BILGISI_RIZASI<br> ODEME_EMRI_RIZASI <br> ODEME_EMRI <br> ILERI_TARIHLI_ODEME_EMRI_RIZASI <br> ILERI_TARIHLI_ODEME_EMRI <br> DUZENLI_ODEME_EMRI_RIZASI <br> BAKIYE <br>  COKLU_ISLEM_TALEBI <br>  HHS <br>  YOS |
+| TR.OHVPS.DataCode.KaynakTip | HESAP_BILGISI_RIZASI<br> ODEME_EMRI_RIZASI <br> ODEME_EMRI <br> ILERI_TARIHLI_ODEME_EMRI_RIZASI <br> ILERI_TARIHLI_ODEME_EMRI <br> DUZENLI_ODEME_EMRI_RIZASI <br> BAKIYE <br>  COKLU_ISLEM_TALEBI <br>  HHS <br>  YOS <br> KART_BILGILERI |
 | TR.OHVPS.DataCode.KimlikTur | Kod, Tip, Format<br>K , TCKN , N11<br>M , MNO , AN1..30 (HHS’ye özel bireysel veya kurum müşteri numarası)<br>Y , YKN , N11<br>P , PNO , AN7..9 |
 | TR.OHVPS.DataCode.KolasHspTur | Hesabın bireysel veya ticari nitelikte olduğunu belirtir:<br>B: Bireysel<br>T: Ticari |
 | TR.OHVPS.DataCode.KolasTur | Müşterinin sorgulama istediği Kolay Adres Tipi değeridir. Alabileceği değerler BKM “Kolay Adresleme Sistemi Uygulama Kuralları” belgesinde tanımlıdır:<br>T: Telefon Numarası<br>E: E-Posta<br>K: TCKN<br>V: VKN<br>Y: YKN<br>P: Pasaport Numarası |
@@ -42,8 +42,13 @@ Açık Bankacılık simülatör uygulaması üzerinde swagger dökümanlarının
 | TR.OHVPS.DataCode.VarYok | 0 : Kayıt Yok <br> 1 : Kayıt Var |
 | TR.OHVPS.DataCode.YetTip | Alabileceği değerlere göre hangi belirtecin döneceğine karar verilir.<br>yet_kod<br>yenileme_belirteci |
 | TR.OHVPS.DataCode.ZmnAralik | 0 : Kayıt Yok <br>1 : 0-2 saat<br>2 : 2 saat 1 dakika-24 saat<br> 3 : 1-3 gün <br> 4 : 4-15 gün	<br> 5 : 16 gün ve üstü |
-| TR.OHVPS.DataCode.HizmetTipi | 01:  Ayrık GKD <br>02 : İleri Tarihli Ödeme<br>03 : Düzenli Ödeme|
-| TR.OHVPS.DataCode.OdemePeriyodu | G:  Günlük <br>H : Haftalık<br>A : Aylık<br>D : Diğer|
+| TR.OHVPS.DataCode.HizmetTipi | 01 :  Ayrık GKD <br>02 : İleri Tarihli Ödeme<br>03 : Düzenli Ödeme|
+| TR.OHVPS.DataCode.OdemePeriyodu | G :  Günlük <br>H : Haftalık<br>A : Aylık<br>D : Diğer|
+| TR.OHVPS.DataCode.KartTip | B : Banka Kartı <br>K : Kredi Kartı<br>P : Ön Ödemeli(Prepaid) Kart|
+| TR.OHVPS.DataCode.AltKartTip | A : Asıl <br>D : Dijital<br>E : Ek Kart<br>S : Sanal Kart|
+| TR.OHVPS.DataCode.KartStatu | A : Açık/Aktif <br>P : Pasif<br>I : İptal
+| TR.OHVPS.DataCode.IslemPuanDurumu | 01 : Puan Kazanımı <br>02: Puan Kullanımı
+
 
 
 

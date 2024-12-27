@@ -1,4 +1,4 @@
-# 7.	Hesap Bilgisi Hizmeti <!-- omit in toc -->
+# 9.	Hesap Bilgisi Hizmeti <!-- omit in toc -->
 <!--
 - [Genel Bilgiler](#genel-bilgiler)
 - [Hesap Bilgisi Hizmeti İçin Erişim Adresleri](#hesap-bilgisi-hizmeti-icin-erisim-adresleri)
@@ -18,6 +18,9 @@
 
 ## Genel Bilgiler
 
+[**Bu dokümanda belirtilen "Hesap Bilgisi Hizmeti" ibaresi hem hesap hem de kart rıza süreçlerini kapsamaktadır.**]()
+
+
 Hesap bilgisi sorgulama için HBHS tarafından müşteri rızası tesisinin HHS tamamlanmış olması gerekir. Müşteri rızası tesisi tamamlandıktan sonra, HBHS sorgulamak istediği hesaba ait verileri ilgili erişim adresi üzerinden sorgular.
 
 
@@ -25,7 +28,7 @@ Hesap bilgisi sorgulama için HBHS tarafından müşteri rızası tesisinin HHS 
 ![Şekil 10: Hesap Bilgisi Hizmeti Üst Düzey Akışı ](./images/HesapBilgisiHizmetiUstDuzeyAkisi.png)
 -->
 
-<img src="./images/HesapBilgisiHizmetiUstDuzeyAkisi.png" width="50%" >
+<img src="./images/HesapBilgisiHizmetiUstDuzeyAkisi2.png" width="50%" >
 
 
 Şekil 10: Hesap Bilgisi Hizmeti Üst Düzey Akışı
@@ -36,34 +39,32 @@ Hesap bilgisi sorgulama için HBHS tarafından müşteri rızası tesisinin HHS 
 
 **1.	Hesap Bilgisi müşteri rızasının hazırlanması:**
 
-HBHS, “hesap bilgilerine erişim” için müşteri rızası tesisi amacıyla HHS’deki hesap bilgisi rızası erişim adresine bir POST isteğinde bulunur ve bir hesap bilgisi rızası nesnesi oluşturur. HHS hesap bilgisi rızası nesnesi için biricik tanımlayacı döner (RızaNo). Hesap bilgisi rızası, müşterinin HBHS’nin hesap bilgilerine erişim izin verdiği alanları içerir:
+HBHS, “hesap/kart bilgilerine erişim” için müşteri rızası tesisi amacıyla HHS’deki hesap bilgisi rızası erişim adresine bir POST isteğinde bulunur ve bir hesap bilgisi rızası nesnesi oluşturur. HHS hesap bilgisi rızası nesnesi için biricik tanımlayacı döner (RızaNo). Hesap bilgisi rızası, müşterinin HBHS’nin hesap/kart bilgilerine erişim izin verdiği alanları için 9.1 ADIM 1: Hesap Bilgisi Rızasının Hazırlanması başlığında incelenebilir.
 
-  - İzinler - erişim için izin verilen veri kümelerinin listesi.
-  - Erişimin Geçerli Olduğu Son Tarih - HBHS'nin müşterinin hesap bilgilerine erişebileceği isteğe bağlı seçilebilen son tarih.
-  - İşlem Sorgulama Başlangıç Zamanı – Müşteri rızasının tesisinden itibaren geriye dönük olarak HBHS’nin hesap bilgilerine erişebileceği süreyi
-  - İşlem Sorgulama Bitiş Zamanı - Müşteri rızasının tesisinden itibaren ileriye dönük olarak HBHS’nin hesap bilgilerine erişebileceği süreyi
 
 **2.	Hesap bilgisi hizmeti müşteri rızasının tesisi:** 
 
 HHS, Hesap Bilgisi Rızası servisi ile ÖHK özelinde “Yetki bekleniyor” statüsünde bir rıza nesnesi hazırlar. HHS, GKD’nin başarıyla tamamlanması sonrasında hesap bilgisi rızası nesnesinin yetkilendirildiğini belirtmek için Rıza Durumunu “Rıza Yetkilendirildi” olarak günceller. Nesne yetkilendirildikten sonra HHS nesne ile bir erişim belirteci (access token) ilişkilendirir, Rıza Durumunu “Yetki Kullanıldı” yapar ve bu belirteci HBHS’ye geri döner.  Böylece müşteri rıza tesisi sağlanmış olur.
 
-Hesap bilgisi için müşteri rızasına ilişkin temel ilkeler şunlardır:
+Hesap bilgisi rızasına ilişkin temel ilkeler şunlardır:
 
 - 1 ÖHK'nın 1 YÖS için 1HHS'de Yetki Bekleniyor, Yetkilendirildi, Yetki Kullanıldı statüsünde 1 rızası olabilir. 
 - Müşteri rızasının ayrıntıları ÖHK ile HBHS arasında belirlenir. Bu nedenle müşteri rızasının ayrıntıları HHS ekranında değiştirilmemelidir. 
-- ÖHK, hesap erişim izni ayrıntılarını yalnızca bir bütün olarak yetkilendirebilir veya geri alabilir.
-- Müşteri rızası tesisi esnasında, müşteri HHS arayüzünde erişim için yetkilendirecek hesapları seçer. 
+- ÖHK, hesap ve kart erişim izni ayrıntılarını yalnızca bir bütün olarak yetkilendirebilir veya geri alabilir.
+- Müşteri rızası tesisi esnasında, müşteri HHS arayüzünde erişim için yetkilendirecek hesapları ve kartları seçer. 
 - Ödeme Sistemine doğrudan katılımcı olmayan HHS'ler, müşterilerine IBAN hizmeti sunmayabildikleri için hesap referansı ile akışlarını kurgulayabilirler. YÖS önyüzlerinde yapılan bilgilendirmelerde, IBAN harici hesap referansı ile işlem yapılabilmesine dikkat edilmelidir.  
 
 **2.1	Hesap bilgisi rızasının sorgulanması:** Müşteri rızası **GET/hesap-bilgisi-rizasi/{RizaNo}** çağrısı yapılarak sorgulanır.
 
 **2.2	Hesap bilgisi müşteri rızasının iptali:** Müşteri rızası **DELETE/hesap-bilgisi-rizasi/{RizaNo}** çağrısı yapılarak iptal edilir.
 
-**3.	Hesap bilgilerinin alınması:** Hesap bilgileri ilgili kaynağa (hesaplar, bakiye, işlemler) GET isteği yapılarak gerçekleştirilir. HBHS, müşteri rızasının tesisinden sonrasında (geçerli bir erişim belirticine sahip olduğunda) öncelikle **GET/hesaplar** çağrısı yapacaktır.
+**3.1	Hesap bilgilerinin alınması:** Hesap bilgileri ilgili kaynağa (hesaplar, bakiye, işlemler) GET isteği yapılarak gerçekleştirilir. HBHS, müşteri rızasının tesisinden sonrasında (geçerli bir erişim belirticine sahip olduğunda) öncelikle **GET/hesaplar** çağrısı yapacaktır.
 
 Nezdinde ödeme hesabı bulunduran hesap hizmeti sağlayıcılar(Banka, EPK, Ödeme Kuruluşları) müşterilerine ait hesapları hesap referansı ya da hesap numarası üzerinden takip etmektedir. YÖS'lerin HBH servisleri için hesap referansı veya hesap numarası üzerinden işlem yapılabileceğini bilmeleri, sistemlerini API dokümanında belirtilen akışlara göre uyumlandırmaları ve müşteri bilgilendirmesini (önyüzlerinde hesap no ve hesap referansı ayrımını gözeterek) buna paralel yapmaları beklenmektedir.  
 
-## Hesap Bilgisi Hizmeti İçin Erişim Adresleri
+**3.2	Kart bilgilerinin alınması:**  Kart bilgileri ilgili kaynağa (kartlar, kart detayı, kart hareketleri) GET isteği yapılarak gerçekleştirilir. HBHS, müşteri rızasının tesisinden sonrasında (geçerli bir erişim belirticine sahip olduğunda) öncelikle **GET/kartlar** çağrısı yapacaktır.
+
+## Hesap/Kart Bilgisi Hizmeti İçin Erişim Adresleri
 
 **Etki Alanı (Scope) =“hesap_bilgisi”**
 
@@ -78,18 +79,24 @@ Nezdinde ödeme hesabı bulunduran hesap hizmeti sağlayıcılar(Banka, EPK, Öd
 | 3.3 |bakiye  |GET |/hesaplar/{hspRef}/bakiye | Z |İstemci Kimlik Bilgileri ve Yetkilendirme Kodu (GKD) |  |  | |BakiyeBilgileri(tek  hesap) |
 | 3.4 |bakiye  |GET |/bakiye | Z |İstemci Kimlik Bilgileri ve Yetkilendirme Kodu (GKD) |  |Sayfalama  | |BakiyeBilgileri(birden çok hesap) |
 | 3.5 |islemler  |GET |/hesaplar/{hspRef}/işlemler | Z |İstemci Kimlik Bilgileri ve Yetkilendirme Kodu (GKD) |  |Sayfalama Filtreleme  | |IslemBilgileri (tek hesap) |
+| 4 | kartlar |GET |/kartlar | Z |İstemci Kimlik Bilgileri ve Yetkilendirme Kodu (GKD) | | | | KartBilgileri|
+| 4.1 | kart-detay |GET |/kartlar/{kartRef}/kart-detay | Z |İstemci Kimlik Bilgileri ve Yetkilendirme Kodu (GKD) | | | | KartDetayBilgileri|
+| 4.2 | kart-hareketleri |GET |/kartlar/{kartRef}/kart-hareketleri | Z |İstemci Kimlik Bilgileri ve Yetkilendirme Kodu (GKD) | | Sayfalama | | KartHareketleri|
 
-**Tablo 11: Hesap Bilgisi Hizmeti İçin Erişim Adresleri**
-
-
-## ADIM 0: ÖHK'nın hesap bilgilerine erişim için talepte bulunması:
-
-ÖHK, HBHS uygulamasında (web arayüzü/mobil uygulama) hesap bilgilerine erişim için talepte bulunur.
+**Tablo 11: Hesap/Kart Bilgisi Hizmeti İçin Erişim Adresleri**
 
 
-## 7.1 ADIM 1: Hesap Bilgisi Rızasının Hazırlanması 
+## ADIM 0: ÖHK'nın hesap/kart bilgilerine erişim için talepte bulunması:
 
-Bu API çağrısı HBHS'nin HHS'de yeni bir “HesapBilgisiRizasi” nesnesi oluşturmasını ve nesneye erişmek için benzersiz bir rıza numarası ({RizaNo}) dönülmesini sağlar. 
+ÖHK, HBHS uygulamasında (web arayüzü/mobil uygulama) hesap/kart bilgilerine erişim için talepte bulunur.
+
+
+## 9.1 ADIM 1: Hesap Bilgisi Rızasının Hazırlanması 
+
+**Bu dokümanda belirtilen hesap bilgisi hizmeti ibaresi hem hesap hem de kart rıza süreçlerini kapsamaktadır.**
+
+
+Bu API çağrısı HBHS'nin HHS'de yeni bir “HesapBilgisiRizasi” nesnesi oluşturmasını ve nesneye erişmek için benzersiz bir rıza numarası ({rizaNo}) dönülmesini sağlar. 
 
 API çağrısının başarıyla sonuçlanması için HBHS'nin istemci kimlik bilgileri yetkisi kullanması yeterlidir. 
 Başarıyla oluşturulan hesap bilgisi rıza kaynağının rıza durumu “Yetki Bekleniyor” olarak düzenlenir.
@@ -97,27 +104,28 @@ Başarıyla oluşturulan hesap bilgisi rıza kaynağının rıza durumu “Yetki
 <!---
 ![Şekil 11: Hesap Bilgisi Müşteri Rızasının Hazırlanması](./images/HesapBilgisiMusteriRizasininHazirlanmasi.png)
 -->
-<img src="./images/HesapBilgisiMusteriRizasininHazirlanmasi.png" width="80%" >
+<img src="./images/HesapBilgisiMusteriRizasininHazirlanmasi2.png" width="80%" >
 
-**Şekil 11: Hesap Bilgisi Müşteri Rızasının Hazırlanması**
-
-- Sürüm 1.1.0 için POST /hesap-bilgisi-rizasi isteğinde 06- Anlık Bakiye Bildirimi izin türü için YÖS’ün BAKİYE kaynak tipinde olay abonelik kaydının olması gerekmektedir. BAKİYE kaynak tipinde olay abonelik kaydı olmayan YÖS kurumu ; sürüm 1.1.0 için 06 izin türünü kapsayan Hesap Bilgisi Rızası isteği gönderdiğinde HHS tarafından **TR.OHVPS.Business.EventSubscriptionNotFound** hatası verilmeli ve rıza oluşturulmamalıdır.
+**Şekil 11: Hesap/Kart Bilgisi Müşteri Rızasının Hazırlanması**
 
 - POST /hesap-bilgisi-rizasi isteğinin (REQUEST) gövdesinde (BODY)  “HesapBilgisiRizasıIstegi” nesnesi (Tablo-12) kullanılır. İstek başarıyla sonuçlanırsa HHS kaynak sunucusunda “HesapBilgisiRizasi” (Tablo-13) nesnesi oluşturulur.
 
-### **POST /hesap-bilgisi-rizasi**
+
+### **POST /hesap-bilgisi-rizasi**<br>
+
+<br>**Bu dokümanda belirtilen hesap bilgisi rızası ibaresi hem hesap hem de kart rıza süreçlerini kapsamaktadır.**
 
 ### Başarılı İstek:
 
 İSTEK:
 
 HBHS, bu API erişim adresinden HHS’ye yeni bir HesapBilgisiRizasi oluşturulması için istekte bulunur:
--	HBHS, ÖHK’nın hesap bilgilerine yönelik rıza başlatma isteği olduğunu HHS’ye bildirir.
+-	HBHS, ÖHK’nın hesap/kart bilgilerine yönelik rıza başlatma isteği olduğunu HHS’ye bildirir.
 -	HBHS, ÖHK’nın, HBHS arayüzünden verdiği rızanın (“Ön Onay”) bir kopyasının HHS nezdinde müşteri tarafından onaylanması için HHS’ye gönderilmesini sağlar.
 -	HHS; istek mesajında yer alan alanların API dökümanında belirtilen şartları sağlayacak şekilde zorunluluk ve uzunluk kontrollerini yapar. (Zorunlu)
 -	HHS; YÖS API ile alınan HBHS bilgilerinin içerisinde yer alan yönlendirme adresleri ile hesap bilgisi rızası nesnesi request mesajında paylaşılan adreslerin uyumlu olup olmadığının kontrollerini yapar. (Zorunlu)  
 -	HHS; kimlik bilgileri nesnesinde iletilen kimlik bilgileri ile ÖHK’nın HHS müşterisi olup olmadığının kontrollerini yapar. Bu kontrol hem bireysel hem de kurumsal ÖHK’lar için yapılmalıdır.  (Zorunlu)
--	Erişimin Geçerli Olduğu Son Tarih, İşlem Sorgulama Başlangıç Zamanı, İşlem Sorgulama Bitiş Zamanı alanları ile ilgili Tablo 12’de belirtilen kontroller yapılmalıdır. (Zorunlu)
+-	Erişimin Geçerli Olduğu Son Tarih, İşlem Sorgulama Başlangıç Zamanı, İşlem Sorgulama Bitiş Zamanı alanları ile ilgili Tablo 12’de belirtilen kontroller yapılmalıdır. (Zorunlu) İşlem sorgulama başlangıç ve bitiş zaman değerleri sadece hesap bilgisi için geçerlidir. Kart bilgisi için geçerli değildir.
 -	HHS, benzersiz “RizaNo” ile “HesapBilgisiRizasi” nesnesi oluşturur ve HBHS’ye döner.
 -	HHS, HesapBilgisiRizasi oluşturduğu anda durumunu “Yetki Bekleniyor” olarak düzenler.
 
@@ -152,7 +160,7 @@ Bugün + 3 Ay : 15.10.2022 00:00:00 (14.10.2022 tüm gün dahildir.)<br><br>
 | > Kurum Kimlik Türü | krmKmlkTur | AN1 | K | ÖHK’nın altında tanımlı olduğu tüzel kişilik için kullanılan kurum kimlik türüdür. <br>TR.OHVPS.DataCode.KurumKimlikTur sıralı veri türü değerlerinden birini alır. |  |
 | > Kurum Kimlik Verisi | krmKmlkVrs | AN1..30 | K | ÖHK’nın altında tanımlı olduğu tüzel kişilik için kullanılan kurum kimlik verisidir. <br>TR.OHVPS.DataCode.KurumKimlikTur değerine göre uzunluk ve formatı değişir. |  |
 | > Ödeme Hizmeti Kullanıcısı Türü | ohkTur | AN1 | Z | TR.OHVPS.DataCode.OhkTur sıralı veri türü değerlerinden birini alır (B: Bireysel, K:Kurumsal) |  |
-| Hesap Bilgisi | hspBlg | Kompleks: HesapBilgisi | Z |  |  |
+| Hesap/Kart Bilgisi | hspBlg | Kompleks: HesapBilgisi | Z |  |  |
 | >İzin Bilgisi | iznBlg | Kompleks: IzinBilgisi | Z |  |  |
 | >> İzin Türü | iznTur | Array[AN2] | Z | ÖHK tarafından HHS önyüzünde belirlenen izin tipleridir. Bir istekte birden fazla değer bulunabilir, TR.OHVPS.DataCode.IzinTur sıralı veri türü değerlerinden birini alır.  |  |
 | >> Erişimin Geçerli Olduğu Son Tarih |erisimIzniSonTrh | ISODateTime | Z | Hesap bilgisi rızasının geçerli olduğu son tarih. <br> Müşteri YÖS ekranından bu değeri belirleyebilir. Bireysel müşteriler için rıza süresi 6 ay, Kurumsal/Tüzel müşteriler için 12 ay olacaktır.<br> <br> Bireysel Müşteriler için varsayılan değer : Rıza verilen tarih + 6 ay <br> Kurumsal Müşteriler için varsayılan değer : Rıza verilen tarih + 12 ay<br> Bireysel Müşteriler için alabileceği maksimum değer : Rıza tarihi + 6 ay <br>Kurumsal Müşteriler için alabileceği maksimum değer : Rıza tarihi + 12 ay <br>  Müşteri bağımsız alabileceği minimum değer : Rıza tarihi + 1 gün <br><br> **Örneğin** 04/02/2023’de minimum 05/02/2023 seçilebilir. Bu durumda yeni günün başlangıç saati 00:00:00 olduğu kabul edildiği için; erisimIzniSonTrh değeri 2023-02-06T00:00:00+03:00 olmalıdır. **HHS rıza onay ekranlarında YÖS'ten iletilen erişim izni son tarihi yeni günün başlangıç saati olarak iletildiğinden ÖHK'ya gösterilecek tarih erişim izninin biteceği gün olarak gösterilmelidir.** Örneğe istinaden; ÖHK YÖS’de 05/02/2023 seçmiş ise HHS rıza onay ekranında 06/02/2023 görmemeli, bu iki tarihin aynı, yani 05/02/2023 olacak şekilde gösterilmesi gerekmektedir.   <br><br> **Örnek rıza oluş zamanı** : 2023-02-04T21:20:20+03:00 <br> **1 günlük rıza verildiğinde erisimIzniSonTrh değeri:**   2023-02-06T00:00:00+03:00 (26 saat 40 sakikalık rıza vermiş oluyor.) <br> **7 günlük rıza verildiğinde erisimIzniSonTrh değeri:** 2023-02-12T00:00:00+03:00 <br> **1 aylık rıza verildiğinde erisimIzniSonTrh değeri :**  2023-03-05-T00:00:00+03:00  | Bu alanda bir değer bulunmadığı durumda HHS hata dönmelidir. |
@@ -190,7 +198,7 @@ Bugün + 3 Ay : 15.10.2022 00:00:00 (14.10.2022 tüm gün dahildir.)<br><br>
 | >> OHK Tanım Değer	| ohkTanimDeger  | AN1..30  | K   |ÖHK'nın HHS uygulaması tarafından tanınmasını sağlayacak tanım değeridir. ohkTanimTip'i ile uyumlu değerdir.  İstek içerisindeki veri değiştirilmeden iletilir.|   
 |> HHS Yönlenme Adresi |	hhsYonAdr	|AN1..1024|	K| Yönlendirmeli akış türünde	GKD doğrulama bilgilerinin girilebilmesi için uygulamadan açılacak yönlendirme sayfasının adresi. Ayrık GKD akışında bu alan dönülmemelidir. |
 |> Yetkilendirme Tamamlanma Zamanı |	yetTmmZmn	|ISODateTime	|Z	|Yetkilendirme akışının tamamlanması gereken son zamanı gösterir.  HHS tarafından maksimum 5 dk içinde işlem tamamlanacak şekil zaman damgası oluşturulur. Zaman aşımı olduğunda HHS’nin GKD’ye izin vermeyecek şekilde hata mesajı vermesi gerekmektedir.<br>Rıza durumu Yetkilendirildi statüsüne geçene kadarki süredir.|
-|Hesap Bilgisi|	hspBlg|	Kompleks: HesapBilgisi|	Z| |
+|Hesap/Kart Bilgisi|	hspBlg|	Kompleks: HesapBilgisi|	Z| |
 |> İzin Bilgisi|	iznBlg|	Kompleks: IzinBilgisi|	Z| |
 |>> İzin Türü|	iznTur|	Array[AN2]|	Z|	ÖHK tarafından HBHS önyüzünde belirlenen izin tipleridir. Bir istekte birden fazla değer bulunabilir, TR.OHVPS.DataCode.IzinTur sıralı veri türü değerlerinden birini alır.|
 |>> Erişimin Geçerli Olduğu Son Tarih	|erisimIzniSonTrh	|ISODateTime|	Z	|Hesap bilgisi rızasının geçerli olduğu son tarih|
@@ -201,24 +209,33 @@ Bugün + 3 Ay : 15.10.2022 00:00:00 (14.10.2022 tüm gün dahildir.)<br><br>
 
 ## İzinler
 
-Bir hesap bilgisi müşteri rızası kaynağı çağrısına yanıt olarak döndürülen verileri sınırlamak için izin kodları kullanılır:
+Bir hesap bilgisi rızası kaynağı çağrısına yanıt olarak döndürülen verileri sınırlamak için izin kodları kullanılır.
+
+**Hesap ve karta dair tüm bilgiler hesap bilgisi rızası altında alınacaktır. İzin türleri hesap ve karta göre ayrışmaktadır.**
+
 -	Temel Hesap Bilgisi 
 -	Ayrıntılı Hesap Bilgisi 
 -	Bakiye Bilgisi 
 -	Temel İşlem (Hesap Hareketleri) Bilgisi 
 -	Ayrıntılı İşlem Bilgisi
 - Anlık Bakiye Bildirimi
+- Temel Kart Bilgisi
+- Detaylı Kart Bilgisi
+- Ayrıntılı Kart İşlem Bilgisi
 
 ÖHK’ya sunulacak seçimler ve kuralları aşağıdaki gibi olmalıdır.
 
 | Seçim | Kural | 
 | --- | --- |  
-| Temel Hesap Bilgisi | 	ÖHK seçimine sunulmamalıdır. Değiştirilemez şekilde seçili gösterilmelidir.  |  
+| Temel Hesap Bilgisi | 	ÖHK seçim yapabilir. Temel Kart Bilgisi seçilmediyse bu izin türünün seçimi zorunludur.  |  
 | Ayrıntılı Hesap Bilgisi	 | ÖHK seçim yapabilir. | 
 | Bakiye Bilgisi | ÖHK seçim yapabilir. |
 | Temel İşlem (Hesap Hareketleri)  Bilgisi  | ÖHK seçim yapabilir. |  
 | Ayrıntılı İşlem Bilgisi	 | ÖHK seçim yapabilir. Ayrıntılı İşlem Bilgisi seçimi Temel İşlem Bilgisi seçimini kapsar. (Ayrıntılı İşlem bilgisi seçildiğinde Temel İşlem Bilgisi de seçili olmalıdır.)|  
 | Anlık Bakiye Bildirimi  | Bakiye Bilgisi izin türü ile birlikte seçilmesi gereklidir. ÖHK, HHS'de olacak bakiye değişikliklerinden anlık haberdar olmak istiyor ise bu izin türü seçimi ile rıza başlatması gereklidir.|  
+| Temel Kart Bilgisi | 	ÖHK seçim yapabilir. Temel Hesap Bilgisi seçilmediyse bu izin türünün seçimi zorunludur.  |  
+| Detaylı Kart Bilgisi | ÖHK seçim yapabilir.   |  
+| Ayrıntılı Kart İşlem Bilgisi | ÖHK seçim yapabilir. |  
 
 
 Aşağıdaki durumlarda, izin kombinasyonlarına izin verilmez. HHS, bu hesap erişim onaylarını 400 (Hatalı İstek) yanıt koduyla reddetmelidir:
@@ -227,15 +244,15 @@ Aşağıdaki durumlarda, izin kombinasyonlarına izin verilmez. HHS, bu hesap er
 - İzin dizisinde HHS tarafından desteklenmeyen bir izin kodunun yer alması durumu
  
 
-## 7.2 ADIM 2: Hesap Bilgisi Hizmeti Rızasının Tesisi
+## 9.2 ADIM 2: Hesap Bilgisi Hizmeti Rızasının Tesisi
 <!--
 ![Şekil 12: Hesap Bilgisi Müşteri Rızasının Tesisi](./images/HesapBilgisiMusteriRizasininTesisi.png)
 -->
-<img src="./images/HesapBilgisiMusteriRizasininTesisi.png" width="80%" >
+<img src="./images/HesapBilgisiMusteriRizasininTesisi2.png" width="80%" >
 
 **Şekil 12: Hesap Bilgisi ÖHK Rızasının Tesisi**
 
-Rıza tesisinin başarıyla sonuçlanması için HBHS'nin istemci kimlik bilgileri yetkisi kullanması ve ardından müşterinin HHS tarafından yönlendirmeli veya ayrık GKD ile doğrulanması gerekir. HHS'de oluşturulan ve rıza durumu “Yetki Bekleniyor” olan bir hesap bilgisi rızası, GKD sonrası “Yetkilendirildi” statüsüne güncellenir. HBHS, erişim sağlayacağı hesapları hesap bilgisi rızasının tesisinden önce seçer. 
+Rıza tesisinin başarıyla sonuçlanması için HBHS'nin istemci kimlik bilgileri yetkisi kullanması ve ardından müşterinin HHS tarafından yönlendirmeli veya ayrık GKD ile doğrulanması gerekir. HHS'de oluşturulan ve rıza durumu “Yetki Bekleniyor” olan bir hesap bilgisi rızası, GKD sonrası “Yetkilendirildi” statüsüne güncellenir. HBHS, erişim sağlayacağı hesapları ve kartları hesap bilgisi rızasının tesisinden önce seçer. 
 
 -	Yönlendirmeli doğrulama akışında, HBHS ÖHK’yı HHS’ye yönlendirir. 
     - HBHS tarafından yönlendirme, bir önceki adımdaki RizaNo’yu içerir. 
@@ -243,8 +260,8 @@ Rıza tesisinin başarıyla sonuçlanması için HBHS'nin istemci kimlik bilgile
 
           ÖHK’yı doğrularsa,
 
-          - ÖHK HBHS üzerinden işlem yapılmasına izin vereceği hesap seçimini, hesap numarası ya da hesap referansı bilgisi ile yapar. HBHS üzerinden ÖHK’nın verdiği izin bilgilerini ve erişim izninin bitiş tarihi bilgilerini, HHS bilgilendirme amaçlı ÖHK’ya gösterir.  
-          - HHS hesap bilgisiri rıza kaynağının durumunu “Yetkilendirildi” olarak günceller. 
+          - ÖHK HBHS üzerinden işlem yapılmasına izin vereceği hesap/kart seçimini yapar. HBHS üzerinden ÖHK’nın verdiği izin bilgilerini ve erişim izninin başlangıç/bitiş tarihi bilgilerini, HHS'ler bilgilendirme amaçlı ÖHK’ya gösterir.  
+          - HHS hesap bilgisi rıza kaynağının durumunu “Yetkilendirildi” olarak günceller. 
           - HHS, ÖHK’yı “olumlu yönlendirme akışı” ile HBHS tarafından tanımlanan yönlendirme adresine yönlendirir:  
 
                 yonAdr?rizaDrm=Y&yetKod=xx&rizaNo=yy&rizaTip=H&drmKod=zzz
@@ -268,9 +285,9 @@ Başarılı GKD sonrasında (rizaDrm=’Y’) ilgili rıza nesnesi için (belirl
 
 Erişim belirteci alındıktan sonra; HHS,  hesap bilgisi rızasının durumunu “Yetki Kullanıldı” olarak günceller. Rıza tesisi sağlanmış olur.
 
-## 7.3 ADIM 2.1: Hesap Bilgisi Rızasının Sorgulanması 
+## 9.3 ADIM 2.1: Hesap Bilgisi Rızasının Sorgulanması 
 
-**GET /hesap-bilgisi-rizasi/{RizaNo}**  
+**GET /hesap-bilgisi-rizasi/{rizaNo}**  
 
 ÖHK, HHS üzerinden rıza iptali yapmış olabilir veya ÖHK’nın verdiği rıza süresi dolmuş olabilir.  Bu durumlarda HBHS, rıza alma akışına başlamadan önce, daha önce oluşturulmuş bir HesapBilgisiRizasi kaynağının durumunu, isteğe bağlı olarak alabilir.  
 
@@ -284,10 +301,12 @@ HesapBilgisiRizasi kaynağı için kullanılabilecek durum göstergeleri şu şe
 -	Yetki Sonlandırıldı
 -	Yetki İptal
 
-## 7.4 ADIM 2.2: Hesap Bilgisi Rızasının İptali
+- Hesap bilgisi rızası sonlandırıldı ve iptal statüsünde olan rıza'ların güncellenme zamanından(gnclZmn) 6 ay sonrasına kadar sorgulanabilir olması beklenmektedir. HHS'ler ilgili süre sonrasında yapılacak rıza sorgularına TR.OHVPS.Resource.NotFound uyarısı verebilir. YÖS'ler tarafından iptal ve sonlandırıldı statüsünde olan rızalar için sorgulama yapmamalıdır.
+
+## 9.4 ADIM 2.2: Hesap Bilgisi Rızasının İptali
 
 <br>
-<img src="./images/HesapBilgisiMusteriRizasininGeriAlinmasi.png" width="80%" >
+<img src="./images/HesapBilgisiMusteriRizasininGeriAlinmasi2.png" width="80%" >
 <br>
 
 **Şekil 13: Hesap Bilgisi Müşteri Rızasının Geri Alınması**  
@@ -299,7 +318,7 @@ DELETE /hesap-bilgisi-rizasi çağrısı, bir HBHS'nin önceden oluşturulmuş b
 Bu API çağrısı, müşterinin HBHS üzerinden hesap bilgisi rızasını iptal etmesine ve HHS nezdindeki hesap bilgisi rızası nesnesinin silinmesini sağlar.  
 Müşterinin HBHS’nin veri erişim iznini iptal etmesi durumunda HBHS, HHS’de mevcut olan HesapBilgisiRizasi kaynağını pratik olarak mümkün olan en kısa sürede silmelidir. Bu ise, ilgili kaynağa   
 **DELETE /hesap-bilgisi-rizasi/{RizaNo}**  
-çağrısı aracılığı ile yerine getirilir. HBHS ayrıca, sisteminden Hesap Erişim İzni kaynaklarını da temizlemelidir.  
+çağrısı aracılığı ile yerine getirilir. HBHS ayrıca, sisteminden Hesap/Kart Erişim İzni kaynaklarını da temizlemelidir.  
 Söz konusu silme işlemi, kayıtların statüsünün pasife çekilmesi ile gerçekleştirilmelidir. Söz konusu kayıtlar, denetim izlerinin oluşturulması ve saklanmasına ilişkin ikincil düzenleme hükümleri kapsamında güvenli şekilde tutulmalıdır.  
 Servis istek parametresi olarak sadece path’de iletilen Rıza No bilgisine ihtiyaç duymaktadır.   
 ÖHK rızası başarı ile silindiğinde HTTP 204 response kodu ile işlem sonucu iletilir. Rıza tipi “I” yani “Yetki İptal” olarak güncellenir ve gnclZmn zaman damgası vurularak güncellenir.  
@@ -310,7 +329,7 @@ YÖS Adı, HHS adı, Rıza Oluşturma Zamanı, Servis Tipi Bilgisi (HBHS)
 -->
 
 
-## 7.5 ADIM 3: Hesap Bilgilerinin Alınması  
+## 9.5 ADIM 3: Hesap Bilgilerinin Alınması  
 <br>   
 
 <!-- ![Şekil 14: Hesap Bilgilerinin Alınması](./images/HesapBilgilerininAlinmasi.png)   -->
@@ -331,7 +350,7 @@ GET verisinin mantıksal kontrolleri yapılır.
 
 - Kapalı hesap için TR.OHVPS.DataCode.HspDrm veri türünden KAPALI değeri ile, pasif hesap için TR.OHVPS.DataCode.HspDrm veri türünden PASIF değeri ile dönülmelidir. 
 
-## 7.6 ADIM 3.1 ve 3.2: Hesap Bilgilerinin Sorgulanması
+## 9.6 ADIM 3.1 ve 3.2: Hesap Bilgilerinin Sorgulanması
 
 **GET /hesaplar ve GET /hesaplar/{hspRef}**
 
@@ -372,7 +391,7 @@ srlmYon=A
 | Hesap Detay |hspDty | Kompleks: HesapDetay | K | Detay Hesap Bilgileri (Temel Hesap Bilgisine ek olarak Detay Hesap Bilgisi izin türü de seçilmişse Hesap Detay nesnesi koşullu olarak yanıtta bulunur) | 
 |> Açılış Tarihi| hspAclsTrh |	ISODateTime	| Z	| Belirtilen hesabın açılış tarihi.|  
 
-## 7.7 ADIM 3.3 ve 3.4: Hesap Bakiyesinin Sorgulanması  
+## 9.7 ADIM 3.3 ve 3.4: Hesap Bakiyesinin Sorgulanması  
 
 **GET /bakiye ve GET /hesaplar/{hspRef}/bakiye**  
 Bu erişim noktalarından tüm hesapların veya belirli bir hesabın bakiyesi sorgulanır.   
@@ -419,7 +438,7 @@ srlmYon=A
 |>> Kredili Mevduat Hesabı Bakiyesi	|kulKrdTtr	|AN1..24|	Z	|Kredili mevduat tutarı. Kredili bir hesap ise zorunlu. <br> Tutar alanı regex patterni şu şekildedir: '^\d{1,18}$\|^\d{1,18}\\.\d{1,5}$'|
 |>> Kredi Dahil Göstergesi|	krdDhlGstr	|AN1|	Z	|Kredili bir hesap ise zorunlu. Bakiye tutarının kredi tutarı dahil edilerek ya da edilmeden iletildiğini gösterir. <br> 0: Kredi tutarı dahil edilmeden bakiye bilgisi iletilmesi durumu <br> 1: Kredi tutarı dahil edilerek bakiye bilgisi iletilmesi durumu|  
 
-## 7.8 ADIM 3.5 ve 3.6: İşlemlerin Sorgulanması  
+## 9.8 ADIM 3.5 ve 3.6: İşlemlerin Sorgulanması  
 
 **GET /hesaplar/{hspRef}/islemler**  
 
@@ -567,3 +586,128 @@ srlmYon=A
 |>>> Karşı Unvan|	krsUnvan	|AN3..140|	K	|İlgili hesap hareketinin karşı tarafının ad-soyad ya da ticari unvan bilgisi. Unvan bilgisi maskelenmeden iletilmelidir.|
 |>>> Karşı Taraf Kimlik Bilgisi|	krsKimlikVrs	|AN1..11|	İ	|HHS sorumluluğunda YÖS ile paylaşılan Karşı Taraf Kimlik Bilgisi(Kimlik/Kurum Kimlik - TCKN/VKN)|
 
+## 9.9 ADIM 4: Kart Bilgilerinin Sorgulanması 
+
+<img src="./images/KartBilgilerininAlinmasi.png" width="80%" >   
+
+**GET /kartlar**
+
+Bu erişim noktalarından tüm kartların bilgileri sorgulanır ve kart listesi elde edilir. İlgili sorgu için 07 izin türünün verilmesi yeterlidir. Tablo 16’da KartBilgileri nesnesinin içeriği verilmiştir.
+
+Kart Bilgisi Sorgu Örneği (Tüm Kartlar) = /kartlar
+
+Kart bilgileri için herhangi bir istek parametresi bulunmamaktadır.
+
+Kapalı banka ve ön ödemeli kart tipleri YÖS'ler tarafından ÖHK'ya gösterilmeyecektir. Kapalı kredi kart tipi için borç/taksit bilgisi bitene kadar ÖHK'ya gösterilecektir. Borç bilgisi için kart detay veya hareket servisine istek atıldığında borç olmaması durumuna dair hata mesajı HHS tarafından dönülecektir. 
+
+
+**Tablo 16: “KartBilgileri” nesnesi**  
+|Alan Adı |JSON Alan Adı	|Format	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|
+| --- | --- | --- | --- | --- | 
+| Kart Referans Numarası | kartRef | AN5..40 | Z | HHS tarafından her bir kart için atanan biricik değerdir (uuid). Bir kart tek bir kartRef'e karşılık gelmelidir, benzer şekilde bir kartRef tek bir karta karşılık gelmelidir. Aynı kart için alınan tüm rızalarda kart referans bilgisinin değişmemesi gerekmektedir. |
+| Kart Numarası | kartNo | AN15..16 | Z | Karta ait numara maskeli olarak iletilmelidir. Maskeleme kuralı kart'ın ilk 6 ve son 4 hanesi açık olarak görünecek şekilde maskelenmelidir. Sanal kart bilgisi için de ilgili numara maskeli olarak iletilmelidir. Örn: 123456******5678 |
+| Asıl Kart Numarası | asilKartNo | AN15..16 | K | Asıl kartlar için ilgili alan iletilmemelidir. Sanal ve ek kartlar için bağlı oldukları asıl kart numaraları iletilmelidir. Ek karta ait sanal kart için asıl kart numarası olarak ek kart numarası iletilmelidir. |
+| Kart Tipi | kartTipi | AN1 | Z | Kartın tipini belirten değerdir. Kart tipleri olarak alabileceği değerler **TR.OHVPS.DataCode.KartTip** sıralı veri türlerinden biridir. |
+| Alt Kart Tipi| altKartTipi | AN1| Z | Kart Tipleri altında yer alan alt kart tipleridir. Alt kart tipleri olarak alabileceği değerler **TR.OHVPS.DataCode.AltKartTip** sıralı veri türlerinden biridir.<br> Asıl banka kartı, sanal banka kartı, dijital banka kartı, dijital kredi kartı gibi tüm kart tiplerini ayrıştırmak için asıl ve alt kart tipleri kullanılmaktadır. |
+| Kart Türü | kartTuru | AN1 | Z | Kartın ait olduğu müşteri tipini belirten değerdir. <br>**B:Bireysel, T:Ticari** |
+| Kart Statüsü | kartStatu | AN1 | Z | **TR.OHVPS.DataCode.KartStatu** sıralı veri türü değerlerinden birini alır.<br> Kart statüsü için güncelleme yapılamayacak durumda ise iptal statüsü olarak değerlendirilmelidir. Kart statüsü güncellenebilir durumda ise açık ve pasif olarak değerlendirilmelidir. |
+| Kart Sahibi Ad/Soyad | kartSahibi | AN3..140 | Z | Kart sahibi ya da kart sahiplerinin ad-soyadı, ticari unvanı |
+| Kart Ürün Adı | kartUrunAdi | AN3..140 | Z | Kart bilgilerinin ürün adı. Örn : TROY Business Kart |
+| Ekstre Türleri | ekstreTurleri | Kompleks:EkstreTurleri | Z |İlgili karta ait ekstre türleri(TRY, USD, EUR) dizi içerisinde iletilmelidir. Yurtdışı ekstre olan kartlar için TRY haricinde değer dönülmesi gerekmektedir. Ekstre olmadığı halde banka kartı gibi kart tiplerinde TRY olarak iletilmesi gerekmektedir. |
+| Kart Rumuz | kartRumuz | AN3..140 | İ | Kart için rumuz bilgisi var ise gönderilebilir. |
+
+## 9.10 ADIM 4.1: Kart Detay Bilgilerinin Sorgulanması  
+
+**GET /kartlar/{kartRef}/kart-detay**
+
+KartBilgileri nesnesi ile elde edilen kart listesinde yer alan kartların detayı sorgulanır. Detay ile birlikte KartDetayBilgileri nesnesinin içeriği Tablo 18'de verilmiştir. **Alt kart tipi Sanal Kart olanlar için detay bilgisi görüntülenmeyecektir.** Sanal kart özelinde detay bilgi sorgulaması yapılması durumunda HHS tarafından **TR.OHVPS.Business.UnsupportedCardType** hatası verilmelidir.
+
+Kart tipi olarak; kapalı statüsünde olan banka kartı için detay sorgulaması yapılamayacaktır. Kart tipi kredi kartı olup borcu olmayan bir  kart için de kart detay sorgulaması yapılamayacaktır. Detay sorgulaması yapılamayacak bir kart tipi için HHS'ler tarafından **TR.OHVPS.Business.InvalidCardStatus** hatası dönülmelidir.
+
+HHS'ler kart tipi kredi kartı ise ve karta ait borç/taksit tutar bilgisi bulunuyorsa KartDetayBilgileri nesnesi için başarılı yanıt dönmek zorundadır. Borç bilgisi için tutarlar eksi(-) olacak şekilde iletilmesi beklenmektedir.
+
+Kart Detay Bilgisi Sorgu Örneği (Tek Bir Kart) = /kartlar/{kartRef}/kart-detay
+
+Parametre içeren Kart Detay Bilgisi Sorgu Örneği (Tek Bir Kart) =  /kartlar/{kartRef}/kart-detay?ekstreTuru=USD
+
+**Tablo 17: Kart Bilgileri Sorgulama İsteği Sorgu Parametreleri**
+
+|Alan Adı |Parametre Adı	|Format	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|HHS tarafından yapılması gereken kontrol ve işlemler|
+| --- | --- | --- | --- | --- | --- |
+|Ekstre Türü	|ekstreTuru	|AN3|	K |Kart bilgileri yanıtında dönülen ekstre türleri değerlerini almaktadır. Para birimine uygun olarak kart detay bilgileri sorgulanmaktadır. Ekstre parametresi TRY, USD,EUR olarak gönderilebilir. Bu alan gönderilmiyorsa TRY değerlendirilmelidir. İlgili para birimine özel ekstre içindeki harcama değeri dönülecektir. | Ekstre türleri haricinde uygun olmayan bir değer gönderildiğinde hata verilmelidir. Hata mesajı **TR.OHVPS.Business.UnsupportedCurrencyCode** hatası verilmelidir. |
+
+**Tablo 18: “KartDetayBilgileri” nesnesi**  
+|Alan Adı |JSON Alan Adı	|Format	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|Kart Tiplerine İstinaden Detaylı Açıklama	|
+| --- | --- | --- | --- | --- | --- | 
+| Kart Referans Numarası | kartRef | AN5..40 | Z| HHS tarafından her bir kart için atanan biricik değerdir (uuid). Bir kart tek bir kartRef'e karşılık gelmelidir, benzer şekilde bir kartRef tek bir karta karşılık gelmelidir. Aynı kart için alınan tüm rızalarda kart referans bilgisinin değişmemesi gerekmektedir. ||
+| Toplam Kart Limiti | toplamLimit | AN1..24 | K| Karta ait toplam limit bilgisi. Limit tutarı için regex patterni şu şekildedir: '```^\d{1,18}$|^\d{1,18}\.\d{1,5}$```' |Kart tipi kredi kartı ve ön ödemeli kart olanlar için ilgili alanın dönülmesi zorunludur. Kart tipi banka olan kartlar için ilgili alan dönülmemelidir. |
+| Kullanılabilir Kart Limiti | kullanılabilirLimit | AN1..24 | K| Karta ait kullanılabilir limit bilgisi. Limit tutarı için regex patterni şu şekildedir: '``` ^\d{1,18}$|^\d{1,18}\.\d{1,5}$```' |Kart tipi kredi kartı ve ön ödemeli kart olanlar için ilgili alanın dönülmesi zorunludur. Kart tipi banka olan kartlar için ilgili alan dönülmemelidir.|
+| Dönem İçi Hareket Toplamı | donemIcıHareketToplami | AN1..25 | Z | Kart tipi kredi kartı olanlar için ilgili döneme ait hareketlerin toplam tutar bilgisidir. Kart tipi banka ve ön ödemeli kartlar için ilgili dönem içerisinde ay başından itibaren yapılan hareketlerin toplam tutar bilgisi iletilmelidir. Dönem içi hareket toplamı ve kalan ekstre borcunun toplamı ÖHK'ya toplam borç bilgisi olarak gösterilebilir. Tutar için regex patterni şu şekildedir: '```^[\-\+]?\d{1,18}$|^[\-\+]?\d{1,18}\.\d{1,5}$```'| |
+| Ekstre Borcu | ekstreBorcu | AN1..25 | K | İlgili ekstre türüne uygun olarak ekstre borcu iletilmelidir. Borç tutarı için regex patterni şu şekildedir: '```^[\-\+]?\d{1,18}$|^[\-\+]?\d{1,18}\.\d{1,5}$```' |Kart tipi kredi kartı olanlar için ilgili alanın dönülmesi koşulludur. Alt kart tipi ; Asıl ve Dijital olanlar için ilgili alanın dönülmesi zorunludur. Ek kredi kartı için ilgili alan dönülmemelidir. Kart tipi banka ve ön ödemeli kart olan kartlar için ilgili alan dönülmemelidir.|
+| Kalan Ekstre Borcu | kalanEkstreBorcu | AN1..25 |K | İlgili ekstre türüne uygun olarak kalan ekstre borcu iletilmelidir. Borç tutarı için regex patterni şu şekildedir: '```^[\-\+]?\d{1,18}$|^[\-\+]?\d{1,18}\.\d{1,5}$```' |Kart tipi kredi kartı olanlar için ilgili alanın dönülmesi koşulludur. Alt kart tipi ; Asıl ve Dijital kredi kartı için ilgili alanın dönülmesi zorunludur. Ek kredi kartı için ilgili alan dönülmemelidir. Kart tipi banka ve ön ödemeli kart olan kartlar için ilgili alan dönülmemelidir.|
+| Asgari Ödeme Tutarı | asgariOdemeTutari | AN1..24 |K | İlgili ekstre türüne uygun olarak ekstreye ait asgari ödeme tutarı iletilmelidir. Borç tutarı için regex patterni şu şekildedir: '``` ^\d{1,18}$|^\d{1,18}\.\d{1,5}$```' |Kart tipi kredi kartı olanlar için ilgili alanın dönülmesi koşulludur. Alt kart tipi ; Asıl ve Dijital kredi kartı için ilgili alanın dönülmesi zorunludur. Ek kredi kartı için ilgili alan dönülmemelidir. Kart tipi banka ve ön ödemeli kart olan kartlar için ilgili alan dönülmemelidir.|
+|Kalan Asgari Ödeme Tutarı | kalanAsgariOdemeTutari | AN1..24 |K | İlgili ekstre türüne uygun olarak ekstreye ait kalan asgari ödeme tutarı iletilmelidir.  Borç tutarı için regex patterni şu şekildedir: '``` ^\d{1,18}$|^\d{1,18}\.\d{1,5}$```' |Kart tipi kredi kartı olanlar için ilgili alanın dönülmesi koşulludur. Alt kart tipi ; Asıl ve Dijital kredi kartı için ilgili alanın dönülmesi zorunludur. Ek kredi kartı için ilgili alan dönülmemelidir. Kart tipi banka ve ön ödemeli kart olan kartlar için ilgili alan dönülmemelidir.|
+| Hesap Kesim Tarihi | hesapKesimTarihi | ISODate | Z| Karta ait hesap kesim tarihi iletilmelidir. Tarih formatında iletilmelidir. Örn : 2024-12-23 | Kart tipi kredi kartı olanlar için hesap kesim tarihi iletilmelidir. Ek kart için asıl kartın hesap kesim tarihi dönülmelidir. Kart tipi banka ve ön ödemeli kart olan kartlar için sorgulama yapılan ayın son takvim günü dönülmelidir.|
+|Sonraki Hesap Kesim Tarihi | sonrakiHesapKesimTarihi | ISODate | Z| Karta ait sonraki hesap kesim tarihi iletilmelidir. Tarih formatında iletilmelidir. Örn : 2024-11-23 | Kart tipi kredi kartı olanlar için sonraki hesap kesim tarihi iletilmelidir. Ek kart için asıl kartın sonraki hesap kesim tarihi dönülmelidir. Kart tipi banka ve ön ödemeli kart olan kartlar için sorgulama yapılan aydan bir sonraki ayın son takvim günü dönülmelidir|
+| Son Ödeme Tarihi | sonOdemeTarihi | ISODate | K|Kart borcunun ödeneceği son ödeme tarih bilgisi dönülmelidir. Örn : 2024-12-02 |Kart tipi kredi kartı olanlar için ilgili alan dönülmesi zorunludur. Ek kart için asıl kartın son ödeme tarih bilgisi dönülmelidir. Kart tipi banka ve ön ödemeli kart olan kartlar için ilgili alan dönülmemelidir.|
+| Sonraki Son Ödeme Tarihi | sonrakiSonOdemeTarihi | ISODate | K|Bir sonraki döneme ait kart borcunun son ödeme tarih bilgisi dönülmelidir. Örn : 2025-01-04 |Kart tipi kredi kartı olanlar için ilgili alan dönülmesi zorunludur. Ek kart için asıl kartın sonraki son ödeme tarih bilgisi dönülmelidir. Kart tipi banka ve ön ödemeli kart olan kartlar için ilgili alan dönülmemelidir.|
+| Puan Bilgisi | puanBilgisi | Kompleks Alan: PuanBilgisi | | | |
+| > Puan Değeri | puanDegeri | AN1..24 | K | Kart için mevcutta yer alan puan değeri varsa iletilmelidir. HHS özelinde puan değeri puan tipine göre birim olarak tutuluyorsa ilgili değer iletilmelidir. Örn: 100 Plus puan bilgisi varsa puan değeri alanında 100 iletilmelidir. | Tüm kart tipleri için puan bilgisi varsa dönülmelidir. |
+| > Puan Tipi | puanTipi | AN1..50 | K | Puan Tipi olarak HHS özelinde bir puanTipi varsa o bilgi iletilmelidir. Örn: 100 Plus puan bilgisi varsa puan tipi alanında Plus değeri iletilmelidir.  |  Tüm kart tipleri için puan bilgisi varsa dönülmelidir. |
+| Nakit Çekim Limiti | nakitCekimLimiti | AN1..24 |K | Karta ait nakit çekim limit değeri iletilmelidir. Limit tutarı için regex patterni şu şekildedir: '``` ^\d{1,18}$|^\d{1,18}\.\d{1,5}$```'  | Kart tipi kredi kartı olanlar için ilgili alan dönülmesi zorunludur. Kart tipi banka ve ön ödemeli kart olan kartlar için ilgili alan dönülmemelidir.  |
+|Kullanılabilir Nakit Çekim Limiti | kullanilabilirNakitCekimLimiti | AN1..24 |K | Karta ait kullanılabilir nakit çekim limit değeri iletilmelidir. Limit tutarı için regex patterni şu şekildedir: '``` ^\d{1,18}$|^\d{1,18}\.\d{1,5}$```' | Kart tipi kredi kartı olanlar için ilgili alan dönülmesi zorunludur. Kart tipi banka ve ön ödemeli kart olan kartlar için ilgili alan dönülmemelidir. |
+| Kalan Toplam Taksit Tutarı | kalanToplamTaksitTutari | AN1..24 |K | Karta ait tüm kalan taksitlerin toplam değeri iletilmelidir. Taksit tutarı için regex patterni şu şekildedir: '``` ^\d{1,18}$|^\d{1,18}\.\d{1,5}$```' | Kart tipi kredi kartı olanlar için ilgili alan dönülmesi zorunludur. Kart tipi banka ve ön ödemeli kart olan kartlar için ilgili alan dönülmemelidir.  |
+
+
+## 9.11 ADIM 4.2: Kart Hareket Bilgilerinin Sorgulanması  
+
+**GET /kartlar/{kartRef}/kart-hareketleri**
+
+KartBilgileri nesnesi ile elde edilen kart listesinde yer alan kartların işlem/hareket bilgileri sorgulanır. Bir karta ilişkin işlem bilgileri Tablo 19’daki istek parametrelerine göre sorgulanır. Kart hareketleri için KartHareketleri nesnesinin içeriği Tablo 20'de verilmiştir. 
+
+Kart tipi olarak; kapalı statüsünde olan banka kartı için hareket sorgulaması yapılamayacaktır. Kart tipi kredi kartı olup borcu olmayan bir kart için de kart hareket sorgulaması yapılamayacaktır. Hareket sorgulaması yapılamayacak bir kart tipi için HHS'ler tarafından **TR.OHVPS.Business.InvalidCardStatus** hatası dönülmelidir.
+
+HHS'ler kart tipi kredi kartı ise ve karta ait borç/taksit tutar bilgisi bulunuyorsa KartHareketleri nesnesi için başarılı yanıt dönmek zorundadır.
+
+Kart tipi Banka Kartı olanlarda dönem içi olarak sorgulama yapılan aya ait ilgili banka kartı ile yapılan kart hareketleri görüntülenecektir. (Banka kartı ile yapılan Para Çekme/Yatırma, banka kartı ile yapılan POS'tan Alışveriş vb.). Banka kartında dönem değerinin "-1" gönderilmesi durumunda bir önceki aya ait kart hareketleri görüntülenecektir.
+
+Kart hareketleri yanıtında hareket bilgileri işlem tarihinine göre sıralı olarak iletilmelidir. İşlem tarihi en güncel tarihten geriye dönük olacak şekilde listelenmelidir.
+
+Kart hareketlerinde ekstre türleri dışında yapılan bir işlem varsa hangi ekstre türüne dahil edilerek gösteriliyorsa gönderilmelidir. 
+
+Örn: 100 JPY'lik bir harcama işlemi TRY biriminde çevirilip 23 TRY olarak TRY ekstre türünde gösteriliyorsa ilgili işlem için işlem tutarı 23 TRY, orijinal işlem tutarı ise 100 JPY olarak değerlendirilmelidir. 
+
+**Tablo 19: Kart Hareket Bilgileri Sorgulama İsteği Sorgu Parametreleri**
+|Alan Adı |Parametre Adı	|Format	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|HHS tarafından yapılması gereken kontrol ve işlemler|
+| --- | --- | --- | --- | --- | --- |
+|Dönem Değeri | donemDegeri | N3 | Z | Kart hareketlerinin sorgulanacağı döneme ait değerdir.<br><br> Dönem içi : 0<br>Geçmiş Ay/Ekstre : -1 ile -12 arası<br>Taksit : 1 ile 18 arası <br>Provizyon : 99<br><br> Kart tipine göre alabileceği dönem değerleri ise ;<br><br> Banka Kartı : 0 ve -1<br>Kredi Kartı : -12 ile 18 arası ve 99 (Sanal alt kart tipi hariç diğer tüm alt kart tiplerinde bu değerler geçerlidir.) <br>Alt kart tipi sanal kart tipinde ise alabileceği değerler 0 ve 99'dur.<br>Ön Ödemeli Kart : -12 ile 18 arası ve 99  | Kapalı statüsünde olan kart tipleri için geçmişe dönük hareket sorgulaması yapılamayacaktır. Örneğin; Kredi Kartı için -12 ile 18 arası olan dönem değeri kapalı olan kredi kartı için 0 ile 18 arasında yapılabilecektir.<br><br> Tüm kart tipleri için belirtilen dönem değerinin uygun gönderilmediği durumda **TR.OHVPS.Business.InvalidPeriodValue** hatası verilmelidir. |
+|Ekstre Turu | ekstreTuru | AN3 | K | Kart bilgileri yanıtında dönülen ekstre türleri değerlerini almaktadır. Para birimine uygun olarak kart detay bilgileri sorgulanmaktadır. Ekstre parametresi TRY, USD,EUR olarak gönderilebilir. Bu alan gönderilmiyorsa TRY değerlendirilmelidir. İlgili para birimine özel ekstre içindeki harcama değeri dönülecektir. | Ekstre türleri haricinde uygun olmayan bir değer gönderildiğinde hata verilmelidir. Hata mesajı **TR.OHVPS.Business.UnsupportedCurrencyCode** hatası verilmelidir.  |
+|Sayfa Başına İstenen Kayıt Sayısı|	syfKytSayi|	N3|	İ	|Sayfa başına istenen kayıt sayısı. Bu alanda iletilen değer 100’den büyük olamaz. |Bu veri gönderildiği durumda, HHS işlemler listesini bu sayı kadar gruplandırarak gönderir. Bu veri gönderilmediğinde sayfadaki kayıt sayısı 100 olarak kullanılır. |
+|İstenen Sayfa Numarasi|	syfNo|	N3|	İ	|Cevapta dönecek sayfa numarası 1’den başlayarak artan değerlerle iletilmelidir.|	Bu veri gönderildiği durumda, HHS işlemler listesini bu sayfadaki kayıtları gönderir. Gönderilmediğinde, HHS ilk sayfadaki kayıtları gönderir. |
+
+
+**Tablo 20: “KartHareketleri” nesnesi**  
+|Alan Adı |JSON Alan Adı	|Format	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|Kart Tiplerine İstinaden Detaylı Açıklama	|
+| --- | --- | --- | --- | --- | --- | 
+| Kart Referans Numarası | kartRef | AN5..40 | Z| HHS tarafından her bir kart için atanan biricik değerdir (uuid). Bir kart tek bir kartRef'e karşılık gelmelidir, benzer şekilde bir kartRef tek bir karta karşılık gelmelidir. Aynı kart için alınan tüm rızalarda kart referans bilgisinin değişmemesi gerekmektedir. ||
+| Dönem Değeri | donemDegeri | N3 | Z|Kart hareketlerinin sorgulanacağı döneme ait değerdir.  ||
+| Dönem Başlangıç Tarihi | donemBaslangicTarihi |ISODate | Z|Sorgulama yapılan ekstre dönemine göre ilgili döneme ait başlangıç tarih bilgisidir. Kart tipi kredi kartı olanlar için ilgili döneme ait başlangıç tarihi iletilmelidir. Kart tipi banka kartı ve ön ödemeli kart olanlar için sorgulama yapılan ayın başlangıç tarihi iletilmelidir.  ||
+| Dönem Bitiş Tarihi | donemBitisTarihi |ISODate | Z|Sorgulama yapılan ekstre dönemine göre ilgili döneme ait bitiş tarih bilgisidir. Kart tipi kredi kartı olanlar için ilgili döneme ait bitiş tarihi iletilmelidir. Kart tipi banka kartı ve ön ödemeli kart olanlar için sorgulama yapılan ayın bitiş tarihi iletilmelidir.  ||
+| Ekstre Türü | ekstreTuru |AN3 | Z| Ekstre türü TRY, USD,EUR olarak gönderilebilir.  ||
+| Hareket Bilgileri | hareketBilgileri |Kompleks Alan: HareketBilgileri | K| Dizi halinde liste olacaktır.  ||
+|> İşlem Tutarı | islemTutari |AN1..25 | Z|Yapılan işleme ait tutar bilgisi. Taksitli bir işlem ise ilgili dönemdeki taksit tutarı iletilecektir. ÖHK, HHS'de ilgili dönem sorguladığında hangi tutarı görüntülüyorsa ilgili tutar dönülecektir. ||
+|> İşlem Tutarı Para Birimi | islemParaBirimi |AN3 | Z| Tutara ait Para Birimi. Ekstre türü ile aynı olması gerekmektedir.  ||
+|> Orijinal İşlem Tutarı | orijinalIslemTutari |AN1..25 | K|Ekstre türü dışında yapılan işleme ait tutar bilgisi. Örneğin; ekstre türü TRY gönderildiği durumda işlem 100 JPY ise işlem tutarı alanında 100 değeri iletilmelidir.  ||
+|> Orijinal İşlem Tutarı Para Birimi | orijinalIslemParaBirimi |AN3 | Z| Orijinal işlem tutarına ait Para Birimi. Örneğin; 100 JPY ise işlem tutar para birimi alanında JPY değeri iletilmelidir.  ||
+|> İşlem Tarihi | islemTarihi |ISODateTime | Z| İşlemin gerçekleştiği zaman bilgisi  ||
+|> Borç Alacak Göstergesi | borcAlacak |AN1 | Z| TR.OHVPS.DataCode.BrcAlc sıralı veri tipi değerlerinden birini alır. Sorgulanacak işlemlerin borç / alacak kriteri B: Karta borç oluşturan işlem.A: Karta alacak oluşturan işlem.{“B”,”A”}  ||
+|> İşlem Açıklaması | islemAciklamasi |AN1..250 | Z| Alışveriş işlemi olması durumunda işyeri adını içeren açıklama, diğer işlemler için mevcut işlem açıklaması iletilir.   ||
+|> İşlem Puan Bilgileri | islemPuanBilgileri |Kompleks Alan: IslemPuanBilgileri | K| İlgili işlem sonrası kazanılan bir puan değeri varsa iletilmesi gerekmektedir. | İlgili alanda koşula uygun olarak değer dönülecekse; kart tipi kredi, banka ve ön ödemeli kartı olanlar için dönülmesi zorunludur.|
+|>> İşlem Puanı | islemPuani |AN1..24 | K| İşleme dair kazanılan veya kullanılan puan değeri iletilmelidir. Örn: 100 Plus kazanılmış bir işlem için 100 değeri iletilmelidir. | |
+|>> İşlem Puan Birimi | islemPuanBirimi |AN1..50 | K| İşleme dair kazanılan veya kullanılan puan birimi iletilmelidir. Örn: 100 Plus kazanılmış bir işlem için Plus değeri iletilmelidir. | |
+|>> İşlem Puan Durumu | islemPuanDurumu |AN2 | K|İlgili işlem sonucunda puan bilgisinin bir kazanım mı yoksa kullanım mı olduğunu belirten değer iletilmelidir. TR.OHVPS.DataCode.IslemPuanDurumu değerlerinden birini alır.<br>01: Puan Kazanımı<br>02: Puan Kullanımı | |
+|> Toplam Taksit Tutarı | toplamTaksitTutari |AN1..24 | K| İlgili işlem taksitli bir işlem ise o işleme ait toplam taksit tutarı iletilmelidir. İlgili işlem tek çekim bir işlem ise o işlemde ilgili alan iletilmemelidir.  | Kart tipi kredi kartı olanlar için ilgili alan dönülmesi zorunludur. Kart tipi banka ve ön ödemeli kart olan kartlar için ilgili alan dönülmemelidir.|
+|> Toplam Taksit Sayısı | toplamTaksitSayısı |N2 | K| İlgili işlem taksitli bir işlem ise o işleme ait toplam taksit sayısı iletilmelidir. İlgili işlem tek çekim bir işlem ise o işlemde ilgili alan iletilmemelidir.  | Kart tipi kredi kartı olanlar için ilgili alan dönülmesi zorunludur. Kart tipi banka ve ön ödemeli kart olan kartlar için ilgili alan dönülmemelidir.|
+|> İlgili Taksit Dönemi | taksitDonemi |N2 | K| Taksitli işlem olması durumunda işleme ait ilgili taksit dönem bilgisi. Örneğin: 3 taksitli bir işlemde 2. taksit yansımışsa 2 olarak gönderilmelidir.  | Kart tipi kredi kartı olanlar için ilgili alan dönülmesi zorunludur. Kart tipi banka ve ön ödemeli kart olan kartlar için ilgili alan dönülmemelidir.|
+|> Satıcı Kategori Kodu | saticiKategoriKodu |AN1..4 | K| Satıcı Kategori Kodu(MCC) varsa iletilmesi zorunludur. Alışveriş işlemlerinde gönderimi zorunludur.  | İlgili alanda koşula uygun olarak değer dönülecekse; kart tipi kredi ve banka kartı olanlar için dönülmesi zorunludur.|
+|> Satıcı Kategori Grubu | saticiKategoriGrubu |AN1..2 | K| Satıcı Kategori Grubu(MCG) varsa iletilmezi zorunludur. Alışveriş işlemlerinde gönderimi zorunludur.  | İlgili alanda koşula uygun olarak değer dönülecekse; kart tipi kredi ve banka kartı olanlar için dönülmesi zorunludur.|

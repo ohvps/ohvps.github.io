@@ -479,7 +479,7 @@ GET /ileri-tarihli-odeme-emri/{odmEmriNo} yanıtının (RESPONSE) gövdesinde (B
 
 DELETE /ileri-tarihli-odeme-emri-rizasi çağrısı, bir ÖBHS'nin önceden oluşturulmuş bir ileri tarihli ödeme emri rızasını silmesine izin verir. Müşteri, rızasını HHS üzerinden iptal etmek yerine, ÖBHS üzerinden bu rızasını kaldırmak isteyebilir.
 
-Bu API çağrısı, müşterinin ÖBHS üzerinden hesap bilgisi rızasını iptal etmesine ve HHS nezdindeki hesap bilgisi rızası nesnesinin silinmesini sağlar.
+Bu API çağrısı, müşterinin ÖBHS üzerinden ileri tarihli ödeme emri rızasını iptal etmesine ve HHS nezdindeki ileri tarihli ödeme emri rızası nesnesinin silinmesini sağlar.
 Müşterinin ÖBHS’nin veri erişim iznini iptal etmesi durumunda ÖBHS, HHS’de mevcut olan IleriTarihliOdemeEmriRizasi'na dair rıza ve talimat bilgilerini pratik olarak mümkün olan en kısa sürede silmelidir. Bu ise, ilgili kaynağa
 DELETE /ileri-tarihli-odeme-emri-rizasi/{RizaNo}
 çağrısı aracılığı ile yerine getirilir.

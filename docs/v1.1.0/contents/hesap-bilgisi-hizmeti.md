@@ -284,6 +284,8 @@ HesapBilgisiRizasi kaynağı için kullanılabilecek durum göstergeleri şu şe
 -	Yetki Sonlandırıldı
 -	Yetki İptal
 
+- Hesap bilgisi rızası sonlandırıldı ve iptal statüsünde olan rıza'ların güncellenme zamanından(gnclZmn) 6 ay sonrasına kadar sorgulanabilir olması beklenmektedir. HHS'ler ilgili süre sonrasında yapılacak rıza sorgularına TR.OHVPS.Resource.NotFound uyarısı verebilir. YÖS'ler tarafından iptal ve sonlandırıldı statüsünde olan rızalar için sorgulama yapmamalıdır.
+
 ## 7.4 ADIM 2.2: Hesap Bilgisi Rızasının İptali
 
 <br>

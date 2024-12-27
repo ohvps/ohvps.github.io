@@ -41,6 +41,8 @@ SÜRÜM 1.1.0 geçiş tarihleri şu şekildedir.
 -	YÖS(1.0.2’den 1.1.0’a geçecek olan ve 30 Eylül 2024 üretime geçiş uyum tarihi zorunluluğu olan) Yeni Sürüm Üretime Geçiş Son Tarihi : 30 Eylül 2024
 
 -	Eski Sürümün Kaldırılma Tarihi : 31 Ekim 2024
+
+-  Sürüm 2.0.0 geçiş tarihleri netleştiğinde bu sayfada yayınlanacaktır.
   
 
 <br>
