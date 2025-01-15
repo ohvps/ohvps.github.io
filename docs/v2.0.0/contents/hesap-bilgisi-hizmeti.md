@@ -594,16 +594,23 @@ srlmYon=A
 
 Bu erişim noktalarından tüm kartların bilgileri sorgulanır ve kart listesi elde edilir. İlgili sorgu için 07 izin türünün verilmesi yeterlidir. Tablo 16’da KartBilgileri nesnesinin içeriği verilmiştir.
 
-Kart Bilgisi Sorgu Örneği (Tüm Kartlar) = /kartlar
+Kart Bilgisi Sorgu Örneği (Tüm Kartlar) = /kartlar?syfKytSayi=25& syfNo=1
 
-Kart bilgileri için herhangi bir istek parametresi bulunmamaktadır.
+Kart bilgileri Tablo 15’deki istek parametrelerine göre sorgulanır. Kart bilgileri için KartBilgileri nesnesinin içeriği Tablo 16'da verilmiştir.
 
 Kapalı banka ve ön ödemeli kart tipleri YÖS'ler tarafından ÖHK'ya gösterilmeyecektir. Kapalı kredi kart tipi için borç/taksit bilgisi bitene kadar ÖHK'ya gösterilecektir. Borç bilgisi için kart detay veya hareket servisine istek atıldığında borç olmaması durumuna dair hata mesajı HHS tarafından dönülecektir. 
 
 
+**Tablo 15: Kart Bilgileri Sorgulama İsteği Sorgu Parametreleri**
+|Alan Adı |Parametre Adı	|Format	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|HHS tarafından yapılması gereken kontrol ve işlemler|
+| --- | --- | --- | --- | --- | --- |
+|Sayfa Başına İstenen Kayıt Sayısı|	syfKytSayi|	N3|	İ	|Sayfa başına istenen kayıt sayısı. Bu alanda iletilen değer 100’den büyük olamaz. |Bu veri gönderildiği durumda, HHS işlemler listesini bu sayı kadar gruplandırarak gönderir. Bu veri gönderilmediğinde sayfadaki kayıt sayısı 100 olarak kullanılır. |
+|İstenen Sayfa Numarasi|	syfNo|	N3|	İ	|Cevapta dönecek sayfa numarası 1’den başlayarak artan değerlerle iletilmelidir.|	Bu veri gönderildiği durumda, HHS işlemler listesini bu sayfadaki kayıtları gönderir. Gönderilmediğinde, HHS ilk sayfadaki kayıtları gönderir. |
+
 **Tablo 16: “KartBilgileri” nesnesi**  
 |Alan Adı |JSON Alan Adı	|Format	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|
-| --- | --- | --- | --- | --- | 
+| --- | --- | --- | --- | --- |
+| Rıza No | rizaNo | AN1..128 | Z | HesapBilgisiRızasi nesnesinin oluşturulması esnasında HHS kaynak sunucusu tarafından atanan biricik tanımlayıcı | 
 | Kart Referans Numarası | kartRef | AN5..40 | Z | HHS tarafından her bir kart için atanan biricik değerdir (uuid). Bir kart tek bir kartRef'e karşılık gelmelidir, benzer şekilde bir kartRef tek bir karta karşılık gelmelidir. Aynı kart için alınan tüm rızalarda kart referans bilgisinin değişmemesi gerekmektedir. |
 | Kart Numarası | kartNo | AN15..16 | Z | Karta ait numara maskeli olarak iletilmelidir. Maskeleme kuralı kart'ın ilk 6 ve son 4 hanesi açık olarak görünecek şekilde maskelenmelidir. Sanal kart bilgisi için de ilgili numara maskeli olarak iletilmelidir. Örn: 123456******5678 |
 | Asıl Kart Numarası | asilKartNo | AN15..16 | K | Asıl kartlar için ilgili alan iletilmemelidir. Sanal ve ek kartlar için bağlı oldukları asıl kart numaraları iletilmelidir. Ek karta ait sanal kart için asıl kart numarası olarak ek kart numarası iletilmelidir. |
@@ -638,10 +645,11 @@ Parametre içeren Kart Detay Bilgisi Sorgu Örneği (Tek Bir Kart) =  /kartlar/{
 
 **Tablo 18: “KartDetayBilgileri” nesnesi**  
 |Alan Adı |JSON Alan Adı	|Format	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|Kart Tiplerine İstinaden Detaylı Açıklama	|
-| --- | --- | --- | --- | --- | --- | 
+| --- | --- | --- | --- | --- | --- |
+| Rıza No | rizaNo | AN1..128 | Z | HesapBilgisiRızasi nesnesinin oluşturulması esnasında HHS kaynak sunucusu tarafından atanan biricik tanımlayıcı |
 | Kart Referans Numarası | kartRef | AN5..40 | Z| HHS tarafından her bir kart için atanan biricik değerdir (uuid). Bir kart tek bir kartRef'e karşılık gelmelidir, benzer şekilde bir kartRef tek bir karta karşılık gelmelidir. Aynı kart için alınan tüm rızalarda kart referans bilgisinin değişmemesi gerekmektedir. ||
 | Toplam Kart Limiti | toplamLimit | AN1..24 | K| Karta ait toplam limit bilgisi. Limit tutarı için regex patterni şu şekildedir: '```^\d{1,18}$|^\d{1,18}\.\d{1,5}$```' |Kart tipi kredi kartı ve ön ödemeli kart olanlar için ilgili alanın dönülmesi zorunludur. Kart tipi banka olan kartlar için ilgili alan dönülmemelidir. |
-| Kullanılabilir Kart Limiti | kullanılabilirLimit | AN1..24 | K| Karta ait kullanılabilir limit bilgisi. Limit tutarı için regex patterni şu şekildedir: '``` ^\d{1,18}$|^\d{1,18}\.\d{1,5}$```' |Kart tipi kredi kartı ve ön ödemeli kart olanlar için ilgili alanın dönülmesi zorunludur. Kart tipi banka olan kartlar için ilgili alan dönülmemelidir.|
+| Kullanılabilir Kart Limiti | kullanilabilirLimit | AN1..24 | K| Karta ait kullanılabilir limit bilgisi. Limit tutarı için regex patterni şu şekildedir: '``` ^\d{1,18}$|^\d{1,18}\.\d{1,5}$```' |Kart tipi kredi kartı ve ön ödemeli kart olanlar için ilgili alanın dönülmesi zorunludur. Kart tipi banka olan kartlar için ilgili alan dönülmemelidir.|
 | Dönem İçi Hareket Toplamı | donemIcıHareketToplami | AN1..25 | Z | Kart tipi kredi kartı olanlar için ilgili döneme ait hareketlerin toplam tutar bilgisidir. Kart tipi banka ve ön ödemeli kartlar için ilgili dönem içerisinde ay başından itibaren yapılan hareketlerin toplam tutar bilgisi iletilmelidir. Dönem içi hareket toplamı ve kalan ekstre borcunun toplamı ÖHK'ya toplam borç bilgisi olarak gösterilebilir. Tutar için regex patterni şu şekildedir: '```^[\-\+]?\d{1,18}$|^[\-\+]?\d{1,18}\.\d{1,5}$```'| |
 | Ekstre Borcu | ekstreBorcu | AN1..25 | K | İlgili ekstre türüne uygun olarak ekstre borcu iletilmelidir. Borç tutarı için regex patterni şu şekildedir: '```^[\-\+]?\d{1,18}$|^[\-\+]?\d{1,18}\.\d{1,5}$```' |Kart tipi kredi kartı olanlar için ilgili alanın dönülmesi koşulludur. Alt kart tipi ; Asıl ve Dijital olanlar için ilgili alanın dönülmesi zorunludur. Ek kredi kartı için ilgili alan dönülmemelidir. Kart tipi banka ve ön ödemeli kart olan kartlar için ilgili alan dönülmemelidir.|
 | Kalan Ekstre Borcu | kalanEkstreBorcu | AN1..25 |K | İlgili ekstre türüne uygun olarak kalan ekstre borcu iletilmelidir. Borç tutarı için regex patterni şu şekildedir: '```^[\-\+]?\d{1,18}$|^[\-\+]?\d{1,18}\.\d{1,5}$```' |Kart tipi kredi kartı olanlar için ilgili alanın dönülmesi koşulludur. Alt kart tipi ; Asıl ve Dijital kredi kartı için ilgili alanın dönülmesi zorunludur. Ek kredi kartı için ilgili alan dönülmemelidir. Kart tipi banka ve ön ödemeli kart olan kartlar için ilgili alan dönülmemelidir.|
@@ -695,13 +703,13 @@ Kart hareketlerinde ekstre türleri dışında yapılan bir işlem varsa hangi e
 | Dönem Bitiş Tarihi | donemBitisTarihi |ISODate | Z|Sorgulama yapılan ekstre dönemine göre ilgili döneme ait bitiş tarih bilgisidir. Kart tipi kredi kartı olanlar için ilgili döneme ait bitiş tarihi iletilmelidir. Kart tipi banka kartı ve ön ödemeli kart olanlar için sorgulama yapılan ayın bitiş tarihi iletilmelidir.  ||
 | Ekstre Türü | ekstreTuru |AN3 | Z| Ekstre türü TRY, USD,EUR olarak gönderilebilir.  ||
 | Hareket Bilgileri | hareketBilgileri |Kompleks Alan: HareketBilgileri | K| Dizi halinde liste olacaktır.  ||
-|> İşlem Tutarı | islemTutari |AN1..25 | Z|Yapılan işleme ait tutar bilgisi. Taksitli bir işlem ise ilgili dönemdeki taksit tutarı iletilecektir. ÖHK, HHS'de ilgili dönem sorguladığında hangi tutarı görüntülüyorsa ilgili tutar dönülecektir. ||
+|> İşlem Tutarı | islemTutari |AN1..24 | Z|Yapılan işleme ait tutar bilgisi. Taksitli bir işlem ise ilgili dönemdeki taksit tutarı iletilecektir. ÖHK, HHS'de ilgili dönem sorguladığında hangi tutarı görüntülüyorsa ilgili tutar dönülecektir. İşlem tutarı için regex patterni şu şekildedir: '``` ^\d{1,18}$|^\d{1,18}\.\d{1,5}$```' ||
 |> İşlem Tutarı Para Birimi | islemParaBirimi |AN3 | Z| Tutara ait Para Birimi. Ekstre türü ile aynı olması gerekmektedir.  ||
-|> Orijinal İşlem Tutarı | orijinalIslemTutari |AN1..25 | K|Ekstre türü dışında yapılan işleme ait tutar bilgisi. Örneğin; ekstre türü TRY gönderildiği durumda işlem 100 JPY ise işlem tutarı alanında 100 değeri iletilmelidir.  ||
-|> Orijinal İşlem Tutarı Para Birimi | orijinalIslemParaBirimi |AN3 | Z| Orijinal işlem tutarına ait Para Birimi. Örneğin; 100 JPY ise işlem tutar para birimi alanında JPY değeri iletilmelidir.  ||
+|> Orijinal İşlem Tutarı | orijinalIslemTutari |AN1..24 | K|Ekstre türü dışında yapılan işleme ait tutar bilgisi. Örneğin; ekstre türü TRY gönderildiği durumda işlem 100 JPY ise işlem tutarı alanında 100 değeri iletilmelidir.  ||
+|> Orijinal İşlem Tutarı Para Birimi | orijinalIslemParaBirimi |AN3 | Z| Orijinal işlem tutarına ait Para Birimi. Örneğin; 100 JPY ise işlem tutar para birimi alanında JPY değeri iletilmelidir. İşlem tutarı için regex patterni şu şekildedir: '``` ^\d{1,18}$|^\d{1,18}\.\d{1,5}$```'  ||
 |> İşlem Tarihi | islemTarihi |ISODateTime | Z| İşlemin gerçekleştiği zaman bilgisi  ||
 |> Borç Alacak Göstergesi | borcAlacak |AN1 | Z| TR.OHVPS.DataCode.BrcAlc sıralı veri tipi değerlerinden birini alır. Sorgulanacak işlemlerin borç / alacak kriteri B: Karta borç oluşturan işlem.A: Karta alacak oluşturan işlem.{“B”,”A”}  ||
-|> İşlem Açıklaması | islemAciklamasi |AN1..250 | Z| Alışveriş işlemi olması durumunda işyeri adını içeren açıklama, diğer işlemler için mevcut işlem açıklaması iletilir.   ||
+|> İşlem Açıklaması | islemAciklamasi |AN1..200 | Z| Alışveriş işlemi olması durumunda işyeri adını içeren açıklama, diğer işlemler için mevcut işlem açıklaması iletilir.   ||
 |> İşlem Puan Bilgileri | islemPuanBilgileri |Kompleks Alan: IslemPuanBilgileri | K| İlgili işlem sonrası kazanılan bir puan değeri varsa iletilmesi gerekmektedir. | İlgili alanda koşula uygun olarak değer dönülecekse; kart tipi kredi, banka ve ön ödemeli kartı olanlar için dönülmesi zorunludur.|
 |>> İşlem Puanı | islemPuani |AN1..24 | K| İşleme dair kazanılan veya kullanılan puan değeri iletilmelidir. Örn: 100 Plus kazanılmış bir işlem için 100 değeri iletilmelidir. | |
 |>> İşlem Puan Birimi | islemPuanBirimi |AN1..50 | K| İşleme dair kazanılan veya kullanılan puan birimi iletilmelidir. Örn: 100 Plus kazanılmış bir işlem için Plus değeri iletilmelidir. | |
@@ -709,5 +717,5 @@ Kart hareketlerinde ekstre türleri dışında yapılan bir işlem varsa hangi e
 |> Toplam Taksit Tutarı | toplamTaksitTutari |AN1..24 | K| İlgili işlem taksitli bir işlem ise o işleme ait toplam taksit tutarı iletilmelidir. İlgili işlem tek çekim bir işlem ise o işlemde ilgili alan iletilmemelidir.  | Kart tipi kredi kartı olanlar için ilgili alan dönülmesi zorunludur. Kart tipi banka ve ön ödemeli kart olan kartlar için ilgili alan dönülmemelidir.|
 |> Toplam Taksit Sayısı | toplamTaksitSayısı |N2 | K| İlgili işlem taksitli bir işlem ise o işleme ait toplam taksit sayısı iletilmelidir. İlgili işlem tek çekim bir işlem ise o işlemde ilgili alan iletilmemelidir.  | Kart tipi kredi kartı olanlar için ilgili alan dönülmesi zorunludur. Kart tipi banka ve ön ödemeli kart olan kartlar için ilgili alan dönülmemelidir.|
 |> İlgili Taksit Dönemi | taksitDonemi |N2 | K| Taksitli işlem olması durumunda işleme ait ilgili taksit dönem bilgisi. Örneğin: 3 taksitli bir işlemde 2. taksit yansımışsa 2 olarak gönderilmelidir.  | Kart tipi kredi kartı olanlar için ilgili alan dönülmesi zorunludur. Kart tipi banka ve ön ödemeli kart olan kartlar için ilgili alan dönülmemelidir.|
-|> Satıcı Kategori Kodu | saticiKategoriKodu |AN1..4 | K| Satıcı Kategori Kodu(MCC) varsa iletilmesi zorunludur. Alışveriş işlemlerinde gönderimi zorunludur.  | İlgili alanda koşula uygun olarak değer dönülecekse; kart tipi kredi ve banka kartı olanlar için dönülmesi zorunludur.|
-|> Satıcı Kategori Grubu | saticiKategoriGrubu |AN1..2 | K| Satıcı Kategori Grubu(MCG) varsa iletilmezi zorunludur. Alışveriş işlemlerinde gönderimi zorunludur.  | İlgili alanda koşula uygun olarak değer dönülecekse; kart tipi kredi ve banka kartı olanlar için dönülmesi zorunludur.|
+|> Satıcı Kategori Kodu | saticiKategoriKodu |AN4 | K| Satıcı Kategori Kodu(MCC) varsa iletilmesi zorunludur. Alışveriş işlemlerinde gönderimi zorunludur.  | İlgili alanda koşula uygun olarak değer dönülecekse; kart tipi kredi ve banka kartı olanlar için dönülmesi zorunludur.|
+|> Satıcı Kategori Grubu | saticiKategoriGrubu |AN2 | K| Satıcı Kategori Grubu(MCG) varsa iletilmezi zorunludur. Alışveriş işlemlerinde gönderimi zorunludur.  | İlgili alanda koşula uygun olarak değer dönülecekse; kart tipi kredi ve banka kartı olanlar için dönülmesi zorunludur.|

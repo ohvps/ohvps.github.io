@@ -92,9 +92,9 @@ Hesap bakiye kontrolünün rıza aşamasında yapılmaması gerekmektedir. Çün
 **POST /odeme-emri-rizasi** isteğinin (REQUEST) gövdesinde (BODY)  “odemeEmriRizasiIstegi” nesnesi (Tablo-7) kullanılır. İstek başarıyla sonuçlanırsa HHS kaynak sunucusunda “odemeEmriRizasi” (Tablo-8) nesnesi oluşturulur.
 
 **Tek Seferlik Ödeme**  
-Tek seferlik ödeme akışı YÖS'ten HHS'ye giden istekte, gönderen kimlik bilgilerinin olmadığı durumda gerçekleşir. Gönderen kimlik bilgisi olmadığında, KOLAS sorgusu yapılamayacağından ötürü, HHS tarafından TR.OHVPS.Business.InvalidContent hatası dönülmelidir.  ÖHK'nın YÖS'ün müşterisi olmadığı durumda tek seferlik ödeme başlatılabilir.  
-Tek seferlik ödeme akışı hem işyeri ödemelerinde hem de kişiden kişiye para transferlerinde kullanılabilen bir akıştır.  
-Tek seferlik ödeme akışı sadece bireysel müşteriler için kullanılabilir.  
+Tek seferlik ödeme akışı YÖS'ten HHS'ye giden istekte, gönderen kimlik bilgilerinin olmadığı durumda gerçekleşir. Gönderen kimlik bilgisi olmadığında, KOLAS sorgusu yapılamayacağından ötürü, HHS tarafından TR.OHVPS.Business.InvalidContent hatası dönülmelidir. ÖHK'nın YÖS'ün müşterisi olmadığı durumda tek seferlik ödeme başlatılabilir.  
+Tek seferlik ödeme akışı hem işyeri ödemelerinde hem de kişiden kişiye para transferlerinde kullanılabilen bir akıştır. İşyeri tarafından başlatılan tek seferlik ödeme işlemlerinde katılımcılar gönderen ÖHK'dan ücret alınamaz.
+<br>Tek seferlik ödeme akışı sadece bireysel müşteriler için kullanılabilir.  
 Tek seferlik ödeme akışında hem yönlendirmeli hem de ayrık GKD akışı ile müşteri yetkilendirmesi sağlanabilir.  
 
 Aşağıdaki senaryolar tek seferlik ödemeye örnek olarak gösterilebilir.  
