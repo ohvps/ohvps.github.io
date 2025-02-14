@@ -421,7 +421,7 @@ POST işleminin RESPONSE gövdesini (BODY) oluşturan “DuzenliOdemeEmri” nes
 | **> Para Birimi** 	| prBrm   |  AN3  | Z | Para Birimi. <br> Karekod akışında, FAST Karekod Veri Organizasyonundaki **53: (Para Birimi)** alanında tanımlı Para Birimi verisi kullanılır.  | HHS geçerli bir para birimi olduğu kontrol eder.|
 | **> İlk Ödeme Günü**  | ilkOdmGun   | ISODate  | Z | ÖBHS'nin HHS'de belirlediği ilk ödeme günü bilgisidir.   Alabileceği minimum tarih değeri düzenli ödemenin verildiği tarihin 1 gün sonrası olabilir. Maksimum değer ise 30 gün olacak şekilde seçilebilir. <br>
 | **> Son Ödeme Günü**  | sonOdmGun   | ISODate  | Z |  ÖBHS'nin HHS'de belirlediği son ödeme günü bilgisidir. Alabileceği minimum gün değeri ilk ödeme gününün 1 gün sonrası olabilir. Maksimum değer ise 2 yıl olmalıdır. <br>
-| **> Ödeme Sayısı**	|  odmSayi   | AN1..200  | Z  | ÖBHS'nin HHS'de belirlediği ödeme sayısıdır. Minimum değer 2 adet olmalıdır.|
+| **> Ödeme Sayısı**	|  odmSayi   | N3  | Z  | ÖBHS'nin HHS'de belirlediği ödeme sayısıdır. Minimum değer 2 adet olmalıdır.|
 | **> Ödeme Periyodu**	|  odmPryt   | AN1  | Z  | ÖBHS'nin HHS'de belirlediği ödeme periyot bilgisidir. TR.OHVPS.DataCode.OdemePeriyodu sıralı veri değerlerinden birini alır. |
 | **> Talimat Rumuzu**	|  tlmtRmz   | AN1..180  | İ  | ÖBHS'nin HHS'de belirlediği talimata dair rumuz açıklamasıdır. İlgili alan isteğe bağlı olup HHS'lerin inisiyatifindedir. |
 

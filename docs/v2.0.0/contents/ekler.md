@@ -48,6 +48,7 @@ Açık Bankacılık simülatör uygulaması üzerinde swagger dökümanlarının
 | TR.OHVPS.DataCode.AltKartTip | A : Asıl <br>D : Dijital<br>E : Ek Kart<br>S : Sanal Kart|
 | TR.OHVPS.DataCode.KartStatu | A : Açık/Aktif <br>P : Pasif<br>I : İptal
 | TR.OHVPS.DataCode.IslemPuanDurumu | 01 : Puan Kazanımı <br>02: Puan Kullanımı
+| TR.OHVPS.DataCode.KartSema | T : TROY <br>M : Mastercard<br>V : Visa<br>U : UnionPay<br>A : American Express<br>J : JCB
 
 
 

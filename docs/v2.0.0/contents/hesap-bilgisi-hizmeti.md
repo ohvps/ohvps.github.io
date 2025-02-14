@@ -606,7 +606,7 @@ Kapalı banka ve ön ödemeli kart tipleri YÖS'ler tarafından ÖHK'ya gösteri
 | --- | --- | --- | --- | --- | --- |
 |Sayfa Başına İstenen Kayıt Sayısı|	syfKytSayi|	N3|	İ	|Sayfa başına istenen kayıt sayısı. Bu alanda iletilen değer 100’den büyük olamaz. |Bu veri gönderildiği durumda, HHS işlemler listesini bu sayı kadar gruplandırarak gönderir. Bu veri gönderilmediğinde sayfadaki kayıt sayısı 100 olarak kullanılır. |
 |İstenen Sayfa Numarasi|	syfNo|	N3|	İ	|Cevapta dönecek sayfa numarası 1’den başlayarak artan değerlerle iletilmelidir.|	Bu veri gönderildiği durumda, HHS işlemler listesini bu sayfadaki kayıtları gönderir. Gönderilmediğinde, HHS ilk sayfadaki kayıtları gönderir. |
-
+|Kart Tipi|	kartTipi|	AN1|	İ	|Kart tipleri özelinde Banka, Kredi ve Ön Ödemeli kartların ayrıca soruglanması sağlanır. |Bu veri gönderildiği durumda, HHS kart tipine uygun olarak kart bilgilerini döner. |
 **Tablo 16: “KartBilgileri” nesnesi**  
 |Alan Adı |JSON Alan Adı	|Format	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|
 | --- | --- | --- | --- | --- |
@@ -616,12 +616,13 @@ Kapalı banka ve ön ödemeli kart tipleri YÖS'ler tarafından ÖHK'ya gösteri
 | Asıl Kart Numarası | asilKartNo | AN15..16 | K | Asıl kartlar için ilgili alan iletilmemelidir. Sanal ve ek kartlar için bağlı oldukları asıl kart numaraları iletilmelidir. Ek karta ait sanal kart için asıl kart numarası olarak ek kart numarası iletilmelidir. |
 | Kart Tipi | kartTipi | AN1 | Z | Kartın tipini belirten değerdir. Kart tipleri olarak alabileceği değerler **TR.OHVPS.DataCode.KartTip** sıralı veri türlerinden biridir. |
 | Alt Kart Tipi| altKartTipi | AN1| Z | Kart Tipleri altında yer alan alt kart tipleridir. Alt kart tipleri olarak alabileceği değerler **TR.OHVPS.DataCode.AltKartTip** sıralı veri türlerinden biridir.<br> Asıl banka kartı, sanal banka kartı, dijital banka kartı, dijital kredi kartı gibi tüm kart tiplerini ayrıştırmak için asıl ve alt kart tipleri kullanılmaktadır. |
-| Kart Türü | kartTuru | AN1 | Z | Kartın ait olduğu müşteri tipini belirten değerdir. <br>**B:Bireysel, T:Ticari** |
+| Kart Türü | kartTuru | AN1 | Z | Kartın bireysel ve ticari olmasına yönelik ait olduğu tipini belirten değerdir. <br>**B:Bireysel, T:Ticari** |
 | Kart Statüsü | kartStatu | AN1 | Z | **TR.OHVPS.DataCode.KartStatu** sıralı veri türü değerlerinden birini alır.<br> Kart statüsü için güncelleme yapılamayacak durumda ise iptal statüsü olarak değerlendirilmelidir. Kart statüsü güncellenebilir durumda ise açık ve pasif olarak değerlendirilmelidir. |
 | Kart Sahibi Ad/Soyad | kartSahibi | AN3..140 | Z | Kart sahibi ya da kart sahiplerinin ad-soyadı, ticari unvanı |
 | Kart Ürün Adı | kartUrunAdi | AN3..140 | Z | Kart bilgilerinin ürün adı. Örn : TROY Business Kart |
 | Ekstre Türleri | ekstreTurleri | Kompleks:EkstreTurleri | Z |İlgili karta ait ekstre türleri(TRY, USD, EUR) dizi içerisinde iletilmelidir. Yurtdışı ekstre olan kartlar için TRY haricinde değer dönülmesi gerekmektedir. Ekstre olmadığı halde banka kartı gibi kart tiplerinde TRY olarak iletilmesi gerekmektedir. |
 | Kart Rumuz | kartRumuz | AN3..140 | İ | Kart için rumuz bilgisi var ise gönderilebilir. |
+| Kart Şeması | kartSema | AN1 | Z | **TR.OHVPS.DataCode.KartSema** sıralı veri türü değerlerinden birini alır. |
 
 ## 9.10 ADIM 4.1: Kart Detay Bilgilerinin Sorgulanması  
 
