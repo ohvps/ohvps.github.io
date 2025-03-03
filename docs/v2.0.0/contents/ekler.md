@@ -49,7 +49,7 @@ Açık Bankacılık simülatör uygulaması üzerinde swagger dökümanlarının
 | TR.OHVPS.DataCode.KartStatu | A : Açık/Aktif <br>P : Pasif<br>I : İptal
 | TR.OHVPS.DataCode.IslemPuanDurumu | 01 : Puan Kazanımı <br>02: Puan Kullanımı
 | TR.OHVPS.DataCode.KartSema | T : TROY <br>M : Mastercard<br>V : Visa<br>U : UnionPay<br>A : American Express<br>J : JCB
-
+| TR.OHVPS.DataCode.KartTuru | B : Bireysel <br>T :Ticari
 
 
 
