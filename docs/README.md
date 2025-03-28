@@ -10,15 +10,17 @@
 
 **SÜRÜM 1.1.0 geçiş tarihleri şu şekildedir.**
 
--	Diğer HHS’ler (31 Mart 2025 üretime geçiş zorunluluğu olan ve ilk defa sertifikasyona gelecek olan) Sertifikasyon Bitiş Tarihi : 20 Mart 2025
+-	HHS/YÖS rolünde Sertifikasyona Geliş Son Tarihi : 1 Ağustos 2025
 
--	Diğer HHS’ler (31 Mart 2025 üretime geçiş zorunluluğu olan ve ilk defa sertifikasyona gelecek olan) Üretime Geçiş Tarihi : 31 Mart 2025
+-	HHS rolünde Üretime Geçiş Son Tarihi : 1 Eylül 2025
 
 **SÜRÜM 2.0.0 geçiş tarihleri şu şekildedir.**
   
 - Sürüm Geçiş Tarihi : 1 Ağustos 2025
 
 - HHS(1.1.0’dan 2.0.0'a geçecek olan ve direkt 2.0.0’a gelecek olan) Sertifikasyon Başlangıç Tarihi :  1 Eylül 2025
+
+- HHS(1.1.0’dan 2.0.0’a geçecek olan, direkt 2.0.0’a gelecek olan) Yeni Sürüm Üretime Geçiş Başlangıç Tarihi : 1 Ekim 2025
 
 - YÖS(1.1.0’dan 2.0.0'a geçecek olan ve direkt 2.0.0’a gelecek olan) Sertifikasyon Başlangıç Tarihi : 1 Ekim 2025
 
@@ -32,6 +34,8 @@
 
 - Eski Sürümün(1.1.0) Kaldırılma Tarihi : 1 Haziran 2026
 <br>
+
+**ÖNEMLİ BİLGİLENDİRME**: 31 Aralık 2025 tarihinde geçiş zorunluluğu olan HHS’lerin 1 Ağustos 2025 tarihinden sonra Sürüm 2.0.0 sertifikasyonuna gelmesi durumunda en geç 31 Aralık 2025 tarihine kadar sertifikasyon sürecini tamamlayarak üretime geçmeleri gerekmektedir.  
 
 YÖS’lerin sadece kendilerinin destekledikleri API sürümünü destekleyen HHS’leri listelemesi gerekmektedir.
 

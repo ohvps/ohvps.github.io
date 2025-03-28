@@ -176,10 +176,6 @@ module.exports = [
         title: 'Sürüm Yönetimi',
         path: '/surum-yonetimi'
     },
-    {
-        title: 'ÖHVPS Uyum Tarihleri',
-        path: '/uyum-tarihleri'
-    },
 
     {
         title: 'SÜRÜM 1.0.1',
