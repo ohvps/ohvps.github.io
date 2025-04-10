@@ -36,11 +36,11 @@ Rıza iptal durumu ise gerek raporlama gerekse müşteri deneyimi perspektifinde
 
 **Örneğin B&#8680; I/01 denildiğinde “Yetki Bekleniyor” rıza durumundan “Yetki İptal” rıza durumuna Rıza İptal Detay Kodu da ‘01’ yani ‘Yeni Rıza Talebi ile İptal’ olarak güncellenmelidir ifade edilmiştir.**  
 
-ÖHK verdiği rıza sırasında seçtiği hesaplarından biri kapatılırsa, diğer hesaplara ait bilgileri görmeye devam eder. Ancak ÖHK’nın hesabına ait bilgilerinin YÖS'e iletilmesini istemediği durumda, rızasını tamamen iptal ederek yeni hesap listesi ile yeni rıza vermesi gerekmektedir. Yani hesap kapanması nedeniyle rıza geçerliliğini yitirmez. ÖHK'nın proaktif olarak bu hesabı rızadan çıkarması durumunda rıza iptali olur.   
+ÖHK verdiği rıza sırasında seçtiği hesaplarından/kartlarından biri kapatılırsa, diğer hesaplara/kartlara ait bilgileri görmeye devam eder. Ancak ÖHK’nın hesabına/kartına ait bilgilerinin YÖS'e iletilmesini istemediği durumda, rızasını tamamen iptal ederek yeni hesap/kart listesi ile yeni rıza vermesi gerekmektedir. Yani hesap/kart kapanması nedeniyle rıza geçerliliğini yitirmez. ÖHK'nın proaktif olarak bu hesabı/kartı rızadan çıkarması durumunda rıza iptali olur.   
 
-Rıza iptal edilmediği ve geçerli olduğu sürece kapalı hesaplar için diğer çevrimiçi kanallarda uygulanan yöntem izlenmelidir. Diğer çevrimiçi kanallarda kapalı hesaplara ilişkin bilgi dönülmüyor ise ÖHVPS'den de dönüş yapılmaz. ÖHK’nın rıza onayı verdiği açık hesaplarının tümü HHS tarafında kapatıldığı durumda, yine aynı şekilde HHS çevrimiçi kanallarında koyduğu kurallara göre bu hesaplarının YÖS uygulamasında gösterilmesine karar verir.  
+Rıza iptal edilmediği ve geçerli olduğu sürece kapalı hesaplar/kartlar için diğer çevrimiçi kanallarda uygulanan yöntem izlenmelidir. Diğer çevrimiçi kanallarda kapalı hesaplara/kartlara ilişkin bilgi dönülmüyor ise ÖHVPS'den de dönüş yapılmaz. ÖHK’nın rıza onayı verdiği açık hesaplarının/kartlarının tümü HHS tarafında kapatıldığı durumda, yine aynı şekilde HHS çevrimiçi kanallarında koyduğu kurallara göre bu hesaplarının/kartlarının YÖS uygulamasında gösterilmesine karar verir.  
 
-Hesap kapama ve ticari kullanıcıların hesaplar üzerindeki yetki değişiklikleri HHS'nin iç sistemleri tarafından yapılan kontrollerle yönetilir. Buradaki değişiklikler ile HHS sistemsel olarak rıza iptali gerçekleştiremez. ÖHK izni ve onayı dahilinde rıza iptal gerçekleştirilmesi gerekmektedir.  
+Hesap/kart kapama ve ticari kullanıcıların hesaplar/kartlar üzerindeki yetki değişiklikleri HHS'nin iç sistemleri tarafından yapılan kontrollerle yönetilir. Buradaki değişiklikler ile HHS sistemsel olarak rıza iptali gerçekleştiremez. ÖHK izni ve onayı dahilinde rıza iptal gerçekleştirilmesi gerekmektedir.  
 
 HHS'ler sunmuş oldukları Rıza İptal ekranını (sadece Hesap Bilgisi Rızası için), hangi ortamlardan GKD yapılmasına izin veriliyorsa (web/mobil) aynı ortamdan ÖHK'ya sunmalıdır.  Örneğin bir HHS bireysel müşterileri için web ve mobil, kurumsal müşteriler için web üzerinden GKD imkanı sunuyor ise, minimumda bireysel müşteriler için web ve mobil ortamlarından, kurumsal müşteriler için web ortamından Rıza İptal ekranı aracılığı ile rıza iptaline izin vermelidir. Bunun dışında çağrı merkezi ya da şube gibi ortamlardan sunacağı Rıza İptal imkanı HHS inisiyatifindedir. Bahsi geçen zorunluluk Ödeme Emri Rıza İptal ekranı için geçerli değildir.
 
@@ -58,7 +58,7 @@ Bir ÖHK hem kişisel olarak hem de bir kurumun kullanıcısı olabilir. Bu duru
          &nbsp;&nbsp;&nbsp;&nbsp;    HHS, sistemde Yetki Bekleniyor - B rıza durumuna sahip kayıt olduğu için, öncelikle eski kaydı Yetki İptal - I durumuna getirir.  Rıza İptal Detay Kodu “Yeni Rıza Talebi ile iptal” olmalıdır. **B &#8680; I / 01** Sonrasında, **Yetki Bekleniyor - B** rıza durumu ile yeni rıza oluşturur.   
             
     &nbsp;&nbsp;&nbsp;&nbsp; ii. Rıza durumu Yetkilendirildi - Y veya Yetki Kullanıldı - K ise;  
-     &nbsp;&nbsp;&nbsp;&nbsp;ÖHK'nın halihazırda verilmiş bir rızası vardır. HHS, önce mevcut rızanın iptalinin yapılması gerektiğine dair  **TR.OHVPS.Resource.ConsentMismatch** hatasını döner. YÖS, HHS ya da YÖS uygulaması üzerinden bu rızanın iptal edilmesi gerektiğine dair ÖHK'ya bilgilendirme yapar.
+     &nbsp;&nbsp;&nbsp;&nbsp;ÖHK'nın halihazırda verilmiş bir rızası vardır. HHS, önce mevcut rızanın iptalinin yapılması gerektiğine dair  **TR.OHVPS.Business.ConsentAlreadyExists** hatasını döner. YÖS, HHS ya da YÖS uygulaması üzerinden bu rızanın iptal edilmesi gerektiğine dair ÖHK'ya bilgilendirme yapar.
     
     &nbsp;&nbsp;&nbsp;&nbsp; iii.	Rıza durumu Yetki Sonlandırıldı - S  ise Yetki Bekleniyor - B durumunda yeni rıza no oluşturur.   
 
@@ -82,7 +82,7 @@ Bir ÖHK hem kişisel olarak hem de bir kurumun kullanıcısı olabilir. Bu duru
 
       - Açık bankacılık kanalınız işleme kapalıdır.Yetki Bekleniyor &#8680; Yetki İptal **B &#8680; I / 10**  
 
-      - Kullanıcının HHS'deki hesaplarında yeterli yetkisinin olmama durumu  Yetki Bekleniyor &#8680; Yetki İptal **B &#8680; I / 11**  
+      - Kullanıcının HHS'deki hesaplarında/kartlarında yeterli yetkisinin olmama durumu  Yetki Bekleniyor &#8680; Yetki İptal **B &#8680; I / 11**  
 
       - HHS’nin ÖHK için yaptığı kontrollerin başarısız olduğu durum Yetki Bekleniyor &#8680; Yetki İptal  **B &#8680; I / 12**
 

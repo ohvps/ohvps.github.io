@@ -54,10 +54,9 @@ HHS yanıt nesnesi içerisinde, ÖHK'ya ait yetki kodunu, rıza no ve rıza duru
 
 |Alan Adı |JSON Alan Adı	|Format:Veri modeli İsmi	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|
 | --- | --- | --- | --- | --- | 
-| Yetkilendirme Kodu | yetkilendirmeKodu | AN1..128 | Z | Rıza nesnesinin oluşturulması esnasında HHS kaynak sunucusu tarafından atanan biricik tanımlayıcı | 
-| > Yetki Kodu | yetKod | AN1..255 | Z | GKD sürecinde üretilen yetkilendirme kodudur. Tek kullanımlık olup, aynı yetKod ile birden fazla token alınamaz. yetKod Parametresinin yaşam ömrü 5 dakika olmalıdır.  | 
-| > RızaNo | rizaNo | AN1..128 | Z | Rıza nesnesinin oluşturulması esnasında HHS kaynak sunucusu tarafından atanan biricik tanımlayıcı | 
-| > Rıza Durumu |	rizaDrm	| AN1 |	Z |	**TR.OHVPS.DataCode.RizaDurumu** sıralı veri tipini değerlerinden birini alır. |
+| Yetki Kodu | yetKod | AN1..255 | Z | GKD sürecinde üretilen yetkilendirme kodudur. Tek kullanımlık olup, aynı yetKod ile birden fazla token alınamaz. yetKod Parametresinin yaşam ömrü 5 dakika olmalıdır.  | 
+| RızaNo | rizaNo | AN1..128 | Z | Rıza nesnesinin oluşturulması esnasında HHS kaynak sunucusu tarafından atanan biricik tanımlayıcı | 
+| Rıza Durumu |	rizaDrm	| AN1 |	Z |	**TR.OHVPS.DataCode.RizaDurumu** sıralı veri tipini değerlerinden birini alır. |
 
 Ayrık GKD sürecinde, yetkod değerini alan YÖS; erişim belirteci API ile GKD sürecini tamamlar.
 

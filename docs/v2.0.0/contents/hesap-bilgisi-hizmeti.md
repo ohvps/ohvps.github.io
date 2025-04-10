@@ -62,7 +62,7 @@ Hesap bilgisi rızasına ilişkin temel ilkeler şunlardır:
 
 Nezdinde ödeme hesabı bulunduran hesap hizmeti sağlayıcılar(Banka, EPK, Ödeme Kuruluşları) müşterilerine ait hesapları hesap referansı ya da hesap numarası üzerinden takip etmektedir. YÖS'lerin HBH servisleri için hesap referansı veya hesap numarası üzerinden işlem yapılabileceğini bilmeleri, sistemlerini API dokümanında belirtilen akışlara göre uyumlandırmaları ve müşteri bilgilendirmesini (önyüzlerinde hesap no ve hesap referansı ayrımını gözeterek) buna paralel yapmaları beklenmektedir.  
 
-**3.2	Kart bilgilerinin alınması:**  Kart bilgileri ilgili kaynağa (kartlar, kart detayı, kart hareketleri) GET isteği yapılarak gerçekleştirilir. HBHS, müşteri rızasının tesisinden sonrasında (geçerli bir erişim belirticine sahip olduğunda) öncelikle **GET/kartlar** çağrısı yapacaktır.
+**4.	Kart bilgilerinin alınması:**  Kart bilgileri ilgili kaynağa (kartlar, kart detayı, kart hareketleri) GET isteği yapılarak gerçekleştirilir. HBHS, müşteri rızasının tesisinden sonrasında (geçerli bir erişim belirticine sahip olduğunda) öncelikle **GET/kartlar** çağrısı yapacaktır.
 
 ## Hesap Bilgisi Hizmeti İçin Erişim Adresleri
 
@@ -122,25 +122,32 @@ Başarıyla oluşturulan hesap bilgisi rıza kaynağının rıza durumu “Yetki
 HBHS, bu API erişim adresinden HHS’ye yeni bir HesapBilgisiRizasi oluşturulması için istekte bulunur:
 -	HBHS, ÖHK’nın hesap/kart bilgilerine yönelik rıza başlatma isteği olduğunu HHS’ye bildirir.
 -	HBHS, ÖHK’nın, HBHS arayüzünden verdiği rızanın (“Ön Onay”) bir kopyasının HHS nezdinde müşteri tarafından onaylanması için HHS’ye gönderilmesini sağlar.
--	HHS; istek mesajında yer alan alanların API dökümanında belirtilen şartları sağlayacak şekilde zorunluluk ve uzunluk kontrollerini yapar. (Zorunlu)
--	HHS; YÖS API ile alınan HBHS bilgilerinin içerisinde yer alan yönlendirme adresleri ile hesap bilgisi rızası nesnesi request mesajında paylaşılan adreslerin uyumlu olup olmadığının kontrollerini yapar. (Zorunlu)  
--	HHS; kimlik bilgileri nesnesinde iletilen kimlik bilgileri ile ÖHK’nın HHS müşterisi olup olmadığının kontrollerini yapar. Bu kontrol hem bireysel hem de kurumsal ÖHK’lar için yapılmalıdır.  (Zorunlu)
--	Erişimin Geçerli Olduğu Son Tarih, İşlem Sorgulama Başlangıç Zamanı, İşlem Sorgulama Bitiş Zamanı alanları ile ilgili Tablo 12’de belirtilen kontroller yapılmalıdır. (Zorunlu) İşlem sorgulama başlangıç ve bitiş zaman değerleri sadece hesap bilgisi için geçerlidir. Kart bilgisi için geçerli değildir.
--	HHS, benzersiz “RizaNo” ile “HesapBilgisiRizasi” nesnesi oluşturur ve HBHS’ye döner.
--	HHS, HesapBilgisiRizasi oluşturduğu anda durumunu “Yetki Bekleniyor” olarak düzenler.
+-	HHS; istek mesajında yer alan alanların API dökümanında belirtilen şartları sağlayacak şekilde zorunluluk ve uzunluk kontrollerini yapar.(Zorunlu) Kontrollere istinaden hata oluşması durumunda **”TR.OHVPS.Resource.InvalidFormat”** hata kodu iletilmeli ve fieldErrors dolu olacak şekilde hatalı alanı belirten detaylı açıklama gönderilmelidir. InvalidFormat hata kodlarında fieldErrors içeriği gönderilmeli ve anlaşılır açıklama ile message, messageTr alanları doldurulması zorunludur.  
+-	HHS, hhsKod’un kendisine ait olduğunu ve istek başlığındaki x-aspsp-code değeri ile aynı olduğunu kontrol eder. Farklı olması durumunda **”TR.OHVPS.Connection.InvalidASPSP”** hatası dönülür.
+- HHS, yosKod’un geçerli bir Ödeme Hizmeti Sağlayıcısı Kodu olduğunu ve istek başlığındaki x-tpp-code değeri ile aynı olduğunu kontrol eder. Farklı olması durumunda **”TR.OHVPS.Connection.InvalidTPP”** hatası dönülür.
+-	HHS; YÖS API ile alınan temel adres bilgilerinde yer alan yönlendirme adresleri ile hesap bilgisi rızası nesnesi içerisinde yer alan YÖS  adreslerin uyumlu olup olmadığının kontrollerini yapar. (Zorunlu) Kontrollere istinaden hata oluşması durumunda **”TR.OHVPS.Business.TPPRedirectionAddressMismatch”** hatası dönülür.
+-	HHS; kimlik bilgileri nesnesinde iletilen kimlik bilgileri ile ÖHK’nın HHS müşterisi olup olmadığının kontrollerini yapar. Bu kontrol hem bireysel hem de kurumsal ÖHK’lar için yapılmalıdır.(Zorunlu) Kontrollere istinaden hata oluşması durumunda **”TR.OHVPS.Business.CustomerNotFound”** hatası dönülür.
+- Bir ÖHK'nın 1 YÖS için 1 HHS'de Yetki Bekleniyor, Yetkilendirildi, Yetki Kullanıldı statüsünde 1 rızası olabilir. ÖHK’nın “Yetki Kullanıldı” statüsünde rızası varken tekrar rıza alınmaya çalışıldığında HHS tarafından **”TR.OHVPS.Business.ConsentAlreadyExists”** hatası dönülür. Diğer rıza durumlarında işletilmesi gereken akışları “Rıza Durumları” başlığından kontrol edilmelidir.
+- Hesap bilgi hizmeti rıza isteğinde bulunan ÖHK’nın “Açık Bankacılık Kanal Yetki” tanımı yok ise **”TR.OHVPS.Business.OpenBankingChannelClosed”** hatası dönülür. HHS insiyatifinde olup HHS bu kontrolü GKD sonrası gerçekleştirebilir.
+- Hesap bilgi hizmeti rıza isteğinde 01 ya da 07 izin türü olmak zorundadır. HHS tarafından izin türü içerisinde 01 ya da 07 varlık durumu kontrol edilir. Olmaması durumunda **"TR.OHVPS.Business.IncorrectPermissionType”** hatası dönülür.
+- Hesap bilgi hizmeti rıza isteğinde 01 izin türü bulunmuyor ise 02, 03, 04, 05 ya da 06 izin türü olmamalıdır. 01 izin türü bulunmadığında 02, 03, 04, 05 ya da 06 izin türlerinden biri ya da birkaçı gönderildiğinde **"TR.OHVPS.Business.IncorrectPermissionType”** hatası dönülür.
+- Hesap bilgi hizmeti rıza isteğinde 07 izin türü bulunmuyor ise 08 ya da 09 izin türü olmamalıdır. 07 izin türü bulunmadığında 08 ya da 09 izin türlerinden biri ya da ikisi gönderildiğinde **"TR.OHVPS.Business.IncorrectPermissionType”** hatası dönülür.
+- ÖHK, HHS'de olacak bakiye değişikliklerinden anlık haberdar olmak istiyor ise 06-Anlık Bakiye Bildirimi izin türü seçimi ile rıza başlatması gereklidir. 03-Bakiye Bilgisi izin türü ile birlikte seçilmesi gereklidir. 06 izin türü seçilip 03 izin türü seçilmediği durumda **”TR.OHVPS.Business.IncorrectPermissionType”** hatası dönülür.
+-	İzin türü “06: Anlık Bakiye Bildirimi” seçilmiş ise HHS, YÖS'ün KAYNAK_GUNCELLENDI olay tipinde olay aboneliğinin varlığını kontrol eder. Olay abonelik kaydı bulunmuyor ise **”TR.OHVPS.Business.EventSubscriptionNotFound”** hatası dönülür.
+- Hesap bilgi hizmeti rıza isteğinde bulunan ÖHK’nın izin verecek hesap ya da kartı yok ise **”TR.OHVPS.Business.ProductNotSuitable”** hatası dönülür. İki üründen biri var ise başarılı yanıt dönülür. HHS insiyatifinde olup HHS bu kontrolü GKD sonrası gerçekleştirebilir.
+- Erişimin Geçerli Olduğu Son Tarih bilgisi müşteri bağımsız alabileceği minimum değer : Rıza tarihi + 1 gündür. Maksimum rıza süresi bireysel müşteriler için 6 ay, Kurumsal/Tüzel müşteriler için 12 ay olacaktır. Bireysel müşteriler için 6 aydan fazla, kurumsal müşteriler için ise 12 aydan fazla iletildiği durumda **”TR.OHVPS.Resource.InvalidFormat”** hatası dönülür. 
+- İzin türü “Temel işlem Bilgisi” ve/veya “Ayrıntılı İşlem Bilgisi” seçilmiş ise; İşlem Sorgulama Başlangıç Zamanı, hesap bilgisi rızası verilmesinden **geçmişe** dönük en fazla 12 ay olabilmektedir. 12 aydan fazla gönderilmesi durumunda **”TR.OHVPS.Resource.InvalidFormat”** hatası dönülür. 
+- İzin türü “Temel işlem Bilgisi” ve/veya “Ayrıntılı İşlem Bilgisi” seçilmiş ise; İşlem Sorgulama Başlangıç Zamanı, hesap bilgisi rızası verilmesinden **geleceğe** dönük en fazla 12 ay sonrası olabilmektedir. 12 aydan fazla gönderilmesi durumunda **”TR.OHVPS.Resource.InvalidFormat”** hatası dönülür. 
+- Ayrık GKD desteklemeyen HHS'ye Ayrık GKD yöntemiyle rıza başlatma isteği yapılması durumunda HHS tarafından **”TR.OHVPS.Business.DecoupledAuthenticationNotSupported”** hatası dönülür. YÖS ilgili işlemi “Yönlendirmeli” akışa çekip süreci ilerletebilir. 
+- HHS "gkd" nesnesi için alan kontrollerini gerçekleştirir. "yetYntm" = "A" gönderilmiş ise "ayrikGkd" nesnesinin dolu gönderilmesi zorunludur. Gönderilmemesi durumunda HHS tarafından **”TR.OHVPS.Resource.InvalidFormat”** hatası dönülür.
+- Ayrık GKD ile başlatılan hesap bilgi hizmeti rıza isteğinde HHS, YÖS’ün AYRIK_GKD_BASARILI ve AYRIK_GKD_BASARISIZ olay tipleri için olay aboneliğinin varlığını kontrol eder. YÖS iki olay tipine de abone olmak zorundadır. Eğer olay aboneliği yoksa HHS tarafından **”TR.OHVPS.Business.EventSubscriptionNotFound”** hatası dönülür. 
+- ÖHK'ya ait kimlik verisi(kmlk.kmlkVrs) ile ayrık GKD içerisinde yer alan OHK Tanım Değer alanı (ayrikGkd.ohkTanimDeger) birebir aynı olmalıdır. Aynı olmadığı durumda HHS tarafından **”TR.OHVPS.Business.CustomerInfoMismatch”** hatası dönülür. 
+- HHS tarafında ÖHK'nın mobil uygulaması bulunmaması durumu tespit edilebildiği durumda Ayrık GKD ile başlatılan rıza akışlarında hata mesajı vermelidir. HHS tarafından **”TR.OHVPS.Business.CustomerMobileApplicationNotFound”** hatası dönülür. YÖS ilgili işlemi “Yönlendirmeli” akışa çekip süreci ilerletebilir. 
 
-Erişimin Geçerli Olduğu Son Tarih, İşlem Sorgulama Başlangıç Zamanı, İşlem Sorgulama Bitiş Zamanı alanlarında zaman aralıkları müşteri deneyimi penceresinden değerlendirilerek ay cinsinden belirtilmiştir. Bu konuda aşağıdaki gibi oluşabilecek uç örneklere dikkat edilmesi gerekmektedir.  
+Yukarıdaki kontroller tamamlandıktan sonra HHS, benzersiz “RizaNo” ile “HesapBilgisiRizasi” nesnesi oluşturur ve HBHS’ye döner.
 
-Yeni günün başlangıç saatinin 00:00:00 olduğu kabul edilmiştir.
+HHS, HesapBilgisiRizasi oluşturduğu anda durumunu “Yetki Bekleniyor” olarak düzenler.
 
-Bugün : 31.08.2019<br>
-Bugün + 6 Ay : 01.03.2020 00:00:00 (29.02.2020 tüm gün dahildir.)<br><br> 
-Bugün : 30.08.2020<br>
-Bugün + 6 Ay : 01.03.2020 00:00:00 (28.02.2021 tüm gün dahildir.)<br><br>
-Bugün : 30.09.2022<br>
-Bugün + 3 Ay : 01.01.2023 00:00:00 (30.12.2022 tüm gün dahildir.)<br><br>
-Bugün : 14.07.2022<br>
-Bugün + 3 Ay : 15.10.2022 00:00:00 (14.10.2022 tüm gün dahildir.)<br><br>
 
 **Tablo 12: “HesapBilgisiRizasiIstegi” nesnesi**
 |Alan Adı |JSON Alan Adı	|Format	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|HHS tarafından yapılması gereken kontrol ve işlemler|
@@ -291,6 +298,9 @@ Erişim belirteci alındıktan sonra; HHS,  hesap bilgisi rızasının durumunu 
 
 ÖHK, HHS üzerinden rıza iptali yapmış olabilir veya ÖHK’nın verdiği rıza süresi dolmuş olabilir.  Bu durumlarda HBHS, rıza alma akışına başlamadan önce, daha önce oluşturulmuş bir HesapBilgisiRizasi kaynağının durumunu, isteğe bağlı olarak alabilir.  
 
+- YÖS sadece kendi uygulaması üzerinden verilmiş hesap bilgi rızasını sorgulayabilir. YÖS'e ait olmayan bir rıza ile sorgulama yapıldığında HHS tarafından **"TR.OHVPS.Resource.NotFound"** hatası dönülür.
+- YÖS'e ait rıza sorgulama yapılırken ilgili rıza kaydı bulunamaz ise **”TR.OHVPS.Resource.NotFound”** hatası dönülür.
+
 Servis başarılı yanıtında Tablo 13’de belirtilen “HesapBilgisiRizasi” nesnesini dönmektedir.
 
 Durum  
@@ -301,7 +311,7 @@ HesapBilgisiRizasi kaynağı için kullanılabilecek durum göstergeleri şu şe
 -	Yetki Sonlandırıldı
 -	Yetki İptal
 
-- Hesap bilgisi rızası sonlandırıldı ve iptal statüsünde olan rıza'ların güncellenme zamanından(gnclZmn) 6 ay sonrasına kadar sorgulanabilir olması beklenmektedir. HHS'ler ilgili süre sonrasında yapılacak rıza sorgularına TR.OHVPS.Resource.NotFound uyarısı verebilir. YÖS'ler tarafından iptal ve sonlandırıldı statüsünde olan rızalar için sorgulama yapmamalıdır.
+- Hesap bilgisi rızası sonlandırıldı ve iptal statüsünde olan rıza'ların güncellenme zamanından(gnclZmn) 6 ay sonrasına kadar sorgulanabilir olması beklenmektedir. HHS'ler ilgili süre sonrasında yapılacak rıza sorgularına **"TR.OHVPS.Resource.NotFound"** uyarısı verebilir. YÖS'ler tarafından iptal ve sonlandırıldı statüsünde olan rızalar için sorgulama yapmamalıdır.
 
 ## 9.4 ADIM 2.2: Hesap Bilgisi Rızasının İptali
 
@@ -316,6 +326,12 @@ HesapBilgisiRizasi kaynağı için kullanılabilecek durum göstergeleri şu şe
 
 DELETE /hesap-bilgisi-rizasi çağrısı, bir HBHS'nin önceden oluşturulmuş bir hesap erişim rızasını (yetkili olsun veya olmasın) silmesine izin verir. Müşteri, rızasını HHS üzerinden iptal etmek yerine, HBHS üzerinden bu rızasını kaldırmak isteyebilir.  
 Bu API çağrısı, müşterinin HBHS üzerinden hesap bilgisi rızasını iptal etmesine ve HHS nezdindeki hesap bilgisi rızası nesnesinin silinmesini sağlar.  
+
+- Erişim belirteci kontrolü yapılır. Geçerli bir erişim belirteci yok ise HHS tarafından **”TR.OHVPS.Connection.InvalidToken”** hatası dönülür.
+- İstek başlığında yer alan X-Access-Token ile ilişkili rıza, silinen rizaNo bilgisi ile aynı olup olmadığı kontrol edilir. Farklı olması durumunda **"TR.OHVPS.Resource.NotFound"** hatası dönülür.
+- Rıza İptali API'sinde ilgili rıza kaydı bulunamaz ise **”TR.OHVPS.Resource.NotFound”** hatası dönülür.
+- Rıza durumu Yetki Sonlandırıldı - S veya Yetki İptal - I ise **"TR.OHVPS.Resource.ConsentRevoked"** hatası dönülür.
+
 Müşterinin HBHS’nin veri erişim iznini iptal etmesi durumunda HBHS, HHS’de mevcut olan HesapBilgisiRizasi kaynağını pratik olarak mümkün olan en kısa sürede silmelidir. Bu ise, ilgili kaynağa   
 **DELETE /hesap-bilgisi-rizasi/{RizaNo}**  
 çağrısı aracılığı ile yerine getirilir. HBHS ayrıca, sisteminden Hesap/Kart Erişim İzni kaynaklarını da temizlemelidir.  
@@ -341,20 +357,28 @@ YÖS Adı, HHS adı, Rıza Oluşturma Zamanı, Servis Tipi Bilgisi (HBHS)
 İSTEK:  
 Müşteri rızası tesis edilmiş kullanıcı için HBHS API erişim adresinden HHS’ye erişilebilir hesap bilgilerini GET isteği ile sorgular: 
 
-- RizaDurumu “Yetki Kullanıldı” ise işleme başlanır. RizaDurumu farklı bir değerde ise “TR.OHVPS.Resource.ConsentMismatch” hatasının iletilmesi gerekir. 
-- GET verisinin modele göre kontrolü yapılır (Örneğin: Alan kontrolleri)  
+- Parametrede yer alan değerlerin doğru gönderildiği kontrol edilir. Hatalı gönderilmesi durumunda HHS tarafından **”TR.OHVPS.Resource.InvalidFormat”** hatası dönülür. Parametrede yer alan değerler gönderilmediği durumda parametredeki varsayılan değerler ile hesap bilgileri dönülür. Varsayılan değerler Tablo 14'de belirtilmiştir.
+- Erişim belirteci kontrolü yapılır. Geçerli bir erişim belirteci yok ise HHS tarafından **”TR.OHVPS.Connection.InvalidToken”** hatası dönülür.
+- /hesaplar/{hspRef} ile yapılan istekte; 
+  - İstek başlığında yer alan X-Access-Token ile ilişkili rızada, izin verilen hspRef'ler için, hesap bilgisi sorgulanan hspRefe ait rıza ile aynı olup olmadığı kontrol edilir. Farklı olması durumunda **"TR.OHVPS.Resource.NotFound"** hatası dönülür.
+  - İlgili hspRef bulunamaz **”TR.OHVPS.Resource.NotFound”** hatası dönülür.
+- Rıza durumu kontrol edilir. 
+  - RizaDurumu B: Yetki Bekleniyor ya da Y: Yetkilendirildi ise **“TR.OHVPS.Resource.ConsentMismatch”** hatası dönülür. 
+  - YÖS'ün; Rıza İptal - I ya da Yetki Sonlandırıldı - S rıza durumlarında hesap bilgileri servisini çağırmaması beklenir. Bu rıza durumları ile yapılmış çağrılar olduğunda HHS tarafından **”TR.OHVPS.Resource.ConsentRevoked”** hatası dönülür.
+  - RizaDurumu “Yetki Kullanıldı” ise kontrollere devam edilir.
+- HHS tarafından ÖHK’nın “01: Temel Hesap Bilgisi” izin türüne sahipliği kontrol edilir. 01 izin türüne sahip değil ise **”TR.OHVPS.Business.PermissionTypeNotSupported”** hatası dönülür.
 
-GET verisinin mantıksal kontrolleri yapılır.
-
+Yukarıdaki kontroller tamamlandıktan sonra HHS, "HesapBilgileri" nesnesini oluşturur ve HBHS’ye döner.
 - Hesap bilgisi rızası alınmış ve erişim izni devam eden hesaplar içerisinden herhangi bir hesabın kapatılması ya da pasife alınması durumunda YÖS tarafından yapılan hesap isteğine HHS tarafından hesap bilgisi dönülmelidir.
+Kapalı hesap için TR.OHVPS.DataCode.HspDrm veri türünden KAPALI değeri ile, pasif hesap için TR.OHVPS.DataCode.HspDrm veri türünden PASIF değeri ile dönülmelidir. 
 
-- Kapalı hesap için TR.OHVPS.DataCode.HspDrm veri türünden KAPALI değeri ile, pasif hesap için TR.OHVPS.DataCode.HspDrm veri türünden PASIF değeri ile dönülmelidir. 
 
 ## 9.6 ADIM 3.1 ve 3.2: Hesap Bilgilerinin Sorgulanması
 
 **GET /hesaplar ve GET /hesaplar/{hspRef}**
 
-Bu erişim noktalarından tüm hesapların veya belirli bir hesabın bilgilerinin sorgulanır. Hesap bilgisi için daha önce tanımlanmış izin türüne göre (Temel Hesap Bilgisi veya Detaylı Hesap Bilgisi) yanıtında dönülen HesapBilgileri nesnesinin içeriği değişir.  Tablo 15’te HesapBilgileri nesnesinin içeriği verilmiştir.  
+Bu erişim noktalarından tüm hesapların veya belirli bir hesabın bilgileri sorgulanır. Hesap bilgisi için daha önce tanımlanmış izin türüne göre (Temel Hesap Bilgisi veya Detaylı Hesap Bilgisi) yanıtında dönülen HesapBilgileri nesnesinin içeriği değişir. Tablo 15’te HesapBilgileri nesnesinin içeriği verilmiştir.  
+
 
 Hesap Bilgisi Sorgu Örneği (Tüm Hesaplar) =  /hesaplar  
 Hesap Bilgisi Sorgu Örneği (Belirli Bir Hesap) =  /hesaplar/{hspRef}  
@@ -364,6 +388,7 @@ syfNo=1&
 srlmKrtr= hspRef &
 srlmYon=A  
 
+ 
 **Tablo 14: Hesap Bilgileri Sorgulama İsteği Sorgu Parametreleri**
 |Alan Adı |Parametre Adı	|Format	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|HHS tarafından yapılması gereken kontrol ve işlemler|
 | --- | --- | --- | --- | --- | --- |
@@ -380,7 +405,7 @@ srlmYon=A
 | Hesap Temel | hspTml | Kompleks: HesapTemel | Z | Temel Hesap Bilgileri (Temel Hesap Bilgisi varsayılan izin türü olduğundan Hesap Temel nesnesi zorunlu olarak yanıtta bulunur) | 
 | > Hesap Referansı  | hspRef | AN5..40 | Z | HHS tarafından hesap için atanan biricik tanımlıyıcıdır (uuid). YÖS bazında farklılaşması gerekmez. Bir hesap (IBAN) tek bir hspRef'e karşılık gelmelidir, benzer şekilde bir hspRef tek bir IBAN'a karşılık gelmelidir. Aynı hesap için alınan tüm rızalarda hesap referans bilgisinin değişmemesi gerekmektedir.| 
 | > Hesap Numarası | hspNo | AN26 | K | Eğer varsa ödeme hesabına ait IBAN bilgisi | 
-| > Hesap Sahibi Unvanı | hspShb | AN3..140 | Z | Hesap sahibi ya da hesap sahiplerinin ad-soyadı, ticari unvanı | 
+| > Hesap Sahibi Ünvanı | hspShb | AN3..140 | Z | Hesap sahibi ya da hesap sahiplerinin ad-soyadı, ticari ünvanı | 
 | > Şube Adı | subeAdi | AN3..50 | K | Eğer varsa ödeme hesabının bağlı olduğu şubenin adı | 
 | > Kısa Ad | kisaAd | AN3..50 | K | Eğer hesap sahibi hesaba ait bir ad tanımladıysa, tanımlanan hesap adı | 
 | > Para Birimi | prBrm | AN3 | Z | Para Birimi. | 
@@ -394,10 +419,20 @@ srlmYon=A
 ## 9.7 ADIM 3.3 ve 3.4: Hesap Bakiyesinin Sorgulanması  
 
 **GET /bakiye ve GET /hesaplar/{hspRef}/bakiye**  
-Bu erişim noktalarından tüm hesapların veya belirli bir hesabın bakiyesi sorgulanır.   
-İstek çağrısına dönülen “BakiyeBilgileri” nesnesi Tablo 17’de verilmiştir.  
+Bu erişim noktalarından tüm hesapların veya belirli bir hesabın bakiyesi sorgulanır.   İstek çağrısına dönülen “BakiyeBilgileri” nesnesi Tablo 17’de verilmiştir. 
 
-Hesap Bilgisi Rızası alınmış ve erişim izni devam eden hesaplar içerisinde yer alan hesaplardan kapatılmış ya da pasif duruma alınmış olan hesaplar için bakiye isteği yapıldığında HHS tarafından bakiye bilgisi dönülmelidir.
+- Erişim belirteci kontrolü yapılır. Geçerli bir erişim belirteci yok ise HHS tarafından **”TR.OHVPS.Connection.InvalidToken”** hatası dönülür.
+- /hesaplar/{hspRef}/bakiye ile yapılan istekte; 
+  - İstek başlığında yer alan X-Access-Token ile ilişkili rızada, izin verilen hspRef'ler için, bakiye sorgusundaki hspRefe ait rıza ile aynı olup olmadığı kontrol edilir. Farklı olması durumunda **"TR.OHVPS.Resource.NotFound"** hatası dönülür.
+  - İlgili hspRef bulunamaz **”TR.OHVPS.Resource.NotFound”** hatası dönülür.
+- Rıza durumu kontrol edilir. 
+  - RizaDurumu B: Yetki Bekleniyor ya da Y: Yetkilendirildi ise **“TR.OHVPS.Resource.ConsentMismatch”** hatası dönülür. 
+  - YÖS'ün; Rıza İptal - I ya da Yetki Sonlandırıldı - S rıza durumlarında hesap bakiye servisini çağırmaması beklenir. Bu rıza durumları ile yapılmış çağrılar olduğunda HHS tarafından **”TR.OHVPS.Resource.ConsentRevoked”** hatası dönülür.
+  - RizaDurumu “Yetki Kullanıldı” ise kontrollere devam edilir.
+- Hesap Bakiye Sorgulanması yapılırken HHS tarafından ÖHK’nın “03: Bakiye Bilgisi” izin türü sahipliği kontrol edilir. 03 izin türüne sahip değil ise **”TR.OHVPS.Business.PermissionTypeNotSupported”** hatası dönülür.
+
+Yukarıdaki kontroller tamamlandıktan sonra HHS, "BakiyeBilgileri" nesnesini oluşturur ve HBHS’ye döner.
+- Hesap Bilgisi Rızası alınmış ve erişim izni devam eden hesaplar içerisinde yer alan hesaplardan kapatılmış ya da pasif duruma alınmış olan hesaplar için bakiye isteği yapıldığında HHS tarafından bakiye bilgisi dönülmelidir.
 
 Hesap bakiyelerinin gösterilmesi sırasında aşağıda verilen örnekler gözönünde bulundurulmalıdır.  
 
@@ -442,15 +477,26 @@ srlmYon=A
 
 **GET /hesaplar/{hspRef}/islemler**  
 
-Belirli bir hesaba ilişkin işlem bilgileri Tablo 1’daki istek parametrelerine göre sorgulanır.<br>
+Servis başarılı yanıtında Tablo 19’da belirtilen "IslemBilgileri" nesnesini dönmektedir.
+
+- Belirli bir hesaba ilişkin işlem bilgileri Tablo 18’deki istek parametrelerine göre sorgulanır. Parametrede yer alan değerlerin doğru gönderildiği kontrol edilir. Hatalı gönderilmesi durumunda **”TR.OHVPS.Resource.InvalidFormat”** hatası dönülür.
+- Erişim belirteci kontrolü yapılır. Geçerli bir erişim belirteci yok ise HHS tarafından **”TR.OHVPS.Connection.InvalidToken”** hatası dönülür.
+- İstek başlığında yer alan X-Access-Token ile ilişkili rızada, izin verilen hspRef'ler için, işlemler sorgusundaki hspRefe ait rıza ile aynı olup olmadığı kontrol edilir. Farklı olması durumunda **"TR.OHVPS.Resource.NotFound"** hatası dönülür.
+- İlgili hspRef bulunamaz **”TR.OHVPS.Resource.NotFound”** hatası dönülür.
+- Rıza durumu kontrol edilir. 
+  - RizaDurumu B: Yetki Bekleniyor ya da Y: Yetkilendirildi ise **“TR.OHVPS.Resource.ConsentMismatch”** hatası dönülür. 
+  - YÖS'ün; Rıza İptal - I ya da Yetki Sonlandırıldı - S rıza durumlarında işlemler servisini çağırmaması beklenir. Bu rıza durumları ile yapılmış çağrılar olduğunda HHS tarafından **”TR.OHVPS.Resource.ConsentRevoked”** hatası dönülür.
+  - RizaDurumu “Yetki Kullanıldı” ise kontrollere devam edilir.
+- HHS tarafından ÖHK’nın “04: Temel İşlem (Hesap Hareketleri) Bilgisi” veya "05: Ayrıntılı İşlem Bilgisi" izin türüne sahipliği kontrol edilir. 04 veya 05 izin türüne sahip değil ise **”TR.OHVPS.Business.PermissionTypeNotSupported”**  hatası dönülür.
+
 Hesap Bilgisi Rızası alınmış ve erişim izni devam eden hesaplar içerisinde yer alan hesaplardan kapatılmış ya da pasif duruma alınmış olan hesaplar için işlemler isteği yapıldığında HHS tarafından işlemler bilgisi dönülmelidir.   
 İşlem bilgisi için daha önce tanımlanmış izin türüne göre yanıtta dönen IslemBilgileri nesnesinin (Temel İşlem Bilgisi veya Temel İşlem Bilgisi ve Detaylı İşlem Bilgisi) içeriği değişir.   
 İşlemler servisi hem ÖHK’nın talebi ile YÖS uygulaması üzerinden çağrılabileceği gibi, YÖS’ün ÖHK’sız başlatabileceği otomatik çağrıları ile de yanıt dönebilmektedir.   
 HHS, işlemin sistemsel yapılıp yapılmadığını, istek parametreleri içerisinde yer alan PSU-Initiated parametresi ile anlar. Bu parametre “E” ise ÖHK’lı, “H” ise sistemsel yapılmış bir sorgu anlamına gelmektedir. 
 ÖHK’nın başlattığı sorgular için HHS tarafından belirlenen üst rate limitler dahilinde çağrım yapılabilir.  
 YÖS, otomatik yapacağı sorgularda;  
-- Bireysel ÖHK’lar için hesap bazında günde en fazla 4 adet başarı ile sonuçlanan sorgulama yapabilir.
-- Kurumsal ÖHK’lar için hesap bazında saatte en fazla 12 adet başarı ile sonuçlanan sorgulama yapabilir.  
+- Bireysel ÖHK’lar için hesap bazında günde en fazla 4 adet başarı ile sonuçlanan sorgulama yapabilir. 4 adetten fazla yapılması durumunda **”TR.OHVPS.Connection.ExceededRate”** hatası dönülür.
+- Kurumsal ÖHK’lar için hesap bazında saatte en fazla 12 adet başarı ile sonuçlanan sorgulama yapabilir. 12 adetten fazla yapılması durumunda **”TR.OHVPS.Connection.ExceededRate”** hatası dönülür.
 
 HHS, tutacağı sayaç bilgisi ile bu sayıları kontrol ederek daha fazla sorgulama yapılmasına izin vermeyebilir. 
 
@@ -458,9 +504,9 @@ Aynı istek parametreleri ile yapılan sorgu sonucunda dönecek toplam kayıt sa
 
 ÖHK’nın YÖS uygulaması üzerinden tetiklediği işlemlerde ise;
 bireysel ÖHK’lar  için en fazla 1 aylık,
-kurumsal ÖHK’lar için ise en fazla 1 haftalık bir pencere aralığında sorgulama yapılabilir.
+kurumsal ÖHK’lar için ise en fazla 1 haftalık bir pencere aralığında sorgulama yapılabilir. Belirtilen tarih aralığından farklı değer ile sorgulama yapıldığında **”TR.OHVPS.Business.InvalidStartEndTime”** hatası dönülür.
 
-YÖS, otomatik yapacağı sorgularda hem bireysel hem de kurumsal ÖHK’lar için 24 saatlik bir pencere aralığında sorgulama yapabilir.   
+YÖS, otomatik yapacağı sorgularda hem bireysel hem de kurumsal ÖHK’lar için 24 saatlik bir pencere aralığında sorgulama yapabilir. Belirtilen tarih aralığından farklı değer ile sorgulama yapıldığında **”TR.OHVPS.Business.InvalidStartEndTime”** hatası dönülür. 
 
 Yeni günün başlangıç saatinin 00:00:00 olduğu kabul edilmiştir. 
 
@@ -583,7 +629,7 @@ srlmYon=A
 |>> İşlem Açıklaması|	islAcklm|	AN1..200|	Z|	HHS tarafından atanan işlem açıklaması. HHS kendi işlem hareketlerine yansıttığı açıklamayı buraya yansıtmalıdır.  HHS'ler tüm hesap hareketlerini YÖS'ler ile paylaşmakla yükümlü olup, hassas veri içeren(örn: faiz, komisyon bilgisi içeren vb.) işlem hareketleri de bu kapsamda değerlendirilerek işlem açıklamasının maskeli olarak iletilmesi sağlanır. Kelimelerin ilk 3 hanesi maskeli olacak şekilde, ancak sakıncalı bulunan kelimeler varsa; (örn: faiz, komiyon vb.) kelimelerin tamamı maskeli olacak şekilde gösterilebilir.|
 |>> Karşı Taraf	|krsTrf	|Kompleks:  KarsiTaraf	|K|	Kullanımı işlem bazında değişmektedir. Örnek: FAST işleminde karşı taraf alıcının bilgileridir. Vergi ödemesinde kurum IBAN bilgisi müşteriye gösterilemeyebileceğinden bu alanın boş gelmesi HHS insiyatifindedir.|
 |>>> Karşı Maskeli IBAN	|krsMskIBAN	|AN26	|K	|İlgili hesap hareketinin karşı tarafının maskeli IBAN bilgisi.|
-|>>> Karşı Unvan|	krsUnvan	|AN3..140|	K	|İlgili hesap hareketinin karşı tarafının ad-soyad ya da ticari unvan bilgisi. Unvan bilgisi maskelenmeden iletilmelidir.|
+|>>> Karşı Ünvan|	krsUnvan	|AN3..140|	K	|İlgili hesap hareketinin karşı tarafının ad-soyad ya da ticari ünvan bilgisi. Ünvan bilgisi maskelenmeden iletilmelidir.|
 |>>> Karşı Taraf Kimlik Bilgisi|	krsKimlikVrs	|AN1..11|	İ	|HHS sorumluluğunda YÖS ile paylaşılan Karşı Taraf Kimlik Bilgisi(Kimlik/Kurum Kimlik - TCKN/VKN)|
 
 ## 9.9 ADIM 4: Kart Bilgilerinin Sorgulanması 
@@ -592,22 +638,30 @@ srlmYon=A
 
 **GET /kartlar**
 
-Bu erişim noktalarından tüm kartların bilgileri sorgulanır ve kart listesi elde edilir. İlgili sorgu için 07 izin türünün verilmesi yeterlidir. Tablo 16’da KartBilgileri nesnesinin içeriği verilmiştir.
+Bu erişim noktalarından tüm kartların bilgileri sorgulanır ve kart listesi elde edilir. İlgili sorgu için 07 izin türünün verilmesi yeterlidir. 
 
-Kart Bilgisi Sorgu Örneği (Tüm Kartlar) = /kartlar?syfKytSayi=25& syfNo=1
+- Parametrede yer alan değerlerin doğru gönderildiği kontrol edilir. Hatalı gönderilmesi durumunda HHS tarafından **”TR.OHVPS.Resource.InvalidFormat”** hatası dönülür. Parametrede yer alan değerler gönderilmediği durumda parametredeki varsayılan değerler ile kart bilgileri dönülür. Varsayılan değerler Tablo 20'de belirtilmiştir.
+- Erişim belirteci kontrolü yapılır. Geçerli bir erişim belirteci yok ise HHS tarafından **”TR.OHVPS.Connection.InvalidToken”** hatası dönülür.
+- Rıza durumu kontrol edilir. 
+  - RizaDurumu B: Yetki Bekleniyor ya da Y: Yetkilendirildi ise **“TR.OHVPS.Resource.ConsentMismatch”** hatası dönülür. 
+  - YÖS'ün; Rıza İptal - I ya da Yetki Sonlandırıldı - S rıza durumlarında kartlar servisini çağırmaması beklenir. Bu rıza durumları ile yapılmış çağrılar olduğunda HHS tarafından **”TR.OHVPS.Resource.ConsentRevoked”** hatası dönülür.
+  - RizaDurumu “Yetki Kullanıldı” ise kontrollere devam edilir.
+- İlgili rıza numarasının “07: Temel Kart Bilgisi” izin türüne sahipliği kontrol edilir. 07 izin türüne sahip değil ise **”TR.OHVPS.Business.PermissionTypeNotSupported”** hatası dönülür. 
 
-Kart bilgileri Tablo 15’deki istek parametrelerine göre sorgulanır. Kart bilgileri için KartBilgileri nesnesinin içeriği Tablo 16'da verilmiştir.
+Yukarıdaki kontroller tamamlandıktan sonra HHS tarafından istek başlığında yer alan X-Access-Token ile ilişkili rıza içerisindeki kart bilgileri dönülür. Kart bilgileri için KartBilgileri nesnesinin içeriği Tablo 21'de verilmiştir.
+
+Kart Bilgisi Sorgu Örneği (Tüm Kartlar) = /kartlar?syfKytSayi=25&syfNo=1
 
 Kapalı banka ve ön ödemeli kart tipleri YÖS'ler tarafından ÖHK'ya gösterilmeyecektir. Kapalı kredi kart tipi için borç/taksit bilgisi bitene kadar ÖHK'ya gösterilecektir. Borç bilgisi için kart detay veya hareket servisine istek atıldığında borç olmaması durumuna dair hata mesajı HHS tarafından dönülecektir. 
 
 
-**Tablo 15: Kart Bilgileri Sorgulama İsteği Sorgu Parametreleri**
+**Tablo 20: Kart Bilgileri Sorgulama İsteği Sorgu Parametreleri**
 |Alan Adı |Parametre Adı	|Format	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|HHS tarafından yapılması gereken kontrol ve işlemler|
 | --- | --- | --- | --- | --- | --- |
 |Sayfa Başına İstenen Kayıt Sayısı|	syfKytSayi|	N3|	İ	|Sayfa başına istenen kayıt sayısı. Bu alanda iletilen değer 100’den büyük olamaz. |Bu veri gönderildiği durumda, HHS işlemler listesini bu sayı kadar gruplandırarak gönderir. Bu veri gönderilmediğinde sayfadaki kayıt sayısı 100 olarak kullanılır. |
 |İstenen Sayfa Numarasi|	syfNo|	N3|	İ	|Cevapta dönecek sayfa numarası 1’den başlayarak artan değerlerle iletilmelidir.|	Bu veri gönderildiği durumda, HHS işlemler listesini bu sayfadaki kayıtları gönderir. Gönderilmediğinde, HHS ilk sayfadaki kayıtları gönderir. |
 |Kart Tipi|	kartTipi|	AN1|	İ	|Kart tipleri özelinde Banka, Kredi ve Ön Ödemeli kartların ayrıca soruglanması sağlanır. |Bu veri gönderildiği durumda, HHS kart tipine uygun olarak kart bilgilerini döner. |
-**Tablo 16: “KartBilgileri” nesnesi**  
+**Tablo 21: “KartBilgileri” nesnesi**  
 |Alan Adı |JSON Alan Adı	|Format	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|
 | --- | --- | --- | --- | --- |
 | Rıza No | rizaNo | AN1..128 | Z | HesapBilgisiRızasi nesnesinin oluşturulması esnasında HHS kaynak sunucusu tarafından atanan biricik tanımlayıcı | 
@@ -618,7 +672,7 @@ Kapalı banka ve ön ödemeli kart tipleri YÖS'ler tarafından ÖHK'ya gösteri
 | Alt Kart Tipi| altKartTipi | AN1| Z | Kart Tipleri altında yer alan alt kart tipleridir. Alt kart tipleri olarak alabileceği değerler **TR.OHVPS.DataCode.AltKartTip** sıralı veri türlerinden biridir.<br> Asıl banka kartı, sanal banka kartı, dijital banka kartı, dijital kredi kartı gibi tüm kart tiplerini ayrıştırmak için asıl ve alt kart tipleri kullanılmaktadır. |
 | Kart Türü | kartTuru | AN1 | Z | Kartın bireysel ve ticari olmasına yönelik ait olduğu tipini belirten değerdir. <br>**B:Bireysel, T:Ticari** |
 | Kart Statüsü | kartStatu | AN1 | Z | **TR.OHVPS.DataCode.KartStatu** sıralı veri türü değerlerinden birini alır.<br> Kart statüsü için güncelleme yapılamayacak durumda ise iptal statüsü olarak değerlendirilmelidir. Kart statüsü güncellenebilir durumda ise açık ve pasif olarak değerlendirilmelidir. |
-| Kart Sahibi Ad/Soyad | kartSahibi | AN3..140 | Z | Kart sahibi ya da kart sahiplerinin ad-soyadı, ticari unvanı |
+| Kart Sahibi Ad/Soyad | kartSahibi | AN3..140 | Z | Kart sahibi ya da kart sahiplerinin ad-soyadı, ticari ünvanı |
 | Kart Ürün Adı | kartUrunAdi | AN3..140 | Z | Kart bilgilerinin ürün adı. Örn : TROY Business Kart |
 | Ekstre Türleri | ekstreTurleri | Kompleks:EkstreTurleri | Z |İlgili karta ait ekstre türleri(TRY, USD, EUR) dizi içerisinde iletilmelidir. Yurtdışı ekstre olan kartlar için TRY haricinde değer dönülmesi gerekmektedir. Ekstre olmadığı halde banka kartı gibi kart tiplerinde TRY olarak iletilmesi gerekmektedir. |
 | Kart Rumuz | kartRumuz | AN3..140 | İ | Kart için rumuz bilgisi var ise gönderilebilir. |
@@ -628,9 +682,21 @@ Kapalı banka ve ön ödemeli kart tipleri YÖS'ler tarafından ÖHK'ya gösteri
 
 **GET /kartlar/{kartRef}/kart-detay**
 
-KartBilgileri nesnesi ile elde edilen kart listesinde yer alan kartların detayı sorgulanır. Detay ile birlikte KartDetayBilgileri nesnesinin içeriği Tablo 18'de verilmiştir. **Alt kart tipi Sanal Kart olanlar için detay bilgisi görüntülenmeyecektir.** Sanal kart özelinde detay bilgi sorgulaması yapılması durumunda HHS tarafından **TR.OHVPS.Business.UnsupportedCardType** hatası verilmelidir.
+KartBilgileri nesnesi ile elde edilen kart listesinde yer alan kartların detayı sorgulanır. Detay ile birlikte KartDetayBilgileri nesnesinin içeriği Tablo 23'de verilmiştir. 
 
-Kart tipi olarak; kapalı statüsünde olan banka kartı için detay sorgulaması yapılamayacaktır. Kart tipi kredi kartı olup borcu olmayan bir  kart için de kart detay sorgulaması yapılamayacaktır. Detay sorgulaması yapılamayacak bir kart tipi için HHS'ler tarafından **TR.OHVPS.Business.InvalidCardStatus** hatası dönülmelidir.
+- Parametrede yer alan ekstreTuru bilgisi Ekstre Türleri haricinde uygun olmayan bir değer gönderildiğinde **”TR.OHVPS.Business.InvalidCurrencyCode”** hatası dönülür. Bu alan gönderilmiyorsa TRY olarak değerlendirilmelidir.
+- Erişim belirteci kontrolü yapılır. Geçerli bir erişim belirteci yok ise HHS tarafından **”TR.OHVPS.Connection.InvalidToken”** hatası dönülür.
+- İstek başlığında yer alan X-Access-Token ile ilişkili rızada, izin verilen kartRef'ler için, kart detay bilgileri sorgulanan kartRefe ait rıza ile aynı olup olmadığı kontrol edilir. Farklı olması durumunda **"TR.OHVPS.Resource.NotFound"** hatası dönülür.
+- İlgili kartRef bulunamaz **”TR.OHVPS.Resource.NotFound”** hatası dönülür. 
+- Rıza durumu kontrol edilir. 
+  - B: Yetki Bekleniyor ya da Y: Yetkilendirildi ise **“TR.OHVPS.Resource.ConsentMismatch”** hatası dönülür. 
+  - I: Rıza İptal ya da S: Yetki Sonlandırıldı ise **”TR.OHVPS.Resource.ConsentRevoked”** hatası dönülür.
+  - RizaDurumu “K: Yetki Kullanıldı” ise kontrollere devam edilir.
+- İlgili rıza numarasının “08: Detaylı Kart Bilgisi” izin türüne sahipliği kontrol edilir. 08 izin türüne sahip değil ise **”TR.OHVPS.Business.PermissionTypeNotSupported"”** hatası dönülür. 
+- **Alt kart tipi Sanal Kart olanlar için detay bilgisi görüntülenmeyecektir.** Sanal kart özelinde detay bilgi sorgulaması yapılması durumunda HHS tarafından **"TR.OHVPS.Business.CardTypeNotSupported"** hatası dönülür.
+- Kart tipi olarak; kapalı statüsünde olan banka kartı için detay sorgulaması yapılamayacaktır. Kart tipi kredi kartı olup borcu olmayan bir  kart için de kart detay sorgulaması yapılamayacaktır. Detay sorgulaması yapılamayacak bir kart tipi için HHS'ler tarafından **"TR.OHVPS.Business.InvalidCardStatus"** hatası dönülür.
+
+Yukarıdaki kontroller tamamlandıktan sonra HHS tarafından **“KartDetayBilgileri”** nesnesi dönülür.
 
 HHS'ler kart tipi kredi kartı ise ve karta ait borç/taksit tutar bilgisi bulunuyorsa KartDetayBilgileri nesnesi için başarılı yanıt dönmek zorundadır. Borç bilgisi için tutarlar eksi(-) olacak şekilde iletilmesi beklenmektedir.
 
@@ -638,13 +704,15 @@ Kart Detay Bilgisi Sorgu Örneği (Tek Bir Kart) = /kartlar/{kartRef}/kart-detay
 
 Parametre içeren Kart Detay Bilgisi Sorgu Örneği (Tek Bir Kart) =  /kartlar/{kartRef}/kart-detay?ekstreTuru=USD
 
-**Tablo 17: Kart Bilgileri Sorgulama İsteği Sorgu Parametreleri**
+
+
+**Tablo 22: Kart Bilgileri Sorgulama İsteği Sorgu Parametreleri**
 
 |Alan Adı |Parametre Adı	|Format	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|HHS tarafından yapılması gereken kontrol ve işlemler|
 | --- | --- | --- | --- | --- | --- |
-|Ekstre Türü	|ekstreTuru	|AN3|	K |Kart bilgileri yanıtında dönülen ekstre türleri değerlerini almaktadır. Para birimine uygun olarak kart detay bilgileri sorgulanmaktadır. Ekstre parametresi TRY, USD,EUR olarak gönderilebilir. Bu alan gönderilmiyorsa TRY değerlendirilmelidir. İlgili para birimine özel ekstre içindeki harcama değeri dönülecektir. | Ekstre türleri haricinde uygun olmayan bir değer gönderildiğinde hata verilmelidir. Hata mesajı **TR.OHVPS.Business.UnsupportedCurrencyCode** hatası verilmelidir. |
+|Ekstre Türü	|ekstreTuru	|AN3|	K |Kart bilgileri yanıtında dönülen ekstre türleri değerlerini almaktadır. Para birimine uygun olarak kart detay bilgileri sorgulanmaktadır. Ekstre parametresi TRY, USD,EUR olarak gönderilebilir. Bu alan gönderilmiyorsa TRY değerlendirilmelidir. İlgili para birimine özel ekstre içindeki harcama değeri dönülecektir. | Ekstre türleri haricinde uygun olmayan bir değer gönderildiğinde hata verilmelidir. |
 
-**Tablo 18: “KartDetayBilgileri” nesnesi**  
+**Tablo 23: “KartDetayBilgileri” nesnesi**  
 |Alan Adı |JSON Alan Adı	|Format	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|Kart Tiplerine İstinaden Detaylı Açıklama	|
 | --- | --- | --- | --- | --- | --- |
 | Rıza No | rizaNo | AN1..128 | Z | HesapBilgisiRızasi nesnesinin oluşturulması esnasında HHS kaynak sunucusu tarafından atanan biricik tanımlayıcı |
@@ -692,30 +760,39 @@ Parametre içeren Kart Detay Bilgisi Sorgu Örneği (Tek Bir Kart) =  /kartlar/{
 
 **GET /kartlar/{kartRef}/kart-hareketleri**
 
-KartBilgileri nesnesi ile elde edilen kart listesinde yer alan kartların işlem/hareket bilgileri sorgulanır. Bir karta ilişkin işlem bilgileri Tablo 19’daki istek parametrelerine göre sorgulanır. Kart hareketleri için KartHareketleri nesnesinin içeriği Tablo 20'de verilmiştir. 
+KartBilgileri nesnesi ile elde edilen kart listesinde yer alan kartların işlem/hareket bilgileri sorgulanır. Kart hareketleri için "KartHareketleri" nesnesinin içeriği Tablo 25'de verilmiştir. 
 
-Kart tipi olarak; kapalı statüsünde olan banka kartı için hareket sorgulaması yapılamayacaktır. Kart tipi kredi kartı olup borcu olmayan bir kart için de kart hareket sorgulaması yapılamayacaktır. Hareket sorgulaması yapılamayacak bir kart tipi için HHS'ler tarafından **TR.OHVPS.Business.InvalidCardStatus** hatası dönülmelidir.
+- Bir karta ilişkin işlem bilgileri Tablo 24’deki istek parametrelerine göre sorgulanır. Parametrede yer alan değerlerin doğru gönderildiği kontrol edilir. Hatalı gönderilmesi durumunda HHS tarafından **”TR.OHVPS.Resource.InvalidFormat”** hatası dönülür. Parametrede yer alan isteğe bağlı alanlar gönderilmediği durumda parametredeki varsayılan değerler ile kart hareketleri dönülür.
+- Parametrede yer alan ekstreTuru bilgisi Ekstre Türleri haricinde uygun olmayan bir değer gönderildiğinde **”TR.OHVPS.Business.InvalidCurrencyCode”** hatası dönülür. Bu alan gönderilmiyorsa TRY olarak değerlendirilmelidir.
+- Erişim belirteci kontrolü yapılır. Geçerli bir erişim belirteci yok ise HHS tarafından **”TR.OHVPS.Connection.InvalidToken”** hatası dönülür.
+- İstek başlığında yer alan X-Access-Token ile ilişkili rızada, izin verilen kartRef'ler için, kart hareket bilgileri sorgusunda yer alan kartRefe ait rıza ile aynı olup olmadığı kontrol edilir. Farklı olması durumunda **"TR.OHVPS.Resource.NotFound"** hatası dönülür. 
+- İlgili kartRef bulunamaz ise **”TR.OHVPS.Resource.NotFound”** hatası dönülür.
+- Rıza durumu kontrol edilir. 
+  - B: Yetki Bekleniyor ya da Y: Yetkilendirildi ise **“TR.OHVPS.Resource.ConsentMismatch”** hatası dönülür. 
+  - I: Rıza İptal ya da S: Yetki Sonlandırıldı ise **”TR.OHVPS.Resource.ConsentRevoked”** hatası dönülür.
+  - RizaDurumu “K: Yetki Kullanıldı” ise kontrollere devam edilir.
+- Kart Hareket Bilgilerinin Sorgulanması yapılırken HHS tarafından ÖHK’nın “09:  Ayrıntılı Kart İşlem Bilgisi” izin türüne sahipliği kontrol edilir. 09 izin türüne sahip değil ise **”TR.OHVPS.Business.PermissionTypeNotSupported”** hatası dönülür. 
+- Kart tipi olarak; kapalı statüsünde olan banka kartı için hareket sorgulaması yapılamayacaktır. Kart tipi kredi kartı olup borcu olmayan bir kart için de kart hareket sorgulaması yapılamayacaktır. Hareket sorgulaması yapılamayacak bir kart tipi için HHS'ler tarafından **"TR.OHVPS.Business.InvalidCardStatus"** hatası dönülmelidir.
+- Kapalı statüsünde olan kart tipleri için geçmişe dönük hareket sorgulaması yapılamayacaktır. Örneğin; Kredi Kartı için -12 ile 18 arası olan dönem değeri kapalı olan kredi kartı için 0 ile 18 arasında yapılabilecektir. Tüm kart tipleri için belirtilen parametrede yer alan dönem değerinin uygun gönderilmediği durumda **”TR.OHVPS.Business.InvalidPeriodValue”** hatası dönülür.
 
-HHS'ler kart tipi kredi kartı ise ve karta ait borç/taksit tutar bilgisi bulunuyorsa KartHareketleri nesnesi için başarılı yanıt dönmek zorundadır.
+Yukarıdaki kontroller tamamlandıktan sonra HHS tarafından "KartHareketleri" nesnesi dönülür.
+- HHS'ler kart tipi kredi kartı ise ve karta ait borç/taksit tutar bilgisi bulunuyorsa KartHareketleri nesnesi için başarılı yanıt dönmek zorundadır.
+- Kart tipi Banka Kartı olanlarda dönem içi olarak sorgulama yapılan aya ait ilgili banka kartı ile yapılan kart hareketleri görüntülenecektir. (Banka kartı ile yapılan Para Çekme/Yatırma, banka kartı ile yapılan POS'tan Alışveriş vb.). Banka kartında dönem değerinin "-1" gönderilmesi durumunda bir önceki aya ait kart hareketleri görüntülenecektir.
+- Kart hareketleri yanıtında hareket bilgileri işlem tarihinine göre sıralı olarak iletilmelidir. İşlem tarihi en güncel tarihten geriye dönük olacak şekilde listelenmelidir.
+- Kart hareketlerinde ekstre türleri dışında yapılan bir işlem varsa hangi ekstre türüne dahil edilerek gösteriliyorsa gönderilmelidir. 
+  - Örn: 100 JPY'lik bir harcama işlemi TRY biriminde çevirilip 23 TRY olarak TRY ekstre türünde gösteriliyorsa ilgili işlem için işlem tutarı 23 TRY, orijinal işlem tutarı ise 100 JPY olarak değerlendirilmelidir.
 
-Kart tipi Banka Kartı olanlarda dönem içi olarak sorgulama yapılan aya ait ilgili banka kartı ile yapılan kart hareketleri görüntülenecektir. (Banka kartı ile yapılan Para Çekme/Yatırma, banka kartı ile yapılan POS'tan Alışveriş vb.). Banka kartında dönem değerinin "-1" gönderilmesi durumunda bir önceki aya ait kart hareketleri görüntülenecektir.
 
-Kart hareketleri yanıtında hareket bilgileri işlem tarihinine göre sıralı olarak iletilmelidir. İşlem tarihi en güncel tarihten geriye dönük olacak şekilde listelenmelidir.
-
-Kart hareketlerinde ekstre türleri dışında yapılan bir işlem varsa hangi ekstre türüne dahil edilerek gösteriliyorsa gönderilmelidir. 
-
-Örn: 100 JPY'lik bir harcama işlemi TRY biriminde çevirilip 23 TRY olarak TRY ekstre türünde gösteriliyorsa ilgili işlem için işlem tutarı 23 TRY, orijinal işlem tutarı ise 100 JPY olarak değerlendirilmelidir. 
-
-**Tablo 19: Kart Hareket Bilgileri Sorgulama İsteği Sorgu Parametreleri**
+**Tablo 24: Kart Hareket Bilgileri Sorgulama İsteği Sorgu Parametreleri**
 |Alan Adı |Parametre Adı	|Format	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|HHS tarafından yapılması gereken kontrol ve işlemler|
 | --- | --- | --- | --- | --- | --- |
-|Dönem Değeri | donemDegeri | N3 | Z | Kart hareketlerinin sorgulanacağı döneme ait değerdir.<br><br> Dönem içi : 0<br>Geçmiş Ay/Ekstre : -1 ile -12 arası<br>Taksit : 1 ile 18 arası <br>Provizyon : 99<br><br> Kart tipine göre alabileceği dönem değerleri ise ;<br><br> Banka Kartı : 0 ve -1<br>Kredi Kartı : -12 ile 18 arası ve 99 (Sanal alt kart tipi hariç diğer tüm alt kart tiplerinde bu değerler geçerlidir.) <br>Alt kart tipi sanal kart tipinde ise alabileceği değerler 0 ve 99'dur.<br>Ön Ödemeli Kart : -12 ile 18 arası ve 99  | Kapalı statüsünde olan kart tipleri için geçmişe dönük hareket sorgulaması yapılamayacaktır. Örneğin; Kredi Kartı için -12 ile 18 arası olan dönem değeri kapalı olan kredi kartı için 0 ile 18 arasında yapılabilecektir.<br><br> Tüm kart tipleri için belirtilen dönem değerinin uygun gönderilmediği durumda **TR.OHVPS.Business.InvalidPeriodValue** hatası verilmelidir. |
-|Ekstre Turu | ekstreTuru | AN3 | K | Kart bilgileri yanıtında dönülen ekstre türleri değerlerini almaktadır. Para birimine uygun olarak kart detay bilgileri sorgulanmaktadır. Ekstre parametresi TRY, USD,EUR olarak gönderilebilir. Bu alan gönderilmiyorsa TRY değerlendirilmelidir. İlgili para birimine özel ekstre içindeki harcama değeri dönülecektir. | Ekstre türleri haricinde uygun olmayan bir değer gönderildiğinde hata verilmelidir. Hata mesajı **TR.OHVPS.Business.UnsupportedCurrencyCode** hatası verilmelidir.  |
+|Dönem Değeri | donemDegeri | N3 | Z | Kart hareketlerinin sorgulanacağı döneme ait değerdir.<br><br> Dönem içi : 0<br>Geçmiş Ay/Ekstre : -1 ile -12 arası<br>Taksit : 1 ile 18 arası <br>Provizyon : 99<br><br> Kart tipine göre alabileceği dönem değerleri ise ;<br><br> Banka Kartı : 0 ve -1<br>Kredi Kartı : -12 ile 18 arası ve 99 (Sanal alt kart tipi hariç diğer tüm alt kart tiplerinde bu değerler geçerlidir.) <br>Alt kart tipi sanal kart tipinde ise alabileceği değerler 0 ve 99'dur.<br>Ön Ödemeli Kart : -12 ile 18 arası ve 99  | Kapalı statüsünde olan kart tipleri için geçmişe dönük hareket sorgulaması yapılamayacaktır. Örneğin; Kredi Kartı için -12 ile 18 arası olan dönem değeri kapalı olan kredi kartı için 0 ile 18 arasında yapılabilecektir.<br><br> Tüm kart tipleri için belirtilen dönem değerinin uygun gönderilmediği durumda hata verilmelidir. |
+|Ekstre Turu | ekstreTuru | AN3 | K | Kart bilgileri yanıtında dönülen ekstre türleri değerlerini almaktadır. Para birimine uygun olarak kart detay bilgileri sorgulanmaktadır. Ekstre parametresi TRY, USD,EUR olarak gönderilebilir. Bu alan gönderilmiyorsa TRY değerlendirilmelidir. İlgili para birimine özel ekstre içindeki harcama değeri dönülecektir. | Ekstre türleri haricinde uygun olmayan bir değer gönderildiğinde hata verilmelidir. |
 |Sayfa Başına İstenen Kayıt Sayısı|	syfKytSayi|	N3|	İ	|Sayfa başına istenen kayıt sayısı. Bu alanda iletilen değer 100’den büyük olamaz. |Bu veri gönderildiği durumda, HHS işlemler listesini bu sayı kadar gruplandırarak gönderir. Bu veri gönderilmediğinde sayfadaki kayıt sayısı 100 olarak kullanılır. |
 |İstenen Sayfa Numarasi|	syfNo|	N3|	İ	|Cevapta dönecek sayfa numarası 1’den başlayarak artan değerlerle iletilmelidir.|	Bu veri gönderildiği durumda, HHS işlemler listesini bu sayfadaki kayıtları gönderir. Gönderilmediğinde, HHS ilk sayfadaki kayıtları gönderir. |
 
 
-**Tablo 20: “KartHareketleri” nesnesi**  
+**Tablo 25: “KartHareketleri” nesnesi**  
 |Alan Adı |JSON Alan Adı	|Format	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|Kart Tiplerine İstinaden Detaylı Açıklama	|
 | --- | --- | --- | --- | --- | --- | 
 | Kart Referans Numarası | kartRef | AN5..40 | Z| HHS tarafından her bir kart için atanan biricik değerdir (uuid). Bir kart tek bir kartRef'e karşılık gelmelidir, benzer şekilde bir kartRef tek bir karta karşılık gelmelidir. Aynı kart için alınan tüm rızalarda kart referans bilgisinin değişmemesi gerekmektedir. ||
@@ -743,4 +820,3 @@ Kart hareketlerinde ekstre türleri dışında yapılan bir işlem varsa hangi e
 |> Toplam Taksit Sayısı | toplamTaksitSayisi |N2 | K| İlgili işlem taksitli bir işlem ise o işleme ait toplam taksit sayısı iletilmelidir. İlgili işlem tek çekim bir işlem ise o işlemde ilgili alan iletilmemelidir.  | Kart tipi kredi kartı olanlar için ilgili alan dönülmesi zorunludur. Kart tipi banka ve ön ödemeli kart olan kartlar için ilgili alan dönülmemelidir.|
 |> İlgili Taksit Dönemi | taksitDonemi |N2 | K| Taksitli işlem olması durumunda işleme ait ilgili taksit dönem bilgisi. Örneğin: 3 taksitli bir işlemde 2. taksit yansımışsa 2 olarak gönderilmelidir.  | Kart tipi kredi kartı olanlar için ilgili alan dönülmesi zorunludur. Kart tipi banka ve ön ödemeli kart olan kartlar için ilgili alan dönülmemelidir.|
 |> Satıcı Kategori Kodu | saticiKategoriKodu |AN4 | K| Satıcı Kategori Kodu(MCC) varsa iletilmesi zorunludur. Alışveriş işlemlerinde gönderimi zorunludur.  | İlgili alanda koşula uygun olarak değer dönülecekse; kart tipi kredi ve banka kartı olanlar için dönülmesi zorunludur.|
-|> Satıcı Kategori Grubu | saticiKategoriGrubu |AN2 | K| Satıcı Kategori Grubu(MCG) varsa iletilmezi zorunludur. Alışveriş işlemlerinde gönderimi zorunludur.  | İlgili alanda koşula uygun olarak değer dönülecekse; kart tipi kredi ve banka kartı olanlar için dönülmesi zorunludur.|

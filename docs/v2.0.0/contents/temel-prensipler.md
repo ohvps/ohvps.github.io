@@ -311,7 +311,7 @@ Elektronik imzalar, ÖHVPS API’de gerçekleştirilen işlemlerin ve taşınan 
 
 API yalnızca TLS'ye dayanırsa, dijital kayıtları ve inkâr edilemezlik kanıtlarını tutmak zor olur. Bu nedenle, TLS'ye dayanmayan bir inkâr edilemezlik çözümü olarak API isteğinin HTTP başlığında bir JWS kullanılarak sağlanabilir.
 
-HTTP isteğinin gövdesinin hash fonksiyonu (SHA256) ile özeti alınacaktır. Elde edilen özet, asimetrik anahtarları destekleyen bir algoritma kullanılarak imzalanacak ve JWS elde edilecektir.
+HTTP isteğinin gövdesinin hash fonksiyonu (SHA256) ile özeti alınacaktır. Elde edilen özet, asimetrik anahtarları destekleyen bir algoritma kullanılarak imzalanacak ve JWS elde edilecektir. İsteğin kendinize geldiği durumda body üzerinde hiç bir değişikliğe tabi tutmadan (serialize/deserialize, minify, trim, vb yapmadan) doğrulama yapmanız gerekmektedir. Aynı şekilde isteğin kendinizden çıktığı aşamada da response body üzerinde hiç bir değişikliğe tabi tutmadan (serialize/deserialize, minify, trim, vb yapmadan) mesaj imzalama yapılmalıdır.
 
 Bir istek, YÖS'nin özel anahtarı ile imzalanacak ve bu isteğe karşılık gelen yanıt, HHS'nin özel anahtarı tarafından imzalanacaktır.
 
@@ -524,7 +524,6 @@ TR.OHVPS.Resource.InvalidFormat hatası alındığı durumda; fieldErrors nesnes
 
 <ins>**400 Bad Request**</ins>
 
-**TR.OHVPS.Business.InvalidContent** hatası HHS tarafından yapılacak iş kuralı kontrollerinin başarısız olduğu durumda verilmelidir.  
 **TR.OHVPS.Resource.InvalidFormat** hatası şema validasyonu, alan uzunluk ve varlık kontrollerinin başarısız olduğu durumda verilmelidir. 
 
 ```JSON 
@@ -594,7 +593,7 @@ Business hata örneği - 1:
     "httpMessage": "Bad Request",
     "moreInformation": "gonUnvan wrong",
     "moreInformationTr": "Gönderen Ünvan hatalı",
-    "errorCode": "TR.OHVPS.Business.InvalidContent"
+    "errorCode": "TR.OHVPS.Business.IncorrectSenderTitle"
 } 
 ```
 

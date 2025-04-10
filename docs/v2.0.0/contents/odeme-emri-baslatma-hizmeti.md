@@ -41,7 +41,7 @@ YÖS'ler gönderen hesap seçimini aşağıdaki yöntemlerden biri ya da birkaç
 
 ## 6.1.	ADIM 0 - Ödeme Emri Başlatma Isteği
 
-- 	ÖHK, ÖBHS uygulamasında (web arayüzü/mobil uygulama) ödeme emri başlatma işlemine onay verir.
+-  ÖHK, ÖBHS uygulamasında (web arayüzü/mobil uygulama) ödeme emri başlatma işlemine onay verir.
 -  Gönderen hesap detaylarının bu aşamada belirtilmesi zorunlu değildir.
 
 
@@ -56,9 +56,10 @@ YÖS'ler gönderen hesap seçimini aşağıdaki yöntemlerden biri ya da birkaç
 - POST isteği TLS protokolü tesis edilen iletişim katmanı üzerinden gerçekleştirilir. TLS için nitelikli sertifikalar kullanılır.  
 
 - POST isteğinin başlığındaki alanlar ve istemcinin sertifikasındaki özel alanlar kullanılarak istemcinin yetkilendirilmesi sağlanır:
-  - İstekte bulunan ÖBHS yetkilendirilmiş mi?
-  - İstekte bulunan yetkilendirilmiş ödeme hizmeti sağlayıcısı ÖBHS rolüne sahip mi?
-  - İstekte bulunulan HHS kodu doğru mu?
+  - İstekte bulunan ÖBHS yetkilendirilmiş olduğu geçit tarafından kontrol edilir. 
+  - İstekte bulunan yetkilendirilmiş ödeme hizmeti sağlayıcısı ÖBHS rolüne sahipliği geçit tarafından kontrol edilir.
+  - HHS tarafından, istek başlığındaki x-aspsp-code ile katilimciBlg içerisinde yer alan hhsKod değeri ile aynı olduğunu kontrol edilir. Farklı olması durumunda **“TR.OHVPS.Connection.InvalidASPSP”** hatası dönülür. 
+
 - POST başarılı olursa, HHS, ödeme emri için içeride rıza olup olmamasına bakılmaksızın yeni bir rıza tanımlayıcısı RizaNo içeren odemeEmriRizasi  yanıt olarak döner.
 - 1 ÖHK'nın 1 YÖS için 1HHS'de istediği kadar rızası olabilir.
 - HHS tarafında RizaDurumu değişkeninin durumu “Yetki Bekleniyor” olarak güncellenir.
@@ -79,28 +80,42 @@ HHS’nin base pathi/alt-dizin/GKD Karşılama Ekranı?rizano={rızano}
 ÖBHS, bu API erişim adresinden HHS’ye yeni bir OdemeEmriRizasi oluşturulması için istekte bulunur:  
 - ÖBHS, ödeme emri başlatma isteği olduğunu HHS’ye bildirir.  
 - ÖBHS, ÖHK’nın, ÖBHS arayüzünden verdiği rızanın (“Ön Onay”) bir kopyasının HHS nezdinde müşteri tarafından onaylanması için HHS’ye gönderilmesini sağlar.  
-- HHS; istek mesajında yer alan alanların ÖHVPS API İlke ve Kuralları dökümanında belirtilen şartları sağlayacak şekilde zorunluluk, uzunluk ve içerik kontrollerini yapar. (Zorunlu)  
-- HHS; YÖS API ile alınan ÖBHS bilgilerinin içerisinde yer alan yönlendirme adresleri ile ödeme emri rızası nesnesi request mesajında paylaşılan adreslerin uyumlu olup olmadığının kontrollerini yapar. (Zorunlu)  
-- HHS; kimlik bilgileri nesnesinde eğer kimlik bilgileri iletilmiş ise; bu veri ile ÖHK’nın HHS müşterisi olup olmadığının kontrollerini yapar. Bu kontrol hem bireysel hem de kurumsal ÖHK’lar için yapılmalıdır.  (Koşullu Zorunlu)  
-- HHS kimlik bilgisi ile gönderen unvanının uyumlu olduğunun kontrol eder. HHS'ler EFT/FAST işlemlerinde kabul ettikleri kontrol kriterleri ile işleme izin verebilirler. (Zorunlu)  
-- Gönderen Hesap Numarası ile ilgili Tablo7’de belirtilen kontroller yapılmalıdır. (Zorunlu)  
-- HHS, ödeme için benzersiz “RizaNo” ile “OdemeEmriRizasi” nesnesi oluşturur ve ÖBHS’ye döner.  
-- HHS, OdemeEmriRizasi oluşturduğu anda durumunu “Yetki Bekleniyor” olarak düzenler.  
-Bu aşamada ÖHK’nın HHS tarafından tanımlanmış ve isteğin veri alanında gönderen hesaba (borçlandırılacak hesaba) ilişkin bir bilgisinin olması gerekmez.  
-Hesap bakiye kontrolünün rıza aşamasında yapılmaması gerekmektedir. Çünkü ÖHK ödeme emri gerçekleşene kadar hesabına para eklemesi yapabilir.   
+- HHS; istek mesajında yer alan alanların ÖHVPS API İlke ve Kuralları dökümanında belirtilen şartları sağlayacak şekilde zorunluluk, uzunluk ve içerik kontrollerini yapar. (Zorunlu) Kontrollere istinaden hata oluşması durumunda **"TR.OHVPS.Resource.InvalidFormat"** hata kodu iletilmeli ve fieldErrors dolu olacak şekilde hatalı alanı belirten detaylı açıklama gönderilmelidir. InvalidFormat hata kodlarında fieldErrors içeriği gönderilmeli ve anlaşılır açıklama ile message, messageTr alanları doldurulması zorunludur.  
+-	HHS, hhsKod’un kendisine ait olduğunu ve istek başlığındaki x-aspsp-code değeri ile aynı olduğunu kontrol eder. Farklı olması durumunda **”TR.OHVPS.Connection.InvalidASPSP”** hatası dönülür.
+- HHS, yosKod’un geçerli bir Ödeme Hizmeti Sağlayıcısı Kodu olduğunu ve istek başlığındaki x-tpp-code değeri ile aynı olduğunu kontrol eder. Farklı olması durumunda **”TR.OHVPS.Connection.InvalidTPP”** hatası dönülür.
+- HHS; YÖS API ile alınan ÖBHS bilgilerinin içerisinde yer alan yönlendirme adresleri ile ödeme emri rızası nesnesi request mesajında paylaşılan adreslerin uyumlu olup olmadığının kontrollerini yapar. (Zorunlu) Kontrollere istinaden hata oluşması durumunda **"TR.OHVPS.Business.TPPRedirectionAddressMismatch"** hatası dönülür.  
+- HHS; kimlik bilgileri nesnesinde eğer kimlik bilgileri iletilmiş ise; bu veri ile ÖHK’nın HHS müşterisi olup olmadığının kontrollerini yapar. Bu kontrol hem bireysel hem de kurumsal ÖHK’lar için yapılmalıdır. (Koşullu Zorunlu) Kontrollere istinaden hata oluşması durumunda **"TR.OHVPS.Business.CustomerNotFound"** hatası dönülür. 
+- Ödeme Emri Başlatma Hizmeti rıza isteğinde bulunan ÖHK’nın “Açık Bankacılık Kanal Yetki” tanımı yok ise **"TR.OHVPS.Business.OpenBankingChannelClosed"** hatası dönülür. HHS insiyatifinde olup HHS bu kontrolü GKD sonrası gerçekleştirebilir.
+- HHS "gkd" nesnesi için alan kontrollerini gerçekleştirir. "yetYntm" = "A" gönderilmiş ise "ayrikGkd" nesnesinin dolu gönderilmesi zorunludur. Gönderilmemesi durumunda HHS tarafından **"TR.OHVPS.Resource.InvalidFormat"** hatası dönülür. 
+- Ayrık GKD desteklemeyen HHS'ye Ayrık GKD yöntemiyle rıza başlatma isteği yapılması durumunda HHS tarafından **"TR.OHVPS.Business.DecoupledAuthenticationNotSupported"** hatası dönülür. YÖS ilgili işlemi “Yönlendirmeli” akışa çekip süreci ilerletebilir. 
+- Ayrık GKD ile başlatılan rıza akışlarında HHS, YÖS'ün AYRIK_GKD_BASARILI ve AYRIK_GKD_BASARISIZ olay tipleri için olay aboneliğinin varlığını kontrol eder. YÖS iki olay tipine de abone olmak zorundadır. Eğer olay aboneliği yoksa HHS tarafından **"TR.OHVPS.Business.EventSubscriptionNotFound"** hatası dönülür.
+- Rıza başlatma akışı içerisinde kimlik bilgisinin olduğu durumlarda; ÖHK'ya ait kimlik verisi(kmlk.kmlkVrs) ile ayrık GKD içerisinde yer alan OHK Tanım Değer alanı (ayrikGkd.ohkTanimDeger) birebir aynı olmalıdır. Aynı olmadığı durumda HHS tarafından **"TR.OHVPS.Business.CustomerInfoMismatch"** hatası dönülür. Kimlik alanı içermeyen tek seferlik ödeme emri akışlarında bu kural geçerli değildir. GSM ve IBAN değerleri sadece tek seferlik ödemelerde kullanılabilir.
+- HHS tarafında ÖHK'nın mobil uygulaması bulunmaması durumu tespit edilebildiği durumda Ayrık GKD ile başlatılan rıza akışlarında HHS tarafından **"TR.OHVPS.Business.CustomerMobileApplicationNotFound"** hatası dönülür. YÖS ilgili işlemi “Yönlendirmeli” akışa çekip süreci ilerletebilir. 
+- HHS kimlik bilgisi ile gönderen ünvanının uyumlu olduğunu kontrol eder. HHS'ler EFT/FAST işlemlerinde kabul ettikleri kontrol kriterleri ile işleme izin verebilirler. (Zorunlu) Kontrollere istinaden hata oluşması durumunda **"TR.OHVPS.Business.IncorrectSenderTitle"** hatası dönülür. 
+- Gönderen Hesap Numarası ÖBHS tarafından iletildiği durumda; 
+  - IBAN’ın doğruluğu (kontrol basamağı doğrulaması) kontrol edilir. Kontrollere istinaden hata oluşması durumunda  **"TR.OHVPS.Business.InvalidAccount"** hatası dönülür. 
+  - IBAN içerisindeki HHS kodunun istek başlığındaki HHS kodu ile aynı olduğu (hesabın HHS’ye aitliğinin kontrolü) kontrol edilir. Kontrollere istinaden hata oluşması durumunda  **"TR.OHVPS.Business.AccountCodeMismatch"** hatası dönülür.
+  - Hesap numarasının ÖHK’ya ait olduğu kontrol edilir. Kontrollere istinaden hata oluşması durumunda  **"TR.OHVPS.Business.CustomerAccountMismatch"** hatası dönülür.
+  - HHS’ye özel ödeme izni verilmeyen farklı statülerin bulunması durumu kontrol edilir. (İlgili hesabın para transfer işlemine yetkisi olmaması) Kontrollere istinaden hata oluşması durumunda  **"TR.OHVPS.Business.AccountUnauthorized"** hatası dönülür.
+  - HHS’de gönderen hesabın aktifliği kontrol edilir. Kontrollere istinaden hata oluşması durumunda  **"TR.OHVPS.Business.AccountInactive"** hatası dönülür.
+- Gönderen Hesap Numarası için, Hesap Referansı kullanılıyorsa Hesap Numarası kullanılmayabilir. Hesap referansı ile ödeme emri rızası başlatılacak ise HHS hesap referansı değeri ile ilişkilendirilmiş mevcut bir hesap bilgisi rızası var mı kontrol etmelidir. Eğer aktif bir rızası yok ise **"TR.OHVPS.Business.ActiveConsentNotFound"** hatası dönülür.
+- Hesap bakiye kontrolünün rıza aşamasında yapılmaması gerekmektedir. Çünkü ÖHK ödeme emri gerçekleşene kadar hesabına para eklemesi yapabilir.  
+
+**Tek Seferlik Ödeme**  
+- Tek seferlik ödeme akışı YÖS'ten HHS'ye giden istekte, gönderen kimlik bilgilerinin olmadığı durumda gerçekleşir. Gönderen kimlik bilgisi olmadığında, KOLAS sorgusu yapılamayacağından ötürü, HHS tarafından **"TR.OHVPS.Resource.OneTimePaymentNotSupport"** hatası dönülmelidir. ÖHK'nın YÖS'ün müşterisi olmadığı durumda tek seferlik ödeme başlatılabilir.  
+- Tek seferlik ödeme akışı hem işyeri ödemelerinde hem de kişiden kişiye para transferlerinde kullanılabilen bir akıştır. İşyeri tarafından başlatılan tek seferlik ödeme işlemlerinde katılımcılar gönderen ÖHK'dan ücret alınamaz.
+- Tek seferlik ödeme akışı sadece bireysel müşteriler için kullanılabilir. Kurumsal müşteri ile ödeme emri başlatılması durumunda **"TR.OHVPS.Resource.OneTimePaymentNotSupport"** hatası dönülür. 
+Tek seferlik ödeme akışında hem yönlendirmeli hem de ayrık GKD akışı ile müşteri yetkilendirmesi sağlanabilir.  
+ - Aşağıdaki senaryolar tek seferlik ödemeye örnek olarak gösterilebilir.  
+  İşyeri Ödemesi akışı örneği: Bir e-ticaret sitesinde, üye olmadan alışveriş yapılması ve ödemenin YÖS tarafından kimlik bilgisi olmadan başlatılması  
+  Kişiden kişiye para transferi akışı örneği: QR veya diğer yöntemler ile alıcı bilgilerinin gönderici ile paylaşılması ve YÖS üzerinden gönderici bilgileri olmadan alıcıya para transferi yapılması için rıza verilmesi
+
+Yukarıdaki kontroller tamamlandıktan sonra HHS, ödeme için benzersiz “RizaNo” ile “OdemeEmriRizasi” nesnesi oluşturur ve ÖBHS’ye döner.<br> HHS, OdemeEmriRizasi oluşturduğu anda durumunu “Yetki Bekleniyor” olarak düzenler.  
+
+ 
 
 **POST /odeme-emri-rizasi** isteğinin (REQUEST) gövdesinde (BODY)  “odemeEmriRizasiIstegi” nesnesi (Tablo-7) kullanılır. İstek başarıyla sonuçlanırsa HHS kaynak sunucusunda “odemeEmriRizasi” (Tablo-8) nesnesi oluşturulur.
 
-**Tek Seferlik Ödeme**  
-Tek seferlik ödeme akışı YÖS'ten HHS'ye giden istekte, gönderen kimlik bilgilerinin olmadığı durumda gerçekleşir. Gönderen kimlik bilgisi olmadığında, KOLAS sorgusu yapılamayacağından ötürü, HHS tarafından TR.OHVPS.Business.InvalidContent hatası dönülmelidir. ÖHK'nın YÖS'ün müşterisi olmadığı durumda tek seferlik ödeme başlatılabilir.  
-Tek seferlik ödeme akışı hem işyeri ödemelerinde hem de kişiden kişiye para transferlerinde kullanılabilen bir akıştır. İşyeri tarafından başlatılan tek seferlik ödeme işlemlerinde katılımcılar gönderen ÖHK'dan ücret alınamaz.
-<br>Tek seferlik ödeme akışı sadece bireysel müşteriler için kullanılabilir.  
-Tek seferlik ödeme akışında hem yönlendirmeli hem de ayrık GKD akışı ile müşteri yetkilendirmesi sağlanabilir.  
-
-Aşağıdaki senaryolar tek seferlik ödemeye örnek olarak gösterilebilir.  
-
-İşyeri Ödemesi akışı örneği: Bir e-ticaret sitesinde, üye olmadan alışveriş yapılması ve ödemenin YÖS tarafından kimlik bilgisi olmadan başlatılması  
-Kişiden kişiye para transferi akışı örneği: QR veya diğer yöntemler ile alıcı bilgilerinin gönderici ile paylaşılması ve YÖS üzerinden gönderici bilgileri olmadan alıcıya para transferi yapılması için rıza verilmesi
 
 #### **BAŞARILI İSTEK:**
 
@@ -109,8 +124,8 @@ Kişiden kişiye para transferi akışı örneği: QR veya diğer yöntemler ile
 | Alan Adı | JSON Alan Adı |Format: Veri modeli İsmi  |Zorunlu / Koşullu / İsteğe bağlı |Açıklama |HHS tarafından ödeme emri rızası oluşturulması sırasında yapılması gereken kontrol ve işlemler |
 | --- |--- |--- |--- |--- |--- |
 | **Katılımcı Bilgisi** | katilimciBlg | Kompleks:KatilimciBilgisi | Z | Katılımcılara atanmış kod bilgileridir. | |
-| **>Hesap Hizmeti Sağlayıcısı Kodu** | hhsKod  | AN4  | Z  |  İsteğin iletildiği Hesap Hizmeti Sağlayıcısının kodudur. (Nezdinde ÖH bulunduran kuruluş kodu. Örneğin, Banka, Elektronik Para Kuruluşu ve Ödeme Kuruluşu) | HHS, hhsKod’un kendisine ait olduğunu ve istek başlığındaki x-aspsp-code değeri ile aynı olduğunu kontrol eder. <br>Hata durumunda **TR.OHVPS.Connection.InvalidASPSP** hata kodunu döner.  |
-| **> Yetkili Ödeme Hizmeti Sağlayıcısı Kodu** | yosKod		  | AN4  | Z  | İsteği gönderen Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.  | HHS, yosKod’un geçerli bir Ödeme Hizmeti Sağlayıcısı Kodu olduğunu ve istek başlığındaki x-tpp-code değeri ile aynı olduğunu kontrol eder. Hata durumunda **TR.OHVPS.Connection.InvalidTPP** hata kodunu döner. |
+| **>Hesap Hizmeti Sağlayıcısı Kodu** | hhsKod  | AN4  | Z  |  İsteğin iletildiği Hesap Hizmeti Sağlayıcısının kodudur. (Nezdinde ÖH bulunduran kuruluş kodu. Örneğin, Banka, Elektronik Para Kuruluşu ve Ödeme Kuruluşu) | HHS, hhsKod’un kendisine ait olduğunu ve istek başlığındaki x-aspsp-code değeri ile aynı olduğunu kontrol eder. |
+| **> Yetkili Ödeme Hizmeti Sağlayıcısı Kodu** | yosKod		  | AN4  | Z  | İsteği gönderen Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.  | HHS, yosKod’un geçerli bir Ödeme Hizmeti Sağlayıcısı Kodu olduğunu ve istek başlığındaki x-tpp-code değeri ile aynı olduğunu kontrol eder. |
 | **GKD** | gkd  |  Kompleks:Gkd | Z   |   |  |
 | **> Yetkilendirme Yöntemi**	| yetYntm  | AN1  |  İ | **TR.OHVPS.DataCode.GkdTur** sıralı veri türü değerlerinden birini alır. Yetkilendirme yöntemi, ÖBHS tarafından belirtilmeyebilir.  | HHS, HBHS’nin belirlediği yöntemi dikkate alarak süreci ilgili akışa uygun olarak devam ettirir. Desteklemediği yöntem için (örn: Ayrık GKD) ayrıca hata mesajı verilmelidir. |
 | **> Yönlenme Adresi** | yonAdr  |  AN1..1024 | K  | Yönlendirmeli güçlü kimlik doğrulama için zorunlu.<br> YÖS’ün ileteceği adrestir.<br> Durum kodu(drmKod), yönlendirme adresine parametre olarak eklenmelidir.| HHS, müşteri uygulama / tarayıcısını bu alanda belirtilen adrese yönlendirir. |
@@ -128,13 +143,13 @@ Kişiden kişiye para transferi akışı örneği: QR veya diğer yöntemler ile
 | **>> Para Birimi** 	| prBrm   |  AN3  | Z | Para Birimi.<br> Karekod akışında, FAST Karekod Veri Organizasyonundaki **53: (Para Birimi)** alanında tanımlı Para Birimi verisi kullanılır.  | HHS geçerli bir para birimi olduğu kontrol eder. |
 | **>> Tutar**  | ttr   | AN1..24   | Z |  ÖBHS'nin ön yüzde kullanıcıdan teyit aldığı tutar. <br> Karekod akışında, FAST Karekod Veri Organizasyonundaki **54: (Tutar)** alanında tanımlı Tutar verisi kullanılır. <br> Tutar alanı regex patterni şu şekildedir: '^\d{1,18}$\|^\d{1,18}\\.\d{1,5}$'|  |
 | **> Gönderen** | gon   |  Kompleks:Hesap  | İ |   |  |
-| **>> Unvan**	| unv   | AN3..140  | K  | Gönderenin unvanıdır.<br> HHS, bu bilgiyi ÖBHS sisteminden gelen veri yerine FAST’a iletirken kendi sisteminden alabilir.<br> Tek seferlik ödeme dışında YÖS'ün gönderen unvanını göndermesi zorunludur.|HHS’nin bu veri ile kendi sistemlerindeki verinin farklı olması ve Kimlik Numarası ile eşleşmemesi durumunda ödeme emri başlatma isteği reddedilir.<br> ÖBHS verisi ile HHS verisinin farklılaşması durumunun ise risk değerlendirme sistemlerine girdi olarak kullanması tavsiye edilir.|
-| **>> Hesap Numarası** |  hspNo  |  AN26  | İ | ÖBHS'nin ön yüzünden daha önce kayıt altına alınmış hesaplar arasından seçtirdiği veya müşteriye girdiği IBAN’dır.<br> ÖBHS tarafından iletilmediği durumda, gönderen hesap bilgisini müşteri tarafından HHS’nin dijital kanalında GKD sonrasında seçilebilir. Bu amaçla ÖBHS arayüzünde HHS seçtirilmelidir.<br> Hesap Referansı kullanılıyorsa Hesap Numarası kullanılmayabilir. Hesap referansı ile ödeme emri rızası başlatılacak ise HHS hesap referansı değeri ile ilişkilendirilmiş mevcut bir hesap bilgisi rızası var mı kontrol etmelidir. Eğer aktif bir rızası yok ise **TR.OHVPS.Business.InvalidContent** hatası verilmelidir. <br> Ödeme Sistemine doğrudan katılımcı olmayan ÖHS'ler müşterilerine IBAN sunmadıkları için hspRef üzerinden ödeme başlatabilirler. Bu durumda hesap numarası boş olacaktır. | ÖBHS tarafından iletildiği durumda; IBAN içerisindeki HHS kodunun istek başlığındaki HHS kodu ile aynı olduğu (hesabın HHS’ye aitliğinin kontrolü), IBAN’ın doğruluğu (kontrol basamağı doğrulaması), Hesap numarasının ÖHK’ya ait olduğu, HHS’ye özel ödeme izni verilmeyen farklı statülerin bulunması durumu kontrol edilir.<br> Kontrol başarısız olduğunda **TR.OHVPS.Business. InvalidAccount** hatası YÖS’e iletilir. |
+| **>> Ünvan**	| unv   | AN3..140  | K  | Gönderenin ünvanıdır.<br> HHS, bu bilgiyi ÖBHS sisteminden gelen veri yerine FAST’a iletirken kendi sisteminden alabilir.<br> Tek seferlik ödeme dışında YÖS'ün gönderen ünvanını göndermesi zorunludur.|HHS’nin bu veri ile kendi sistemlerindeki verinin farklı olması ve Kimlik Numarası ile eşleşmemesi durumunda ödeme emri başlatma isteği reddedilir.<br> ÖBHS verisi ile HHS verisinin farklılaşması durumunun ise risk değerlendirme sistemlerine girdi olarak kullanması tavsiye edilir.|
+| **>> Hesap Numarası** |  hspNo  |  AN26  | İ | ÖBHS'nin ön yüzünden daha önce kayıt altına alınmış hesaplar arasından seçtirdiği veya müşteriye girdiği IBAN’dır.<br> ÖBHS tarafından iletilmediği durumda, gönderen hesap bilgisini müşteri tarafından HHS’nin dijital kanalında GKD sonrasında seçilebilir. Bu amaçla ÖBHS arayüzünde HHS seçtirilmelidir.<br> Hesap Referansı kullanılıyorsa Hesap Numarası kullanılmayabilir. Hesap referansı ile ödeme emri rızası başlatılacak ise HHS hesap referansı değeri ile ilişkilendirilmiş mevcut bir hesap bilgisi rızası var mı kontrol etmelidir. <br> Ödeme Sistemine doğrudan katılımcı olmayan ÖHS'ler müşterilerine IBAN sunmadıkları için hspRef üzerinden ödeme başlatabilirler. Bu durumda hesap numarası boş olacaktır. | ÖBHS tarafından iletildiği durumda; IBAN içerisindeki HHS kodunun istek başlığındaki HHS kodu ile aynı olduğu (hesabın HHS’ye aitliğinin kontrolü), IBAN’ın doğruluğu (kontrol basamağı doğrulaması), Hesap numarasının ÖHK’ya ait olduğu, HHS’ye özel ödeme izni verilmeyen farklı statülerin bulunması durumu kontrol edilir. |
 |**>> Hesap Referansı** | hspRef   |  AN5..40  | İ | HHS tarafından hesap için atanan biricik tanımlıyıcıdır (uuid).<br>YÖS bazında farklılaşması gerekmez.<br> ÖBHS’nin aynı zamanda HBHS olduğu durumda müşteri rızası tesis edilmiş bir hesabın referansı üzerinden de ödeme başaltılabilir.<br> Hesap Numarası kullanılıyorsa Hesap Referansı kullanılmayabilir. <br> Ödeme Sistemine doğrudan katılımcı olmayan HHS'ler müşterilerine IBAN sunmadıkları için hspRef üzerinden ödeme başlatabilirler. Bu durumda hesap numarası boş olacaktır.   | HspRef'e bağlı IBAN değiştiğinde yeni IBAN'ın da ilgili HspRef ile ilişkilendirilmesi beklenmektedir. Bu durumda, HBHS, HspRef ile sorguya geldiğinde HHS'nin yeni IBAN ve hesap hareketlerini dönebilmesi mümkün olacaktır. HspRef’in, IBAN değiştiğinde değiştirilmemesi tavsiye edilmektedir.|
 | **> Alıcı** |  alc  |  	Kompleks:Hesap  | Z |   |  |
-| **>> Unvan** | unv | AN3..140 | K  | **Kolay Adres Sistemi** kullanılmıyorsa zorunludur.<br> Alıcının unvanıdır. ÖBHS ekranlarından girişi yapılabileceği gibi ÖBHS’nin kayıtlı alıcılarından yapılan seçimle de doldurup gönderebildiği bilgi olabilir.<br> FAST-TR Karekod Veri Organizasyonunda;<br> İşyeri tarafından sunulan uzun karekod yapısının **59:** alanında tanımlı İşyeri adı alanıdır, Kişiden Kişiye Ödeme Karekod Yapısının **07:** alanında tanımlı <br> **Ödeme Alıcısının Adı ve Soyadı** alanıdır. <br><br>FAST-TR Karekod dışındaki iş yeri ödemelerinde; yine Unvan alanında işyeri adı bilgisi gönderilmelidir.|  |
+| **>> Ünvan** | unv | AN3..140 | K  | **Kolay Adres Sistemi** kullanılmıyorsa zorunludur.<br> Alıcının ünvanıdır. ÖBHS ekranlarından girişi yapılabileceği gibi ÖBHS’nin kayıtlı alıcılarından yapılan seçimle de doldurup gönderebildiği bilgi olabilir.<br> FAST-TR Karekod Veri Organizasyonunda;<br> İşyeri tarafından sunulan uzun karekod yapısının **59:** alanında tanımlı İşyeri adı alanıdır, Kişiden Kişiye Ödeme Karekod Yapısının **07:** alanında tanımlı <br> **Ödeme Alıcısının Adı ve Soyadı** alanıdır. <br><br>FAST-TR Karekod dışındaki iş yeri ödemelerinde; yine ünvan alanında işyeri adı bilgisi gönderilmelidir.|  |
 | **>> Hesap Numarası**	|hspNo | AN26 | K | **Alıcının Hesap Numarası (IBAN)** alanıdır.<br> **Kolay Adres Sistemi** kullanılmıyorsa zorunludur.<br> Karekod akışında, FAST Karekod Veri Organizasyonundaki **30-01:** alanında tanımlı İş Yeri IBAN verisi kullanılır.<br> Alıcının birden fazla hesabının kullanılabilir olduğu durumlarda (özellikle işyeri ödemelerinde HHS nezdindeki hesap (on-us havale akışı) tercih edilmelidir. | HHS (Gönderen Katılımcı) tarafından IBAN doğrulaması (kontrol basamağı doğrulaması) yapılır.  |
-| **>> Kolay Adres** | kolas   | Kompleks:Kolas  | K  |   | Tek seferlik ödemelerde ( kimlik bilgileri boş iletildiğinde) KOLAS nesnesi dolu iletiliyorsa; HHS tarafından TR.OHVPS.Business.InvalidContent hatası dönülmelidir |
+| **>> Kolay Adres** | kolas   | Kompleks:Kolas  | K  |   | Tek seferlik ödemelerde ( kimlik bilgileri boş iletildiğinde) KOLAS nesnesi dolu iletiliyorsa; HHS tarafından hata dönülmelidir |
 | **>>> Kolas Türü**  |  kolasTur   |  AN1   | Z  |  **TR.OHVPS.DataCode.KolasTur** sıralı veri türü değerlerinden birini alır.<br> Alıcı Hesap Numarası girilmediyse kullanımı zorunludur ve **Kolay Adres Tipi** alanıyla birlikte kullanılır. | HHS (Gönderen FAST katılımcısı) tarafından KOLAS Servisine yapılan sorguda girdi olarak kullanılır. |
 | **>>> Kolas Değeri**  |  kolasDgr   |  AN7..50   |  Z | Müşterinin eklediği, HHS (FAST katılımcısı) tarafından doğrulanmış Kolay Adres değeridir. Alabileceği değerler BKM “Kolay Adresleme Sistemi Uygulama Kuralları” belgesinde tanımlıdır.<br> Hesap Numarası girilmediyse kullanımı zorunludur ve **Kolay Adres Tipi** alanıyla birlikte kullanılır.  | HHS (Gönderen FAST katılımcısı) tarafından KOLAS Servisine yapılan sorguda girdi olarak kullanılır.  |
 | **> Karekod**  | kkod | Kompleks:Karekod   |  	K   |      |  |
@@ -192,11 +207,11 @@ POST işleminin RESPONSE gövdesini (BODY) oluşturan “OdemeEmriRizasi” nesn
 | **>> Para Birimi** 	| prBrm   |  AN3  | Z | Para Birimi.<br> Karekod akışında, FAST Karekod Veri Organizasyonundaki **53: (Para Birimi)** alanında tanımlı Para Birimi verisi kullanılır. |  
 | **>> Tutar**  | ttr   | AN1..24   | Z |  ÖBHS'nin ön yüzde kullanıcıdan teyit aldığı tutar. <br> Karekod akışında, FAST Karekod Veri Organizasyonundaki **54: (Tutar)** alanında tanımlı Tutar verisi kullanılır. <br> Tutar alanı regex patterni şu şekildedir: '^\d{1,18}$\|^\d{1,18}\\.\d{1,5}$' |
 | **> Gönderen** | gon   |  Kompleks:Hesap  | İ |   |
-| **>> Unvan**	| unv   | AN3..140  | K  | Gönderenin unvanıdır.<br> HHS, bu bilgiyi ÖBHS sisteminden gelen veri yerine FAST’a iletirken kendi sisteminden alabilir. <br> Tek seferlik ödeme dışında YÖS'ün gönderen unvanını göndermesi zorunludur.|
+| **>> Ünvan**	| unv   | AN3..140  | K  | Gönderenin ünvanıdır.<br> HHS, bu bilgiyi ÖBHS sisteminden gelen veri yerine FAST’a iletirken kendi sisteminden alabilir. <br> Tek seferlik ödeme dışında YÖS'ün gönderen ünvanını göndermesi zorunludur.|
 | **>> Hesap Numarası** |  hspNo  |  AN26  | İ | ÖBHS'nin ön yüzünden daha önce kayıt altına alınmış hesaplar arasından seçtirdiği veya müşteriye girdiği IBAN’dır.<br> ÖBHS tarafından iletilmediği durumda, gönderen hesap bilgisini müşteri tarafından HHS’nin dijital kanalında GKD sonrasında seçilebilir. Bu amaçla ÖBHS arayüzünde HHS seçtirilmelidir.<br> **GKD sonrası HHS ekranında seçilen Hesap Numarası POST işleminin yanıtında dönülemez ancak isteğe bağlı GET sorgusu ile dönülebilir.** <br> Hesap Referansı kullanılıyorsa Hesap Numarası kullanılmayabilir. <br> Ödeme Sistemine doğrudan katılımcı olmayan ÖHS'ler müşterilerine IBAN sunmadıkları için hspRef üzerinden ödeme başlatabilirler. Bu durumda hesap numarası boş olacaktır.  |
 |**>> Hesap Referansı** | hspRef |  AN5..40  | İ | HHS tarafından hesap için atanan biricik tanımlıyıcıdır (uuid).<br>YÖS bazında farklılaşması gerekmez.<br> ÖBHS’nin aynı zamanda HBHS olduğu durumda müşteri rızası tesis edilmiş bir hesabın referansı üzerinden de ödeme başaltılabilir.<br> **GKD sonrası HHS ekranında seçilen Hesap Referansı POST işleminin yanıtında dönülemez ancak isteğe bağlı GET sorgusu ile dönülebilir.** <br> Hesap Numarası kullanılıyorsa Hesap Referansı kullanılmayabilir.  <br> Ödeme Sistemine doğrudan katılımcı olmayan ÖHS'ler müşterilerine IBAN sunmadıkları için hspRef üzerinden ödeme başlatabilirler. Bu durumda hesap numarası boş olacaktır.  |
 | **> Alıcı** |  alc  |  	Kompleks:Hesap  | Z | |
-| **>> Unvan** | unv | AN3..140 | Z  | Kolay Adres Alıcı Sorgusunda başarılı sorgu sonucunda dönülen adres kaydı yaptırmış olan alıcının maskeli ad-soyadı veya maskeli ticari unvan bilgisidir.<br>Kolas’tan dönen “account owner” alanı kullanılmalıdır.<br>Kolay adres değil ise ÖBHS tarafından istek mesajında iletilen unvan bilgisidir. |
+| **>> Ünvan** | unv | AN3..140 | Z  | Kolay Adres Alıcı Sorgusunda başarılı sorgu sonucunda dönülen adres kaydı yaptırmış olan alıcının maskeli ad-soyadı veya maskeli ticari ünvan bilgisidir.<br>Kolas’tan dönen “account owner” alanı kullanılmalıdır.<br>Kolay adres değil ise ÖBHS tarafından istek mesajında iletilen ünvan bilgisidir. |
 | **>> Hesap Numarası**	|hspNo | AN26 | Z | ÖBHS tarafından istek mesajında iletilip doğrulanan veya Kolay Adres Alıcı Sorgusunda başarılı sorgu sonucunda dönülen alıcı maskeli IBAN bilgisidir. |
 | **>> Kolay Adres** | kolas   | Kompleks:Kolas  | K  |  |
 | **>>> Kolas Türü**  |  kolasTur   |  AN1   | Z  |  **TR.OHVPS.DataCode.KolasTur** sıralı veri türü değerlerinden birini alır.<br> Alıcı Hesap Numarası girilmediyse kullanımı zorunludur ve **Kolay Adres Tipi** alanıyla birlikte kullanılır. |  
@@ -287,6 +302,10 @@ GKD işleminin başarıyla tamamlanıp Ödeme Emri Rızasının yetkilendirilmes
 
 ÖBHS, mevcut durumunu kontrol etmek için, oluşturulan bir **OdemeEmriRizasi** kaynağının durumunu isteğe bağlı olarak alabilir.
 
+- Sorgulama yapılan ödeme emri rızası HHS tarafında bulunmuyor ise **"TR.OHVPS.ResourceNotFound"** hatası dönülür.  
+
+Servis başarılı yanıtında Tablo 8’de belirtilen "OdemeEmriRizasi" nesnesini dönmektedir.
+
 **Durum**  
 
 **OdemeEmriRizasi** kaynağı için kullanılabilecek durum göstergeleri şu şekildedir:
@@ -297,7 +316,7 @@ GKD işleminin başarıyla tamamlanıp Ödeme Emri Rızasının yetkilendirilmes
 - Yetki Sonlandırıldı
 - Yetki İptal
 
- Ödeme Emri Rızası sonlandırıldı ve iptal statüsünde olan rıza'ların güncellenme zamanından(gnclZmn) 6 ay sonrasına kadar sorgulanabilir olması beklenmektedir. HHS'ler ilgili süre sonrasında yapılacak rıza sorgularına TR.OHVPS.Resource.NotFound uyarısı verebilir. YÖS'ler tarafından iptal ve sonlandırıldı statüsünde olan rızalar için sorgulama yapmamalıdır.
+ Ödeme Emri Rızası sonlandırıldı ve iptal statüsünde olan rıza'ların güncellenme zamanından(gnclZmn) 6 ay sonrasına kadar sorgulanabilir olması beklenmektedir. HHS'ler ilgili süre sonrasında yapılacak rıza sorgularına "**TR.OHVPS.Resource.NotFound"** uyarısı verebilir. YÖS'ler tarafından iptal ve sonlandırıldı statüsünde olan rızalar için sorgulama yapmamalıdır.
 
 
 Ödeme emri rıza durum değişiklikleri 4.2 bölümünde detaylandırılmıştır.  
@@ -308,7 +327,7 @@ GKD işleminin başarıyla tamamlanıp Ödeme Emri Rızasının yetkilendirilmes
 
 Gönderen Hesap Bilgisinin, ADIM 2 (Ödeme Emri Rızasının Yetkilendirilmesi) sonrasında HHS ekranından seçildiği akışta “OdemeEmriRizasi” nesnesi güncellenir ve ÖBHS **GET /odeme-emri-rizasi/{RizaNo}** isteği yaparak güncel gönderen hesap bilgisi bilgisini de içeren “OdemeEmriRizasi” nesnesini çekmelidir.
 
-Çerçeve sözleşme kapsamında olmayan tek seferlik ödeme işlemlerinde, Kimlik Türü ve Kimlik Verisi bilgilerinin ödeme emri rızası sırasında gönderimi zorunlu değildir. Başarılı GKD sonrası, yani erişim belirteci alındığında, ödeme emri oluşmadan önce, YÖS’ün ödeme emri rızasını sorgulayarak bu bilgileri alması ve ödeme emrini oluştururken Kimlik Türü, Kimlik Verisi ve Gönderen Unvan alanlarını dolu olarak göndermesi beklenmektedir.  Ancak rıza durumu “Yetki Bekleniyor - B”, “Yetkilendirildi - Y” ve “Yetki İptal - I” statülerinde ise, ödeme emri rızası sorgulamasında, HHS’nin Kimlik Türü ve Kimlik Verisi bilgisini YÖS ile paylaşmaması gerekmektedir. 
+Çerçeve sözleşme kapsamında olmayan tek seferlik ödeme işlemlerinde, Kimlik Türü ve Kimlik Verisi bilgilerinin ödeme emri rızası sırasında gönderimi zorunlu değildir. Başarılı GKD sonrası, yani erişim belirteci alındığında, ödeme emri oluşmadan önce, YÖS’ün ödeme emri rızasını sorgulayarak bu bilgileri alması ve ödeme emrini oluştururken Kimlik Türü, Kimlik Verisi ve Gönderen Ünvan alanlarını dolu olarak göndermesi beklenmektedir.  Ancak rıza durumu “Yetki Bekleniyor - B”, “Yetkilendirildi - Y” ve “Yetki İptal - I” statülerinde ise, ödeme emri rızası sorgulamasında, HHS’nin Kimlik Türü ve Kimlik Verisi bilgisini YÖS ile paylaşmaması gerekmektedir. 
 
 
 ## 6.5.	ADIM 3- Ödeme Emrinin Oluşturulması
@@ -319,14 +338,25 @@ Gönderen Hesap Bilgisinin, ADIM 2 (Ödeme Emri Rızasının Yetkilendirilmesi) 
 
 **POST /odeme-emri**
 
-- ÖHK’nın Güçlü Kimlik Doğrulama ile işlemi yetkilendirmesi sonrasında, ÖBHS OdemeEmri kaynağını oluşturur. 
-- Ödeme emri (OdemeEmri) uygun ödeme kaynağına POST isteği yapılarak başlatılır. 
-  - POST HHS tarafından işlenir: RizaDurumu “Yetki Kullanıldı” ise işleme başlanır.
-  - POST /odeme-emri-rizasi ile POST /odeme-emri isteklerinde istek alanların aynı olması beklenmektedir. HHS tarafından kontrolü sağlanmalıdır.POST verisindeki Gönderen Hesap Numarası ve Alıcı Hesap Numarasının aynı bankaya aitse HAVALE değilse FAST veya PÖS iş akışına geçilir.
-  - POST verisinin modele göre kontrolü yapılır (alan kontrolleri)
-  -	POST verisinin mantıksal kontrolleri yapılır (IBAN kontrolü, çapraz alan kontroller)
-  -	OdemeEmriDurumu “Gerçekleşti” / “Gönderildi” / “Gerçekleşmedi” olarak güncellenir. 
-- POST başarılı olursa, içerisinde OdemeEmriNo ve OdemeEmriDurumu değişkenleri de bulunan OdemeEmri nesnesi ÖBHS’ye döner ve RizaDurumu değişkenin değeri “Yetki Ödeme Emrine Dönüştü” olarak güncellenir.
+ÖHK’nın Güçlü Kimlik Doğrulama ile işlemi yetkilendirmesi sonrasında, ÖBHS OdemeEmri kaynağını oluşturur. 
+
+Ödeme emri (OdemeEmri) uygun ödeme kaynağına POST isteği yapılarak başlatılır. 
+
+- Erişim Belirteci kontrolü yapılır. Geçerli bir Erişim Belirteci yok ise **"TR.OHVPS.Connection.InvalidToken"** hatası dönülür. 
+- HHS; istek mesajında yer alan alanların ÖHVPS API İlke ve Kuralları dökümanında belirtilen şartları sağlayacak şekilde zorunluluk, uzunluk ve içerik kontrollerini yapar. (Zorunlu) Kontrollere istinaden hata oluşması durumunda **"TR.OHVPS.Resource.InvalidFormat"** hatası dönülür.
+-	HHS, hhsKod’un kendisine ait olduğunu ve istek başlığındaki x-aspsp-code değeri ile aynı olduğunu kontrol eder. Farklı olması durumunda **”TR.OHVPS.Connection.InvalidASPSP”** hatası dönülür.
+- HHS, yosKod’un geçerli bir Ödeme Hizmeti Sağlayıcısı Kodu olduğunu ve istek başlığındaki x-tpp-code değeri ile aynı olduğunu kontrol eder. Farklı olması durumunda **”TR.OHVPS.Connection.InvalidTPP”** hatası dönülür.
+- Rıza durumu kontrol edilir. 
+  - B: Yetki Bekleniyor, Y: Yetkilendirildi  ya da E: Yetki Ödeme Emrine Dönüştü ise **“TR.OHVPS.Resource.ConsentMismatch”** hatası dönülür. 
+  - I: Rıza İptal ya da S: Yetki Sonlandırıldı ise **”TR.OHVPS.Resource.ConsentRevoked”** hatası dönülür.
+  - RizaDurumu “K: Yetki Kullanıldı” ise kontrollere devam edilir.
+- POST /odeme-emri-rizasi ile POST /odeme-emri isteklerinde istek alanların aynı olması beklenmektedir. HHS tarafından kontrolü sağlanmalıdır. Ödeme emri rızasında gönderilen değerlerden farklı bir değer gönderildiği durumda **“TR.OHVPS.Business.FieldMismatch”** hatası dönülür. 
+- HHS tarafından Ödeme Emrinin Oluşturulması API'sine istek yapıldığında müşterinin bakiyesi kontrol edilir. Bakiye yetersiz ise HHS tarafından **"TR.OHVPS.Business.BalanceInsufficient"** hatası dönülür.
+
+Yukarıdaki kontroller tamamlandıktan sonra, içerisinde OdemeEmriNo ve OdemeEmriDurumu değişkenleri de bulunan OdemeEmri nesnesi ÖBHS’ye döner ve RizaDurumu değişkenin değeri “Yetki Ödeme Emrine Dönüştü” olarak güncellenir.
+- POST verisindeki Gönderen Hesap Numarası ve Alıcı Hesap Numarasının aynı bankaya aitse HAVALE değilse FAST veya PÖS iş akışına geçilir. 
+-	OdemeEmriDurumu “Gerçekleşti” / “Gönderildi” / “Gerçekleşmedi” olarak güncellenir. 
+
 
 **BAŞARILI İSTEK:**  
 
@@ -341,8 +371,8 @@ Gönderen Hesap Bilgisinin, ADIM 2 (Ödeme Emri Rızasının Yetkilendirilmesi) 
 | **> Oluşturma Zamanı** | olusZmn | ISODateTime | Z | OdemeEmriRizasi nesnesinin oluşturulma zamanı | | |
 | **> Rıza Durumu** | rizaDrm | AN1 |  Z | **TR.OHVPS.DataCode.RizaDurumu** sıralı veri tipini değerlerinden birini alır. | | |
 | **Katılımcı Bilgisi** | katilimciBlg | Kompleks:KatilimciBilgisi | Z | Katılımcılara atanmış kod bilgileridir. |   | |
-| **>Hesap Hizmeti Sağlayıcısı Kodu** | hhsKod  | AN4  | Z  |  İsteğin iletildiği Hesap Hizmeti Sağlayıcısının kodudur. (Nezdinde ÖH bulunduran kuruluş kodu. Örneğin, Banka, Elektronik Para Kuruluşu ve Ödeme Kuruluşu) | HHS, hhsKod’un kendisine ait olduğunu ve istek başlığındaki x-aspsp-code değeri ile aynı olduğunu kontrol eder.<br> Hata durumunda **TR.OHVPS.Connection.InvalidASPSP** hata kodunu döner. |Gönderen katılımcı kodu (yani bankanın FAST/PÖS’teki Katılımcı kodu) |
-| **> Yetkili Ödeme Hizmeti Sağlayıcısı Kodu** | yosKod		  | AN4  | Z  | İsteği gönderen Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.  |HHS, yosKod’un geçerli bir Ödeme Hizmeti Sağlayıcısı Kodu olduğunu ve istek başlığındaki x-tpp-code değeri ile aynı olduğunu kontrol eder.<br> Hata durumunda **TR.OHVPS.Connection.InvalidTPP** hata kodunu döner.| **YosKod** |
+| **>Hesap Hizmeti Sağlayıcısı Kodu** | hhsKod  | AN4  | Z  |  İsteğin iletildiği Hesap Hizmeti Sağlayıcısının kodudur. (Nezdinde ÖH bulunduran kuruluş kodu. Örneğin, Banka, Elektronik Para Kuruluşu ve Ödeme Kuruluşu) | HHS, hhsKod’un kendisine ait olduğunu ve istek başlığındaki x-aspsp-code değeri ile aynı olduğunu kontrol eder.|Gönderen katılımcı kodu (yani bankanın FAST/PÖS’teki Katılımcı kodu) |
+| **> Yetkili Ödeme Hizmeti Sağlayıcısı Kodu** | yosKod		  | AN4  | Z  | İsteği gönderen Yetkili Ödeme Hizmeti Sağlayıcısı (YÖS) kodudur.  |HHS, yosKod’un geçerli bir Ödeme Hizmeti Sağlayıcısı Kodu olduğunu ve istek başlığındaki x-tpp-code değeri ile aynı olduğunu kontrol eder.| **YosKod** |
 | **GKD** | gkd  |  Kompleks:Gkd | Z   |   |   | |
 | **>Yetkilendirme Yöntemi**	| yetYntm  | AN1  |  Z | **TR.OHVPS.DataCode.GkdTur** sıralı veri türü değerlerinden birini alır.   |   | 
 | **>Yönlendirme Adresi** | yonAdr  |  AN1..1024 | K  | Yönlendirmeli güçlü kimlik doğrulama için zorunludur. HHS, müşteri uygulama / tarayıcısını yönlendirmeli akışta bu alanda belirtilen YÖS adresine yönlendirir.
@@ -363,11 +393,11 @@ Gönderen Hesap Bilgisinin, ADIM 2 (Ödeme Emri Rızasının Yetkilendirilmesi) 
 | **>> Para Birimi** 	| prBrm   |  AN3  | Z | Para Birimi.<br> Karekod akışında, FAST Karekod Veri Organizasyonundaki **53: (Para Birimi)** alanında tanımlı Para Birimi verisi kullanılır.  | Ödeme Emri Rizası Nesnesindeki Para Birimi verisi ile aynı olmalıdır.  | |
 | **>> Tutar**  | ttr   | AN1..24   | Z |  ÖBHS'nin ön yüzde kullanıcıdan teyit aldığı tutar. <br> Karekod akışında, FAST Karekod Veri Organizasyonundaki **54: (Tutar)** alanında tanımlı Tutar verisi kullanılır. <br> Tutar alanı regex patterni şu şekildedir: '^\d{1,18}$\|^\d{1,18}\\.\d{1,5}$' |Ödeme Emri Rizası Nesnesindeki İşlem Tutarı verisi ile aynı olmalıdır.<br>HHS işlem tutarı ödeme mesajında (Havale/FAST/PÖS) aynen taşınmak durumundadır. |**Ttr** |
 | **> Gönderen** | gon   |  Kompleks:Hesap  | Z |   | | |
-| **>> Unvan**	| unv   | AN3..140  | Z  | Gönderen kişinin ad soyad ya da ticari unvan bilgisi.<br>| HHS ve ÖBHS verisi tutarlı olmalıdır.<br> ÖBHS verisi ile HHS verisinin farklılaşması durumunun ise risk değerlendirme sistemlerine girdi olarak kullanması tavsiye edilir.| **GonAd** |
+| **>> Ünvan**	| unv   | AN3..140  | Z  | Gönderen kişinin ad soyad ya da ticari ünvan bilgisi.<br>| HHS ve ÖBHS verisi tutarlı olmalıdır.<br> ÖBHS verisi ile HHS verisinin farklılaşması durumunun ise risk değerlendirme sistemlerine girdi olarak kullanması tavsiye edilir.| **GonAd** |
 | **>> Hesap Numarası** |  hspNo  |  AN26  | K | ÖBHS'nin ön yüzünden seçtirdiği/kullanıcıya girdiği IBAN<br>Hesap numarası ya da Hesap Referansı alanlarından en az birinin dolu olarak gelmesi gerekmektedir.|Ödeme Emri Rizası Yanıtı Nesnesindeki Gönderen Hesap Numarası verisi ile aynı olmalıdır. |**GonHesN** |
 |**>> Hesap Referansı** | hspRef |  AN5..40  | K |ÖBHS’nin aynı zamanda HBHS olduğu durumda müşteri rızası tesis edilmiş bir hesabın referansı üzerinden de ödeme başlatılabilir.<br>GKD sonrası HHS ekranında seçilen Hesap Referansı POST işleminin yanıtında dönülemez ancak isteğe bağlı GET sorgusu ile dönülebilir.<br>Hesap Numarası kullanılıyorsa Hesap Referansı kullanılmayabilir. <br> Ödeme Sistemine doğrudan katılımcı olmayan ÖHS'ler müşterilerine IBAN sunmadıkları için hspRef üzerinden ödeme başlatabilirler. Bu durumda hesap numarası boş olacaktır.  | | |
 | **> Alıcı** |  alc  |  	Kompleks:Hesap  | Z | | | |
-| **>> Unvan** | unv | AN3..140 | Z  | Kolay Adres Alıcı Sorgusunda başarılı sorgu sonucunda dönülen adres kaydı yaptırmış olan alıcının maskeli ad-soyadı veya maskeli ticari unvan bilgisidir.<br>Kolay adres değil ise ÖBHS tarafından istek mesajında iletilen unvan bilgisidir. |YÖS’ten alıcı ad soyad bilgisi geliyorsa ve HHS'nin kontrolünden başarılı bir şekilde geçti ise HHS'nin tekrar alıcı ad soyad bilgisi için giriş yaptırmasına gerek bulunmamaktadır.  |**AlAd** |
+| **>> Ünvan** | unv | AN3..140 | Z  | Kolay Adres Alıcı Sorgusunda başarılı sorgu sonucunda dönülen adres kaydı yaptırmış olan alıcının maskeli ad-soyadı veya maskeli ticari ünvan bilgisidir.<br>Kolay adres değil ise ÖBHS tarafından istek mesajında iletilen ünvan bilgisidir. |YÖS’ten alıcı ad soyad bilgisi geliyorsa ve HHS'nin kontrolünden başarılı bir şekilde geçti ise HHS'nin tekrar alıcı ad soyad bilgisi için giriş yaptırmasına gerek bulunmamaktadır.  |**AlAd** |
 | **>> Hesap Numarası**	|hspNo | AN26 | Z | Alıcının Hesap Numarası alanıdır (IBAN).<br>Kolay Adres  sorgusunda dönülen adres kaydı yaptırmış olan alıcının maskeli IBAN bilgisidir.<br>Kolay adres değil ise ÖBHS tarafından istek mesajında iletilen IBAN bilgisidir. Karekod akışında, FAST Karekod Veri Organizasyonundaki 30-01: alanında tanımlı İş Yeri IBAN verisi kullanılır.|Ödeme Emri Rizası Yanıtı Nesnesindeki Alıcı Hesap Numarası verisi ile aynı olmalıdır.<br> Kontroller başarıyla sonuçlanırsa, bilgi FAST/PÖS AlHesN alanına doğrudan aktarır ve FAST/PÖS Alan Katılımcı Kodu (AlKK) olarak Alıcı HHS Kodu kullanılır.<br> KOLAS sorgusu sonucunda ödeme emrinde iletilen maskeli bilgi ile HHS’nin kendi ödeme emri rızası isteğinde tuttuğu KOLAS sorgusundan dönülen bilgi maskelenerek karşılaştırılır. Eğer aynı değilse uygun hata kodu dönülerek işlem sonlandırılır. |**AlHesN** |
 | **>> Kolay Adres** | kolas   | Kompleks:Kolas  | K  |  | | |
 | **>>> Kolas Türü**  |  kolasTur   |  AN1   | Z  |  Müşterinin sorgulamak istediği Kolay Adres Tipi değeridir. <br>**TR.OHVPS.DataCode.KolasTur** sıralı veri türü değerlerinden birini alır.<br> Alıcı Hesap Numarası girilmediyse kullanımı zorunludur ve **Kolay Adres Tipi** alanıyla birlikte kullanılır. |  Ödeme Emri Rizası Yanıtı Nesnesindeki Kolay Adres Tipi verisi ile aynı olmalıdır. | |
@@ -430,11 +460,11 @@ POST işleminin RESPONSE gövdesini (BODY) oluşturan “OdemeEmri” nesnesi Ta
 | **>> Para Birimi** 	| prBrm   |  AN3  | Z | Para Birimi.<br> Karekod akışında, FAST Karekod Veri Organizasyonundaki **53: (Para Birimi)** alanında tanımlı Para Birimi verisi kullanılır.  | 
 | **>> Tutar**  | ttr   | AN1..24   | Z |  ÖBHS'nin ön yüzde kullanıcıdan teyit aldığı tutar. <br> Karekod akışında, FAST Karekod Veri Organizasyonundaki **54: (Tutar)** alanında tanımlı Tutar verisi kullanılır.  <br> Tutar alanı regex patterni şu şekildedir: '^\d{1,18}$\|^\d{1,18}\\.\d{1,5}$' |
 | **> Gönderen** | gon   |  Kompleks:Hesap  | Z |   | 
-| **>> Unvan**	| unv   | AN3..140  | Z  | Gönderen kişinin ad soyad ya da ticari unvan bilgisi.| 
+| **>> Ünvan**	| unv   | AN3..140  | Z  | Gönderen kişinin ad soyad ya da ticari ünvan bilgisi.| 
 | **>> Hesap Numarası** |  hspNo  |  AN26  | K | ÖBHS tarafından iletilip doğrulanan veya HHS ekranında seçilen Gönderen Hesap Numarası dönülür.|
 |**>> Hesap Referansı** | hspRef |  AN5..40  | K |HHS tarafından hesap için atanan biricik tanımlıyıcıdır (uuid)<br> YÖS bazında farklılaşması gerekmez.<br>ÖBHS’nin aynı zamanda HBHS olduğu durumda müşteri rızası tesis edilmiş bir hesabın referansı üzerinden de ödeme başaltılabilir.<br>GKD sonrası HHS ekranında seçilen Hesap Referansı POST işleminin yanıtında dönülemez ancak isteğe bağlı GET sorgusu ile dönülebilir.<br>Hesap Numarası kullanılıyorsa Hesap Referansı kullanılmayabilir.<br> Ödeme Sistemine doğrudan katılımcı olmayan ÖHS'ler müşterilerine IBAN sunmadıkları için hspRef üzerinden ödeme başlatabilirler. Bu durumda hesap numarası boş olacaktır.  | 
 | **> Alıcı** |  alc  |  	Kompleks:Hesap  | Z | | 
-| **>> Unvan** | unv | AN3..140 | Z  | Kolay Adres Alıcı Sorgusunda başarılı sorgu sonucunda dönülen adres kaydı yaptırmış olan alıcının maskeli ad-soyadı veya maskeli ticari unvan bilgisidir. Kolas’tan dönen “account owner” alanı kullanılmalıdır.<br>Kolay adres değil ise ÖBHS tarafından istek mesajında iletilen unvan bilgisidir. |
+| **>> Ünvan** | unv | AN3..140 | Z  | Kolay Adres Alıcı Sorgusunda başarılı sorgu sonucunda dönülen adres kaydı yaptırmış olan alıcının maskeli ad-soyadı veya maskeli ticari ünvan bilgisidir. Kolas’tan dönen “account owner” alanı kullanılmalıdır.<br>Kolay adres değil ise ÖBHS tarafından istek mesajında iletilen ünvan bilgisidir. |
 | **>> Hesap Numarası**	|hspNo | AN26 | Z | Alıcının Hesap Numarası alanıdır (IBAN).<br>Kolay Adres  sorgusunda dönülen adres kaydı yaptırmış olan alıcının maskeli IBAN bilgisidir.<br>Kolay adres değil ise ÖBHS tarafından istek mesajında iletilen IBAN bilgisidir. Karekod akışında, FAST Karekod Veri Organizasyonundaki 30-01: alanında tanımlı İş Yeri IBAN verisi kullanılır.|
 | **>> Kolay Adres** | kolas   | Kompleks:Kolas  | K  |  | 
 | **>>> Kolas Türü**  |  kolasTur   |  AN1   | Z  |  Müşterinin sorgulamak istediği Kolay Adres Tipi değeridir. <br>**TR.OHVPS.DataCode.KolasTur** sıralı veri türü değerlerinden birini alır.<br> Alıcı Hesap Numarası girilmediyse kullanımı zorunludur ve **Kolay Adres Tipi** alanıyla birlikte kullanılır. | 
@@ -476,3 +506,7 @@ POST işleminin RESPONSE gövdesini (BODY) oluşturan “OdemeEmri” nesnesi Ta
 **BAŞARILI YANIT:**
 
 GET /odeme-emri/{odemeEmriNo} yanıtının (RESPONSE) gövdesinde (BODY)  “OdemeEmri” nesnesi bulunur. İstek başarıyla sonuçlanırsa HHS kaynak sunucusunda Tablo-10’da yer alan parametreleri içeren “OdemeEmri” nesnesi döner.
+
+- İstek başlığında yer alan X-Access-Token ile ilişkili rızada, yer alan odemeEmriNo için, ödeme emri sorgusundaki odemeEmriNo bilgisinin aynı olup olmadığı kontrol edilir. Farklı olması durumunda **"TR.OHVPS.Resource.NotFound"** hatası dönülür.
+- Sorgulama yapılan ödeme emri numarası HHS tarafında bulunmuyor ise **"TR.OHVPS.ResourceNotFound"** hatası dönülür.  
+
