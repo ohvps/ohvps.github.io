@@ -151,17 +151,26 @@ module.exports = [
                         path: '/v2.0.0/deneyalani/odeme-emri-api'
                     },
                     {
-                        title: '2. Hesap Bilgisi API',
+                        title: '2. İleri Tarihli Ödeme Emri Başlatma API',
+                        path: '/v2.0.0/deneyalani/ileri-tarihli-odeme-emri-api'
+                    },
+                    {
+                        title: '3. Düzenli Ödeme Emri Başlatma API',
+                        path: '/v2.0.0/deneyalani/duzenli-odeme-emri-api'
+                    },
+                    {
+                        title: '4. Hesap Bilgisi API',
                         path: '/v2.0.0/deneyalani/hesap-bilgisi-api'
                     },
                     {
-                        title: '3. HHS - YÖS API',
+                        title: '5. HHS - YÖS API',
                         path: '/v2.0.0/deneyalani/hhs-yos-api'
                     },
                     {
-                        title: '4. Olay Bildirim',
+                        title: '6. Olay Bildirim',
                         path: '/v2.0.0/deneyalani/olay-bildirim-api'
                     },
+                    
                 ]
             }
         ]
