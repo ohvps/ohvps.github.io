@@ -79,9 +79,10 @@ Nezdinde ödeme hesabı bulunduran hesap hizmeti sağlayıcılar(Banka, EPK, Öd
 | 3.3 |bakiye  |GET |/hesaplar/{hspRef}/bakiye | Z |İstemci Kimlik Bilgileri ve Yetkilendirme Kodu (GKD) |  |  | |BakiyeBilgileri(tek  hesap) |
 | 3.4 |bakiye  |GET |/bakiye | Z |İstemci Kimlik Bilgileri ve Yetkilendirme Kodu (GKD) |  |Sayfalama  | |BakiyeBilgileri(birden çok hesap) |
 | 3.5 |islemler  |GET |/hesaplar/{hspRef}/işlemler | Z |İstemci Kimlik Bilgileri ve Yetkilendirme Kodu (GKD) |  |Sayfalama Filtreleme  | |IslemBilgileri (tek hesap) |
-| 4 | kartlar |GET |/kartlar | Z |İstemci Kimlik Bilgileri ve Yetkilendirme Kodu (GKD) | | | | KartBilgileri|
-| 4.1 | kart-detay |GET |/kartlar/{kartRef}/kart-detay | Z |İstemci Kimlik Bilgileri ve Yetkilendirme Kodu (GKD) | | | | KartDetayBilgileri|
-| 4.2 | kart-hareketleri |GET |/kartlar/{kartRef}/kart-hareketleri | Z |İstemci Kimlik Bilgileri ve Yetkilendirme Kodu (GKD) | | Sayfalama | | KartHareketleri|
+| 4 | kartlar |GET |/kartlar | Z |İstemci Kimlik Bilgileri ve Yetkilendirme Kodu (GKD) | | | | KartBilgileri(birden çok kart)|
+| 4.1 | kartlar |GET |/kartlar/{kartRef} | Z |İstemci Kimlik Bilgileri ve Yetkilendirme Kodu (GKD) | | | | KartBilgileri(tek kart)|
+| 4.2 | kart-detay |GET |/kartlar/{kartRef}/kart-detay | Z |İstemci Kimlik Bilgileri ve Yetkilendirme Kodu (GKD) | | | | KartDetayBilgileri|
+| 4.3 | kart-hareketleri |GET |/kartlar/{kartRef}/kart-hareketleri | Z |İstemci Kimlik Bilgileri ve Yetkilendirme Kodu (GKD) | | Sayfalama | | KartHareketleri|
 
 **Tablo 11: Hesap/Kart Bilgisi Hizmeti İçin Erişim Adresleri**
 
@@ -650,7 +651,7 @@ Bu erişim noktalarından tüm kartların bilgileri sorgulanır ve kart listesi 
 
 Yukarıdaki kontroller tamamlandıktan sonra HHS tarafından istek başlığında yer alan X-Access-Token ile ilişkili rıza içerisindeki kart bilgileri dönülür. Kart bilgileri için KartBilgileri nesnesinin içeriği Tablo 21'de verilmiştir.
 
-Kart Bilgisi Sorgu Örneği (Tüm Kartlar) = /kartlar?syfKytSayi=25&syfNo=1
+Kart Bilgisi Sorgu Örneği (Tüm Kartlar) = /kartlar?syfKytSayi=25&syfNo=1?kartTipi=K
 
 Kapalı banka ve ön ödemeli kart tipleri YÖS'ler tarafından ÖHK'ya gösterilmeyecektir. Kapalı kredi kart tipi için borç/taksit bilgisi bitene kadar ÖHK'ya gösterilecektir. Borç bilgisi için kart detay veya hareket servisine istek atıldığında borç olmaması durumuna dair hata mesajı HHS tarafından dönülecektir. 
 
@@ -667,12 +668,14 @@ Kapalı banka ve ön ödemeli kart tipleri YÖS'ler tarafından ÖHK'ya gösteri
 | Rıza No | rizaNo | AN1..128 | Z | HesapBilgisiRızasi nesnesinin oluşturulması esnasında HHS kaynak sunucusu tarafından atanan biricik tanımlayıcı | 
 | Kart Referans Numarası | kartRef | AN5..40 | Z | HHS tarafından her bir kart için atanan biricik değerdir (uuid). Bir kart tek bir kartRef'e karşılık gelmelidir, benzer şekilde bir kartRef tek bir karta karşılık gelmelidir. Aynı kart için alınan tüm rızalarda kart referans bilgisinin değişmemesi gerekmektedir. |
 | Kart Numarası | kartNo | AN15..16 | Z | Karta ait numara maskeli olarak iletilmelidir. Maskeleme kuralı kart'ın ilk 6 ve son 4 hanesi açık olarak görünecek şekilde maskelenmelidir. Sanal kart bilgisi için de ilgili numara maskeli olarak iletilmelidir. Örn: 123456******5678 |
-| Asıl Kart Numarası | asilKartNo | AN15..16 | K | Asıl kartlar için ilgili alan iletilmemelidir. Sanal ve ek kartlar için bağlı oldukları asıl kart numaraları iletilmelidir. Ek karta ait sanal kart için asıl kart numarası olarak ek kart numarası iletilmelidir. |
+| Asıl Kart Numarası | asilKartNo | AN15..16 | K | Asıl kartlar için ilgili alan iletilmemelidir. Sanal ve ek kartlar için bağlı oldukları asıl kart numaraları iletilmelidir. Ek karta ait sanal kart için asıl kart numarası olarak ek kart numarası iletilmelidir. Kart numarası maskeli iletilmelidir. |
 | Kart Tipi | kartTipi | AN1 | Z | Kartın tipini belirten değerdir. Kart tipleri olarak alabileceği değerler **TR.OHVPS.DataCode.KartTip** sıralı veri türlerinden biridir. |
 | Alt Kart Tipi| altKartTipi | AN1| Z | Kart Tipleri altında yer alan alt kart tipleridir. Alt kart tipleri olarak alabileceği değerler **TR.OHVPS.DataCode.AltKartTip** sıralı veri türlerinden biridir.<br> Asıl banka kartı, sanal banka kartı, dijital banka kartı, dijital kredi kartı gibi tüm kart tiplerini ayrıştırmak için asıl ve alt kart tipleri kullanılmaktadır. |
-| Kart Türü | kartTuru | AN1 | Z | Kartın bireysel ve ticari olmasına yönelik ait olduğu tipini belirten değerdir. <br>**B:Bireysel, T:Ticari** |
+|Kart Formu | kartFormu | AN1 | Z | Kartın fiziksel ve dijital olduğunu belirten değerdir. Alabileceği değerler **TR.OHVPS.DataCode.KartFormu** sıralı veri türlerinden biridir.|
+| Kart Türü | kartTuru | AN1 | Z | Kartın tipinin bireysel ya da ticari olmasına yönelik olan değerdir. <br>**B:Bireysel, T:Ticari** |
 | Kart Statüsü | kartStatu | AN1 | Z | **TR.OHVPS.DataCode.KartStatu** sıralı veri türü değerlerinden birini alır.<br> Kart statüsü için güncelleme yapılamayacak durumda ise iptal statüsü olarak değerlendirilmelidir. Kart statüsü güncellenebilir durumda ise açık ve pasif olarak değerlendirilmelidir. |
-| Kart Sahibi Ad/Soyad | kartSahibi | AN3..140 | Z | Kart sahibi ya da kart sahiplerinin ad-soyadı, ticari ünvanı |
+| Kart Sahibi Ad/Soyad | kartSahibi | AN3..140 | Z | Kart sahibi ya da kart sahiplerinin ad-soyadı. |
+| Kart Ticari Unvan|kartTicariUnvan| AN3..140 | K | Kart türü ticari ise ilgili alanda ticari unvan iletilmesi zorunludur.  |
 | Kart Ürün Adı | kartUrunAdi | AN3..140 | Z | Kart bilgilerinin ürün adı. Örn : TROY Business Kart |
 | Ekstre Türleri | ekstreTurleri | Kompleks:EkstreTurleri | Z |İlgili karta ait ekstre türleri(TRY, USD, EUR) dizi içerisinde iletilmelidir. Yurtdışı ekstre olan kartlar için TRY haricinde değer dönülmesi gerekmektedir. Ekstre olmadığı halde banka kartı gibi kart tiplerinde TRY olarak iletilmesi gerekmektedir. |
 | Kart Rumuz | kartRumuz | AN3..140 | İ | Kart için rumuz bilgisi var ise gönderilebilir. |
@@ -717,7 +720,8 @@ Parametre içeren Kart Detay Bilgisi Sorgu Örneği (Tek Bir Kart) =  /kartlar/{
 | --- | --- | --- | --- | --- | --- |
 | Rıza No | rizaNo | AN1..128 | Z | HesapBilgisiRızasi nesnesinin oluşturulması esnasında HHS kaynak sunucusu tarafından atanan biricik tanımlayıcı |
 | Kart Referans Numarası | kartRef | AN5..40 | Z| HHS tarafından her bir kart için atanan biricik değerdir (uuid). Bir kart tek bir kartRef'e karşılık gelmelidir, benzer şekilde bir kartRef tek bir karta karşılık gelmelidir. Aynı kart için alınan tüm rızalarda kart referans bilgisinin değişmemesi gerekmektedir. ||
-| Toplam Kart Limiti | toplamLimit | Kompleks:ToplamLimit	 | K| Karta ait toplam limit bilgisi | Kart tipi kredi kartı ve ön ödemeli kart olanlar için ilgili alanın dönülmesi zorunludur. Kart tipi banka olan kartlar için ilgili alan dönülmemelidir.|
+| Ekstre Türü | ekstreTuru |AN3 | Z| Ekstre türü TRY, USD,EUR olarak gönderilebilir. İstek paremetresinde iletilen değer ile aynı değer olmalıdır.  ||
+| Toplam Kart Limiti | toplamLimit | Kompleks:ToplamLimit	 | K| Karta ait toplam limit bilgisi | Kart tipi kredi kartı ve ön ödemeli kart olanlar için ilgili alanın dönülmesi zorunludur. Kart tipi banka olan kartlar için ilgili alan dönülmemelidir. Ön ödemeli kartlar için sadece yüklenen tutarla işlem yapılabilir olduğundan toplam kart limiti alanında mevcut bakiye bilgisi dönülmelidir.|
 | > Tutar  | tutar   | AN1..24   | Z |  Tutar Bilgisi. Limit tutarı için regex patterni şu şekildedir: '```^\d{1,18}$|^\d{1,18}\.\d{1,5}$```' ||
 | > Para Birimi 	| paraBirimi   |  AN3  | Z | Para Birimi |  
 | Kullanılabilir Kart Limiti | kullanilabilirLimit | Kompleks:KullanılabilirLimit | K| Karta ait kullanılabilir limit bilgisi | Kart tipi banka olan kartlar için ilgili alan dönülmemelidir.|
@@ -790,7 +794,8 @@ Yukarıdaki kontroller tamamlandıktan sonra HHS tarafından "KartHareketleri" n
 |Ekstre Turu | ekstreTuru | AN3 | K | Kart bilgileri yanıtında dönülen ekstre türleri değerlerini almaktadır. Para birimine uygun olarak kart detay bilgileri sorgulanmaktadır. Ekstre parametresi TRY, USD,EUR olarak gönderilebilir. Bu alan gönderilmiyorsa TRY değerlendirilmelidir. İlgili para birimine özel ekstre içindeki harcama değeri dönülecektir. | Ekstre türleri haricinde uygun olmayan bir değer gönderildiğinde hata verilmelidir. |
 |Sayfa Başına İstenen Kayıt Sayısı|	syfKytSayi|	N3|	İ	|Sayfa başına istenen kayıt sayısı. Bu alanda iletilen değer 100’den büyük olamaz. |Bu veri gönderildiği durumda, HHS işlemler listesini bu sayı kadar gruplandırarak gönderir. Bu veri gönderilmediğinde sayfadaki kayıt sayısı 100 olarak kullanılır. |
 |İstenen Sayfa Numarasi|	syfNo|	N3|	İ	|Cevapta dönecek sayfa numarası 1’den başlayarak artan değerlerle iletilmelidir.|	Bu veri gönderildiği durumda, HHS işlemler listesini bu sayfadaki kayıtları gönderir. Gönderilmediğinde, HHS ilk sayfadaki kayıtları gönderir. |
-
+|Borç Alacak Göstergesi	|brcAlc	|AN1|	İ|	TR.OHVPS.DataCode.BrcAlc sıralı veri tipi değerlerinden birini alır. Sorgulanacak işlemlerin borç / alacak kriteri B: Karta borç yaratan işlem.A: Karta alacak yaratan işlem.{“B”,”A”}	|Bu veri gönderildiği durumda HHS işlemler listesi dönüşünü bu kritere göre filtreleyerek iletmek zorundadır.|
+|Sıralama Yönü	|srlmYon|	AN1|	İ	|Cevapta dönülecek işlemlerin sıralama yönünü belirtir. Alabileceği değerler: A: Azalan değerle sıralama Y: Artan değerle sıralama {“A”,”Y”}|	Bu veri gönderildiği durumda, HHS kart hareketlerini **sıralama kriteri işlem tarihi** olacak şekilde ilgili yöne uygun olarak sıralayarak gönderir. Gönderilmediğinde, HHS sıralama yönünü Azalan olarak belirler.|  
 
 **Tablo 25: “KartHareketleri” nesnesi**  
 |Alan Adı |JSON Alan Adı	|Format	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|Kart Tiplerine İstinaden Detaylı Açıklama	|
@@ -799,8 +804,9 @@ Yukarıdaki kontroller tamamlandıktan sonra HHS tarafından "KartHareketleri" n
 | Dönem Değeri | donemDegeri | N3 | Z|Kart hareketlerinin sorgulanacağı döneme ait değerdir.  ||
 | Dönem Başlangıç Tarihi | donemBaslangicTarihi |ISODate | Z|Sorgulama yapılan ekstre dönemine göre ilgili döneme ait başlangıç tarih bilgisidir. Kart tipi kredi kartı olanlar için ilgili döneme ait başlangıç tarihi iletilmelidir. Kart tipi banka kartı ve ön ödemeli kart olanlar için sorgulama yapılan ayın başlangıç tarihi iletilmelidir.  ||
 | Dönem Bitiş Tarihi | donemBitisTarihi |ISODate | Z|Sorgulama yapılan ekstre dönemine göre ilgili döneme ait bitiş tarih bilgisidir. Kart tipi kredi kartı olanlar için ilgili döneme ait bitiş tarihi iletilmelidir. Kart tipi banka kartı ve ön ödemeli kart olanlar için sorgulama yapılan ayın bitiş tarihi iletilmelidir.  ||
-| Ekstre Türü | ekstreTuru |AN3 | Z| Ekstre türü TRY, USD,EUR olarak gönderilebilir.  ||
+| Ekstre Türü | ekstreTuru |AN3 | Z| Ekstre türü TRY, USD,EUR olarak gönderilebilir. İstek paremetresinde iletilen değer ile aynı değer olmalıdır.  ||
 | Hareket Bilgileri | hareketBilgileri |Kompleks Alan: HareketBilgileri | K| Dizi halinde liste olacaktır.  ||
+|> İşlem Numarası	|islNo|	AN3..50|	Z|	Kart hareketinin oluşturulması sırasında atanan ve borç (veya alacak) hareketini tekilleştiren HHS bazında tekil tanımlayıcıdır. Bu değer tek başına tekil olabileceği gibi birden fazla değerin bir araya getirilmesiyle de tekilliği sağlanmış olabilir. Bu değerin en azından kart referans numarası bazında tekil olması beklenir. Genellikle kullanılan örnekleri; Instance_Id, Transaction_Id, Transaction_Num, Transaction_TimeStamp|
 |> İşlem Tutarı | islemTutari |Kompleks:IslemTutari | Z|Yapılan işleme ait tutar bilgisi. Taksitli bir işlem ise ilgili dönemdeki taksit tutarı iletilecektir. ÖHK, HHS'de ilgili dönem sorguladığında hangi tutarı görüntülüyorsa ilgili tutar dönülecektir.  ||
 | >> Tutar  | tutar   | AN1..24   | Z |  İşlem tutarı için regex patterni şu şekildedir: '``` ^\d{1,18}$|^\d{1,18}\.\d{1,5}$```'|
 | >> Para Birimi 	| paraBirimi   |  AN3  | Z | Para Birimi. Ekstre türü ile aynı olması gerekmektedir. | 

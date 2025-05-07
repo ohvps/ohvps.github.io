@@ -130,37 +130,37 @@ HHS, tüm kaynakları için aynı katılımcı yolu ön ekini ve sistem adını 
 BKM API’lerine erişmek isteyen uygulamaların yetkilerine göre aşağıdaki API’lere abone olmaları gerekmektedir:  
 
 OBH:  
-[https://gecit.api-preprod.bkm.com.tr/ohvps/obh/s1.1/odeme-emri-rizasi]()  
-[https://gecit.api-preprod.bkm.com.tr/ohvps/obh/s1.1/odeme-emri]()  
+[https://gecit-api.bkmtest.com.tr/ohvps/obh/s1.1/odeme-emri-rizasi]()  
+[https://gecit-api.bkmtest.com.tr/ohvps/obh/s1.1/odeme-emri]()  
 HBH:  
-[https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s1.1/hesap-bilgisi-rizasi]()  
-[https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s1.1/hesaplar]()  
-[https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s1.1/hesaplar/1234/islemler]()  
-[https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s1.1/hesaplar/1234/bakiye]()  
+[https://gecit-api.bkmtest.com.tr/ohvps/hbh/s1.1/hesap-bilgisi-rizasi]()  
+[https://gecit-api.bkmtest.com.tr/ohvps/hbh/s1.1/hesaplar]()  
+[https://gecit-api.bkmtest.com.tr/ohvps/hbh/s1.1/hesaplar/1234/islemler]()  
+[https://gecit-api.bkmtest.com.tr/ohvps/hbh/s1.1/hesaplar/1234/bakiye]()  
 GKD  
-[https://gecit.api-preprod.bkm.com.tr/ohvps/gkd/s1.1/erisim-belirteci]()  
+[https://gecit-api.bkmtest.com.tr/ohvps/gkd/s1.1/erisim-belirteci]()  
 HHS – YÖS API  
-[https://gecit.api-preprod.bkm.com.tr/hhs-api/s1.1/hhs]()  
-[https://gecit.api-preprod.bkm.com.tr/hhs-api/s1.1/hhs/1234]()  
-[https://gecit.api-preprod.bkm.com.tr/yos-api/s1.1/yos]()  
-[https://gecit.api-preprod.bkm.com.tr/yos-api/s1.1/yos/1234]()  
+[https://gecit-api.bkmtest.com.tr/hhs-api/s1.1/hhs]()  
+[https://gecit-api.bkmtest.com.tr/hhs-api/s1.1/hhs/1234]()  
+[https://gecit-api.bkmtest.com.tr/yos-api/s1.1/yos]()  
+[https://gecit-api.bkmtest.com.tr/yos-api/s1.1/yos/1234]()  
 
   
 HHS’lerin sağlayacakları API’lerdeki URI çevrimi örnekleri aşağıdaki gibidir.  
 
 - [https://xbank.com.tr/api-portal/ohvps/obh/s1.1/odeme-emri]() 
-- [https://gecit.api-preprod.bkm.com.tr/ohvps/obh/s1.1/odeme-emri]() (BKM API) 
+- [https://gecit-api.bkmtest.com.tr/ohvps/obh/s1.1/odeme-emri]() (BKM API) 
 - [https://xbank.com.tr/api-portal/ohvps/hbh/s1.1/hesap-bilgisi-rizasi]() 
-- [https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s1.1/hesap-bilgisi-rizasi]() (BKM API) 
+- [https://gecit-api.bkmtest.com.tr/ohvps/hbh/s1.1/hesap-bilgisi-rizasi]() (BKM API) 
 - [https://xbank.com.tr/api-portal/ohvps/hbh/s1.1/hesaplar]() 
-- [https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s1.1/hesaplar]()  (BKM API)  
+- [https://gecit-api.bkmtest.com.tr/ohvps/hbh/s1.1/hesaplar]()  (BKM API)  
 - [https://xbank.com.tr/api-portal/ohvps/hbh/s1.1/hesaplar/1234]() 
-- [https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s1.1/hesaplar/1234]() (BKM API)
+- [https://gecit-api.bkmtest.com.tr/ohvps/hbh/s1.1/hesaplar/1234]() (BKM API)
 
 GEÇİT üzerinden yapılan çağrılarda, istek başlığında bulunan “x-aspsp-code” (isteğin iletildiği Hesap Hizmeti Sağlayıcısının kodu) değerine göre HHS API’de standart olarak tanımlanmış olan “basePath” bilgisine servis uzantısı eklenerek HHS’ye yönlendirme yapılır.
 
   Örneğin, istek başlığında **xbank**’ın kodu varsa, YÖS tarafından yapılan   
-    [https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s1.1/hesap-bilgisi-rizasi]()  
+    [https://gecit-api.bkmtest.com.tr/ohvps/hbh/s1.1/hesap-bilgisi-rizasi]()  
     çağrısı GEÇİT tarafından karşılanarak  
     [https://xbank.com.tr/api-portal/ohvps/hbh/s1.1/hesap-bilgisi-rizasi]()  
     adresine yönlendirilir.   

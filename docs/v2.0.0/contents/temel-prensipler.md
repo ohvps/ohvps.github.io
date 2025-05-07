@@ -132,37 +132,37 @@ HHS, tüm kaynakları için aynı katılımcı yolu ön ekini ve sistem adını 
 BKM API’lerine erişmek isteyen uygulamaların yetkilerine göre aşağıdaki API’lere abone olmaları gerekmektedir:  
 
 OBH:  
-[https://gecit.api-preprod.bkm.com.tr/ohvps/obh/s2.0/odeme-emri-rizasi]()  
-[https://gecit.api-preprod.bkm.com.tr/ohvps/obh/s2.0/odeme-emri]()  
+[https://gecit-api.bkmtest.com.tr/ohvps/obh/s2.0/odeme-emri-rizasi]()  
+[https://gecit-api.bkmtest.com.tr/ohvps/obh/s2.0/odeme-emri]()  
 HBH:  
-[https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s2.0/hesap-bilgisi-rizasi]()  
-[https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s2.0/hesaplar]()  
-[https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s2.0/hesaplar/1234/islemler]()  
-[https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s2.0/hesaplar/1234/bakiye]()  
+[https://gecit-api.bkmtest.com.tr/ohvps/hbh/s2.0/hesap-bilgisi-rizasi]()  
+[https://gecit-api.bkmtest.com.tr/ohvps/hbh/s2.0/hesaplar]()  
+[https://gecit-api.bkmtest.com.tr/ohvps/hbh/s2.0/hesaplar/1234/islemler]()  
+[https://gecit-api.bkmtest.com.tr/ohvps/hbh/s2.0/hesaplar/1234/bakiye]()  
 GKD  
-[https://gecit.api-preprod.bkm.com.tr/ohvps/gkd/s2.0/erisim-belirteci]()  
+[https://gecit-api.bkmtest.com.tr/ohvps/gkd/s2.0/erisim-belirteci]()  
 HHS – YÖS API  
-[https://gecit.api-preprod.bkm.com.tr/hhs-api/s2.0/hhs]()  
-[https://gecit.api-preprod.bkm.com.tr/hhs-api/s2.0/hhs/1234]()  
-[https://gecit.api-preprod.bkm.com.tr/yos-api/s2.0/yos]()  
-[https://gecit.api-preprod.bkm.com.tr/yos-api/s2.0/yos/1234]()  
+[https://gecit-api.bkmtest.com.tr/hhs-api/s2.0/hhs]()  
+[https://gecit-api.bkmtest.com.tr/hhs-api/s2.0/hhs/1234]()  
+[https://gecit-api.bkmtest.com.tr/yos-api/s2.0/yos]()  
+[https://gecit-api.bkmtest.com.tr/yos-api/s2.0/yos/1234]()  
 
   
 HHS’lerin sağlayacakları API’lerdeki URI çevrimi örnekleri aşağıdaki gibidir.  
 
 - [https://xbank.com.tr/api-portal/ohvps/obh/s2.0/odeme-emri]() 
-- [https://gecit.api-preprod.bkm.com.tr/ohvps/obh/s2.0/odeme-emri]() (BKM API) 
+- [https://gecit-api.bkmtest.com.tr/ohvps/obh/s2.0/odeme-emri]() (BKM API) 
 - [https://xbank.com.tr/api-portal/ohvps/hbh/s2.0/hesap-bilgisi-rizasi]() 
-- [https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s2.0/hesap-bilgisi-rizasi]() (BKM API) 
+- [https://gecit-api.bkmtest.com.tr/ohvps/hbh/s2.0/hesap-bilgisi-rizasi]() (BKM API) 
 - [https://xbank.com.tr/api-portal/ohvps/hbh/s2.0/hesaplar]() 
-- [https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s2.0/hesaplar]()  (BKM API)  
+- [https://gecit-api.bkmtest.com.tr/ohvps/hbh/s2.0/hesaplar]()  (BKM API)  
 - [https://xbank.com.tr/api-portal/ohvps/hbh/s2.0/hesaplar/1234]() 
-- [https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s2.0/hesaplar/1234]() (BKM API)
+- [https://gecit-api.bkmtest.com.tr/ohvps/hbh/s2.0/hesaplar/1234]() (BKM API)
 
 GEÇİT üzerinden yapılan çağrılarda, istek başlığında bulunan “x-aspsp-code” (isteğin iletildiği Hesap Hizmeti Sağlayıcısının kodu) değerine göre HHS API’de standart olarak tanımlanmış olan “basePath” bilgisine servis uzantısı eklenerek HHS’ye yönlendirme yapılır.
 
   Örneğin, istek başlığında **xbank**’ın kodu varsa, YÖS tarafından yapılan   
-    [https://gecit.api-preprod.bkm.com.tr/ohvps/hbh/s2.0/hesap-bilgisi-rizasi]()  
+    [https://gecit-api.bkmtest.com.tr/ohvps/hbh/s2.0/hesap-bilgisi-rizasi]()  
     çağrısı GEÇİT tarafından karşılanarak  
     [https://xbank.com.tr/api-portal/ohvps/hbh/s2.0/hesap-bilgisi-rizasi]()  
     adresine yönlendirilir.   
@@ -858,14 +858,22 @@ HHS tarafından izin verilen sorgu sayısının üzerinde yapılan bir sorgu iç
 | 3 | odeme-emri | GET |/odeme-emri/{odemeEmriNo}| Rıza bazında günde 24  | 
 | 4 | ileri-tarihli-odeme-emri-rizasi | GET |/ileri-tarihli-odeme-emri-rizasi/{rizaNo}| Rıza bazında günde 4 | 
 | 5 | ileri-tarihli-odeme-emri | GET |/ileri-tarihli-odeme-emri/{odemeEmriNo}| Rıza bazında günde 24  |
-| 6 | ileri-tarihli-odeme-emri-rizasi | DELETE | /ileri-tarihli-odeme-emri-rizasi/{RizaNo} | --- |
-| 7 | hesap-bilgisi-rizasi | GET | /hesap-bilgisi-rizasi/{RizaNo} | Rıza bazında günde 4 |  
-| 8 | hesap-bilgisi-rizasi | DELETE | /hesap-bilgisi-rizasi/{RizaNo} | --- |
-| 9 | hesaplar | GET |/hesaplar| Bireysel günde 4<br> Kurumsal günde 4 | 
-| 10 | hesaplar | GET |/hesaplar/{hspRef}| Bireysel günde 4<br>Kurumsal günde 4 | 
-| 11 | bakiye | GET |/hesaplar/{hspRef}/bakiye| Bireysel günde 24<br>Kurumsal ÖHK - günde 24 | 
-| 12 | bakiye | GET |/bakiye| Bireysel günde 24<br>Kurumsal ÖHK - günde 24 | 
-| 13 | islemler | GET |/hesaplar/{hspRef}/işlemler| Bireysel günde 4<br>Kurumsal ÖHK - saatte 12 | 
+| 6 | ileri-tarihli-odeme-emri-rizasi | DELETE | /ileri-tarihli-odeme-emri-rizasi/{rizaNo} | --- |
+| 7 | duzenli-odeme-emri-rizasi | GET |/duzenli-odeme-emri-rizasi/{rizaNo}| Rıza bazında günde 4 |
+| 8 | duzenli-odeme-emri | GET |/duzenli-odeme-emri/{talimatNo}| Rıza bazında günde 24  |
+| 9 | duzenli-odeme-emri-rizasi  | DELETE | /duzenli-odeme-emri-rizasi/{rizaNo}} | --- |
+| 10 | hesap-bilgisi-rizasi | GET | /hesap-bilgisi-rizasi/{RizaNo} | Rıza bazında günde 4 |  
+| 11 | duzenli-odeme-talimat-plani	 | GET |/duzenli-odeme-emri/{talimatNo}/odeme-plani	| Rıza bazında günde 24 |
+| 12 | hesap-bilgisi-rizasi | DELETE | /hesap-bilgisi-rizasi/{RizaNo} | --- |
+| 13 | hesaplar | GET |/hesaplar| Bireysel günde 4<br> Kurumsal günde 4 | 
+| 14 | hesaplar | GET |/hesaplar/{hspRef}| Bireysel günde 4<br>Kurumsal günde 4 |
+| 15 | bakiye | GET |/hesaplar/{hspRef}/bakiye| Bireysel günde 24<br>Kurumsal ÖHK - günde 24 | 
+| 16 | bakiye | GET |/bakiye| Bireysel günde 24<br>Kurumsal ÖHK - günde 24 | 
+| 17 | islemler | GET |/hesaplar/{hspRef}/işlemler| Bireysel günde 4<br>Kurumsal ÖHK - saatte 12 |
+| 18 | kartlar | GET |/kartlar| Bireysel günde 4<br> Kurumsal günde 4 |
+| 19 | kartlar | GET |/kartlar/{kartRef}| Bireysel günde 4<br>Kurumsal günde 4 |
+| 20 | kart-detay | GET |/kartlar/{kartRef}/kart-detay	| Bireysel günde 24<br>Kurumsal ÖHK - günde 24 |
+| 21 | kart-hareketleri	 | GET |/kartlar/{kartRef}/kart-hareketleri	| Bireysel günde 4<br>Kurumsal ÖHK - saatte 12 |
 
 YÖS ve HHS son 24 saat içerisindeki sorgu sayılarını toplayarak elde ettiği sonuçlarla limit kontrolü yapmalıdır (Pencere yöntemi).  
 

@@ -466,7 +466,7 @@ POST işleminin RESPONSE gövdesini (BODY) oluşturan “IleriTarihliOdemeEmri�
 | **>> Ödeme Sistemi**	|  odmStm   | AN1    | K  | **TR.OHVPS.DataCode.OdemeSistemi** sıralı veri değerlerinden birini alır. odmDrm:01 olduğu durumda gönderilmesi zorunludur. |
 | **>> Ödeme Sistem Numarası**	|  odmStmNo   | AN10..50    | K  | Ödeme başarılı başlatıldıysa, ödemenin başlatıldığı sistemdeki referans numarası. Gerektiğinde ilgili ödeme sisteminde/HHS’de söz konusu ödemeye karşılık gelen mesajla bağlantı kurmada kullanılır. <br> Ödeme Hizmeti kullanıcısına işlemin takibi için gösterilebilir. <br>İşlemin yönlendirildiği ödeme sistemi FAST ya da PÖS ise sistemdeki ilgili mesajın Tarih, GönderenKatilimKodu ve SorguNumarasi değerlerinin birleşiminden oluşur. Bu 3 alan mevcutta kullanıldığı formatta aralarına dikey çizgi (Unicode U+2223) işareti koyularak, birleştirmeli ve iletilmelidir. Örn : Tarih\|GönderenKatilimKodu\|SorguNumarasi  <br>Ödeme Havale/Virman işlemi ise HHS’nin üretmiş olduğu havale/virman numarasını içerir. Buradaki format da Tarih\|GönderenKatilimKodu\|Havale-virman numarası şeklinde olmalıdır.<br>Havale/FAST/PÖS  ödeme yöntemleri için tarih alanı yyyy-aa-gg formatında 10 karakter olarak iletilmelidir. odmDrm:01 olduğu durumda gönderilmesi zorunludur. |
 | **>> Talimat Tarihi**	|  tlmtTrh   | ISODate  | Z  | ÖHK tarafından talep edilen, ödeme gerçekleşme zamanıdır. Talimat verilen günün tarihinden minimum 1 gün sonrası,maksimum ise 1 yıl sonrası olacak şekilde seçilebilir.| |
-| **>> Gerçekleşen Ödeme Zamanı** |  grckOdmZmn  | Kompleks:OdemeZamani   | K | Gerçekleşen ödeme işlemine ait zaman bilgisi. odmDrm:01 olduğu durumda gönderilmesi zorunludur.  |  
+| **>> Gerçekleşen Ödeme Zamanı** |  grckOdmZmn  | ISODateTime  | K | Gerçekleşen ödeme işlemine ait zaman bilgisi. odmDrm:01 olduğu durumda gönderilmesi zorunludur.  |  
 
 
 ## 7.6.	ADIM 3.1- İleri Tarihli Ödeme Emri Sorgusu (İsteğe bağlı) 
@@ -506,7 +506,7 @@ DELETE /ileri-tarihli-odeme-emri-rizasi çağrısı, bir ÖBHS'nin önceden olu�
 - İstek başlığında yer alan X-Access-Token ile ilişkili rıza, silinen rizaNo bilgisi ile aynı olup olmadığı kontrol edilir. Farklı olması durumunda **"TR.OHVPS.Resource.NotFound"** hatası dönülür.
 - İptal edilmek istenen İleri Tarihli Ödeme Emri Rızası HHS tarafında bulunmuyor ise **”TR.OHVPS.ResourceNotFound”** hatası dönülür.
 - Rıza durumu Yetki Sonlandırıldı - S veya Yetki İptal - I ise **"TR.OHVPS.Resource.ConsentRevoked"** hatası dönülür.
-- İptal edilmek istenen İleri Tarihli Ödeme Emri Rızası’nın ödeme durumu 04 ya da 05 değil ise **”TR.OHVPS.TransactionCompleted”** hatası dönülür.
+- İptal edilmek istenen İleri Tarihli Ödeme Emri Rızası’nın ödeme durumu 04 ya da 05 değil ise **”TR.OHVPS.Business.TransactionCompleted”** hatası dönülür.
 
 Yukarıda kontroller başarıyla tamamlandıktan sonra sırasıyla aşağıdaki işlemler yapılır.
 - odmDrm değeri 04 ve 05 olan kayıtlar 07 durum kodu ile güncellenmelidir.

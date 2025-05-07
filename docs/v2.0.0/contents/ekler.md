@@ -45,11 +45,12 @@ Açık Bankacılık simülatör uygulaması üzerinde swagger dökümanlarının
 | TR.OHVPS.DataCode.HizmetTipi | 01 :  Ayrık GKD <br>02 : İleri Tarihli Ödeme<br>03 : Düzenli Ödeme|
 | TR.OHVPS.DataCode.OdemePeriyodu | G :  Günlük <br>H : Haftalık<br>A : Aylık<br>D : Diğer|
 | TR.OHVPS.DataCode.KartTip | B : Banka Kartı <br>K : Kredi Kartı<br>P : Ön Ödemeli(Prepaid) Kart|
-| TR.OHVPS.DataCode.AltKartTip | A : Asıl <br>D : Dijital<br>E : Ek Kart<br>S : Sanal Kart|
+| TR.OHVPS.DataCode.AltKartTip | A : Asıl <br>E : Ek Kart<br>S : Sanal Kart|
 | TR.OHVPS.DataCode.KartStatu | A : Açık/Aktif <br>P : Pasif<br>I : İptal
 | TR.OHVPS.DataCode.IslemPuanDurumu | 01 : Puan Kazanımı <br>02: Puan Kullanımı
 | TR.OHVPS.DataCode.KartSema | T : TROY <br>M : Mastercard<br>V : Visa<br>U : UnionPay<br>A : American Express<br>J : JCB
 | TR.OHVPS.DataCode.KartTuru | B : Bireysel <br>T :Ticari
+| TR.OHVPS.DataCode.KartFormu | F : Fiziksel <br>D :Dijital
 
 
 
