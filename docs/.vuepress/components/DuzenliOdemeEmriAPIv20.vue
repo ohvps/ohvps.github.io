@@ -32,7 +32,7 @@
                                         :headers="headersDuzenliOdemeEmriRiza" @request-event="doneClick" />
                                 </div>
                                 <div class="col" style="width: 50%;">
-                                    <Response title="Duzenli Ödeme Emri Rızası Yanıtı" :headers="headerResponse"
+                                    <Response title="Düzenli Ödeme Emri Rızası Yanıtı" :headers="headerResponse"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
                                         @response-event="changeTabs" :body="duzenliOdemeEmriRizasiResponse" :tabs="responseTabsDuzenliOdemeEmriRizasi" nextButtonVisible="true" />
                                 </div>
@@ -148,14 +148,29 @@
                                     <Response title="Düzenli Ödeme Emri Sorgulama Yanıtı" :headers="headerResponse"
                                         @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
                                         @response-event="duzenliOdemeEmriSorgulamaChangeTab" :body="duzenliOdemeEmriResponseBody"
-                                        :tabs="responseTabsDuzenliOdemeEmriSorgulama" nextButtonVisible="false"/>
+                                        :tabs="responseTabsDuzenliOdemeEmriSorgulama" nextButtonVisible="true"/>
                                 </div>
                             </div>
                         </div>
 
-
-
-                       
+                        <div v-if="tab.ID === 8" style="width: 100%;">
+                          <div>                                
+                                <p>Ödeme planını takip etmek isteyen YÖS tarafından yapılan sorgulamadır. </p>
+                            </div>
+                            <div class="row" style="width: 100%;">
+                                <div class="col" style="width: 50%;">
+                                    <Request title="Ödeme Planı Sorgulama" actionButtonText="Ödeme Planı Sorgula" httpMethod="GET"
+                                        path="/duzenli-odeme-emri/{talimatNo}/odeme-plani" :requestBody="yenilemeBelirteci"
+                                        :headers="requestHeadersAfterToken" @request-event="odemePlani" />
+                                </div>
+                                <div class="col" style="width: 50%;">
+                                    <Response title="Ödeme Planı Sorgulama Yanıtı" :headers="headerResponse"
+                                        @process-event="nextStep" actionButtonText="Bir Sonraki İşlem"
+                                        @response-event="odemePlaniSorgulamaChangeTab" :body="odemePlaniResponseBody"
+                                        :tabs="responseTabsDuzenliOdemeEmriSorgulama" nextButtonVisible="false"/>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -179,7 +194,7 @@ import { odemeEmriYenilemeBelirteci, ErisimBelirteciRequest, ErisimBelirteciResp
 import { odemeEmriRizaHeader, odemeEmriRizaResponseHeader } from './data-duzenli-odeme-emri-V2.0.js'
 import { requestHeadersAfterToken } from './data-duzenli-odeme-emri-V2.0.js'
 import { DuzenliOdemeEmriSorgulamaResponse400,DuzenliOdemeEmriSorgulamaResponse401,DuzenliOdemeEmriSorgulamaResponse403,DuzenliOdemeEmriSorgulamaResponse429,DuzenliOdemeEmriSorgulamaResponse500,DuzenliOdemeEmriSorgulamaResponse503,DuzenliOdemeEmriSorgulamaResponse504 } from './data-duzenli-odeme-emri-V2.0.js'
-
+import { OdemePlaniSorgulamaResponse200, OdemePlaniSorgulamaResponse400, OdemePlaniSorgulamaResponse401, OdemePlaniSorgulamaResponse403, OdemePlaniSorgulamaResponse404, OdemePlaniSorgulamaResponse429, OdemePlaniSorgulamaResponse500, OdemePlaniSorgulamaResponse503, OdemePlaniSorgulamaResponse504} from './data-duzenli-odeme-emri-V2.0.js'
 
 import '../public/assets/swagger-ui/swagger-ui.css'
 import SwaggerUI from '../public/assets/swagger-ui/swagger-ui-es-bundle.js'
@@ -217,6 +232,7 @@ export default {
             headersDuzenliOdemeEmriRiza: duzenliOdemeEmriRizaHeader,
             requestHeadersAfterToken:requestHeadersAfterToken,            
             responseTabsDuzenliOdemeEmriSorgulama: responseTabsDuzenliOdemeEmriSorgulama,
+            odemePlaniResponseBody: "",
         };
     },
     props: {
@@ -335,6 +351,30 @@ export default {
                     return this.duzenliOdemeEmriResponseBody = JSON.stringify(DuzenliOdemeEmriSorgulamaResponse504, null, 2);
             }
         },
+
+        odemePlaniSorgulamaChangeTab(step) {
+            
+            switch (step) {
+                case 1:
+                    return this.odemePlaniResponseBody = JSON.stringify(OdemePlaniSorgulamaResponse200, null, 2);
+                case 2:
+                    return this.odemePlaniResponseBody = JSON.stringify(OdemePlaniSorgulamaResponse400, null, 2);
+                case 3:
+                    return this.odemePlaniResponseBody = JSON.stringify(OdemePlaniSorgulamaResponse401, null, 2);
+                case 4:
+                    return this.odemePlaniResponseBody = JSON.stringify(OdemePlaniSorgulamaResponse403, null, 2);
+                case 5:
+                    return this.odemePlaniResponseBody = JSON.stringify(OdemePlaniSorgulamaResponse404, null, 2);
+                case 6:
+                    return this.odemePlaniResponseBody = JSON.stringify(OdemePlaniSorgulamaResponse429, null, 2);
+                case 7:
+                    return this.odemePlaniResponseBody = JSON.stringify(OdemePlaniSorgulamaResponse500, null, 2);
+                case 8:
+                    return this.odemePlaniResponseBody = JSON.stringify(OdemePlaniSorgulamaResponse503, null, 2);
+                case 9:
+                    return this.odemePlaniResponseBody = JSON.stringify(OdemePlaniSorgulamaResponse504, null, 2);
+            }
+        },
         changeTabs(step) {
             
 
@@ -360,6 +400,12 @@ export default {
         duzenliOdemeEmri() {
             this.duzenliOdemeEmriResponseBody = JSON.stringify(DuzenliOdemeEmriResponse201, null, 2)
         },
+
+        odemePlani() {
+      
+            this.odemePlaniResponseBody = JSON.stringify(OdemePlaniSorgulamaResponse200, null, 2);
+        },
+
         duzenliOdemeEmriTabsChanged: function (e) {
             debugger
             this.selectedIndex = e.addedItems[0].ID - 1;

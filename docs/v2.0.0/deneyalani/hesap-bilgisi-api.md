@@ -1,3 +1,3 @@
 <ClientOnly>
-  <HesapBilgisiV11/>
+  <HesapBilgisiV20/>
 </ClientOnly>

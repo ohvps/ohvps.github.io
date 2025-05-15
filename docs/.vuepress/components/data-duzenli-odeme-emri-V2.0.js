@@ -2,21 +2,23 @@ export const mainTabs = [{
     ID: 1,
     Name: 'Düzenli Ödeme Emri Rızası',
    
-}, {
+}, 
+{
     ID: 2,
     Name: "GKD - Kimlik Doğrulama",
    
-}, {
+}, 
+{
     ID: 3,
     Name: 'GKD - Rıza Onayı',
    
   
-}, {
+}, 
+{
     ID: 4,
     Name: 'GKD - Erişim Belirteci',
    
 },
-
 {
     ID: 5,
     Name: 'Düzenli Ödeme Emri',
@@ -31,9 +33,12 @@ export const mainTabs = [{
     ID: 7,
     Name: 'Düzenli Ödeme Emri Sorgula',
    
-  
-}
-
+},
+{
+  ID: 8,
+  Name: 'Ödeme Planı Sorgula',
+ 
+},
 
 ];
 export const responseTabsDuzenliOdemeEmriRizasi = [{
@@ -189,6 +194,45 @@ export const responseTabsDuzenliOdemeEmriSorgulama = [{
   Color: 'red'
 }
 ];
+export const responseTabsOdemePlaniSorgulama = [{
+  ID: 1,
+  Name: '201',
+  Color: 'black'
+}, {
+  ID: 2,
+  Name: "400",
+  Color: 'red'
+},  {
+  ID: 3,
+  Name: '401',
+  Color: 'red'
+}, {
+  ID: 4,
+  Name: '403',
+  Color: 'red'
+},
+{
+  ID: 5,
+  Name: '404',
+  Color: 'red'
+},
+{
+  ID: 6,
+  Name: '500',
+  Color: 'red'
+},
+{
+  ID: 7,
+  Name: '503',
+  Color: 'red'
+},
+{
+  ID: 8,
+  Name: '504',
+  Color: 'red'
+}
+];
+
 export const duzenliOdemeEmriRizaHeader = [
   {
       ID: 1,
@@ -861,6 +905,96 @@ export const DuzenliOdemeEmriSorgulamaResponse503={
 export const DuzenliOdemeEmriSorgulamaResponse504={
   "id": "abd506a6-0608-4db5-ad5b-723cepde545f",
   "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/123456773ae0b433c847432421bbb1e5356d",
+  "timestamp": "2023-11-23T15:46:19+03:00",
+  "httpCode": 504,
+  "httpMessage": "Gateway Timeout",
+  "moreInformation": "Gateway Timeout Exception",
+  "moreInformationTr": "Servis Cevap Bekleme Zaman Aşımı",
+  "errorCode": "TR.OHVPS.Server.InternalError"
+}
+export const OdemePlaniSorgulamaResponse200 =	{
+  "odmSiraNo": "1",
+  "odmTtr": "0.09",
+  "prBrm": "TRY",
+  "odmTlmtTrh": "2025-05-14",
+  "odmDrm": "05"
+};
+export const OdemePlaniSorgulamaResponse400 =
+{
+  "id": "d1f8d44c-1470-fd54-9ea9-c5c0bea5ac02",
+  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/df1adbe6598e4dfd9e3e88c96a58a267/odeme-plani",
+  "timestamp": "2023-11-26T19:37:15+03:00",
+  "httpCode": 400,
+  "httpMessage": "Bad Request",
+  "moreInformation": "Please check that payment information entered is correct.",
+  "moreInformationTr": "Lütfen girilen ödeme bilgilerin doğruluğunu kontrol ediniz",
+  "errorCode": "TR.OHVPS.Business.InvalidContent"
+}
+export const OdemePlaniSorgulamaResponse401 =
+{
+  "id": "d1f8d44c-1470-fd54-9ea9-c5csdea5ac02",
+  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/df1adbe6598e4dfd9e3e88c96a58a267/odeme-plani",
+  "timestamp": "2023-11-26T19:37:15+03:00",
+  "httpCode": 401,
+  "httpMessage": "Unauthorized",
+  "moreInformation": "Geçersiz Token",
+  "moreInformationTr": "Invalid Token",
+  "errorCode": "TR.OHVPS.Connection.InvalidToken"
+}
+export const OdemePlaniSorgulamaResponse403 =
+{
+  "id": "a7e51238-79d1-4133-9ef5-4311a9625a1c",
+  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/df1adbe6598e4dfd9e3e88c96a58a267/odeme-plani",
+  "timestamp": "2023-11-26T07:17:11+03:00",
+  "httpCode": 403,
+  "httpMessage": "Forbidden",
+  "moreInformation": "X-JWS-Signature header not found in the TPP request",
+  "moreInformationTr": "YOS ten gelen istekte X-JWS-Signature basligi bulunamadi.",
+  "errorCode": "TR.OHVPS.Resource.MissingSignature"
+}
+export const OdemePlaniSorgulamaResponse404={
+  "id": "udYRPEWYeZJt_IW98eilpDUmUpg1HPWvtSZ3B",
+  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/df1adbe6598e4dfd9e3e88c96a58a267/odeme-plani",
+  "timestamp": "2023-11-23T16:37:36+03:00",
+  "httpCode": 404,
+  "httpMessage": "Not Found",
+  "moreInformation": "Payment number not found",
+  "moreInformationTr": "Ödeme numarası bulunamadı.",
+  "errorCode": "TR.OHVPS.Resource.NotFound"
+}
+export const OdemePlaniSorgulamaResponse429={
+  "id": "qwe16216-af41-ewb4-e5c6-5489b128e453",
+  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/df1adbe6598e4dfd9e3e88c96a58a267/odeme-plani",
+  "timestamp": "2023-11-27T02:00:15+03:00",
+  "httpCode": 429,
+  "httpMessage": "Too Many Requests",
+  "moreInformation": "The number of allowed requests has been exceeded.",
+  "moreInformationTr": "İzin verilen istek sayısı aşıldı.",
+  "errorCode": "TR.OHVPS.Connection.ExceededRate"
+}
+export const OdemePlaniSorgulamaResponse500={
+  "id": "1234567-125e-4556-be26-994df1dsa8e1",
+  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/df1adbe6598e4dfd9e3e88c96a58a267/odeme-plani",
+  "timestamp": "2023-11-27T00:50:13+03:00",
+  "httpCode": 500,
+  "httpMessage": "Internal Server Error",
+  "moreInformation": "Sorry, the transaction has failed. Please try again later.",
+  "moreInformationTr": "Özür dileriz işleminizi gerçekleştiremiyoruz. Lütfen daha sonra tekrar deneyiniz.",
+  "errorCode": "TR.OHVPS.Server.ServiceUnavailable"
+}
+export const OdemePlaniSorgulamaResponse503={
+  "id": "abd506a6-0608-4db5-ad5b-723cepde545f",
+  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/df1adbe6598e4dfd9e3e88c96a58a267/odeme-plani",
+  "timestamp": "2023-11-27T00:50:13+03:00",
+  "httpCode": 503,
+  "httpMessage": "Service Unavailable",
+  "moreInformation": "Service Unavailable Error",
+  "moreInformationTr": "Servis Hizmet Dışı Hatası",
+  "errorCode": "TR.OHVPS.Server.ServiceUnavailable"
+}
+export const OdemePlaniSorgulamaResponse504={
+  "id": "abd506a6-0608-4db5-ad5b-723cepde545f",
+  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/df1adbe6598e4dfd9e3e88c96a58a267/odeme-plani",
   "timestamp": "2023-11-23T15:46:19+03:00",
   "httpCode": 504,
   "httpMessage": "Gateway Timeout",
