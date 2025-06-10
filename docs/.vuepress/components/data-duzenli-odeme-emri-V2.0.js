@@ -409,10 +409,6 @@ export const DuzenliOdemeEmriRızasiRequest={
         "kmlkTur": "K",
         "ohkTur": "B"
       },
-      "islTtr": {
-          "prBrm": "TRY",
-          "ttr": "1000.50"
-      },
       "gon": {
         "unv": "İsim Soyisim",
         "hspNo": "TR1000010XP9UDWM4Z6LVJKS45"
@@ -452,10 +448,6 @@ export const DuzenliOdemeEmriRizasi201 = {
           "kmlkVrs": "33333333333",
           "ohkTur": "B"
       },
-      "islTtr": {
-          "prBrm": "TRY",
-          "ttr": "1000.50"
-      },
       "gon": {
           "unv": "İsim Soyisim",
           "hspNo": "TR1000010XP9UDWM4Z6LVJKS45"
@@ -475,7 +467,7 @@ export const DuzenliOdemeEmriRizasi201 = {
 export const DuzenliOdemeEmriRizasi400 = {
   "id": "7f115b9c-d7c2-4a2a-bc45-5a9891c79072",
   "path": "/ohvps/obh/s2.0/duzenli-odeme-emri-rizasi",
-  "timestamp": "2022-12-22T10:47:57+03:00",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 400,
   "httpMessage": "Bad Request",
   "moreInformation": "Validation error",
@@ -501,7 +493,7 @@ export const DuzenliOdemeEmriRizasi400 = {
 export const DuzenliOdemeEmriRizasi401 = {
   "id": "4dc29205-de28-4a66-8da8-26152258b3a1",
   "path": "/ohvps/obh/s2.0/duzenli-odeme-emri-rizasi",
-  "timestamp": "2023-11-27T16:14:07+03:00",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 401,
   "httpMessage": "Unauthorized",
   "moreInformation": "Unauthorized",
@@ -511,7 +503,7 @@ export const DuzenliOdemeEmriRizasi401 = {
 export const DuzenliOdemeEmriRizasi403 = {
   "id": "38d9d82a-aa98-4b13-8e49-4118ebc85b74",
   "path": "/ohvps/obh/s2.0/duzenli-odeme-emri-rizasi",
-  "timestamp": "2023-11-23T03:07:49+03:00",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 403,
   "httpMessage": "Forbidden",
   "moreInformation": "Signature could not be verified",
@@ -521,7 +513,7 @@ export const DuzenliOdemeEmriRizasi403 = {
 export const DuzenliOdemeEmriRizasi404 = {
   "id": "udYRPEWYeZJt_IW98eiWDUmUpg1HPWvtSZ3B",
   "path": "/ohvps/obh/s2.0/duzenli-odeme-emri-rizasi",
-  "timestamp": "2023-11-23T16:37:36+03:00",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 404,
   "httpMessage": "Not Found",
   "moreInformation": "Customer not found",
@@ -531,7 +523,7 @@ export const DuzenliOdemeEmriRizasi404 = {
 export const DuzenliOdemeEmriRizasi500 = {
   "id": "965c6beb-4893-477d-8b63-576cbds852e3",
   "path": "/ohvps/obh/s2.0/duzenli-odeme-emri-rizasi",
-  "timestamp": "2023-11-23T16:43:18+03:00",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 500,
   "httpMessage": "Internal Server Error",
   "moreInformation": "Unexpected condition was encountered",
@@ -541,7 +533,7 @@ export const DuzenliOdemeEmriRizasi500 = {
 export const DuzenliOdemeEmriRizasi503 = {
   "id": "be3ecce0-aeca-4558-b5e4-67e44a9810e7",
   "path": "/ohvps/obh/s2.0/duzenli-odeme-emri-rizasi",
-  "timestamp": "2023-11-23T00:31:42+03:00",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 503,
   "httpMessage": "HHS hizmet veremiyor",
   "moreInformationTr": "HHS hizmet veremiyor",
@@ -551,7 +543,7 @@ export const DuzenliOdemeEmriRizasi503 = {
 export const DuzenliOdemeEmriRizasi504 = {
   "id": "be3ecce0-aeca-4558-b5e4-67e44a9810e7",
   "path": "/ohvps/obh/s2.0/duzenli-odeme-emri-rizasi",
-  "timestamp": "2023-11-23T00:31:42+03:00",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 504,
   "httpMessage": "Gateway Timeout",
   "moreInformationTr": "Servis Cevap Bekleme Zaman Aşımı",
@@ -568,12 +560,12 @@ export const ErisimBelirteciResponse200 =	{
   "erisimBelirteci": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJodHRwczovL2FwaS5ia20uY29tLnRyIiwiZXhwIjoxNzAwOTk1NzAzLCJpYXQiOjE3MDA5OTE1MDMsInJpemFfbm8iOiIxMDhlN2MwNzdjMGQ0N2M4Yjc1YjRiNWIzY2UwZGFiNSIsInNjb3BlIjpbIm9kZW1lX2VtcmkiXSwidW5pcXVlX25hbWUiOiJna2Rfc3ViamVjdCJ9.ZRlhYiVRJDcPSTsrSzh_pgOStq1e8to9BWIjikmM-86knfIVonTXAx6kBkReofj267Bg2ozCx2MeCKPYkmNCyA",
   "gecerlilikSuresi": 300,
   "yenilemeBelirteci": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJodHRwczovL2FwaS5ia20uY29tLnRyIiwiZXhwIjoxNzAyMjkxNDAzLCJpYXQiOjE3MDA5OTE1MDMsInJpemFfbm8iOiIxMDhlN2MwNzdjMGQ0N2M4Yjc1YjRiNWIzY2UwZGFiNSIsInNjb3BlIjpbIm9kZW1lX2VtcmkiXSwidW5pcXVlX25hbWUiOiJna2Rfc3ViamVjdCJ9.rUZv1pLPo07kVfsX8LMl9xkS2cepZXaUmLWz_y32NPPAciIrItF0idA-El33o8sc5hjdRx-LZSBQOq24O4kgag",
-  "yenilemeBelirteciGecerlilikSuresi": 432000
-};
+  "yenilemeBelirteciGecerlilikSuresi": 11098122
+}
 export const ErisimBelirteciResponse400 ={
   "id": "3f5f1a05-48e3-4475-8ce2-67d778280c19",
   "path": "/ohvps/gkd/s2.0/erisim-belirteci",
-  "timestamp": "2023-11-02T13:02:51+03:00",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": "400",
   "httpMessage": "Bad Request",
   "moreInformationTr": "Riza durumunuz iptal/sonlandırıldı statüsündedir.",
@@ -583,7 +575,7 @@ export const ErisimBelirteciResponse400 ={
 export const ErisimBelirteciResponse401 ={
   "id": "4dc29205-de28-4a66-8da8-26152258b3a1",
   "path": "/ohvps/gkd/s2.0/erisim-belirteci",
-  "timestamp": "2023-11-27T16:14:07+03:00",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 401,
   "httpMessage": "Unauthorized",
   "moreInformation": "Unauthorized",
@@ -593,7 +585,7 @@ export const ErisimBelirteciResponse401 ={
  export const ErisimBelirteciResponse403 = {
   "id": "38d9d82a-aa98-4b13-8e49-4118ebc85b74",
   "path": "/ohvps/gkd/s2.0/erisim-belirteci",
-  "timestamp": "2023-11-23T03:07:49+03:00",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 403,
   "httpMessage": "Forbidden",
   "moreInformation": "PSU-Fraud-Check expired.",
@@ -603,7 +595,7 @@ export const ErisimBelirteciResponse401 ={
 export const ErisimBelirteciResponse404 ={
   "id": "udYRPEWYeZJt_IW98eiWDUmUpg1HPWvtSZ3B",
   "path": "/ohvps/obh/s2.0/erisim-belirteci",
-  "timestamp": "2023-11-23T16:37:36+03:00",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 404,
   "httpMessage": "Resource Not Found",
   "moreInformation": "Rıza Numarası Geçerli Değil",
@@ -613,7 +605,7 @@ export const ErisimBelirteciResponse404 ={
 export const ErisimBelirteciResponse500 = {
   "id": "965c6beb-4893-477d-8b63-576cbds852e3",
   "path": "/ohvps/obh/s2.0/erisim-belirteci",
-  "timestamp": "2023-11-23T16:43:18+03:00",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 500,
   "httpMessage": "Internal Server Error",
   "moreInformation": "Unexpected condition was encountered",
@@ -623,7 +615,7 @@ export const ErisimBelirteciResponse500 = {
 export const ErisimBelirteciResponse503 ={
   "id": "be3ecce0-aeca-4558-b5e4-67e44a9810e7",
   "path": "/ohvps/obh/s2.0/erisim-belirteci",
-  "timestamp": "2023-11-23T00:31:42+03:00",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 503,
   "httpMessage": "HHS hizmet veremiyor",
   "moreInformationTr": "HHS hizmet veremiyor",
@@ -633,7 +625,7 @@ export const ErisimBelirteciResponse503 ={
 export const ErisimBelirteciResponse504 ={
   "id": "abd506a6-0608-4db5-ad5b-723cepde545f",
   "path": "/ohvps/gkd/s2.0/erisim-belirteci",
-  "timestamp": "2023-11-23T15:46:19+03:00",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 504,
   "httpMessage": "Gateway Timeout",
   "moreInformation": "Gateway Timeout Exception",
@@ -668,10 +660,6 @@ export const DuzenliOdemeEmriRequestBody ={
       "kmlkTur": "K",
       "kmlkVrs": "33333333333",
       "ohkTur": "B"
-    },
-    "islTtr": {
-      "prBrm": "TRY",
-      "ttr": "1000.50"
     },
     "gon": {
       "unv": "İsim Soyisim",
@@ -712,10 +700,6 @@ export const DuzenliOdemeEmriResponse201 = {
       "kmlkVrs": "33333333333",
       "ohkTur": "B"
     },
-    "islTtr": {
-      "prBrm": "TRY",
-      "ttr": "1000.50"
-    },
     "gon": {
       "unv": "İsim Soyisim",
       "hspNo": "TR1000010XP9UDWM4Z6LVJKS45"
@@ -746,7 +730,7 @@ export const DuzenliOdemeEmriResponse400 =
 {
   "id": "d1f8d44c-1470-fd54-9ea9-c5c0bea5ac02",
   "path": "/ohvps/obh/s2.0/duzenli-odeme-emri",
-  "timestamp": "2023-11-26T19:37:15+03:00",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 400,
   "httpMessage": "Bad Request",
   "moreInformation": "Your account balance is insufficient. Please check the balance on and try again.",
@@ -757,7 +741,7 @@ export const DuzenliOdemeEmriResponse401 =
 {
   "id": "d1f8d44c-1470-fd54-9ea9-c5csdea5ac02",
   "path": "/ohvps/obh/s2.0/duzenli-odeme-emri",
-  "timestamp": "2023-11-26T19:37:15+03:00",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 401,
   "httpMessage": "Unauthorized",
   "moreInformation": "Geçersiz Token",
@@ -768,7 +752,7 @@ export const DuzenliOdemeEmriResponse403 =
 {
   "id": "a7e51238-79d1-4133-9ef5-4311a9625a1c",
   "path": "/ohvps/obh/s2.0/duzenli-odeme-emri",
-  "timestamp": "2023-11-26T07:17:11+03:00",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 403,
   "httpMessage": "Forbidden",
   "moreInformation": "PSU-Fraud-Check header not found in the TPP request",
@@ -779,7 +763,7 @@ export const DuzenliOdemeEmriResponse404 =
 {
   "id": "udYRPEWYeZJt_IW98eilpDUmUpg1HPWvtSZ3B",
   "path": "/ohvps/obh/s2.0/duzenli-odeme-emri",
-  "timestamp": "2023-11-23T16:37:36+03:00",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 404,
   "httpMessage": "Not Found",
   "moreInformation": "Consent Number not found",
@@ -790,7 +774,7 @@ export const DuzenliOdemeEmriResponse500 =
 {
   "id": "qwe16216-af41-ewb4-e5c6-5489b128e453",
   "path": "/ohvps/obh/s2.0/duzenli-odeme-emri",
-  "timestamp": "2023-11-27T02:00:15+03:00",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 500,
   "httpMessage": "Internal Server Error",
   "moreInformation": "Unexpected condition was encountered",
@@ -801,7 +785,7 @@ export const DuzenliOdemeEmriResponse503 =
 {
   "id": "1234567-125e-4556-be26-994df1dsa8e1",
   "path": "/ohvps/obh/s2.0/duzenli-odeme-emri",
-  "timestamp": "2023-11-27T00:50:13+03:00",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 503,
   "httpMessage": "Service Unavailable",
   "moreInformation": "Service Unavailable Error",
@@ -811,7 +795,7 @@ export const DuzenliOdemeEmriResponse503 =
 export const DuzenliOdemeEmriResponse504={
   "id": "abd506a6-0608-4db5-ad5b-723cepde545f",
   "path": "/ohvps/gkd/s2.0/duzenli-odeme-emri",
-  "timestamp": "2023-11-23T15:46:19+03:00",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 504,
   "httpMessage": "Gateway Timeout",
   "moreInformation": "Gateway Timeout Exception",
@@ -822,7 +806,7 @@ export const YenilemeBelirteciResponse401 =
 {
   "id": "d1f8d44c-1470-fd54-9ea9-c5csdea5ac02",
   "path": "/ohvps/obh/s2.0/duzenli-erisim-belirteci",
-  "timestamp": "2023-11-26T19:37:15+03:00",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 401,
   "httpMessage": "Unauthorized",
   "moreInformation": "Geçersiz Token",
@@ -832,8 +816,8 @@ export const YenilemeBelirteciResponse401 =
 export const DuzenliOdemeEmriSorgulamaResponse400 =
 {
   "id": "d1f8d44c-1470-fd54-9ea9-c5c0bea5ac02",
-  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/123456773ae0b433c847432421bbb1e5356d",
-  "timestamp": "2023-11-26T19:37:15+03:00",
+  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/cccac0d182874b45a5aad11cc7b8cdd7",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 400,
   "httpMessage": "Bad Request",
   "moreInformation": "Please check that payment information entered is correct.",
@@ -843,8 +827,8 @@ export const DuzenliOdemeEmriSorgulamaResponse400 =
 export const DuzenliOdemeEmriSorgulamaResponse401 =
 {
   "id": "d1f8d44c-1470-fd54-9ea9-c5csdea5ac02",
-  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/123456773ae0b433c847432421bbb1e5356d",
-  "timestamp": "2023-11-26T19:37:15+03:00",
+  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/cccac0d182874b45a5aad11cc7b8cdd7",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 401,
   "httpMessage": "Unauthorized",
   "moreInformation": "Geçersiz Token",
@@ -854,8 +838,8 @@ export const DuzenliOdemeEmriSorgulamaResponse401 =
 export const DuzenliOdemeEmriSorgulamaResponse403 =
 {
   "id": "a7e51238-79d1-4133-9ef5-4311a9625a1c",
-  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/123456773ae0b433c847432421bbb1e5356d",
-  "timestamp": "2023-11-26T07:17:11+03:00",
+  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/cccac0d182874b45a5aad11cc7b8cdd7",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 403,
   "httpMessage": "Forbidden",
   "moreInformation": "X-JWS-Signature header not found in the TPP request",
@@ -864,8 +848,8 @@ export const DuzenliOdemeEmriSorgulamaResponse403 =
 }
 export const DuzenliOdemeEmriSorgulamaResponse404={
   "id": "udYRPEWYeZJt_IW98eilpDUmUpg1HPWvtSZ3B",
-  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/123456773ae0b433c847432421bbb1e5356d",
-  "timestamp": "2023-11-23T16:37:36+03:00",
+  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/cccac0d182874b45a5aad11cc7b8cdd7",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 404,
   "httpMessage": "Not Found",
   "moreInformation": "Payment number not found",
@@ -874,8 +858,8 @@ export const DuzenliOdemeEmriSorgulamaResponse404={
 }
 export const DuzenliOdemeEmriSorgulamaResponse429={
   "id": "qwe16216-af41-ewb4-e5c6-5489b128e453",
-  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/123456773ae0b433c847432421bbb1e5356d",
-  "timestamp": "2023-11-27T02:00:15+03:00",
+  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/cccac0d182874b45a5aad11cc7b8cdd7",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 429,
   "httpMessage": "Too Many Requests",
   "moreInformation": "The number of allowed requests has been exceeded.",
@@ -884,8 +868,8 @@ export const DuzenliOdemeEmriSorgulamaResponse429={
 }
 export const DuzenliOdemeEmriSorgulamaResponse500={
   "id": "1234567-125e-4556-be26-994df1dsa8e1",
-  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/123456773ae0b433c847432421bbb1e5356d",
-  "timestamp": "2023-11-27T00:50:13+03:00",
+  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/cccac0d182874b45a5aad11cc7b8cdd7",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 500,
   "httpMessage": "Internal Server Error",
   "moreInformation": "Sorry, the transaction has failed. Please try again later.",
@@ -894,8 +878,8 @@ export const DuzenliOdemeEmriSorgulamaResponse500={
 }
 export const DuzenliOdemeEmriSorgulamaResponse503={
   "id": "abd506a6-0608-4db5-ad5b-723cepde545f",
-  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/123456773ae0b433c847432421bbb1e5356d",
-  "timestamp": "2023-11-27T00:50:13+03:00",
+  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/cccac0d182874b45a5aad11cc7b8cdd7",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 503,
   "httpMessage": "Service Unavailable",
   "moreInformation": "Service Unavailable Error",
@@ -904,26 +888,57 @@ export const DuzenliOdemeEmriSorgulamaResponse503={
 }
 export const DuzenliOdemeEmriSorgulamaResponse504={
   "id": "abd506a6-0608-4db5-ad5b-723cepde545f",
-  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/123456773ae0b433c847432421bbb1e5356d",
-  "timestamp": "2023-11-23T15:46:19+03:00",
+  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/cccac0d182874b45a5aad11cc7b8cdd7",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 504,
   "httpMessage": "Gateway Timeout",
   "moreInformation": "Gateway Timeout Exception",
   "moreInformationTr": "Servis Cevap Bekleme Zaman Aşımı",
   "errorCode": "TR.OHVPS.Server.InternalError"
 }
-export const OdemePlaniSorgulamaResponse200 =	{
-  "odmSiraNo": "1",
-  "odmTtr": "0.09",
-  "prBrm": "TRY",
-  "odmTlmtTrh": "2025-05-14",
-  "odmDrm": "05"
-};
+export const OdemePlaniSorgulamaResponse200 =	[
+  {
+    "odmSiraNo": "1",
+    "odmTtr": "0.09",
+    "prBrm": "TRY",
+    "odmTlmtTrh": "2025-05-07",
+    "odmDrm": "05"
+  },
+  {
+    "odmSiraNo": "2",
+    "odmTtr": "0.09",
+    "prBrm": "TRY",
+    "odmTlmtTrh": "2025-06-07",
+    "odmDrm": "05"
+  },
+  {
+    "odmSiraNo": "3",
+    "odmTtr": "0.09",
+    "prBrm": "TRY",
+    "odmTlmtTrh": "2025-07-07",
+    "odmDrm": "05"
+  },
+  {
+    "odmSiraNo": "4",
+    "odmTtr": "0.09",
+    "prBrm": "TRY",
+    "odmTlmtTrh": "2025-08-07",
+    "odmDrm": "05"
+  },
+  {
+    "odmSiraNo": "5",
+    "odmTtr": "0.09",
+    "prBrm": "TRY",
+    "odmTlmtTrh": "2025-09-07",
+    "odmDrm": "05"
+  }
+]
+
 export const OdemePlaniSorgulamaResponse400 =
 {
   "id": "d1f8d44c-1470-fd54-9ea9-c5c0bea5ac02",
-  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/df1adbe6598e4dfd9e3e88c96a58a267/odeme-plani",
-  "timestamp": "2023-11-26T19:37:15+03:00",
+  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/cccac0d182874b45a5aad11cc7b8cdd7/odeme-plani",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 400,
   "httpMessage": "Bad Request",
   "moreInformation": "Please check that payment information entered is correct.",
@@ -933,8 +948,8 @@ export const OdemePlaniSorgulamaResponse400 =
 export const OdemePlaniSorgulamaResponse401 =
 {
   "id": "d1f8d44c-1470-fd54-9ea9-c5csdea5ac02",
-  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/df1adbe6598e4dfd9e3e88c96a58a267/odeme-plani",
-  "timestamp": "2023-11-26T19:37:15+03:00",
+  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/cccac0d182874b45a5aad11cc7b8cdd7/odeme-plani",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 401,
   "httpMessage": "Unauthorized",
   "moreInformation": "Geçersiz Token",
@@ -944,8 +959,8 @@ export const OdemePlaniSorgulamaResponse401 =
 export const OdemePlaniSorgulamaResponse403 =
 {
   "id": "a7e51238-79d1-4133-9ef5-4311a9625a1c",
-  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/df1adbe6598e4dfd9e3e88c96a58a267/odeme-plani",
-  "timestamp": "2023-11-26T07:17:11+03:00",
+  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/cccac0d182874b45a5aad11cc7b8cdd7/odeme-plani",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 403,
   "httpMessage": "Forbidden",
   "moreInformation": "X-JWS-Signature header not found in the TPP request",
@@ -954,8 +969,8 @@ export const OdemePlaniSorgulamaResponse403 =
 }
 export const OdemePlaniSorgulamaResponse404={
   "id": "udYRPEWYeZJt_IW98eilpDUmUpg1HPWvtSZ3B",
-  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/df1adbe6598e4dfd9e3e88c96a58a267/odeme-plani",
-  "timestamp": "2023-11-23T16:37:36+03:00",
+  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/cccac0d182874b45a5aad11cc7b8cdd7/odeme-plani",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 404,
   "httpMessage": "Not Found",
   "moreInformation": "Payment number not found",
@@ -964,8 +979,8 @@ export const OdemePlaniSorgulamaResponse404={
 }
 export const OdemePlaniSorgulamaResponse429={
   "id": "qwe16216-af41-ewb4-e5c6-5489b128e453",
-  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/df1adbe6598e4dfd9e3e88c96a58a267/odeme-plani",
-  "timestamp": "2023-11-27T02:00:15+03:00",
+  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/cccac0d182874b45a5aad11cc7b8cdd7/odeme-plani",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 429,
   "httpMessage": "Too Many Requests",
   "moreInformation": "The number of allowed requests has been exceeded.",
@@ -974,8 +989,8 @@ export const OdemePlaniSorgulamaResponse429={
 }
 export const OdemePlaniSorgulamaResponse500={
   "id": "1234567-125e-4556-be26-994df1dsa8e1",
-  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/df1adbe6598e4dfd9e3e88c96a58a267/odeme-plani",
-  "timestamp": "2023-11-27T00:50:13+03:00",
+  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/cccac0d182874b45a5aad11cc7b8cdd7/odeme-plani",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 500,
   "httpMessage": "Internal Server Error",
   "moreInformation": "Sorry, the transaction has failed. Please try again later.",
@@ -984,8 +999,8 @@ export const OdemePlaniSorgulamaResponse500={
 }
 export const OdemePlaniSorgulamaResponse503={
   "id": "abd506a6-0608-4db5-ad5b-723cepde545f",
-  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/df1adbe6598e4dfd9e3e88c96a58a267/odeme-plani",
-  "timestamp": "2023-11-27T00:50:13+03:00",
+  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/cccac0d182874b45a5aad11cc7b8cdd7/odeme-plani",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 503,
   "httpMessage": "Service Unavailable",
   "moreInformation": "Service Unavailable Error",
@@ -994,8 +1009,8 @@ export const OdemePlaniSorgulamaResponse503={
 }
 export const OdemePlaniSorgulamaResponse504={
   "id": "abd506a6-0608-4db5-ad5b-723cepde545f",
-  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/df1adbe6598e4dfd9e3e88c96a58a267/odeme-plani",
-  "timestamp": "2023-11-23T15:46:19+03:00",
+  "path": "/ohvps/obh/s2.0/duzenli-odeme-emri/cccac0d182874b45a5aad11cc7b8cdd7/odeme-plani",
+  "timestamp": "2025-05-06T11:47:19+03:00",
   "httpCode": 504,
   "httpMessage": "Gateway Timeout",
   "moreInformation": "Gateway Timeout Exception",

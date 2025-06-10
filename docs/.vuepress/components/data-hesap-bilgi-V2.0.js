@@ -431,7 +431,7 @@ export const hesapBilgisiRizasiRequest={
   },
   "gkd": {
     "yetYntm": "Y",
-    "yonAdr": "https://yos.com.tr?drmKod=560a6231-2be6-45a9-8660-b899e1fd006d"
+    "yonAdr": "https://yos.com.tr?drmKod=5c9b334a-0ea8-4302-8667-1d513a1b98b4"
   },
   "kmlk": {
     "kmlkTur": "K",
@@ -445,19 +445,21 @@ export const hesapBilgisiRizasiRequest={
         "02",
         "03",
         "04",
-        "05"
+        "05",
+        "06",
+        "07"
       ],
-      "erisimIzniSonTrh": "2024-06-04T23:59:59+03:00",
-      "hesapIslemBslZmn": "2022-12-04T23:59:59+03:00",
-      "hesapIslemBtsZmn": "2024-12-04T23:59:59+03:00"
+      "erisimIzniSonTrh": "2025-12-11T00:00:00+03:00",
+      "hesapIslemBslZmn": "2024-06-10T00:00:00+03:00",
+      "hesapIslemBtsZmn": "2026-06-11T00:00:00+03:00"
     }
   }
 }
 export const HesapBilgisiRizasi201 = {
   "rzBlg": {
-    "rizaNo": "637319fc-1b2c-4f1a-9173-fbbea18ae75h",
-    "olusZmn": "2023-12-04T15:49:19+03:00",
-    "gnclZmn": "2023-12-04T15:49:19+03:00",
+    "rizaNo": "94505f81d806453f825f0ea318d2c382",
+    "olusZmn": "2025-06-10T10:17:06+03:00",
+    "gnclZmn": "2025-06-10T10:17:06+03:00",
     "rizaDrm": "B"
   },
   "kmlk": {
@@ -471,9 +473,9 @@ export const HesapBilgisiRizasi201 = {
   },
   "gkd": {
     "yetYntm": "Y",
-    "yonAdr": "https://yos.com.tr?drmKod=560a6231-2be6-45a9-8660-b899e1fd006d",
-    "yetTmmZmn": "2023-12-04T15:54:19+03:00",
-    "hhsYonAdr": "https://hhsadres.com.tr?rizaNo=637319fc-1b2c-4f1a-9173-fbbea18ae75h"
+    "yonAdr": "https://yos.com.tr?drmKod=5c9b334a-0ea8-4302-8667-1d513a1b98b4",
+    "yetTmmZmn": "2025-06-10T10:22:06+03:00",
+    "hhsYonAdr": "https://hhsadres.com.tr?rizaNo=94505f81d806453f825f0ea318d2c382"
   },
   "hspBlg": {
     "iznBlg": {
@@ -482,11 +484,13 @@ export const HesapBilgisiRizasi201 = {
         "02",
         "03",
         "04",
-        "05"
+        "05",
+        "06",
+        "07"
       ],
-      "erisimIzniSonTrh": "2024-06-04T23:59:59+03:00",
-      "hesapIslemBslZmn": "2022-12-04T23:59:59+03:00",
-      "hesapIslemBtsZmn": "2024-12-04T23:59:59+03:00"
+      "erisimIzniSonTrh": "2025-12-11T00:00:00+03:00",
+      "hesapIslemBslZmn": "2024-06-10T00:00:00+03:00",
+      "hesapIslemBtsZmn": "2026-06-11T00:00:00+03:00"
     },
     "ayrBlg": {
       "ohkMsj": "ÖHK Mesajı"
@@ -496,7 +500,7 @@ export const HesapBilgisiRizasi201 = {
 export const HesapBilgisiRizasi400 = {
   "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebcy",
   "path": "/ohvps/hbh/s2.0/hesap-bilgisi-rizasi",
-  "timestamp": "2023-12-04T15:55:19+03:00",
+  "timestamp": "2025-06-10T10:17:06+03:00",
   "httpCode": 400,
   "httpMessage": "Bad Request",
     "moreInformation": "Validation error",
@@ -514,7 +518,7 @@ export const HesapBilgisiRizasi400 = {
 export const HesapBilgisiRizasi401 = {
   "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbert",
   "path": "/ohvps/hbh/s2.0/hesap-bilgisi-rizasi",
-  "timestamp": "2023-12-04T15:55:19+03:00",
+  "timestamp": "2025-06-10T10:17:06+03:00",
   "httpCode": 401,
   "httpMessage": "Unauthorized",
   "moreInformation": "Unauthorized",
@@ -524,7 +528,7 @@ export const HesapBilgisiRizasi401 = {
 export const HesapBilgisiRizasi403 = {
   "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
   "path": "/ohvps/hbh/s2.0/hesap-bilgisi-rizasi",
-  "timestamp": "2023-12-04T15:55:19+03:00",
+  "timestamp": "2025-06-10T10:17:06+03:00",
   "httpCode": 403,
   "httpMessage": "Forbidden",
   "moreInformation": "Message signature not found.",
@@ -534,7 +538,7 @@ export const HesapBilgisiRizasi403 = {
 export const HesapBilgisiRizasi404 = {
   "id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbeb4",
   "path": "/ohvps/hbh/s2.0/hesap-bilgisi-rizasi",
-  "timestamp": "2023-12-04T15:55:19+03:00",
+  "timestamp": "2025-06-10T10:17:06+03:00",
   "httpCode": 404,
   "httpMessage": "Not Found",
   "moreInformation": "Customer not found",
@@ -544,7 +548,7 @@ export const HesapBilgisiRizasi404 = {
 export const HesapBilgisiRizasi500 = {
   "id": "965c6beb-4893-477d-8b63-576cbds85500",
   "path": "/ohvps/hbh/s2.0/hesap-bilgisi-rizasi",
-  "timestamp": "2023-12-04T15:55:19+03:00",
+  "timestamp": "2025-06-10T10:17:06+03:00",
   "httpCode": 500,
   "httpMessage": "Internal Server Error",
   "moreInformation": "Unexpected condition was encountered",
@@ -554,7 +558,7 @@ export const HesapBilgisiRizasi500 = {
 export const HesapBilgisiRizasi503 = {
   "id": "be3ecce0-aeca-4558-b5e4-67e44a981506",
   "path": "/ohvps/hbh/s2.0/hesap-bilgisi-rizasi",
-  "timestamp": "2023-12-04T15:55:19+03:00",
+  "timestamp": "2025-06-10T10:17:06+03:00",
   "httpCode": 503,
   "httpMessage": "HHS hizmet veremiyor",
   "moreInformationTr": "HHS hizmet veremiyor",
@@ -564,7 +568,7 @@ export const HesapBilgisiRizasi503 = {
 export const HesapBilgisiRizasi504 = {
   "id": "be3ecce0-aeca-4558-b5e4-67e44a981504",
   "path": "/ohvps/hbh/s2.0/hesap-bilgisi-rizasi",
-  "timestamp": "2023-12-04T15:55:19+03:00",
+  "timestamp": "2025-06-10T10:17:06+03:00",
   "httpCode": 504,
   "httpMessage": "Gateway Timeout",
   "moreInformationTr": "Servis Cevap Bekleme Zaman Aşımı",
@@ -572,7 +576,7 @@ export const HesapBilgisiRizasi504 = {
   "errorCode": "TR.OHVPS.Server.ServiceUnavailable"
 }
 export const ErisimBelirteciRequest = {
-    "rizaNo": "637319fc-1b2c-4f1a-9173-fbbea18ae75h",
+    "rizaNo": "94505f81d806453f825f0ea318d2c382",
     "yetKod": "a238307640ba4b8ebbdc4835ca9a021c",
     "yetTip": "yet_kod",
     "rizaTip": "H"
@@ -586,7 +590,7 @@ export const ErisimBelirteciResponse200 =	{
 export const ErisimBelirteciResponse400 ={
   "id": "3f5f1a05-48e3-4475-8ce2-67d778280c19",
   "path": "/ohvps/gkd/s2.0/erisim-belirteci",
-  "timestamp": "2023-11-02T13:02:51+03:00",
+  "timestamp": "2025-06-10T10:17:06+03:00",
   "httpCode": "400",
   "httpMessage": "Bad Request",
   "moreInformationTr": "Riza durumunuz iptal/sonlandırıldı statüsündedir.",
@@ -596,7 +600,7 @@ export const ErisimBelirteciResponse400 ={
 export const ErisimBelirteciResponse401 ={
   "id": "4dc29205-de28-4a66-8da8-26152258b3a1",
   "path": "/ohvps/gkd/s2.0/erisim-belirteci",
-  "timestamp": "2023-11-27T16:14:07+03:00",
+  "timestamp": "2025-06-10T10:17:06+03:00",
   "httpCode": 401,
   "httpMessage": "Unauthorized",
   "moreInformation": "Unauthorized",
@@ -606,7 +610,7 @@ export const ErisimBelirteciResponse401 ={
  export const ErisimBelirteciResponse403 = {
   "id": "38d9d82a-aa98-4b13-8e49-4118ebc85b74",
   "path": "/ohvps/gkd/s2.0/erisim-belirteci",
-  "timestamp": "2023-11-23T03:07:49+03:00",
+  "timestamp": "2025-06-10T10:17:06+03:00",
   "httpCode": 403,
   "httpMessage": "Forbidden",
   "moreInformation": "PSU-Fraud-Check expired.",
@@ -616,7 +620,7 @@ export const ErisimBelirteciResponse401 ={
 export const ErisimBelirteciResponse404 ={
   "id": "udYRPEWYeZJt_IW98eiWDUmUpg1HPWvtSZ3B",
   "path": "/ohvps/gkd/s2.0/erisim-belirteci",
-  "timestamp": "2023-11-23T16:37:36+03:00",
+  "timestamp": "2025-06-10T10:17:06+03:00",
   "httpCode": 404,
   "httpMessage": "Resource Not Found",
   "moreInformation": "Rıza Numarası Geçerli Değil",
@@ -626,7 +630,7 @@ export const ErisimBelirteciResponse404 ={
 export const ErisimBelirteciResponse500 = {
   "id": "965c6beb-4893-477d-8b63-576cbds852e3",
   "path": "/ohvps/gkd/s2.0/erisim-belirteci",
-  "timestamp": "2023-11-23T16:43:18+03:00",
+  "timestamp": "2025-06-10T10:17:06+03:00",
   "httpCode": 500,
   "httpMessage": "Internal Server Error",
   "moreInformation": "Unexpected condition was encountered",
@@ -636,7 +640,7 @@ export const ErisimBelirteciResponse500 = {
 export const ErisimBelirteciResponse503 ={
   "id": "be3ecce0-aeca-4558-b5e4-67e44a9810e7",
   "path": "/ohvps/gkd/s2.0/erisim-belirteci",
-  "timestamp": "2023-11-23T00:31:42+03:00",
+  "timestamp": "2025-06-10T10:17:06+03:00",
   "httpCode": 503,
   "httpMessage": "HHS hizmet veremiyor",
   "moreInformationTr": "HHS hizmet veremiyor",
@@ -646,7 +650,7 @@ export const ErisimBelirteciResponse503 ={
 export const ErisimBelirteciResponse504 ={
   "id": "abd506a6-0608-4db5-ad5b-723cepde545f",
   "path": "/ohvps/gkd/s2.0/erisim-belirteci",
-  "timestamp": "2023-11-23T15:46:19+03:00",
+  "timestamp": "2025-06-10T10:17:06+03:00",
   "httpCode": 504,
   "httpMessage": "Gateway Timeout",
   "moreInformation": "Gateway Timeout Exception",
@@ -702,7 +706,7 @@ export const YenilemeBelirteciResponse401 =
 {
   "id": "d1f8d44c-1470-fd54-9ea9-c5csdea5ac02",
   "path": "/ohvps/hbh/s2.0/erisim-belirteci",
-  "timestamp": "2023-11-26T19:37:15+03:00",
+  "timestamp": "2025-06-10T10:17:06+03:00",
   "httpCode": 401,
   "httpMessage": "Unauthorized",
   "moreInformation": "Geçersiz Token",
@@ -711,7 +715,7 @@ export const YenilemeBelirteciResponse401 =
 }
   export const HesaplarResponse200=[
     {
-      "rizaNo": "637319fc-1b2c-4f1a-9173-fbbea18ae75h",
+      "rizaNo": "94505f81d806453f825f0ea318d2c382",
       "hspTml": {
         "hspDrm": "AKTIF",
         "hspNo": "TR680003200000000073144415",
@@ -729,7 +733,7 @@ export const YenilemeBelirteciResponse401 =
 
     },
     {
-      "rizaNo": "637319fc-1b2c-4f1a-9173-fbbea18ae75h",
+      "rizaNo": "94505f81d806453f825f0ea318d2c382",
       "hspTml": {
         "hspDrm": "AKTIF",
         "hspNo": "TR880003200000000102589209",
@@ -746,7 +750,7 @@ export const YenilemeBelirteciResponse401 =
       }
     },
     {
-      "rizaNo": "637319fc-1b2c-4f1a-9173-fbbea18ae75h",
+      "rizaNo": "94505f81d806453f825f0ea318d2c382",
       "hspTml": {
         "hspDrm": "AKTIF",
         "hspNo": "TR980003200000000096785934",
@@ -766,7 +770,7 @@ export const YenilemeBelirteciResponse401 =
   export const HesaplarResponse400={
     "id": "400f0fb2-730b-11e8-adc0-fa7ae01bbebc",
     "path": "/ohvps/hbh/s2.0/hesaplar",
-    "timestamp": "2021-08-13T09:55:23+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 400,
     "httpMessage": "Bad Request",
     "moreInformation": "The status of the account is closed.",
@@ -776,7 +780,7 @@ export const YenilemeBelirteciResponse401 =
   export const HesaplarResponse401={
     "id": "401f0fb2-730b-11e8-adc0-fa7ae01bbebc",
     "path": "/ohvps/hbh/s2.0/hesaplar",
-    "timestamp": "2021-08-13T09:55:23+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 401,
     "httpMessage": "Unauthorized",
     "moreInformation": "Geçersiz Token",
@@ -786,7 +790,7 @@ export const YenilemeBelirteciResponse401 =
   export const HesaplarResponse403={
     "id": "403f0fb2-730b-11e8-adc0-fa7ae01bbebc",
     "path": "/ohvps/hbh/s2.0/hesaplar",
-    "timestamp": "2021-08-13T09:55:23+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 403,
     "httpMessage": "Forbidden",
     "moreInformation": "X-JWS-Signature header not found in the TPP request",
@@ -796,7 +800,7 @@ export const YenilemeBelirteciResponse401 =
   export const HesaplarResponse404={
     "id": "404f0fb2-730b-11e8-adc0-fa7ae01bbebc",
     "path": "/ohvps/hbh/s2.0/hesaplar",
-    "timestamp": "2021-08-13T09:55:23+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 404,
     "httpMessage": "Not Found",
     "moreInformation": "Resource not found",
@@ -806,7 +810,7 @@ export const YenilemeBelirteciResponse401 =
   export const HesaplarResponse429={
     "id": "42916216-af41-ewb4-e5c6-5489b128e453",
     "path": "/ohvps/hbh/s2.0/hesaplar",
-    "timestamp": "2023-11-27T02:00:15+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 429,
     "httpMessage": "Too Many Requests",
     "moreInformation": "The number of allowed requests has been exceeded.",
@@ -816,7 +820,7 @@ export const YenilemeBelirteciResponse401 =
   export const HesaplarResponse500={
     "id": "5004567-125e-4556-be26-994df1dsa8e1",
     "path": "/ohvps/hbh/s2.0/hesaplar",
-    "timestamp": "2023-11-27T00:50:13+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 500,
     "httpMessage": "Internal Server Error",
     "moreInformation": "Sorry, the transaction has failed. Please try again later.",
@@ -826,7 +830,7 @@ export const YenilemeBelirteciResponse401 =
   export const HesaplarResponse503={
     "id": "503506a6-0608-4db5-ad5b-723cepde545f",
     "path": "/ohvps/hbh/s2.0/hesaplar",
-    "timestamp": "2023-11-27T00:50:13+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 503,
     "httpMessage": "Service Unavailable",
     "moreInformation": "Service Unavailable Error",
@@ -836,7 +840,7 @@ export const YenilemeBelirteciResponse401 =
   export const HesaplarResponse504={
     "id": "504506a6-0608-4db5-ad5b-723cepde545f",
     "path": "/ohvps/hbh/s2.0/hesaplar",
-    "timestamp": "2023-11-23T15:46:19+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 504,
     "httpMessage": "Gateway Timeout",
     "moreInformation": "Gateway Timeout Exception",
@@ -870,7 +874,7 @@ export const YenilemeBelirteciResponse401 =
   export const BakiyeResponse400={
     "id": "400f0fb2-730b-11e8-adc0-fa7ae01bbebc",
     "path": "/ohvps/hbh/s2.0/bakiye",
-    "timestamp": "2021-08-13T09:55:23+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 400,
     "httpMessage": "Bad Request",
     "moreInformation": "Consent revoked",
@@ -880,7 +884,7 @@ export const YenilemeBelirteciResponse401 =
   export const BakiyeResponse401={
     "id": "401f0fb2-730b-11e8-adc0-fa7ae01bbebc",
     "path": "/ohvps/hbh/s2.0/bakiye",
-    "timestamp": "2021-08-13T09:55:23+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 401,
     "httpMessage": "Unauthorized",
     "moreInformation": "Geçersiz Token",
@@ -890,7 +894,7 @@ export const YenilemeBelirteciResponse401 =
   export const BakiyeResponse403={
     "id": "403f0fb2-730b-11e8-adc0-fa7ae01bbebc",
     "path": "/ohvps/hbh/s2.0/bakiye",
-    "timestamp": "2021-08-13T09:55:23+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 403,
     "httpMessage": "Forbidden",
     "moreInformation": "X-JWS-Signature header not found in the TPP request",
@@ -900,7 +904,7 @@ export const YenilemeBelirteciResponse401 =
   export const BakiyeResponse404={
     "id": "404f0fb2-730b-11e8-adc0-fa7ae01bbebc",
     "path": "/ohvps/hbh/s2.0/bakiye",
-    "timestamp": "2021-08-13T09:55:23+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 404,
     "httpMessage": "Not Found",
     "moreInformation": "Resource not found",
@@ -910,7 +914,7 @@ export const YenilemeBelirteciResponse401 =
   export const BakiyeResponse429={
     "id": "42916216-af41-ewb4-e5c6-5489b128e453",
     "path": "/ohvps/hbh/s2.0/bakiye",
-    "timestamp": "2023-11-27T02:00:15+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 429,
     "httpMessage": "Too Many Requests",
     "moreInformation": "The number of allowed requests has been exceeded.",
@@ -920,7 +924,7 @@ export const YenilemeBelirteciResponse401 =
   export const BakiyeResponse500={
     "id": "5004567-125e-4556-be26-994df1dsa8e1",
     "path": "/ohvps/hbh/s2.0/bakiye",
-    "timestamp": "2023-11-27T00:50:13+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 500,
     "httpMessage": "Internal Server Error",
     "moreInformation": "Sorry, the transaction has failed. Please try again later.",
@@ -930,7 +934,7 @@ export const YenilemeBelirteciResponse401 =
   export const BakiyeResponse503={
     "id": "503506a6-0608-4db5-ad5b-723cepde545f",
     "path": "/ohvps/hbh/s2.0/bakiye",
-    "timestamp": "2023-11-27T00:50:13+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 503,
     "httpMessage": "Service Unavailable",
     "moreInformation": "Service Unavailable Error",
@@ -940,7 +944,7 @@ export const YenilemeBelirteciResponse401 =
   export const BakiyeResponse504={
     "id": "504506a6-0608-4db5-ad5b-723cepde545f",
     "path": "/ohvps/hbh/s2.0/bakiye",
-    "timestamp": "2023-11-23T15:46:19+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 504,
     "httpMessage": "Gateway Timeout",
     "moreInformation": "Gateway Timeout Exception",
@@ -1034,7 +1038,7 @@ export const YenilemeBelirteciResponse401 =
   export const IslemlerResponse400={
     "id": "400f0fb2-730b-11e8-adc0-fa7ae01bbebc",
     "path": "/ohvps/hbh/s2.0/hesaplar/xrgwYsiNTdPwxbgh/islemler?hesapIslemBslTrh=2023-12-06T16%3A16%3A30%2B03%3A00&hesapIslemBtsTrh=2023-12-06T16%3A19%3A52%2B03%3A00&syfKytSayi=100&srlmKrtr=islGrckZaman&syfNo=1",
-    "timestamp": "2021-08-13T09:55:23+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 400,
     "httpMessage": "Bad Request",
     "moreInformation": "After activating your Open Banking channel, you can continue your transaction.",
@@ -1044,7 +1048,7 @@ export const YenilemeBelirteciResponse401 =
   export const IslemlerResponse401={
     "id": "401f0fb2-730b-11e8-adc0-fa7ae01bbebc",
     "path": "/ohvps/hbh/s2.0/hesaplar/xrgwYsiNTdPwxbgh/islemler?hesapIslemBslTrh=2023-12-06T16%3A16%3A30%2B03%3A00&hesapIslemBtsTrh=2023-12-06T16%3A19%3A52%2B03%3A00&syfKytSayi=100&srlmKrtr=islGrckZaman&syfNo=1",
-    "timestamp": "2021-08-13T09:55:23+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 401,
     "httpMessage": "Unauthorized",
     "moreInformation": "Geçersiz Token",
@@ -1054,7 +1058,7 @@ export const YenilemeBelirteciResponse401 =
   export const IslemlerResponse403={
     "id": "403f0fb2-730b-11e8-adc0-fa7ae01bbebc",
     "path": "/ohvps/hbh/s2.0/hesaplar/xrgwYsiNTdPwxbgh/islemler?hesapIslemBslTrh=2023-12-06T16%3A16%3A30%2B03%3A00&hesapIslemBtsTrh=2023-12-06T16%3A19%3A52%2B03%3A00&syfKytSayi=100&srlmKrtr=islGrckZaman&syfNo=1",
-    "timestamp": "2021-08-13T09:55:23+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 403,
     "httpMessage": "Forbidden",
     "moreInformation": "X-JWS-Signature header not found in the TPP request",
@@ -1064,7 +1068,7 @@ export const YenilemeBelirteciResponse401 =
   export const IslemlerResponse404={
     "id": "404f0fb2-730b-11e8-adc0-fa7ae01bbebc",
     "path": "/ohvps/hbh/s2.0/hesaplar/xrgwYsiNTdPwxbgh/islemler?hesapIslemBslTrh=2023-12-06T16%3A16%3A30%2B03%3A00&hesapIslemBtsTrh=2023-12-06T16%3A19%3A52%2B03%3A00&syfKytSayi=100&srlmKrtr=islGrckZaman&syfNo=1",
-    "timestamp": "2021-08-13T09:55:23+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 404,
     "httpMessage": "Not Found",
     "moreInformation": "Resource not found",
@@ -1074,7 +1078,7 @@ export const YenilemeBelirteciResponse401 =
   export const IslemlerResponse429={
     "id": "42916216-af41-ewb4-e5c6-5489b128e453",
     "path": "/ohvps/hbh/s2.0/hesaplar/xrgwYsiNTdPwxbgh/islemler?hesapIslemBslTrh=2023-12-06T16%3A16%3A30%2B03%3A00&hesapIslemBtsTrh=2023-12-06T16%3A19%3A52%2B03%3A00&syfKytSayi=100&srlmKrtr=islGrckZaman&syfNo=1",
-    "timestamp": "2023-11-27T02:00:15+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 429,
     "httpMessage": "Too Many Requests",
     "moreInformation": "The number of allowed requests has been exceeded.",
@@ -1084,7 +1088,7 @@ export const YenilemeBelirteciResponse401 =
   export const IslemlerResponse500={
     "id": "5004567-125e-4556-be26-994df1dsa8e1",
     "path": "/ohvps/hbh/s2.0/hesaplar/xrgwYsiNTdPwxbgh/islemler?hesapIslemBslTrh=2023-12-06T16%3A16%3A30%2B03%3A00&hesapIslemBtsTrh=2023-12-06T16%3A19%3A52%2B03%3A00&syfKytSayi=100&srlmKrtr=islGrckZaman&syfNo=1",
-    "timestamp": "2023-11-27T00:50:13+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 500,
     "httpMessage": "Internal Server Error",
     "moreInformation": "Sorry, the transaction has failed. Please try again later.",
@@ -1094,7 +1098,7 @@ export const YenilemeBelirteciResponse401 =
   export const IslemlerResponse503={
     "id": "503506a6-0608-4db5-ad5b-723cepde545f",
     "path": "/ohvps/hbh/s2.0/hesaplar/xrgwYsiNTdPwxbgh/islemler?hesapIslemBslTrh=2023-12-06T16%3A16%3A30%2B03%3A00&hesapIslemBtsTrh=2023-12-06T16%3A19%3A52%2B03%3A00&syfKytSayi=100&srlmKrtr=islGrckZaman&syfNo=1",
-    "timestamp": "2023-11-27T00:50:13+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 503,
     "httpMessage": "Service Unavailable",
     "moreInformation": "Service Unavailable Error",
@@ -1104,7 +1108,7 @@ export const YenilemeBelirteciResponse401 =
   export const IslemlerResponse504={
     "id": "504506a6-0608-4db5-ad5b-723cepde545f",
     "path": "/ohvps/hbh/s2.0/hesaplar/xrgwYsiNTdPwxbgh/islemler?hesapIslemBslTrh=2023-12-06T16%3A16%3A30%2B03%3A00&hesapIslemBtsTrh=2023-12-06T16%3A19%3A52%2B03%3A00&syfKytSayi=100&srlmKrtr=islGrckZaman&syfNo=1",
-    "timestamp": "2023-11-23T15:46:19+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 504,
     "httpMessage": "Gateway Timeout",
     "moreInformation": "Gateway Timeout Exception",
@@ -1113,28 +1117,29 @@ export const YenilemeBelirteciResponse401 =
   }
   export const KartlarResponse200=[
     
-      {
-        "rizaNo": "fb5930f56f074efbb12bea13d0a4d59e",
-        "kartRef": "4937db02-a2fc-4fe7-b36f-a9ac98ba4137",
-        "kartNo": "555555******3643",
-        "kartTipi": "B",
-        "altKartTipi": "A",
-        "kartTuru": "B",
-        "kartStatu": "A",
-        "kartSahibi": "İsim Soyisim",
-        "kartUrunAdi": "Asıl kart",
-        "kartRumuz": "Asıl kart",
-        "kartSema": "M",
-        "ekstreTurleri": [
-          "TRY"
-        ]
-      }
+    {
+    "rizaNo": "94505f81d806453f825f0ea318d2c382",
+    "kartRef": "2aa65edf-f54e-41c2-b027-9230114acc07",
+    "kartNo": "979200******0525",
+    "kartTipi": "K",
+    "altKartTipi": "A",
+    "kartTuru": "B",
+    "kartStatu": "A",
+    "kartFormu": "F",
+    "kartSahibi": "İsim Soyisim",
+    "kartUrunAdi": "Kredi K",
+    "kartRumuz": "Kredi K",
+    "kartSema": "T",
+    "ekstreTurleri": [
+      "TRY"
     ]
+    }
+  ]
   
   export const KartlarResponse400={
     "id": "400f0fb2-730b-11e8-adc0-fa7ae01bbebc",
     "path": "/ohvps/hbh/s2.0/kartlar",
-    "timestamp": "2021-08-13T09:55:23+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 400,
     "httpMessage": "Bad Request",
     "moreInformation": "The status of the account is closed.",
@@ -1144,7 +1149,7 @@ export const YenilemeBelirteciResponse401 =
   export const KartlarResponse401={
     "id": "401f0fb2-730b-11e8-adc0-fa7ae01bbebc",
     "path": "/ohvps/hbh/s2.0/kartlar",
-    "timestamp": "2021-08-13T09:55:23+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 401,
     "httpMessage": "Unauthorized",
     "moreInformation": "Geçersiz Token",
@@ -1154,7 +1159,7 @@ export const YenilemeBelirteciResponse401 =
   export const KartlarResponse403={
     "id": "403f0fb2-730b-11e8-adc0-fa7ae01bbebc",
     "path": "/ohvps/hbh/s2.0/kartlar",
-    "timestamp": "2021-08-13T09:55:23+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 403,
     "httpMessage": "Forbidden",
     "moreInformation": "X-JWS-Signature header not found in the TPP request",
@@ -1164,7 +1169,7 @@ export const YenilemeBelirteciResponse401 =
   export const KartlarResponse404={
     "id": "404f0fb2-730b-11e8-adc0-fa7ae01bbebc",
     "path": "/ohvps/hbh/s2.0/kartlar",
-    "timestamp": "2021-08-13T09:55:23+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 404,
     "httpMessage": "Not Found",
     "moreInformation": "Resource not found",
@@ -1174,7 +1179,7 @@ export const YenilemeBelirteciResponse401 =
   export const KartlarResponse429={
     "id": "42916216-af41-ewb4-e5c6-5489b128e453",
     "path": "/ohvps/hbh/s2.0/kartlar",
-    "timestamp": "2023-11-27T02:00:15+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 429,
     "httpMessage": "Too Many Requests",
     "moreInformation": "The number of allowed requests has been exceeded.",
@@ -1184,7 +1189,7 @@ export const YenilemeBelirteciResponse401 =
   export const KartlarResponse500={
     "id": "5004567-125e-4556-be26-994df1dsa8e1",
     "path": "/ohvps/hbh/s2.0/kartlar",
-    "timestamp": "2023-11-27T00:50:13+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 500,
     "httpMessage": "Internal Server Error",
     "moreInformation": "Sorry, the transaction has failed. Please try again later.",
@@ -1194,7 +1199,7 @@ export const YenilemeBelirteciResponse401 =
   export const KartlarResponse503={
     "id": "503506a6-0608-4db5-ad5b-723cepde545f",
     "path": "/ohvps/hbh/s2.0/kartlar",
-    "timestamp": "2023-11-27T00:50:13+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 503,
     "httpMessage": "Service Unavailable",
     "moreInformation": "Service Unavailable Error",
@@ -1204,7 +1209,7 @@ export const YenilemeBelirteciResponse401 =
   export const KartlarResponse504={
     "id": "504506a6-0608-4db5-ad5b-723cepde545f",
     "path": "/ohvps/hbh/s2.0/kartlar",
-    "timestamp": "2023-11-23T15:46:19+03:00",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 504,
     "httpMessage": "Gateway Timeout",
     "moreInformation": "Gateway Timeout Exception",
@@ -1214,18 +1219,60 @@ export const YenilemeBelirteciResponse401 =
   export const KartDetayBilgileriResponse200=[
     
     {
-      "rizaNo": "963da27533454b309396f2603a881cf4",
-      "kartRef": "4937db02-a2fc-4fe7-b36f-a9ac98ba4137",
+      "rizaNo": "94505f81d806453f825f0ea318d2c382",
+      "kartRef": "2aa65edf-f54e-41c2-b027-9230114acc07",
       "ekstreTuru": "TRY",
-      "donemIciHareketToplami": {
-        "tutar": "55.00",
+      "toplamLimit": {
+        "tutar": "1000.00",
         "paraBirimi": "TRY"
       },
-      "hesapKesimTarihi": "2025-05-31",
-      "sonrakiHesapKesimTarihi": "2025-06-30",
+      "kullanilabilirLimit": {
+        "tutar": "150.00",
+        "paraBirimi": "TRY"
+      },
+      "donemIciHareketToplami": {
+        "tutar": "100.00",
+        "paraBirimi": "TRY"
+      },
+      "ekstreBorcu": {
+        "tutar": "0.00",
+        "paraBirimi": "TRY"
+      },
+      "kalanEkstreBorcu": {
+        "tutar": "0.00",
+        "paraBirimi": "TRY"
+      },
+      "asgariOdemeTutari": {
+        "tutar": "0.00",
+        "paraBirimi": "TRY"
+      },
+      "kalanAsgariOdemeTutari": {
+        "tutar": "0.00",
+        "paraBirimi": "TRY"
+      },
+      "hesapKesimTarihi": "2025-06-28",
+      "sonrakiHesapKesimTarihi": "2025-07-28",
+      "sonOdemeTarihi": "2025-07-08",
+      "sonrakiSonOdemeTarihi": "2025-08-08",
+      "nakitCekimLimiti": {
+        "tutar": "250.00",
+        "paraBirimi": "TRY"
+      },
+      "kullanilabilirNakitCekimLimiti": {
+        "tutar": "250.00",
+        "paraBirimi": "TRY"
+      },
+      "kalanToplamTaksitTutari": {
+        "tutar": "750.00",
+        "paraBirimi": "TRY"
+      },
       "puanBilgisi": [
         {
-          "puanDegeri": "6.00",
+          "puanDegeri": "1.00",
+          "puanTipi": "BKMPLUS"
+        },
+        {
+          "puanDegeri": "1.00",
           "puanTipi": "BKMPUAN"
         }
       ]
@@ -1234,8 +1281,8 @@ export const YenilemeBelirteciResponse401 =
 
   export const KartDetayBilgileriResponse400={
     "id": "400f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-    "path": "/ohvps/hbh/s2.0/kartlar/4937db02-a2fc-4fe7-b36f-a9ac98ba4137/kart-detay",
-    "timestamp": "2021-08-13T09:55:23+03:00",
+    "path": "/ohvps/hbh/s2.0/kartlar/2aa65edf-f54e-41c2-b027-9230114acc07/kart-detay",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 400,
     "httpMessage": "Bad Request",
     "moreInformation": "The status of the account is closed.",
@@ -1244,8 +1291,8 @@ export const YenilemeBelirteciResponse401 =
   }
   export const KartDetayBilgileriResponse401={
     "id": "401f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-    "path": "/ohvps/hbh/s2.0/kartlar/4937db02-a2fc-4fe7-b36f-a9ac98ba4137/kart-detay",
-    "timestamp": "2021-08-13T09:55:23+03:00",
+    "path": "/ohvps/hbh/s2.0/kartlar/2aa65edf-f54e-41c2-b027-9230114acc07/kart-detay",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 401,
     "httpMessage": "Unauthorized",
     "moreInformation": "Geçersiz Token",
@@ -1254,8 +1301,8 @@ export const YenilemeBelirteciResponse401 =
   }
   export const KartDetayBilgileriResponse403={
     "id": "403f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-    "path": "/ohvps/hbh/s2.0/kartlar/4937db02-a2fc-4fe7-b36f-a9ac98ba4137/kart-detay",
-    "timestamp": "2021-08-13T09:55:23+03:00",
+    "path": "/ohvps/hbh/s2.0/kartlar/2aa65edf-f54e-41c2-b027-9230114acc07/kart-detay",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 403,
     "httpMessage": "Forbidden",
     "moreInformation": "X-JWS-Signature header not found in the TPP request",
@@ -1264,8 +1311,8 @@ export const YenilemeBelirteciResponse401 =
   }
   export const KartDetayBilgileriResponse404={
     "id": "404f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-    "path": "/ohvps/hbh/s2.0/kartlar/4937db02-a2fc-4fe7-b36f-a9ac98ba4137/kart-detay",
-    "timestamp": "2021-08-13T09:55:23+03:00",
+    "path": "/ohvps/hbh/s2.0/kartlar/2aa65edf-f54e-41c2-b027-9230114acc07/kart-detay",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 404,
     "httpMessage": "Not Found",
     "moreInformation": "Resource not found",
@@ -1274,8 +1321,8 @@ export const YenilemeBelirteciResponse401 =
   }
   export const KartDetayBilgileriResponse429={
     "id": "42916216-af41-ewb4-e5c6-5489b128e453",
-    "path": "/ohvps/hbh/s2.0/kartlar/4937db02-a2fc-4fe7-b36f-a9ac98ba4137/kart-detay",
-    "timestamp": "2023-11-27T02:00:15+03:00",
+    "path": "/ohvps/hbh/s2.0/kartlar/2aa65edf-f54e-41c2-b027-9230114acc07/kart-detay",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 429,
     "httpMessage": "Too Many Requests",
     "moreInformation": "The number of allowed requests has been exceeded.",
@@ -1284,8 +1331,8 @@ export const YenilemeBelirteciResponse401 =
   }
   export const KartDetayBilgileriResponse500={
     "id": "5004567-125e-4556-be26-994df1dsa8e1",
-    "path": "/ohvps/hbh/s2.0/kartlar/4937db02-a2fc-4fe7-b36f-a9ac98ba4137/kart-detay",
-    "timestamp": "2023-11-27T00:50:13+03:00",
+    "path": "/ohvps/hbh/s2.0/kartlar/2aa65edf-f54e-41c2-b027-9230114acc07/kart-detay",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 500,
     "httpMessage": "Internal Server Error",
     "moreInformation": "Sorry, the transaction has failed. Please try again later.",
@@ -1294,8 +1341,8 @@ export const YenilemeBelirteciResponse401 =
   }
   export const KartDetayBilgileriResponse503={
     "id": "503506a6-0608-4db5-ad5b-723cepde545f",
-    "path": "/ohvps/hbh/s2.0/kartlar/4937db02-a2fc-4fe7-b36f-a9ac98ba4137/kart-detay",
-    "timestamp": "2023-11-27T00:50:13+03:00",
+    "path": "/ohvps/hbh/s2.0/kartlar/2aa65edf-f54e-41c2-b027-9230114acc07/kart-detay",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 503,
     "httpMessage": "Service Unavailable",
     "moreInformation": "Service Unavailable Error",
@@ -1304,8 +1351,8 @@ export const YenilemeBelirteciResponse401 =
   }
   export const KartDetayBilgileriResponse504={
     "id": "504506a6-0608-4db5-ad5b-723cepde545f",
-    "path": "/ohvps/hbh/s2.0/kartlar/4937db02-a2fc-4fe7-b36f-a9ac98ba4137/kart-detay",
-    "timestamp": "2023-11-23T15:46:19+03:00",
+    "path": "/ohvps/hbh/s2.0/kartlar/2aa65edf-f54e-41c2-b027-9230114acc07/kart-detay",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 504,
     "httpMessage": "Gateway Timeout",
     "moreInformation": "Gateway Timeout Exception",
@@ -1313,39 +1360,42 @@ export const YenilemeBelirteciResponse401 =
     "errorCode": "TR.OHVPS.Server.InternalError"
   }
   export const KartHareketBilgileriResponse200={
-    "kartRef": "4937db02-a2fc-4fe7-b36f-a9ac98ba4137",
-    "donemDegeri": 0,
-    "donemBaslangicTarihi": "2025-05-01",
-    "donemBitisTarihi": "2025-05-31",
-    "ekstreTuru": "TRY",
-    "hareketBilgileri": [
-      {
-        "borcAlacak": "A",
-        "islemTutari": {
-          "tutar": "65.00",
-          "paraBirimi": "TRY"
+    
+      "kartRef": "2aa65edf-f54e-41c2-b027-9230114acc07",
+      "donemDegeri": 0,
+      "donemBaslangicTarihi": "2025-05-29",
+      "donemBitisTarihi": "2025-06-28",
+      "ekstreTuru": "TRY",
+      "hareketBilgileri": [
+        {
+          "borcAlacak": "B",
+          "islemTutari": {
+            "tutar": "250.00",
+            "paraBirimi": "TRY"
+          },
+          "islemTarihi": "2025-06-10T10:11:58+03:00",
+          "islemAciklamasi": "taksit açıklaması",
+          "toplamTaksitSayisi": 4,
+          "taksitDonemi": 1,
+          "saticiKategoriKodu": "4722"
         },
-        "islemTarihi": "2025-05-14T10:06:56+03:00",
-        "islemAciklamasi": "açıklama",
-        "saticiKategoriKodu": "5094"
-      },
-      {
-        "borcAlacak": "B",
-        "islemTutari": {
-          "tutar": "10.00",
-          "paraBirimi": "TRY"
-        },
-        "islemTarihi": "2025-05-14T10:05:46+03:00",
-        "islemAciklamasi": "açıklama",
-        "saticiKategoriKodu": "5812"
-      }
-    ]
+        {
+          "borcAlacak": "A",
+          "islemTutari": {
+            "tutar": "150.00",
+            "paraBirimi": "TRY"
+          },
+          "islemTarihi": "2025-06-10T10:11:02+03:00",
+          "islemAciklamasi": "açıklama",
+          "saticiKategoriKodu": "9311"
+        }
+      ]
   }
 
   export const KartHareketBilgileriResponse400={
     "id": "400f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-    "path": "/ohvps/hbh/s2.0/kartlar/4937db02-a2fc-4fe7-b36f-a9ac98ba4137/kart-hareketleri",
-    "timestamp": "2021-08-13T09:55:23+03:00",
+    "path": "/ohvps/hbh/s2.0/kartlar/2aa65edf-f54e-41c2-b027-9230114acc07/kart-hareketleri",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 400,
     "httpMessage": "Bad Request",
     "moreInformation": "The status of the account is closed.",
@@ -1354,8 +1404,8 @@ export const YenilemeBelirteciResponse401 =
   }
   export const KartHareketBilgileriResponse401={
     "id": "401f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-    "path": "/ohvps/hbh/s2.0/kartlar/4937db02-a2fc-4fe7-b36f-a9ac98ba4137/kart-hareketleri",
-    "timestamp": "2021-08-13T09:55:23+03:00",
+    "path": "/ohvps/hbh/s2.0/kartlar/2aa65edf-f54e-41c2-b027-9230114acc07/kart-hareketleri",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 401,
     "httpMessage": "Unauthorized",
     "moreInformation": "Geçersiz Token",
@@ -1364,8 +1414,8 @@ export const YenilemeBelirteciResponse401 =
   }
   export const KartHareketBilgileriResponse403={
     "id": "403f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-    "path": "/ohvps/hbh/s2.0/kartlar/4937db02-a2fc-4fe7-b36f-a9ac98ba4137/kart-hareketleri",
-    "timestamp": "2021-08-13T09:55:23+03:00",
+    "path": "/ohvps/hbh/s2.0/kartlar/2aa65edf-f54e-41c2-b027-9230114acc07/kart-hareketleri",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 403,
     "httpMessage": "Forbidden",
     "moreInformation": "X-JWS-Signature header not found in the TPP request",
@@ -1374,8 +1424,8 @@ export const YenilemeBelirteciResponse401 =
   }
   export const KartHareketBilgileriResponse404={
     "id": "404f0fb2-730b-11e8-adc0-fa7ae01bbebc",
-    "path": "/ohvps/hbh/s2.0/kartlar/4937db02-a2fc-4fe7-b36f-a9ac98ba4137/kart-hareketleri",
-    "timestamp": "2021-08-13T09:55:23+03:00",
+    "path": "/ohvps/hbh/s2.0/kartlar/2aa65edf-f54e-41c2-b027-9230114acc07/kart-hareketleri",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 404,
     "httpMessage": "Not Found",
     "moreInformation": "Resource not found",
@@ -1384,8 +1434,8 @@ export const YenilemeBelirteciResponse401 =
   }
   export const KartHareketBilgileriResponse429={
     "id": "42916216-af41-ewb4-e5c6-5489b128e453",
-    "path": "/ohvps/hbh/s2.0/kartlar/4937db02-a2fc-4fe7-b36f-a9ac98ba4137/kart-hareketleri",
-    "timestamp": "2023-11-27T02:00:15+03:00",
+    "path": "/ohvps/hbh/s2.0/kartlar/2aa65edf-f54e-41c2-b027-9230114acc07/kart-hareketleri",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 429,
     "httpMessage": "Too Many Requests",
     "moreInformation": "The number of allowed requests has been exceeded.",
@@ -1394,8 +1444,8 @@ export const YenilemeBelirteciResponse401 =
   }
   export const KartHareketBilgileriResponse500={
     "id": "5004567-125e-4556-be26-994df1dsa8e1",
-    "path": "/ohvps/hbh/s2.0/kartlar/4937db02-a2fc-4fe7-b36f-a9ac98ba4137/kart-hareketleri",
-    "timestamp": "2023-11-27T00:50:13+03:00",
+    "path": "/ohvps/hbh/s2.0/kartlar/2aa65edf-f54e-41c2-b027-9230114acc07/kart-hareketleri",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 500,
     "httpMessage": "Internal Server Error",
     "moreInformation": "Sorry, the transaction has failed. Please try again later.",
@@ -1404,8 +1454,8 @@ export const YenilemeBelirteciResponse401 =
   }
   export const KartHareketBilgileriResponse503={
     "id": "503506a6-0608-4db5-ad5b-723cepde545f",
-    "path": "/ohvps/hbh/s2.0/kartlar/4937db02-a2fc-4fe7-b36f-a9ac98ba4137/kart-hareketleri",
-    "timestamp": "2023-11-27T00:50:13+03:00",
+    "path": "/ohvps/hbh/s2.0/kartlar/2aa65edf-f54e-41c2-b027-9230114acc07/kart-hareketleri",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 503,
     "httpMessage": "Service Unavailable",
     "moreInformation": "Service Unavailable Error",
@@ -1414,8 +1464,8 @@ export const YenilemeBelirteciResponse401 =
   }
   export const KartHareketBilgileriResponse504={
     "id": "504506a6-0608-4db5-ad5b-723cepde545f",
-    "path": "/ohvps/hbh/s2.0/kartlar/4937db02-a2fc-4fe7-b36f-a9ac98ba4137/kart-hareketleri",
-    "timestamp": "2023-11-23T15:46:19+03:00",
+    "path": "/ohvps/hbh/s2.0/kartlar/2aa65edf-f54e-41c2-b027-9230114acc07/kart-hareketleri",
+    "timestamp": "2025-06-10T10:17:06+03:00",
     "httpCode": 504,
     "httpMessage": "Gateway Timeout",
     "moreInformation": "Gateway Timeout Exception",
