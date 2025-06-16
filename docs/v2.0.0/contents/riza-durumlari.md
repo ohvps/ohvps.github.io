@@ -29,6 +29,7 @@ Rıza iptal durumu ise gerek raporlama gerekse müşteri deneyimi perspektifinde
 >>**‘12’ :	GKD iptali : ÖHK HHS kontrollerini aşamadı**  
 >>**‘13’ :	GKD iptali : ÖHK isteği ile GKD’den vazgeçildi**  
 >>**‘14’ :	GKD iptali : Fraud Şüphesi**  
+>>**‘15’ :	Hesap Rıza Güncelleme Talebi ile İptal**   
 >>**‘99’ :	GKD iptali : Diğer**  
 
 4.1 ve 4.2 bölümlerinde detaylandırılan rıza durum değişikliklerinde rıza iptal detay kodları kullanılmıştır.
@@ -48,13 +49,14 @@ Benzer şekilde YÖS'ler hangi ortamlardan (web/mobil) hizmet veriyorsa, aynı o
 
 ## 4.1.	Hesap Bilgisi Hizmeti Rıza durum değişiklikleri
 
-**Kural**: Bir ÖHK'nın, bir YÖS için, bir HHS'de Y, K, B rıza durumlarında tek bir rızası olabilir.
+**Kural**: Bir ÖHK'nın, bir YÖS için, bir HHS'de aktif tek bir rızası olabilir.
 Bir ÖHK hem kişisel olarak hem de bir kurumun kullanıcısı olabilir. Bu durumda kurum ve kişisel rıza aynı anda mevcut olabilmelidir. Rıza nesneleri, HHS tarafından uygun şekilde yönetilmelidir.  
 
  1.	Hesap Bilgisi Rızası isteği HHS’ye iletilir.  
     a.	HHS ÖHK'ya ait içeride rıza var mı kontrol eder. Eğer yoksa **Yetki Bekleniyor - B** rıza durumu ile yeni rıza oluşturur.   
-    b.	Eğer içeride rıza varsa   
-      &nbsp;&nbsp;&nbsp;&nbsp; i. Rıza durumu Yetki Bekleniyor - B ise;   
+    b.	Eğer içeride rıza varsa ;
+    - Yeni hesap bilgisi rızası talebi başlatılmışsa (oncekiRizaNo alanının hiç gönderilmediği durum): <br>
+       i. Rıza durumu Yetki Bekleniyor - B ise;   
          &nbsp;&nbsp;&nbsp;&nbsp;    HHS, sistemde Yetki Bekleniyor - B rıza durumuna sahip kayıt olduğu için, öncelikle eski kaydı Yetki İptal - I durumuna getirir.  Rıza İptal Detay Kodu “Yeni Rıza Talebi ile iptal” olmalıdır. **B &#8680; I / 01** Sonrasında, **Yetki Bekleniyor - B** rıza durumu ile yeni rıza oluşturur.   
             
     &nbsp;&nbsp;&nbsp;&nbsp; ii. Rıza durumu Yetkilendirildi - Y veya Yetki Kullanıldı - K ise;  
@@ -63,6 +65,17 @@ Bir ÖHK hem kişisel olarak hem de bir kurumun kullanıcısı olabilir. Bu duru
     &nbsp;&nbsp;&nbsp;&nbsp; iii.	Rıza durumu Yetki Sonlandırıldı - S  ise Yetki Bekleniyor - B durumunda yeni rıza no oluşturur.   
 
     &nbsp;&nbsp;&nbsp;&nbsp; iv.	Rıza durumu Yetki İptal - I ise **Yetki Bekleniyor - B** durumunda yeni rıza no oluşturur.
+
+    - Başlatılan rıza isteği güncelleme akışı ile başlatılması durumunda oncekiRizaNo değeri rıza isteğinde bulunan ÖHK’ya ait olmalıdır. ÖHK’ya ait olmaması durumunda **TR.OHVPS.Business.CustomerNotFound** hatası dönülür. Aynı ÖHK olması durumunda ;
+
+      i. Önceki Rıza durumu B: Yetki Bekleniyor , Y: Yetkilendirildi ya da I :Yetki İptal  ise; **TR.OHVPS.Business.ConsentStatusNotforUpdate** hatası verilecektir. 
+
+      ii. Yetki Kullanıldı - K ise; hesap rızası başarılı gerçekleştiriliyor olup Yetki Bekleniyor - B durumunda yeni bir rıza oluşturulur. Önceki hesap bilgisi rızası durumunda bir güncelleme yapılmaz.
+
+      iii. Yetki Sonlandırıldı - S ise; Rıza Güncelleme Zamanı kontrol edilir.<br>
+
+      •	Sonlandırıldı statüsüne geçmesiyle birlikte rıza güncelleme zamanı üzerinden 30 gün geçmiş ise **TR.OHVPS.Business.ConsentStatusNotforUpdate** hatası verilir.<br>
+      •	30 gün geçmemiş ise; hesap rızası başarılı gerçekleştiriliyor olup Yetki Bekleniyor - B durumunda yeni bir rıza oluşturulur. Önceki hesap bilgisi rızası durumunda bir güncelleme yapılmaz.
 
 
  2.	GKD başarılı bir şekilde tamamlandığında Rıza durumu Yetki Bekleniyor’dan Yetkilendirildi’ye güncellenir. **B &#8680; Y**
@@ -92,17 +105,7 @@ Bir ÖHK hem kişisel olarak hem de bir kurumun kullanıcısı olabilir. Bu duru
 
       - Diğer Yetki Bekleniyor &#8680;  Yetki İptal  **B &#8680;  I / 99**  
 
-
-3.	ÖHK, hesaplarında/izin türlerinde/Erişimin Geçerli Olduğu Son Tarih bilgilerinden bir ya da birden fazlasında güncelleme yapmak için YÖS ekranına girer.   
-
-
-   &nbsp;&nbsp;&nbsp;&nbsp;a.	YÖS önce Rıza İptal API'sini çağırır. Sonra yeni değerlerle yeni bir rıza isteğinde bulunur. Tekrar GKD gerekir.  
-
-   &nbsp;&nbsp;&nbsp;&nbsp;b.	YÖS rıza iptal yapmadan yeni rıza alma akışına başlarsa 1.b akışı devreye girer.  
-
-   &nbsp;&nbsp;&nbsp;&nbsp;c.	Rıza güncelleme ilerleyen sürümlerde ele alınacaktır.
-
-4. Erişim Belirteci API   
+3. Erişim Belirteci API   
 
       a. Erişim Belirteci'nin yetkilendirme kodu ile çağrımı yapıldığında; 
      
@@ -111,6 +114,7 @@ Bir ÖHK hem kişisel olarak hem de bir kurumun kullanıcısı olabilir. Bu duru
     &nbsp;&nbsp;&nbsp;&nbsp; iii. Rıza durumu Yetkilendirildi - Y olduğunda erişim belirteci tahsis edilir. 
       Erişim belirteci alındığında rıza durumu K: Yetki Kullanıldı yapılır. **Y &#8680;K**    
       
+      • **Hesap Rızası Güncelleme akışı ile hesap bilgi rızası güncelleniyor ise yeni hesap bilgisi rızası K durumuna güncellendiğinde önceki rıza no durumu I – 15 (Hesap Rıza Güncelleme ile İptal) ile iptale çekilir.**
 
       b. Yenileme belirteci karşılığı erişim belirteci alınması sırasında; yenileme belirteci kontrolü ve sonrasında rıza kontrolü yapılmalıdır.
 
@@ -119,9 +123,9 @@ Bir ÖHK hem kişisel olarak hem de bir kurumun kullanıcısı olabilir. Bu duru
     &nbsp;&nbsp;&nbsp;&nbsp; iii. Rıza durumu Yetki Bekleniyor - B ya da Yetkilendirildi - Y  ise **TR.OHVPS.Resource.ConsentMismatch** hatası dönülmelidir.   
      &nbsp;&nbsp;&nbsp;&nbsp; iv. Rıza durumu Yetki Kullanıldı - K olduğunda, yenileme belirteci karşılığı erişim belirteci tahsis edilir.   
 
-5.	Sorgulama: HBHS, rıza alma akışına başlamadan önce, daha önce oluşturulmuş bir hesap bilgisi-rizasi kaynağının durumunu, isteğe bağlı olarak alabilir. Rıza numarası ile sorgulama yapılır.
+4.	Sorgulama: HBHS, rıza alma akışına başlamadan önce, daha önce oluşturulmuş bir hesap bilgisi-rizasi kaynağının durumunu, isteğe bağlı olarak alabilir. Rıza numarası ile sorgulama yapılır.
 
-6.	Hesap Bilgisi Rızasının İptali: HBHS üzerinden ya da HHS üzerinden yapılan rıza iptallerinde Rıza durumu  Yetki İptal - I olarak güncellenir. Rıza numarası ile iptal sağlanır.
+5.	Hesap Bilgisi Rızasının İptali: HBHS üzerinden ya da HHS üzerinden yapılan rıza iptallerinde Rıza durumu  Yetki İptal - I olarak güncellenir. Rıza numarası ile iptal sağlanır.
 
     a. HHS üzerinden rıza iptali yapmış olabilir.  Rıza durumu sorgulanır. 
    
@@ -142,10 +146,10 @@ Bir ÖHK hem kişisel olarak hem de bir kurumun kullanıcısı olabilir. Bu duru
       Rıza durumu Yetki Sonlandırıldı - S  ise iptal gerçekleşmez. “Rıza durumunuz iptal etmeye uygun değildir.” hatası ÖHK'ya yansıtılır. **TR.OHVPS.Resource.ConsentRevoked**  
 
 
-7.	ÖHK’nın verdiği rıza süresi dolmuş olabilir. 
+6.	ÖHK’nın verdiği rıza süresi dolmuş olabilir. 
 Erişimin Geçerli Olduğu Son Tarih geldiğinde Rıza durumu Yetki Kullanıldı’dan Yetki Sonlandırıldı durumuna çekilmelidir.  **K &#8680; S**  
 
-8.	Hesaplar, Bakiye ve İşlemler servislerinde erişim belirteci kontrolü ve sonrasında rıza kontrolü yapılmalıdır. 
+7.	Hesaplar, Bakiye ve İşlemler servislerinde erişim belirteci kontrolü ve sonrasında rıza kontrolü yapılmalıdır. 
       Geçerli bir erişim belirteci yok ise **TR.OHVPS.Connection.InvalidToken** hatası dönülmelidir. 
 
       YÖS'ün; Rıza İptal - I ya da Yetki Sonlandırıldı - S rıza durumlarında Hesaplar, Bakiye ve İşlemler servislerini çağırmaması beklenir. HHS'nin bu rıza durumları ile yapılmış çağrılar olduğunda **TR.OHVPS.Resource.ConsentRevoked** hatasını dönmesi gereklidir.
@@ -157,7 +161,7 @@ Erişimin Geçerli Olduğu Son Tarih geldiğinde Rıza durumu Yetki Kullanıldı
       Rıza sorgulama API'sinde ilgili rıza kaydı bulunamaz veya sorgulayan kurumun yetkisi yoksa (örn : YÖS’ün farklı bir YÖS’e ait rıza noyu sorgulaması)  
 **TR.OHVPS.Resource.NotFound hatası** verilmelidir.  
 
-9.	HHS/YÖS tarafında rıza bilgileri belirli aralıklarla sistem kullanıcısı tarafından taranır:
+8.	HHS/YÖS tarafında rıza bilgileri belirli aralıklarla sistem kullanıcısı tarafından taranır:
 5 dakikadan uzun süredir “Yetki Bekleniyor” durumunda kalan kayıtların durumları güncellenir.
 Yetki Bekleniyor  &#8680; Rıza İptal  / Süre Aşımı : Yetki Bekleniyor **B &#8680; I / 04**  
 

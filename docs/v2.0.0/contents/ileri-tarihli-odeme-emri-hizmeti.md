@@ -6,7 +6,9 @@
 
  HHS'ler ileri tarihli ödeme emri hizmetini sunuş bilgilerini HHS API aracılığı ile yayınlayacaklardır. YÖS, ileri tarihli ödeme hizmeti başlatabileceği HHS'lerin listesini HHS API'de yer alan "hizmetTipi":"02" parametresi ile alabilir. YÖS, ileri tarihli ödeme hizmeti sunmayan HHS'ye ileri tarihli bir ödeme emri rızası isteği yapması durumunda HHS tarafından **TR.OHVPS.Business.ScheduledPaymentNotSupported** hatası iletilmelidir.
 
-İleri tarihli ödeme emri güncelleme hizmeti bulunmayacaktır. ÖHK aktif olan ileri tarihli ödeme emri rızasını iptal ederek, yeniden oluşturabilecektir.
+İleri tarihli ödeme emri güncelleme hizmeti YÖS üzerinden yapılamayacaktır. ÖHK aktif olan düzenli ödeme talimat rızasını iptal ederek, yeniden oluşturabilecektir.
+
+HHS üzerinden ilgili güncelleme hizmeti sağlanabilir. İleri tarihli talimat içerisinde yapılan güncelleme sonucunda olay bildirim ile YÖS'e bildirim sağlanacaktır.
 
  
 İleri Tarili Ödeme Emri Başlatma Hizmeti 5 temel akışdan oluşur:  

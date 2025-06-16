@@ -6,7 +6,9 @@ Düzenli ödeme hizmetini online bankacılık sistemlerinde sunan HHS'lerin, ÖH
 
  HHS'ler düzenli ödeme hizmetini sunuş bilgilerini HHS API aracılığı ile yayınlayacaklardır. YÖS, düzenli ödeme hizmeti başlatabileceği HHS'lerin listesini HHS API'de yer alan "hizmetTipi":"03" parametresi ile alabilir. YÖS, düzenli ödeme hizmeti sunmayan HHS'ye düzenli ödeme talimat rızası isteği yapması durumunda HHS tarafından **TR.OHVPS.Business.RegularPaymentOrderNotSupported** hatası iletilmelidir.
 
-Düzenli ödeme talimatı güncelleme hizmeti bulunmayacaktır. ÖHK aktif olan düzenli ödeme talimat rızasını iptal ederek, yeniden oluşturabilecektir.
+Düzenli ödeme talimatı güncelleme hizmeti YÖS üzerinden yapılamayacaktır. ÖHK aktif olan düzenli ödeme talimat rızasını iptal ederek, yeniden oluşturabilecektir.
+
+HHS üzerinden ilgili güncelleme hizmeti sağlanabilir. Ödeme planında yapılan güncelleme sonucunda olay bildirim ile YÖS'e bildirim sağlanacaktır.
 
  
 Düzenli Ödeme Emri Başlatma Hizmeti 5 temel akışdan oluşur:  
@@ -438,7 +440,7 @@ POST işleminin RESPONSE gövdesini (BODY) oluşturan “DuzenliOdemeEmri” nes
 | **>> Açıklama**	|  odmAcklm   | AN1..200    | İ  | ÖBHS’nin ÖHK’dan aldığı ya da kendisinin atadığı işlem açıklaması bilgisi. <br>FAST/PÖS sistemi üzerinden yapılan ödemeler için açıklama bilgisi girilirse boşluk karakteri girilerek geçilemez. En az bir alfasayısal karakter girilmesi zorunludur.|
 | **Talimat Bilgileri**	|  tlmtBlg   | Kompleks: TalimatBilgileri  | -  | | |
 | **> Talimat Numarası**  | tlmtNo  | AN1..128   | Z |  Düzenli Ödeme Emri nesnesinin UID'sidir. Düzenli Ödeme Emri kaydı'na dair İlişkin sorgular bu ID üzerinden yapılır. |
-| **> Talimat Oluşma Zamanı**  | tlmtOlsZmn  | ISODateTime   | Z |  duzenliOdemeEmri nesnesinin oluşturulma zamanıdır.|
+| **> Talimat Oluşma Zamanı**  | tlmtOlsZmn  | ISODateTime   | Z |  duzenliOdemeEmri nesnesinin oluşturulma zamanı, talimatın HHS'de oluşturulduğu zaman bilgisidir.|
 | **> Talimat Tutarı**  | tlmtTtr   | AN1..24   | Z |  ÖBHS'nin HHS'de belirlediği tutar bilgisidir. Talimata ait ilk ödeme emri kaydının tutar bilgisi iletilmelidir. <br> Karekod akışında, FAST Karekod Veri Organizasyonundaki **54: (Tutar)** alanında tanımlı Tutar verisi kullanılır. <br> Tutar alanı regex patterni şu şekildedir: '^\d{1,18}$\|^\d{1,18}\\.\d{1,5}$'|  |  
 | **> Para Birimi** 	| prBrm   |  AN3  | Z | Para Birimi. <br> Karekod akışında, FAST Karekod Veri Organizasyonundaki **53: (Para Birimi)** alanında tanımlı Para Birimi verisi kullanılır.  | HHS geçerli bir para birimi olduğu kontrol eder.|
 | **> İlk Ödeme Günü**  | ilkOdmGun   | ISODate  | Z | ÖBHS'nin HHS'de belirlediği ilk ödeme günü bilgisidir.   Alabileceği minimum tarih değeri düzenli ödemenin verildiği tarihin 1 gün sonrası olabilir. Maksimum değer ise 30 gün olacak şekilde seçilebilir. <br>
