@@ -6,7 +6,7 @@ Açık Bankacılık simülatör uygulaması üzerinde swagger dökümanlarının
 
 | Kod | Açıklama |
 | --- | --- |
-| TR.OHVPS.DataCode.BrcAlc | İşlemin hesabı borçlandırdığı ya da alacaklandırdığı bilgisidir.<br>B : Borç<br>A : Alacak |
+| TR.OHVPS.DataCode.BrcAlc | İşlemin hesabı borçlandırdığı ya da alacaklandırdığı bilgisidir.<br>B : Borç<br>A : Alacak<br>N : Finansal Olmayan |
 | TR.OHVPS.DataCode.EvetHayir | E : Evet<br>H : Hayır |
 | TR.OHVPS.DataCode.GkdTur | GKD yapılmasını gerekli bulduğu durumda HHS, YÖS’ün belirlediği yöntemi dikkate alarak kendi belirlediği GKD yöntemini bildirir:<br>Y: Yönlendirmeli GKD<br>A: Ayrık GKD |
 | TR.OHVPS.DataCode.HHSDurumu | A : Açık. Üretim Ortamında HHS’nin aktif bir şekilde hizmet vermesi durumu.<br> Y : Yaygınlaştırma. Üretim Ortamında HHS’nin kendisi tarafından tanımlanmış kısıtlı ÖHK’ya hizmet vermesi durumu. <br>  G : Geçici Hizmet Veremiyor. HHS servislerinde teknik bir sorun olması nedeniyle HHS’nin hizmet verememesi durumu. <br>K: Kapalı. HHS’nin hizmet vermeme durumu. |
@@ -18,7 +18,7 @@ Açık Bankacılık simülatör uygulaması üzerinde swagger dökümanlarının
 | TR.OHVPS.DataCode.IslemTuru | Hesap hareketleri (işlemler) sorgusunda dönülen İşlem Türü (islTur) parametresi aşağıdaki değerlerden birini alabilir:<br>HAVALE<br>EFT<br>FAST<br>PARA_YATIRMA<br>PARA_CEKME<br>YABANCI_PARA_HAVALE<br>YATIRIM_HESABINA_AKTARIM<br>YATIRIM_HESABINDAN_AKTARIM<br>KURUM_FATURA_ODEMESI<br>CEK<br>SENET<br>SIGORTA_ODEMESI<br>UCRET_KOMISYON_FAIZ<br>SGK_ODEMESI<br>VERGI_ODEMESI<br>DOVIZ_ALIM<br>DOVIZ_SATIM<br>KREDI_ODEMESI<br>KREDI_KULLANIM<br>KK_ODEMESI<br>KK_NAKIT_AVANS<br>SANS_OYUNU<br>UYE_ISYERI_ISLEMLERI<br>HGS_OGS_ISLEMLERI<br>DOGRUDAN_BORCLANDIRMA_SISTEMI<br>DIGER<br>|
 | TR.OHVPS.DataCode.IzinTur | 01: Temel Hesap Bilgisi<br>02: Ayrıntılı Hesap Bilgisi<br>03: Bakiye Bilgisi<br>04: Temel İşlem (Hesap Hareketleri) Bilgisi<br>05: Ayrıntılı İşlem Bilgisi<br>06: Anlık Bakiye Bildirimi<br>07: Temel Kart Bilgisi<br>08: Detaylı Kart Bilgisi<br>09: Ayrıntılı Kart İşlem Bilgisi|
 | TR.OHVPS.DataCode.KareKodAksTur | Karekod Akış Türü Karekod ödemesinin hangi akışla gerçekleştirildiğini gösterir.<br> 01: FAST katılımcısından dinamik doğrulamalı hizmet alınan işyeri ödemesi<br>02: FAST katılımcısından statik doğrulamalı işyeri ödemesi<br>03: Kişiden kişiye ödemeler |
-| TR.OHVPS.DataCode.KaynakTip | HESAP_BILGISI_RIZASI<br> ODEME_EMRI_RIZASI <br> ODEME_EMRI <br> ILERI_TARIHLI_ODEME_EMRI_RIZASI <br> ILERI_TARIHLI_ODEME_EMRI <br> DUZENLI_ODEME_EMRI_RIZASI <br> BAKIYE <br>  COKLU_ISLEM_TALEBI <br>  HHS <br>  YOS <br> KART_BILGILERI |
+| TR.OHVPS.DataCode.KaynakTip | HESAP_BILGISI_RIZASI<br> ODEME_EMRI_RIZASI <br> ODEME_EMRI <br> ILERI_TARIHLI_ODEME_EMRI_RIZASI <br> ILERI_TARIHLI_ODEME_EMRI <br> DUZENLI_ODEME_EMRI_RIZASI <br>DUZENLI_ODEME_PLANI <br>DUZENLI_ODEME_EMRI <br> BAKIYE <br>  COKLU_ISLEM_TALEBI <br>  HHS <br>  YOS <br> KART_BILGILERI |
 | TR.OHVPS.DataCode.KimlikTur | Kod, Tip, Format<br>K , TCKN , N11<br>M , MNO , AN1..30 (HHS’ye özel bireysel veya kurum müşteri numarası)<br>Y , YKN , N11<br>P , PNO , AN7..9 |
 | TR.OHVPS.DataCode.KolasHspTur | Hesabın bireysel veya ticari nitelikte olduğunu belirtir:<br>B: Bireysel<br>T: Ticari |
 | TR.OHVPS.DataCode.KolasTur | Müşterinin sorgulama istediği Kolay Adres Tipi değeridir. Alabileceği değerler BKM “Kolay Adresleme Sistemi Uygulama Kuralları” belgesinde tanımlıdır:<br>T: Telefon Numarası<br>E: E-Posta<br>K: TCKN<br>V: VKN<br>Y: YKN<br>P: Pasaport Numarası |
@@ -47,7 +47,7 @@ Açık Bankacılık simülatör uygulaması üzerinde swagger dökümanlarının
 | TR.OHVPS.DataCode.KartTip | B : Banka Kartı <br>K : Kredi Kartı<br>P : Ön Ödemeli(Prepaid) Kart|
 | TR.OHVPS.DataCode.AltKartTip | A : Asıl <br>E : Ek Kart<br>S : Sanal Kart|
 | TR.OHVPS.DataCode.KartStatu | A : Açık/Aktif <br>P : Pasif<br>I : İptal
-| TR.OHVPS.DataCode.IslemPuanDurumu | 01 : Puan Kazanımı <br>02: Puan Kullanımı
+| TR.OHVPS.DataCode.IslemPuanDurumu | 01 : Puan Kazanımı <br>02: Puan Kullanımı <br>03: Puan İade <br>04: Puan İptal
 | TR.OHVPS.DataCode.KartSema | T : TROY <br>M : Mastercard<br>V : Visa<br>U : UnionPay<br>A : American Express<br>J : JCB
 | TR.OHVPS.DataCode.KartTuru | B : Bireysel <br>T :Ticari
 | TR.OHVPS.DataCode.KartFormu | F : Fiziksel <br>D :Dijital

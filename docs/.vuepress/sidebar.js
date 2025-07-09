@@ -295,4 +295,8 @@ module.exports = [
         title: 'ÖHVPS Sıkça Sorulan Sorular',
         path: '/sorulan-sorular'
     },
+    {
+        title: 'ÖHVPS Uyum Tarihleri',
+        path: '/uyum-tarihleri'
+    },
 ];
