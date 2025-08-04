@@ -873,7 +873,7 @@ HHS tarafından izin verilen sorgu sayısının üzerinde yapılan bir sorgu iç
 | 18 | kartlar | GET |/kartlar| Bireysel günde 4<br> Kurumsal günde 4 |
 | 19 | kartlar | GET |/kartlar/{kartRef}| Bireysel günde 4<br>Kurumsal günde 4 |
 | 20 | kart-detay | GET |/kartlar/{kartRef}/kart-detay	| Bireysel günde 24<br>Kurumsal ÖHK - günde 24 |
-| 21 | kart-hareketleri	 | GET |/kartlar/{kartRef}/kart-hareketleri	| Bireysel günde 4<br>Kurumsal ÖHK - saatte 12 |
+| 21 | kart-hareketleri	 | GET |/kartlar/{kartRef}/kart-hareketleri	| Bireysel günde 32<br>Kurumsal ÖHK - günde 32 |
 
 YÖS ve HHS son 24 saat içerisindeki sorgu sayılarını toplayarak elde ettiği sonuçlarla limit kontrolü yapmalıdır (Pencere yöntemi).  
 

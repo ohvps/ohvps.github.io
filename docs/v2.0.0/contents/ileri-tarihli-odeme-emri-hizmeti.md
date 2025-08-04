@@ -8,7 +8,8 @@
 
 İleri tarihli ödeme emri güncelleme hizmeti YÖS üzerinden yapılamayacaktır. ÖHK aktif olan düzenli ödeme talimat rızasını iptal ederek, yeniden oluşturabilecektir.
 
-HHS üzerinden ilgili güncelleme hizmeti sağlanabilir. İleri tarihli talimat içerisinde yapılan güncelleme sonucunda olay bildirim ile YÖS'e bildirim sağlanacaktır. HHS üzerinden güncelleme yapılırken talimat tarihine dair kontroller ileri tarihli ödeme emri oluşturma süreci ile aynı olmalıdır.
+HHS üzerinden ilgili güncelleme hizmeti sağlanabilir. İleri tarihli talimat içerisinde yapılan güncelleme sonucunda olay bildirim ile YÖS'e bildirim sağlanacaktır. HHS üzerinden güncelleme yapılırken talimat tarihine dair ileri bir tarihe güncelleme adımı olmamalıdır. Sadece ilk oluşturulan talimat tarihinden öncesi olacak şekilde güncelleme yapılmasına izin verilmelidir.
+
 
  
 İleri Tarili Ödeme Emri Başlatma Hizmeti 5 temel akışdan oluşur:  

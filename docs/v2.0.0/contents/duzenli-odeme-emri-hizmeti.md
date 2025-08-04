@@ -8,7 +8,7 @@ Düzenli ödeme hizmetini online bankacılık sistemlerinde sunan HHS'lerin, ÖH
 
 Düzenli ödeme talimatı güncelleme hizmeti YÖS üzerinden yapılamayacaktır. ÖHK aktif olan düzenli ödeme talimat rızasını iptal ederek, yeniden oluşturabilecektir.
 
-HHS üzerinden ilgili güncelleme hizmeti sağlanabilir. Ödeme planında yapılan güncelleme sonucunda olay bildirim ile YÖS'e bildirim sağlanacaktır. HHS üzerinden güncelleme yapılırken ilk ödeme ve son ödeme gününe dair kontroller düzenli ödeme emri oluşturma süreci ile aynı olmalıdır.
+HHS üzerinden ilgili güncelleme hizmeti sağlanabilir. Ödeme planında yapılan güncelleme sonucunda olay bildirim ile YÖS'e bildirim sağlanacaktır. HHS üzerinden güncelleme yapılırken son ödeme günü için ileri bir tarihe güncelleme adımı olmamalıdır. Sadece ilk oluşturulan düzenli ödeme emri içerisindeki son ödeme gününden öncesi olacak şekilde güncelleme yapılmasına izin verilmelidir.
 
  
 Düzenli Ödeme Emri Başlatma Hizmeti 5 temel akışdan oluşur:  

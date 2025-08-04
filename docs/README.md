@@ -2,7 +2,7 @@
 
 **<font size=6>API İLKE VE KURALLARI  </font>**  
 
- <font size=4><b>SÜRÜM 1.1.0 aktif sürümdür.<br>
+ <font size=4><b>SÜRÜM 2.0.0 aktif sürümdür.<br>
  <https://github.com/ohvps/ohvps.github.io/commits/master> adresi üzerinden değişiklik açıklamaları ve tarihçesi incelenebilir.<br></b></font>
 
 <br/>
