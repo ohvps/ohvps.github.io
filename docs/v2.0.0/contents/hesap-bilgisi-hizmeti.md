@@ -331,7 +331,7 @@ HesapBilgisiRizasi kaynağı için kullanılabilecek durum göstergeleri şu şe
 DELETE /hesap-bilgisi-rizasi çağrısı, bir HBHS'nin önceden oluşturulmuş bir hesap erişim rızasını (yetkili olsun veya olmasın) silmesine izin verir. Müşteri, rızasını HHS üzerinden iptal etmek yerine, HBHS üzerinden bu rızasını kaldırmak isteyebilir.  
 Bu API çağrısı, müşterinin HBHS üzerinden hesap bilgisi rızasını iptal etmesine ve HHS nezdindeki hesap bilgisi rızası nesnesinin silinmesini sağlar.  
 
-- Rıza durumunun K ve Y olduğu durumlarda erişim belirteci kontrolü yapılır. Geçerli bir erişim belirteci yok ise HHS tarafından **”TR.OHVPS.Connection.InvalidToken”** hatası dönülür.
+- Rıza durumunun K olduğu durumlarda erişim belirteci kontrolü yapılır. Geçerli bir erişim belirteci yok ise HHS tarafından **”TR.OHVPS.Connection.InvalidToken”** hatası dönülür.
 - İstek başlığında yer alan X-Access-Token ile ilişkili rıza, silinen rizaNo bilgisi ile aynı olup olmadığı kontrol edilir. Farklı olması durumunda **"TR.OHVPS.Resource.NotFound"** hatası dönülür.
 - Rıza İptali API'sinde ilgili rıza kaydı bulunamaz ise **”TR.OHVPS.Resource.NotFound”** hatası dönülür.
 - Rıza durumu Yetki Sonlandırıldı - S veya Yetki İptal - I ise **"TR.OHVPS.Resource.ConsentRevoked"** hatası dönülür.
@@ -691,7 +691,9 @@ HHS'de açık/aktif statüde yer alan kartlar seçilip rıza tahsis edildikten s
 | Kart Sahibi Ad/Soyad | kartSahibi | AN3..140 | Z | Kart sahibi ya da kart sahiplerinin ad-soyadı. |
 | Kart Ticari Unvan|kartTicariUnvan| AN3..140 | K | Kart türü ticari ise ilgili alanda ticari unvan iletilmesi zorunludur.  |
 | Kart Ürün Adı | kartUrunAdi | AN3..140 | Z | Kart bilgilerinin ürün adı. Örn : TROY Business Kart |
-| Ekstre Türleri | ekstreTurleri | Kompleks:EkstreTurleri | Z |İlgili karta ait ekstre türleri(TRY, USD, EUR, GBP) dizi içerisinde iletilmelidir. Yurtdışı ekstre olan kartlar için TRY haricinde de değer dönülmesi gerekmektedir. Ekstre olmadığı halde banka kartı gibi kart tiplerinde TRY olarak iletilmesi gerekmektedir. |
+| Ekstre Türleri | ekstreTurleri | Kompleks:EkstreTurleri | Z |Ekstre türleri dizi içerisinde iletilmelidir.  |
+| > Ekstre Statüsü | ekstreStatu | AN1 | Z | **TR.OHVPS.DataCode.EkstreStatu** sıralı veri türü değerlerinden birini alır.Ekstre türünün durumu iletilmelidir. Pasif olan ekstre türleri de iletilmelidir. |
+| > Para Birimi 	| paraBirimi   |  AN3  | Z | İlgili karta ait ekstre türleri para birimi.(TRY, USD, EUR, GBP) Yurtdışı ekstre olan kartlar için TRY haricinde de değer dönülmesi gerekmektedir. Ekstre olmadığı halde banka kartı gibi kart tiplerinde TRY olarak iletilmesi gerekmektedir. | 
 | Kart Rumuz | kartRumuz | AN3..140 | İ | Kart için rumuz bilgisi var ise gönderilebilir. |
 | Kart Şeması | kartSema | AN1 | Z | **TR.OHVPS.DataCode.KartSema** sıralı veri türü değerlerinden birini alır. |
 
@@ -844,7 +846,7 @@ Yukarıdaki kontroller tamamlandıktan sonra HHS tarafından "KartHareketleri" n
 |> Orijinal İşlem Tutarı | orijinalIslemTutari |Kompleks:OrijinalIslemTutari | K|Ekstre türü dışında yapılan işleme ait tutar bilgisi. Örneğin; ekstre türü TRY gönderildiği durumda işlem 100 JPY ise işlem tutarı alanında 100 değeri iletilmelidir. ||
 | >> Tutar  | tutar   | AN1..24   | Z |   İşlem tutarı için regex patterni şu şekildedir: '``` ^\d{1,18}$|^\d{1,18}\.\d{1,5}$```' |
 | >> Para Birimi 	| paraBirimi   |  AN3  | Z | Para Birimi. Örneğin; 100 JPY ise işlem tutar para birimi alanında JPY değeri iletilmelidir. | 
-|> İşlem Tarihi | islemTarihi |ISODateTime | Z| İşlemin gerçekleştiği zaman bilgisi  ||
+|> İşlem Tarihi | islemTarihi |ISODateTime | Z| İşlemin gerçekleştiği zaman bilgisi. Taksitli işlemlerde içinde bulunulan dönem özelinde ilgili taksitin yansıyacağı tarih değeri dönülmelidir.   ||
 |> Borç Alacak Göstergesi | borcAlacak |AN1 | Z| TR.OHVPS.DataCode.BrcAlc sıralı veri tipi değerlerinden birini alır. Sorgulanacak işlemlerin borç / alacak kriteri B: Karta borç yaratan işlem.A: Karta alacak yaratan işlem. N: Finansal olmayan işlem {“B”,”A”,”N”}  ||
 |> İşlem Açıklaması | islemAciklamasi |AN1..200 | Z| Alışveriş işlemi olması durumunda sadece işyeri adını içeren açıklama, diğer işlemler için mevcut işlem açıklaması iletilir. HHS'ler tüm kart hareketlerini YÖS'ler ile paylaşmakla yükümlü olup, hassas veri içeren(örn: faiz, komisyon bilgisi içeren vb.) işlem hareketleri de bu kapsamda değerlendirilerek işlem açıklamasının maskeli olarak iletilmesi sağlanır. Kelimelerin ilk 3 hanesi maskeli olacak şekilde, ancak sakıncalı bulunan kelimeler varsa; (örn: faiz, komiyon vb.) kelimelerin tamamı maskeli olacak şekilde gösterilebilir.   ||
 |> İşlem Puan Bilgileri | islemPuanBilgileri |Kompleks: IslemPuanBilgileri | K| İlgili işlem sonrası kazanılan veya kullanılan bir puan değeri varsa iletilmesi gerekmektedir. | İlgili alanda koşula uygun olarak değer dönülecekse; kart tipi kredi, banka ve ön ödemeli kartı olanlar için dönülmesi zorunludur.|
