@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[110],{805:function(t,n,e){"use strict";e.r(n);var l=e(28),s=Object(l.a)({},(function(){var t=this._self._c;return t("ContentSlotsDistributor",{attrs:{"slot-key":this.$parent.slotKey}},[t("ClientOnly",[t("OlayDinlemeAPIV11")],1)],1)}),[],!1,null,null,null);n.default=s.exports}}]);
