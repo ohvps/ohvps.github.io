@@ -436,6 +436,7 @@ RFC 2616'da belirlenmiş olan durum kodları (status code) gönderilen isteğin 
 - 4xx İstemci Hatası
 - 5xx Sunucu Hatası
 
+
 **errorCode Alanında Kullanılabilecek Sıralı Hata Tipleri :**
 
 >**TR.OHVPS.Resource**  
@@ -519,6 +520,8 @@ TR.OHVPS.Resource.InvalidFormat hatası alındığı durumda; fieldErrors nesnes
 | 429 Too Many Requests| **Belirli bir süre içinde çok fazla talepte bulunulduğu için işlem reddedildi.** HHS’ler adil kullanım politikalarını aşan talepleri kısıtlayabilir.| E | E | E |
 | 500 Internal Server Error | **API sunucu / servis katmanında sorun oluştu. İşlem başarısız.**<br> 5XX hata durumlarında yanıt gövde değeri olmadığı için mesaj imzalama yapılamaz ve x-jws-signature alanı boş olarak iletilir.<br> Bu durumda x-jws-signature kontrolü yapılmamalıdır.| E | E | E |
 | 503 Service Unavailable | **Hizmet sürümü kullanımdan kaldırıldı.** Bir API'nin kullanımdan kaldırıldığı ve artık bir HHS tarafından operasyonel olarak desteklenmediği durumlarda, URI yolu hala etkin olabilir ve API isteklerini kabul edebilir.  Bu durumda, YÖS'ün API sürümünün çevrimdışı olduğunun farkında olması için 503 Hizmet Kullanılamıyor dönmesi önerilir.| E | E | E |
+
+İş kuralları nezdinde ilgili hata kodları özelleştirilmiş olup HHS tarafından verilecek olan hata kodları ÖHVPS API İlke ve Kuralları dokümanında ilgili alanlarda paylaşılmıştır. Bu çalışmaya ek olarak, HHS'lerin YÖS'lere; YÖS'lerin de ÖHK'lara iletecekleri hata mesaj içeriklerinde standartlaşmaya gidilmiştir. Bu çalışmaya Türkiye'nin İletişim Platformu altında yer alan ÖHVPS > Dokümanlar alanından ulaşabilirsiniz. HHS'lerin ve YÖS'lerin ilgili dokümanı referans alarak mesaj içeriklerini, kurumların kendi müşteri iletişim dili kapsamında düzenleyerek ÖHK'lara gösterebilir olması beklenmektedir.
 
 **Hata Örnekleri:**
 
