@@ -271,7 +271,10 @@ Rıza tesisinin başarıyla sonuçlanması için HBHS'nin istemci kimlik bilgile
           ÖHK’yı doğrularsa,
 
           - ÖHK HBHS üzerinden işlem yapılmasına izin vereceği hesap/kart seçimini yapar. HBHS üzerinden ÖHK’nın verdiği izin bilgilerini ve erişim izninin başlangıç/bitiş tarihi bilgilerini, HHS'ler bilgilendirme amaçlı ÖHK’ya gösterir. 
-          - Rıza güncelleme akışı ile başlatılan rıza isteklerinde mevcut rıza içerisinde seçili olan hesap/kart bilgileri ÖHK'ya HHS ekranlarında aynı şekilde seçili olarak getirilmelidir. ÖHK'lar mevcut rıza içerisinde izin vermiş olduğu hesap/kart bilgilerini seçili olarak görüntüleyip yeni rıza için izin vermek istediği hesap/kartların seçimini güncelleyebilmelidir.
+          - Rıza güncelleme akışı ile başlatılan rıza isteklerinde mevcut rıza içerisinde seçili olan hesap/kart bilgileri ÖHK'ya HHS ekranlarında aynı şekilde seçili olarak getirilmelidir. ÖHK'lar mevcut rıza içerisinde izin vermiş olduğu hesap/kart bilgilerini seçili olarak görüntüleyip yeni rıza için izin vermek istediği hesap/kartların seçimini güncelleyebilmelidir. 
+          
+              Rıza güncelleme sürecinde;  ÖHK’nın HHS’deki mevcut rızası kapsamında YÖS’ten gelen rıza izin türlerine göre listeleme yapılmalıdır. 01,02,03,04,05,06 seçildiyse hesapların; 07,08,09 seçildiyse kartların HHS’de listelenmesi gerekmektedir. Örneğin: ÖHK’nın mevcut rızasında hesaplar (01,02,03 rıza türlerinin seçili olsun) için hesap bilgisi rızası verilmiş olsun eğer YÖS’ten rıza güncelleme kapsamında 01,02, 07,08 rıza türleri geldiği durumda HHS’nin mevcut hesap rızasını ve doğal olarak hesapları listelemesi ek olarak da karta ait rıza türleri seçildiğinde kartların listelenmesi gerekecektir. Ancak, ÖHK’nın mevcut rızasında hesaplar (01,02,03 rıza türlerinin seçili olsun) için hesap bilgisi rızası verilmiş olsun eğer YÖS’ten rıza güncelleme kapsamında  07,08, 09 rıza türleri geldiği farz edildiğinde HHS’nin mevcut hesap rızasını göstermemesi ve sadece karta ait rıza türleri seçildiği için kartları listelemesi gerekecektir.
+
           - HHS hesap bilgisi rıza kaynağının durumunu “Yetkilendirildi” olarak günceller. 
           - HHS, ÖHK’yı “olumlu yönlendirme akışı” ile HBHS tarafından tanımlanan yönlendirme adresine yönlendirir:  
 
@@ -373,7 +376,7 @@ Müşteri rızası tesis edilmiş kullanıcı için HBHS API erişim adresinden 
 - HHS tarafından ÖHK’nın “01: Temel Hesap Bilgisi” izin türüne sahipliği kontrol edilir. 01 izin türüne sahip değil ise **”TR.OHVPS.Business.PermissionTypeNotSupported”** hatası dönülür.
 
 Yukarıdaki kontroller tamamlandıktan sonra HHS, "HesapBilgileri" nesnesini oluşturur ve HBHS’ye döner.
-- Hesap bilgisi rızası alınmış ve erişim izni devam eden hesaplar içerisinden herhangi bir hesabın kapatılması ya da pasife alınması durumunda YÖS tarafından yapılan hesap isteğine HHS tarafından hesap bilgisi dönülmelidir.
+- Hesap bilgisi rızası alınmış ve erişim izni devam eden hesaplar içerisinden herhangi bir hesabın kapatılması ya da pasife alınması durumunda YÖS tarafından yapılan hesap isteğine HHS tarafından hesap bilgisi dönülmelidir. Rıza içerisinde tek bir hesap olması halinde ilgili hesabın kapatılması durumunda rıza 09 iptal detay kodu ile iptal edilmelidir.
 Kapalı hesap için TR.OHVPS.DataCode.HspDrm veri türünden KAPALI değeri ile, pasif hesap için TR.OHVPS.DataCode.HspDrm veri türünden PASIF değeri ile dönülmelidir. 
 
 

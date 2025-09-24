@@ -100,7 +100,7 @@ yer almaktadır.
 API v1.1.0 sürümünde ;
  -   API v1.0.2 sürümüne ek Olay Bildirim ve Ayrık GKD özellikleri eklenmiştir. Süreçlerin daha iyi işlemesi için çeşitli güncellemeler yapılmıştır.
 
-API v2.0 sürümünde ileri tarihli ödeme ve düzenli ödeme talimatı bölümleri ve ilişkili olarak deney alanları eklenmiştir.
+ -   API v2.0 sürümünde ileri tarihli ödeme emri, düzenli ödeme emri, hesap bilgisi hizmeti içerisinde kart hizmetleri, YÖS üzerinden rıza güncelleme hizmetine dair güncellemeler eklenmiştir.
 
 **Her sürüm değişikliğinde bir önceki sürüm belirli bir süre desteklenecektir. Diğer bir ifadeyle, sadece belirli bir süre için mevcut ve bir önceki sürüm aynı anda erişilebilir olacaktır.**
 
