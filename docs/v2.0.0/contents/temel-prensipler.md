@@ -827,7 +827,7 @@ Maskeli olarak iletilmesi gereken verilerin maskeleme kuralları şu şekildedir
 ## 3.20. Fonksiyonel Olmayan Gereksinimler
 
 
-- HHS’lerin sunuyor oldukları servisleri en fazla 3000 ms içinde yanıt dönecek şekilde tasarlamalıdır.  
+- HHS’lerin sunuyor oldukları servisleri en fazla 6000 ms içinde yanıt dönecek şekilde tasarlamalıdır.  
 
 - HHS'ler mevcut online işlem kanallarından sundukları erişilebilirlik ve performans kriterlerinden daha düşük bir hizmet kalitesi sunmamalıdır.  
 
@@ -884,3 +884,6 @@ YÖS ve HHS son 24 saat içerisindeki sorgu sayılarını toplayarak elde ettiğ
 
 Hesap bilgisi rızasının YÖS tarafından otomatik bir şekilde iptal edilmesi durumu [^Bölüm 9'da](erisim-belirteci.html) açıklanmıştır.
 
+Kart hareketleri için sistemsel sorgu yapıldığı durumda aynı ekstre türü için dönem değeri değiştikçe limit düşmeyecektir. Sayfalama yapıldığı durumlarda ise değişen sayfa numaraları özelinde de limit düşmeyecektir. Aynı sayfa ve aynı dönem özelinde tekrar sorgu yapılması halinde limit düşümü gerçekleşecektir.
+
+Ekstre türü değişmesi durumunda da limit düşümü olmalıdır. 

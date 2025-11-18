@@ -669,7 +669,7 @@ Kart Bilgisi Sorgu Örneği (Belirli Bir Kart) = /kartlar/{kartRef}
 HHS'de açık/aktif statüde yer alan kartlar seçilip rıza tahsis edildikten sonra kartın statüsünün pasif olması durumunda HHS tarafından mevcut kanallarında gösterilen bilgiler kart liste, detay ve hareket sorgulamalarında dönülmelidir. HHS'de kart seçimi yapıp rıza tahsis edildikten sonra ilgili kartın gösterimi özelinde HHS'de kısıtlama getirilmesi durumları için örnekler aşağıda detaylandırılmıştır.
 
 - Rıza içerisinde sadece kart olması durumunda ilgili rızanın 09 iptal detay kodu ile iptal edilmesi sağlanacaktır.
-- Rıza içerisinde ilgili kartın dışında hesap/kart olması durumunda rıza iptal edilmeyecektir. İlgili kart haricinde kart listesinde farklı bir kart yoksa kart listesi, sorgulandığında **TR.OHVPS.Resource.RestrictedChannelAccess** hata kodu dönülecektir.
+- Rıza içerisinde ilgili kartın dışında hesap/kart olması durumunda rıza iptal edilmeyecektir. İlgili kart haricinde kart listesinde farklı bir kart yoksa kart listesi, sorgulandığında **TR.OHVPS.Business.RestrictedChannelAccess** hata kodu dönülecektir.
 
 
 
@@ -717,7 +717,7 @@ KartBilgileri nesnesi ile elde edilen kart listesinde yer alan kartların detay�
 - İlgili rıza numarasının “08: Detaylı Kart Bilgisi” izin türüne sahipliği kontrol edilir. 08 izin türüne sahip değil ise **”TR.OHVPS.Business.PermissionTypeNotSupported"”** hatası dönülür. 
 - **Alt kart tipi Sanal Kart olanlar için detay bilgisi görüntülenmeyecektir.** Sanal kart özelinde detay bilgi sorgulaması yapılması durumunda HHS tarafından **"TR.OHVPS.Business.CardTypeNotSupported"** hatası dönülür.
 - Kart tipi olarak; iptal statüsünde olan banka ve ön ödemeli kartlar için detay sorgulaması yapılamayacaktır. Kart tipi kredi kartı olup iptal statüsünde olan ve  borcu olmayan bir  kart için de kart detay sorgulaması yapılamayacaktır. Detay sorgulaması yapılamayacak bir kart tipi için HHS'ler tarafından **"TR.OHVPS.Business.InvalidCardStatus"** hatası dönülür.
-- Rıza içerisinde kanal görüntüleme yetkisi kapatılan kart için detay bilgisi sorgulandığında **TR.OHVPS.Resource.RestrictedChannelAccess** hata kodu dönülecektir.
+- Rıza içerisinde kanal görüntüleme yetkisi kapatılan kart için detay bilgisi sorgulandığında **TR.OHVPS.Business.RestrictedChannelAccess** hata kodu dönülecektir.
 - İlk kredi kartı oluşan ÖHK'lar henüz ekstre oluşmadığı sebebiyle tarih ve borç bilgileri de oluşmamış olabilir. Bu sebeple ilgili tutar bilgileri sıfır olacak şekilde dönülmelidir. Tarih bilgileri ise varsayılan tarih bilgisi olarak dönülebilir.(Örn:01/01/1900) Bu şekilde gelen bir tarih bilgisi YÖS'ler tarafından ÖHK'ya boş olarak gösterilebilir. 
 
 Yukarıdaki kontroller tamamlandıktan sonra HHS tarafından **“KartDetayBilgileri”** nesnesi dönülür.
@@ -801,7 +801,7 @@ KartBilgileri nesnesi ile elde edilen kart listesinde yer alan kartların işlem
   - RizaDurumu “K: Yetki Kullanıldı” ise kontrollere devam edilir.
 - Kart Hareket Bilgilerinin Sorgulanması yapılırken HHS tarafından ÖHK’nın “09:  Ayrıntılı Kart İşlem Bilgisi” izin türüne sahipliği kontrol edilir. 09 izin türüne sahip değil ise **”TR.OHVPS.Business.PermissionTypeNotSupported”** hatası dönülür. 
 - Kart tipi olarak; iptal statüsünde olan banka ve ön ödemeli kartlar için hareket sorgulaması yapılamayacaktır. Kart tipi kredi kartı olup iptal statüsünde olan ve borcu olmayan bir kart için de kart hareket sorgulaması yapılamayacaktır. Hareket sorgulaması yapılamayacak bir kart tipi için HHS'ler tarafından **"TR.OHVPS.Business.InvalidCardStatus"** hatası dönülmelidir.
-- -Rıza içerisinde kanal görüntüleme yetkisi kapatılan kart için hareket bilgisi sorgulandığında **TR.OHVPS.Resource.RestrictedChannelAccess** hata kodu dönülecektir.
+- -Rıza içerisinde kanal görüntüleme yetkisi kapatılan kart için hareket bilgisi sorgulandığında **TR.OHVPS.Business.RestrictedChannelAccess** hata kodu dönülecektir.
 - İptal statüsünde olan kart tipleri için geçmişe dönük hareket sorgulaması yapılamayacaktır. Örneğin; Kredi Kartı için -12 ile 18 arası olan dönem değeri iptal statüsünde olan kredi kartı için 0 ile 18 arasında yapılabilecektir. Tüm kart tipleri için belirtilen parametrede yer alan dönem değerinin uygun gönderilmediği durumda **”TR.OHVPS.Business.InvalidPeriodValue”** hatası dönülür.
 - Ekstre bilgisi bulunmayan sanal ve ek kredi kart bilgileri için ekstre dönemlerine özgü kart hareketleri sorgulandığında HHS'ler tarafından **TR.OHVPS.Business.NoStatementForCard** hatası dönülmelidir.
 
