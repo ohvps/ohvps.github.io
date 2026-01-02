@@ -6,6 +6,8 @@ Düzenli ödeme hizmetini online bankacılık sistemlerinde sunan HHS'lerin, ÖH
 
  HHS'ler düzenli ödeme hizmetini sunuş bilgilerini HHS API aracılığı ile yayınlayacaklardır. YÖS, düzenli ödeme hizmeti başlatabileceği HHS'lerin listesini HHS API'de yer alan "hizmetTipi":"03" parametresi ile alabilir. YÖS, düzenli ödeme hizmeti sunmayan HHS'ye düzenli ödeme talimat rızası isteği yapması durumunda HHS tarafından **TR.OHVPS.Business.RegularPaymentOrderNotSupported** hatası iletilmelidir.
 
+ Düzenli ödeme emri hizmetinde TRY dışındaki yabancı para birimleri için HHS tarafından destek verilmemesi durumunda **TR.OHVPS.Business.InvalidCurrencyCode** hataası verilmelidir.
+
 Düzenli ödeme talimatı güncelleme hizmeti YÖS üzerinden yapılamayacaktır. ÖHK aktif olan düzenli ödeme talimat rızasını iptal ederek, yeniden oluşturabilecektir.
 
 HHS üzerinden ilgili güncelleme hizmeti sağlanabilir. Ödeme planında yapılan güncelleme sonucunda olay bildirim ile YÖS'e bildirim sağlanacaktır. HHS üzerinden güncelleme yapılırken son ödeme günü için ileri bir tarihe güncelleme adımı olmamalıdır. Sadece ilk oluşturulan düzenli ödeme emri içerisindeki son ödeme gününden öncesi olacak şekilde güncelleme yapılmasına izin verilmelidir.
