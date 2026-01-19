@@ -257,12 +257,12 @@ export const duzenliOdemeEmriRizaHeader = [
   {
       ID: 5,
       Key: 'X-JWS-Signature',
-      Value: 'eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5ia20uY29tLnRyIiwiZXhwIjoxNjk5NDQ2NzY2LCJpYXQiOjE2OTk0NDI4NjYsImJvZHkiOiIwNmQ5YzAxODViMDRkNDAzZGVjZjIyMTczYTFiMjhlZTBGQzUyNjIwNzQ1N0IwOTcyRTlCRjRGRUFERDY5Q0MwIn0.ET19olrqy_ezfULZqkIiNxyWO8gdmuQk9Roc1QuculIPTQL7rpxIWq4wVS_tlUdSxmSMs6nIS31rpL-yGtdZ01bKKfjJSynw3m2-Gw-w5LFdH7S3jCHiZULK2ucb00GvCRfP7TPKEnLvyQvbz_yG4FGn4fFt26rBnofenGzKMii1vJ2-_1GWxJz5VGFxfGsHOTWG_0Ss6nrAJ6UWnaUzTb1ZYPu10u1CbP_tvp4EU42I_csoOZt6-we8Xhy5khAtHzA45dWDJDiyfwFs-JFIq2qVkX808rQ71dXm3qElSB_PLAHDvB41nztTNjOxdoVBSs3gYTGt2KoptnMuY9QNKQ        '
+      Value: 'eyJhbGciOiJSUzI*******************wczovL2FwaS5ia20uY29tLnRyIiwi'
   },
   {
       ID: 6,
       Key: 'PSU-Fraud-Check',
-      Value: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJBbm9tYWx5RmxhZyI6IjAiLCJMYXN0UGFzc3dvcmRDaGFuZ2VGbGFnIjoiMSIsIkZpcnN0TG9naW5GbGFnIjoiMSIsIkRldmljZUZpcnN0TG9naW5GbGFnIjoiMSIsIkJsYWNrbGlzdEZsYWciOiIwIiwiTWFsd2FyZUZsYWciOiIwIiwiVW5zYWZlQWNjb3VudEZsYWciOiIwIiwiZXhwIjoxNjk5MzQ5MTk2LCJpYXQiOjE2OTkzNDUyOTYsImlzcyI6Imh0dHBzOi8vYXBpLmJrbS5jb20udHIifQ.bfJjCtxYwgW-duWOPuWTNzoOnLjNi_tQUA-9PQEWKdNPQkw4nVoDPjNbgFkZYtmQg4z8gLJbosBZq3KWwEAfCQX1EFjRHpkIwQVBF7nTho7GHZ8qraz5HYNyWVLWFvQFaIp3KXl4QcmKJhuhXPQn0UGDEQVZ11urDX_xFtbKe2oAU-cw7lijM7XHKchaxL4bYeXW08yrCchZgx4uRgO6mP_0_Mtk63go9UV-1Xok2Fm_HGZaDIONGT1a_3QfWb1UkDcV8Yj907V5zu_vnEz1-52aOFPiSSEssHVvwioMK_tP0AJvQIu5WsyLCodNSAUwr6bGv-lVqMsI5caQEDHo8Q'
+      Value: 'eyJ0eXAiOiJKV1QiLC**********************x5RmxhZyI6IjAiLCJMYXN0UGF'
   }, 
   {
       ID: 7,
@@ -272,7 +272,7 @@ export const duzenliOdemeEmriRizaHeader = [
   {
       ID: 8,
       Key: 'Authorization',
-      Value: 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJmdXRoWW5oTTBDd3FkY2FxUElQMWlHdXlGeDFackJZeElXZmRzTlN6dlZJIn0.eyJleHAiOjE3MDA1NzU3NzQsImlhdCI6MTcwMDU3MjE3NCwianRpIjoiMWYxMjFkMjItYTg5ZS00NzA4LTlmZjctMDRiMDhiZjcxMmQ0IiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmUuYXBpLXByZXByb2QuYmttLmNvbS50ci9hdXRoL3JlYWxtcy9ia21wcmVwcm9kcmVhbG0iLCJzdWIiOiJjYTZjOGQ1Mi0wNWNkLTQyNmMtODIxNS0yMzg2YjZiYTRkNTMiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiIyOGFhOTBjY2UzY2M2ZTIzMzU5NTY3N2Y5ODEyNGZmNyIsInNjb3BlIjoia29sYXNfd3JpdGUga29sYXNfcmVhZCIsImNsaWVudElkIjoiMjhhYTkwY2NlM2NjNmUyMzM1OTU2NzdmOTgxMjRmZjciLCJjbGllbnRIb3N0IjoiMTkyLjE2OC4xNTQuMzEiLCJjbGllbnRfb3JnYW5pemF0aW9uX3R5cGUiOiIyIiwiY2xpZW50QWRkcmVzcyI6IjE5Mi4xNjguMTU0LjMxIiwiY2xpZW50X2NvZGUiOiIwODA3In0.hOflRFxE2h9uKPRrn3DHU8pW9uJUgZMgK9j1T8eyYQSHggmPu3UKK_qqiHW3YAnSErBEDrqsS23XX_5_Qi2V6SM2-HMGYq14A_Z9GiQZRboDAls8U71boR6dU0CBIjYNTHOG876seOlG7ur7e5E_LW5jd7_4cecsegl8MAnIIFiKvMGhm-uP_kfAwbQiiyO5oSxdNMicvmi9S_AmW6wApW-mP-2vVmwoKZRdywhP8uCZnnWHkW1shsZaYoEjGG-B_2k8nckDUp7ag54Ow28gX-gGmQPwHSX4LGLxjw4AcrTP-cXSTnHayaL64a7tGXGBOfO_AsPB-R07yZjyv_BR2Q'
+      Value: 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiA******************3FkY2FxUElQMWlHdXl'
   },
 ];
 export const duzenliOdemeEmriRizaResponseHeader = [
@@ -304,7 +304,7 @@ export const duzenliOdemeEmriRizaResponseHeader = [
   {
       ID: 6,
       Key: 'X-JWS-Signature',
-      Value: 'eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5ia20uY29tLnRyIiwiZXhwIjoxNzAwNjQ5ODI1LCJpYXQiOjE3MDA2NDU5MjUsImJvZHkiOiJlNzcwNjgzNWU3YTI2OTNkOGU1YzQ3NjY2MjU5ZTdhOTQ0MTU0NTdDMTVFODJFQTVCODM5OTEwQUNEQzk3REJFIn0.VZBLdZScE4eGyqnxiVKzvVlU85BoYIBUGU_GCwOskpSdVVQUL7KtFKxNMPuzZ6gpfLX6mZS1j1FAFFpnDjTz9k65J7KYmDQor_DwMuazsr_m7XG9EyM3EDbnPOLi-xij8V2VcN6tBzVKK5MZ8oyP0Pv4hoBhMpLZKoo6vmS_yiammvxq9QY1UyKkPiqSfdvLZhK8XsZ3GXTEHNGLGJVd51pBzCZ1YHP6ILtUfZAU5Rq_r3bjA-hMxrBZOqPBjoAJstmiHsJ3bp2quJVmwzXEGBiSvQvZwFpkomRMRgLdkHQ4L1Fg4NnNZ4oEQJA_bLqL_I2pax2phc_47KVjK4udWg'
+      Value: 'eyJhbGciOiJSUzI1NiJ9*********************wIjoxNzAwNjQ5ODI1LCJpYX'
   },
 
 ];
@@ -322,7 +322,7 @@ export const requestHeadersAfterToken = [
   {
     ID: 3,
     Key: 'X-Access-Token',
-    Value: 'eyJh1123344566UzUxMiJ9.eyJpc3MiOiJodHRwczovL2FwaS5ia20uY29tLnRyIiwiZXhwIjoxNzAwOTk1NzAzLCJpYXQiOjE3MDA5OTE1MDMsInJpemFfbm8iOiIxMDhlN2MwNzdjMGQ0N2M4Yjc1YjRiNWIzY2UwZGFiNSIsInNjb3BlIjpbIm9kZW1lX2VtcmkiXSwidW5pcXVlX25hbWUiOiJna2Rfc3ViamVjdCJ9.ZRlhYiVRJDcPSTsrSzh_pgOStq1e8to9BWIjikmM-86knfIVonTXAx6kBkReofj267Bg2ozCx2MeCKPYkmNCyA'
+    Value: 'eyJh1123344566UzU***************a20uY29tLnRyIiw'
 },
   {
     ID: 4,
@@ -342,7 +342,7 @@ export const requestHeadersAfterToken = [
   {
       ID: 7,
       Key: 'X-JWS-Signature',
-      Value: 'eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5ia20uY29tLnRyIiwiZXhwIjoxNzAwNjQ5ODI1LCJpYXQiOjE3MDA2NDU5MjUsImJvZHkiOiJlNzcwNjgzNWU3YTI2OTNkOGU1YzQ3NjY2MjU5ZTdhOTQ0MTU0NTdDMTVFODJFQTVCODM5OTEwQUNEQzk3REJFIn0.VZBLdZScE4eGyqnxiVKzvVlU85BoYIBUGU_GCwOskpSdVVQUL7KtFKxNMPuzZ6gpfLX6mZS1j1FAFFpnDjTz9k65J7KYmDQor_DwMuazsr_m7XG9EyM3EDbnPOLi-xij8V2VcN6tBzVKK5MZ8oyP0Pv4hoBhMpLZKoo6vmS_yiammvxq9QY1UyKkPiqSfdvLZhK8XsZ3GXTEHNGLGJVd51pBzCZ1YHP6ILtUfZAU5Rq_r3bjA-hMxrBZOqPBjoAJstmiHsJ3bp2quJVmwzXEGBiSvQvZwFpkomRMRgLdkHQ4L1Fg4NnNZ4oEQJA_bLqL_I2pax2phc_47KVjK4udWg'
+      Value: 'eyJhbGciOi*******************RMRgLdkHQ4L1Fg4NnNZ4oEQJA_bLqL_I2pax2phc_47KVjK4udWg'
   },
 
 ];
@@ -350,7 +350,7 @@ export const duzenliOdemeEmriErisimBelirteciHeader = [
   {
       ID: 9,
       Key: 'X-Access-Token',
-      Value: 'eyJh1123344566UzUxMiJ9.eyJpc3MiOiJodHRwczovL2FwaS5ia20uY29tLnRyIiwiZXhwIjoxNzAwOTk1NzAzLCJpYXQiOjE3MDA5OTE1MDMsInJpemFfbm8iOiIxMDhlN2MwNzdjMGQ0N2M4Yjc1YjRiNWIzY2UwZGFiNSIsInNjb3BlIjpbIm9kZW1lX2VtcmkiXSwidW5pcXVlX25hbWUiOiJna2Rfc3ViamVjdCJ9.ZRlhYiVRJDcPSTsrSzh_pgOStq1e8to9BWIjikmM-86knfIVonTXAx6kBkReofj267Bg2ozCx2MeCKPYkmNCyA'
+      Value: 'eyJh1123344**********ovL2FwaS5ia20uY29tLnRyIiw'
   },
   {
       ID: 3,
@@ -365,12 +365,12 @@ export const duzenliOdemeEmriErisimBelirteciHeader = [
   {
       ID: 8,
       Key: 'PSU-Fraud-Check',
-      Value: 'eyJ0e123456789CJhbGciOiJSUzI1NiJ9.eyJBbm9tYWx5RmxhZyI6IjAiLCJMYXN0UGFzc3dvcmRDaGFuZ2VGbGFnIjoiMSIsIkZpcnN0TG9naW5GbGFnIjoiMSIsIkRldmljZUZpcnN0TG9naW5GbGFnIjoiMSIsIkJsYWNrbGlzdEZsYWciOiIwIiwiTWFsd2FyZUZsYWciOiIwIiwiVW5zYWZlQWNjb3VudEZsYWciOiIwIiwiZXhwIjoxNjk5MzQ5MTk2LCJpYXQiOjE2OTkzNDUyOTYsImlzcyI6Imh0dHBzOi8vYXBpLmJrbS5jb20udHIifQ.bfJjCtxYwgW-duWOPuWTNzoOnLjNi_tQUA-9PQEWKdNPQkw4nVoDPjNbgFkZYtmQg4z8gLJbosBZq3KWwEAfCQX1EFjRHpkIwQVBF7nTho7GHZ8qraz5HYNyWVLWFvQFaIp3KXl4QcmKJhuhXPQn0UGDEQVZ11urDX_xFtbKe2oAU-cw7lijM7XHKchaxL4bYeXW08yrCchZgx4uRgO6mP_0_Mtk63go9UV-1Xok2Fm_HGZaDIONGT1a_3QfWb1UkDcV8Yj907V5zu_vnEz1-52aOFPiSSEssHVvwioMK_tP0AJvQIu5WsyLCodNSAUwr6bGv-lVqMsI5caQEDHo8Q'
+      Value: 'eyJ0e123456789CJhbGciOiJS*****************iLCJMYXN0UGFzc3dvc'
   },
   {
       ID: 4,
       Key: 'X-JWS-Signature',
-      Value: 'eyJhbGciO123456789eyJpc3MiOiJodHRwczovL2FwaS5ia20uY29tLnRyIiwiZXhwIjoxNjk5NDQ2NzY2LCJpYXQiOjE2OTk0NDI4NjYsImJvZHkiOiIwNmQ5YzAxODViMDRkNDAzZGVjZjIyMTczYTFiMjhlZTBGQzUyNjIwNzQ1N0IwOTcyRTlCRjRGRUFERDY5Q0MwIn0.ET19olrqy_ezfULZqkIiNxyWO8gdmuQk9Roc1QuculIPTQL7rpxIWq4wVS_tlUdSxmSMs6nIS31rpL-yGtdZ01bKKfjJSynw3m2-Gw-w5LFdH7S3jCHiZULK2ucb00GvCRfP7TPKEnLvyQvbz_yG4FGn4fFt26rBnofenGzKMii1vJ2-_1GWxJz5VGFxfGsHOTWG_0Ss6nrAJ6UWnaUzTb1ZYPu10u1CbP_tvp4EU42I_csoOZt6-we8Xhy5khAtHzA45dWDJDiyfwFs-JFIq2qVkX808rQ71dXm3qElSB_PLAHDvB41nztTNjOxdoVBSs3gYTGt2KoptnMuY9QNKQ        '
+      Value: 'eyJhbGciO123**********L2FwaS5ia20uY29tLnR'
   },
   {
       ID: 6,
@@ -391,7 +391,7 @@ export const duzenliOdemeEmriErisimBelirteciHeader = [
   {
       ID: 8,
       Key: 'Authorization',
-      Value: 'Bearer ey..............'
+      Value: 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiA******************3FkY2FxUElQMWlHdXl'
   },
 ];
 export const DuzenliOdemeEmriRızasiRequest={
@@ -557,9 +557,9 @@ export const ErisimBelirteciRequest ={
     "rizaTip": "D"
 }
 export const ErisimBelirteciResponse200 =	{
-  "erisimBelirteci": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJodHRwczovL2FwaS5ia20uY29tLnRyIiwiZXhwIjoxNzAwOTk1NzAzLCJpYXQiOjE3MDA5OTE1MDMsInJpemFfbm8iOiIxMDhlN2MwNzdjMGQ0N2M4Yjc1YjRiNWIzY2UwZGFiNSIsInNjb3BlIjpbIm9kZW1lX2VtcmkiXSwidW5pcXVlX25hbWUiOiJna2Rfc3ViamVjdCJ9.ZRlhYiVRJDcPSTsrSzh_pgOStq1e8to9BWIjikmM-86knfIVonTXAx6kBkReofj267Bg2ozCx2MeCKPYkmNCyA",
+  "erisimBelirteci": "eyJhbGciO*************************iOiJodHRwczovL2FwaS5ia20u",
   "gecerlilikSuresi": 300,
-  "yenilemeBelirteci": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJodHRwczovL2FwaS5ia20uY29tLnRyIiwiZXhwIjoxNzAyMjkxNDAzLCJpYXQiOjE3MDA5OTE1MDMsInJpemFfbm8iOiIxMDhlN2MwNzdjMGQ0N2M4Yjc1YjRiNWIzY2UwZGFiNSIsInNjb3BlIjpbIm9kZW1lX2VtcmkiXSwidW5pcXVlX25hbWUiOiJna2Rfc3ViamVjdCJ9.rUZv1pLPo07kVfsX8LMl9xkS2cepZXaUmLWz_y32NPPAciIrItF0idA-El33o8sc5hjdRx-LZSBQOq24O4kgag",
+  "yenilemeBelirteci": "eyJhbGciOi***************2FwaS5ia20uY29tLnRyIiwi",
   "yenilemeBelirteciGecerlilikSuresi": 11098122
 }
 export const ErisimBelirteciResponse400 ={
@@ -636,7 +636,7 @@ export const duzenliOdemeEmriYenilemeBelirteci ={
     "rizaNo": "1178d476afc24468a7411019ea411053",
     "yetTip": "yenileme_belirteci",
     "rizaTip": "D",
-    "yenilemeBelirteci": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJodHRwczovL2FwaS5ia20uY29tLnRyIiwiZXhwIjoxNzAyMjkxNDAzLCJpYXQiOjE3MDA5OTE1MDMsInJpemFfbm8iOiIxMDhlN2MwNzdjMGQ0N2M4Yjc1YjRiNWIzY2UwZGFiNSIsInNjb3BlIjpbIm9kZW1lX2VtcmkiXSwidW5pcXVlX25hbWUiOiJna2Rfc3ViamVjdCJ9.rUZv1pLPo07kVfsX8LMl9xkS2cepZXaUmLWz_y32NPPAciIrItF0idA-El33o8sc5hjdRx-LZSBQOq24O4kgag"
+    "yenilemeBelirteci": "eyJhbGciOi***************2FwaS5ia20uY29tLnRyIiwi"
 }
 export const DuzenliOdemeEmriRequestBody ={
   "rzBlg": {
