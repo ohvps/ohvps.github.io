@@ -99,7 +99,10 @@ HHS’nin base pathi/alt-dizin/GKD Karşılama Ekranı?rizano={rızano}
   - HHS’ye özel ödeme izni verilmeyen farklı statülerin bulunması durumu kontrol edilir. (İlgili hesabın para transfer işlemine yetkisi olmaması) Kontrollere istinaden hata oluşması durumunda  **"TR.OHVPS.Business.AccountUnauthorized"** hatası dönülür.
   - HHS’de gönderen hesabın aktifliği kontrol edilir. Kontrollere istinaden hata oluşması durumunda  **"TR.OHVPS.Business.AccountInactive"** hatası dönülür.
 - Gönderen Hesap Numarası için, Hesap Referansı kullanılıyorsa Hesap Numarası kullanılmayabilir. Hesap referansı ile ödeme emri rızası başlatılacak ise HHS hesap referansı değeri ile ilişkilendirilmiş mevcut bir hesap bilgisi rızası var mı kontrol etmelidir. Eğer aktif bir rızası yok ise **"TR.OHVPS.Business.ActiveConsentNotFound"** hatası dönülür.
-- Hesap bakiye kontrolünün rıza aşamasında yapılmaması gerekmektedir. Çünkü ÖHK ödeme emri gerçekleşene kadar hesabına para eklemesi yapabilir.  
+- Hesap bakiye kontrolünün rıza aşamasında yapılmaması gerekmektedir. Çünkü ÖHK ödeme emri gerçekleşene kadar hesabına para eklemesi yapabilir.
+-	Alıcı ve gönderen hesabın aynı olması durumunda **“TR.OHVPS.Business.SenderRecipientSame”** hatası dönmesi beklenmektedir. Bu hata HHS insiyatifindedir.
+-	Müşterinin kendi hesapları arasında talimat veremeyeceği durumların kontrolü için **“TR.OHVPS.Business.SameAccountTransferRestricted”** hatası dönmesi beklenmektedir. Bu hata HHS insiyatifindedir.
+
 
 **Tek Seferlik Ödeme**  
 - Tek seferlik ödeme akışı YÖS'ten HHS'ye giden istekte, gönderen kimlik bilgilerinin olmadığı durumda gerçekleşir. Gönderen kimlik bilgisi olmadığında, KOLAS sorgusu yapılamayacağından ötürü, HHS tarafından **"TR.OHVPS.Resource.OneTimePaymentNotSupport"** hatası dönülmelidir. ÖHK'nın YÖS'ün müşterisi olmadığı durumda tek seferlik ödeme başlatılabilir.  
@@ -110,7 +113,9 @@ Tek seferlik ödeme akışında hem yönlendirmeli hem de ayrık GKD akışı il
   İşyeri Ödemesi akışı örneği: Bir e-ticaret sitesinde, üye olmadan alışveriş yapılması ve ödemenin YÖS tarafından kimlik bilgisi olmadan başlatılması  
   Kişiden kişiye para transferi akışı örneği: QR veya diğer yöntemler ile alıcı bilgilerinin gönderici ile paylaşılması ve YÖS üzerinden gönderici bilgileri olmadan alıcıya para transferi yapılması için rıza verilmesi
 
-Yukarıdaki kontroller tamamlandıktan sonra HHS, ödeme için benzersiz “RizaNo” ile “OdemeEmriRizasi” nesnesi oluşturur ve ÖBHS’ye döner.<br> HHS, OdemeEmriRizasi oluşturduğu anda durumunu “Yetki Bekleniyor” olarak düzenler.  
+Yukarıdaki kontroller tamamlandıktan sonra HHS, ödeme için benzersiz “RizaNo” ile “OdemeEmriRizasi” nesnesi oluşturur ve ÖBHS’ye döner.<br> HHS, OdemeEmriRizasi oluşturduğu anda durumunu “Yetki Bekleniyor” olarak düzenler. 
+
+**Tek seferlik ödeme işlemlerinde (gönderen kimlik bilgilerinin boş olduğu durumda) ileri tarihli ve düzenli ödeme emri rızası başlatılabilir; ancak bu iş modelleri hizmete sunulmadan önce BKM ile paylaşılmalı ve onayı alınmalıdır.**
 
  
 
