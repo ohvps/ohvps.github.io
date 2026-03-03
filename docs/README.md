@@ -41,7 +41,7 @@
 
 YÖS’lerin sadece kendilerinin destekledikleri API sürümünü destekleyen HHS’leri listelemesi gerekmektedir.
 
-1.1.0 sürümü için hesap bilgisi rızası ve ödeme emri rızası oluşturmak isteyen YÖS kurumu için YOS API içerisinde apiBilgileri olarak "ODS" tanımı HHS tarafından kontrol edilmelidir. YÖS'ün ilgili tanımı olmaması halinde rıza isteğinde "TR.OHVPS.Resource.APIVersionNotSupported" hatası verilmelidir.
+2.0.0 sürümü için hesap bilgisi rızası ve ödeme emri rızası oluşturmak isteyen YÖS kurumu için YOS API içerisinde apiBilgileri olarak "ODS" tanımı HHS tarafından kontrol edilmelidir. YÖS'ün ilgili tanımı olmaması halinde rıza isteğinde "TR.OHVPS.Resource.APIVersionNotSupported" hatası verilmelidir.
 
 [Sürüm Yönetimi](surum-yonetimi) bölümünden tarih bilgilerinin açıklamalarına ulaşılabilir.
 
