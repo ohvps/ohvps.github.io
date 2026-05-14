@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[104],{821:function(t,n,e){"use strict";e.r(n);var l=e(29),s=Object(l.a)({},(function(){var t=this._self._c;return t("ContentSlotsDistributor",{attrs:{"slot-key":this.$parent.slotKey}},[t("ClientOnly",[t("DuzenliOdemeEmriAPIv20")],1)],1)}),[],!1,null,null,null);n.default=s.exports}}]);
