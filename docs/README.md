@@ -32,9 +32,9 @@
 
 - YÖS(1.1.0’dan 2.0.0’a geçecek olan) Sertifikasyon Bitiş Tarihi : 15 Mayıs 2026
 
-- YÖS(1.1.0’dan 2.0.0'a geçecek olan ve direkt 2.0.0’a gelecek olan) Yeni Sürüm Üretime Geçiş Son Tarihi : 1 Haziran 2026
+- YÖS(1.1.0’dan 2.0.0'a geçecek olan ve direkt 2.0.0’a gelecek olan) Yeni Sürüm Üretime Geçiş Son Tarihi : 1 Haziran 2026'dan 1 Temmuz 2026’ya ertelenmiştir. (14.05.2026 tarihinde ilgili tarih güncellemesi sağlanmıştır.)
 
-- Eski Sürümün(1.1.0) Kaldırılma Tarihi : 1 Haziran 2026
+- Eski Sürümün(1.1.0) Kaldırılma Tarihi : 1 Haziran 2026’dan 1 Temmuz 2026’ya ertelenmiştir. (14.05.2026 tarihinde ilgili tarih güncellemesi sağlanmıştır.)
 <br>
 
 **ÖNEMLİ BİLGİLENDİRME**: 31 Aralık 2025 tarihinde geçiş zorunluluğu olan HHS’lerin 1 Ağustos 2025 tarihinden sonra Sürüm 2.0.0 sertifikasyonuna gelmesi durumunda en geç 31 Aralık 2025 tarihine kadar sertifikasyon sürecini tamamlayarak üretime geçmeleri gerekmektedir.  
