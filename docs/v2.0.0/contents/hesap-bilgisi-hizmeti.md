@@ -649,7 +649,7 @@ Bu erişim noktalarından tüm kartların veya belirli bir kartın bilgileri sor
 
 Her durumda onay ekranında rıza verilen tüm kartların listesini ÖHK'ya göstermesi zorunludur. Kapalı devre çalışan kartlar kapsama dahil değildir.
 
-YÖS tarafından başlatılan rıza isteklerinde hesap ve kart izin türlerinin seçili olması durumunda HHS ekranlarında hem hesapların hem de kartların listelenmesi sağlanacaktır. Ancak hesap ya da kart bilgilerinden en az birinin seçilmesi yeterlidir. Hem hesap hem kart bilgisi için seçim yapılması zorunluluğu bulunmamaktadır.
+YÖS tarafından başlatılan rıza isteklerinde hesap ve kart izin türlerinin seçili olması durumunda HHS ekranlarında hem hesapların hem de kartların listelenmesi sağlanacaktır. Ancak hesap ya da kart bilgilerinden en az birinin seçilmesi yeterlidir. Hem hesap hem kart bilgisi için seçim yapılması zorunluluğu bulunmamaktadır. YÖS üzerinden hem hesap hem kart izin türü seçilerek başlatılan rıza akışında, müşteri HHS ekranında yalnızca hesap seçimi yapmış ise, kartlar servisine yapılan isteklerde HHS tarafından hata yerine boş liste dönülmelidir. 
 
 - Parametrede yer alan değerlerin doğru gönderildiği kontrol edilir. Hatalı gönderilmesi durumunda HHS tarafından **”TR.OHVPS.Resource.InvalidFormat”** hatası dönülür. Parametrede yer alan değerler gönderilmediği durumda parametredeki varsayılan değerler ile kart bilgileri dönülür. Varsayılan değerler Tablo 20'de belirtilmiştir.
 - Erişim belirteci kontrolü yapılır. Geçerli bir erişim belirteci yok ise HHS tarafından **”TR.OHVPS.Connection.InvalidToken”** hatası dönülür.

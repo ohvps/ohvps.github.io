@@ -50,7 +50,7 @@ Sertifikasyon onayı alan HHS'ler, üretim ortamına geçişte "Yaygınlaştırm
 
 Aşağıdaki durumlarda HHS'nin statüsü Geçici Kapalı olarak güncellenebilecektir: 
 
- - HHS'nin talebi ile uzun süreli (minimum 1 saati aşan) yaşanan teknik sorunlarda G statüsüne alınabilecektir. G statüsüne alınma talebinin HHS tarafından ohvps@bkm.com.tr ye mail atarak iletilmesi beklenmektedir. 
+ - HHS'nin talebi ile uzun süreli (minimum 1 saati aşan) yaşanan teknik sorunlarda ve BKM’ye en az 3 iş günü öncesinde bildirilen planlı kesintilerde G statüsüne alınabilecektir.
  - İlgili resmi kurumlardan gelen talep üzerine HHS G statüsüne alınabilir.
 
  YÖS'ler hem A hem G statüsünde olan HHS'leri listeleyebilir. Ancak YÖS uygulamasında G statüsünde olan bir HHS müşteri tarafından seçilirse müşteriye gerekli hata mesajının verilmesi ve ilgili HHS'ye istek atılmaması sağlanmalıdır.
