@@ -1,4 +1,4 @@
-# HHS ve YÖS API
+# HHS, YÖS ve Temsilcilik API
 
 HHS API, HHS’lerin detay bilgilerini sunan servistir. Bu servis ile aşağıdaki istek/yanıt yapıları ile ihtiyaç duyulabilecek ilgili bilgiler temin edilebilir. HHS API için “hhs_read” scope bilgisi kullanılır.   
 
@@ -70,7 +70,7 @@ Hem YOS hem de HHS API için geçerli olacak; logo gönderiminde dikkat edilmesi
   
 
 
-## YOS API  
+## YÖS API  
 
 YÖS API, YÖS statüsundeki kurumların detay bilgilerini sunan servistir. Bu servis ile aşağıdaki istek/yanıt yapıları ile ihtiyaç duyulabilecek ilgili bilgiler temin edilebilir. YÖS API için “yos_read” scope bilgisi kullanılır.   
 
@@ -118,3 +118,23 @@ YÖS API Tablo 20’deki istek parametrelerine göre sorgulanabilir.
 | > logoFormat | logoFormat | AN3 | Z | TR.OHVPS.DataCode.LogoFormat sıralı veri türü değerlerlerinden birini alır. | 
 | Durum | durum | AN1 | Z |YÖS'ün durum bilgisidir.<br> TR.OHVPS.DataCode.YOSDurumu sıralı veri tipinde alabileceği değerler belirtilmiştir.| 
 
+## TEMSİLCİLİK API 
+
+Temsilcilik API, ÖHVPS kapsamında hizmet sunan temsilcilere ilişkin bilgilerin HHS’ler tarafından sorgulanabilmesini sağlamak amacıyla sunulmaktadır. Bu API aracılığıyla, bir temsilcinin hangi YÖS (ler) aracılığı ile hizmet sunduğu ve hangi roller kapsamında faaliyet gösterdiği bilgilerine erişilebilecektir.
+Temsilcilik API için HHS'ler, mevcuttaki yos_read scope bilgisini kullanarak erişebilecektir.
+
+**GET /temsilcilik/{temsilciKod}** 
+
+İşlem Sorgu Örneği =  /temsilcilik  &#8680;  bu sorgu yöntemi ile tüm temsilcilerin dizi şeklinde verileri listelenir.
+
+İşlem Sorgu Örneği =  /temsilcilik/25015  &#8680;  bu sorgu yöntemi ile gönderilmiş olan temsilciKod’a ait bilgiler listelenir. 
+
+**Tablo 23: Temsilcilik Bilgileri Sorgulama Yanıtı “Temsilcilik” nesnesi**
+|Alan Adı |Parametre Adı	|Format	|Zorunlu / Koşullu /  İsteğe bağlı	|Açıklama	|
+| --- | --- | --- | --- | --- | --- |
+| Temsilci kodu | temsilciKod | AN5 | Z |Temsilcinin kod bilgisi. | 
+| Temsilci unvanı | unvan | AN6..140 | Z |Temsilcinin unvan bilgisi. | 
+| Temsilci yös listesi | calistigiYosListesi | [Array][0..N] | Z | Temsilcinin çalıştığı Yös'lere ait özet bilgi. | 
+| > Yös kodu | yosKod | AN4 | Z |YÖS'ün kod bilgisi | 
+| > Temsilci durum kodu | durum |AN1 | Z | Örnek: [ "A", "G", "K" ]<br> - A - Açık<br> - G - Geçici Hizmet Veremiyor<br> - K - Kapalı |
+| > Temsilcinin hizmet sunduğu roller | temsilcilikRoller | [Array][1..N] | Z | Temsilcinin rollerini belirten değer. Örnek: [ "obhs", "hbhs" ]<br> - obhs - Ödeme Bilgisi Hizmet Sağlayıcı Rolü<br> - hbhs - Hesap Bilgisi Hizmet Sağlayıcı Rolü |

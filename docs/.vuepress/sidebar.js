@@ -45,7 +45,7 @@ module.exports = [
             
             },
             {
-                title: '10. HHS ve YÖS API',
+                title: '10. HHS, YÖS ve Temsilcilik API',
                 path: '/v2.0.1/contents/hhs-yos-api',
             
             },

@@ -41,6 +41,14 @@ Bu bölümde Ödeme Hizmetleri Veri Paylaşım Servisleri (Hesap Bilgisi Hizmeti
 -	API alan isimleri Türkçe olarak tanımlanmıştır. Ancak API başlığı (header) alanındaki alan isimleri özelinde, API Geçitleri tarafından otomatik olarak tanınabilmesi gözetilerek, İngilizce isimlendirme tercih edilmiştir.  
 -   ÖHK halihazırda ödeme hesaplarına, çevrim içi (mobil bankacılık, internet bankacılığı vb.) erişebilir durumda ise, HHS'nin varsa Açık Bankacılık kanal veya yetki tanımını varsayılan değeri AÇIK olacak şekilde sunması gerekmektedir. HHS’nin, Bireysel/Kurumsal/Ticari müşteri ayrımı yapmaksızın tüm müşterileri için, çevrim içi kanallarda hesap hareketlerine erişim ve ödeme yapabilme yetkisi bulunması durumunda, yine aynı şekilde Açık Bankacılık kanal veya yetki tanımını da varsayılan değeri AÇIK olacak şekilde sunması gerekmektedir. HHS Açık Bankacılık hizmetini kanal/yetki tanımı ile yönetmesi durumunda hizmeti verdiği ilgili kanallar(web,mobil) üzerinden müşterisine Açma/Kapama olanağı şeklinde sunması gerekmektedir.    
 -   5411 Sayılı Kanun kapsamındaki bankalar, HHS API içerisinde Aktif durumda listelenmemişken, YÖS API içerisinde listelenemezler. 
+-   Temsilci, Yönetmelik’in 3’üncü maddesinin birinci fıkrasının (tt) bendinde "Kuruluş adına ve hesabına hareket eden gerçek veya tüzel kişi" olarak tanımlanmakta olup aynı Yönetmelik’in 18’inci maddesi uyarınca, Kuruluşların ödeme hizmetlerini elektronik veya fiziki kanallar üzerinden temsilci aracılığıyla yürütebilmesi mümkün kılınmaktadır.
+
+    Bu kapsamda, Kuruluşların (YÖS'lerin) ÖHVPS kapsamında Yetkili Ödeme Sağlayıcı rolünde vermiş olduğu hizmetleri temsilcilik ilişkisi kapsamında 3. Taraflarca sunulabilmesi için ilk olarak e-posta yolu ile BKM’ye başvuruda bulunması gereklidir.
+
+    Başvuru sonrasında temsilcilik ilişkisi kurulacak 3.tarafa BKM tarafından bir kod ataması yapılacaktır. 
+
+    Kuruluşlar (YÖS'ler) BKM’nin ilgili temsilci için belirleyeceği ve Kuruluşa ileteceği kodu, temsilci üzerinden başlatılan işlemlerde “X-Agent-Code” başlığında iletecektir.
+    İstek başlığında gönderilen X-Agent-Code HHS'ler tarafından başarılı bir şekilde yanıt dönülmesi beklenmektedir. 
 
 ## 3.2.	İstem (Çağrı) ve Oturum  
 
@@ -141,11 +149,13 @@ HBH:
 [https://gecit-api.bkmtest.com.tr/ohvps/hbh/s2.0/hesaplar/1234/bakiye]()  
 GKD  
 [https://gecit-api.bkmtest.com.tr/ohvps/gkd/s2.0/erisim-belirteci]()  
-HHS – YÖS API  
+HHS – YÖS - Temsilcilik API  
 [https://gecit-api.bkmtest.com.tr/hhs-api/s2.0/hhs]()  
 [https://gecit-api.bkmtest.com.tr/hhs-api/s2.0/hhs/1234]()  
 [https://gecit-api.bkmtest.com.tr/yos-api/s2.0/yos]()  
 [https://gecit-api.bkmtest.com.tr/yos-api/s2.0/yos/1234]()  
+[https://gecit-api.bkmtest.com.tr/temsilcilik-api/s2.0/temsilcilik]()  
+[https://gecit-api.bkmtest.com.tr/temsilcilik-api/s2.0/temsilcilik/12345]() 
 
   
 HHS’lerin sağlayacakları API’lerdeki URI çevrimi örnekleri aşağıdaki gibidir.  
@@ -374,6 +384,7 @@ Erişim adreslerinin ve alanların kullanımı Zorunlu(Z), İsteğe Bağlı(İ) 
 |Authorization|AN1..4096|Katılımcı ile GEÇİT arasındaki otorizasyon için kullanılan token bilgisidir. <br>Yekilendirme türlerinden İstemci Kimlik Bilgileri’ni adresler. <br> [Bölüm 3.6 Karakter Kodlama](#_3-6-karakter-kodlama) bölümünde açıklanan karakter formatında gönderilmesi beklenmektedir.|Z  |Z |Z  |Z| Z | Z|
 | X-Access-Token |AN1..4096|ÖHK’nın GKD sürecinde doğrulanması sonrasında kullanılan erişim simgesi. Yetkilendirme türlerinden Yetkilendirme Kodu (GKD)’nu adresler. <br>[Bölüm 3.6 Karakter Kodlama](#_3-6-karakter-kodlama) bölümünde açıklanan karakter formatında gönderilmesi beklenmektedir.|İ|İ|İ|-|-|-|
 |X-JWS-Signature|AN1..4096|Payload gövdesinin ayrılmış bir JWS imzasını içeren üstbilgi.<br> Bu başlığın ne zaman belirtilmesi gerektiği hususu ilgili endpoint için belirtilmiştir.<br> Mesaj imzalama kullanılan API ve methoda göre gönderimi zorunludur.|K |K  |K |K|-|-|-|
+|X-Agent-Code|AN5|Temsilci kodunu ifade etmektedir. Bu kod, YÖS’lerin ÖHVPS kapsamındaki hizmetleri temsilcilik ilişkisi çerçevesinde üçüncü taraflar aracılığıyla sunabilmesi amacıyla BKM’ye yapılan başvurunun uygun bulunmasının ardından BKM tarafından atanır. Temsilci aracılığıyla gerçekleştirilen tüm işlemlerde, ilgili temsilciye ait X-Agent-Code bilgisinin request header’ında iletilmesi zorunludur. HHS’ler, YÖS’ler tarafından iletilen X-Agent-Code bilgisini kendi sistemlerinde saklayabilir ve işlem kayıtlarıyla ilişkilendirebilir. |K|K|K|K|K|K|
 
 ## 3.16. Yanıt Başlığı  
 
