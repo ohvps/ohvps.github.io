@@ -8,12 +8,6 @@
 <br/>
 
 
-**SÜRÜM 1.1.0 geçiş tarihleri şu şekildedir.**
-
--	HHS/YÖS rolünde Sertifikasyona Geliş Son Tarihi : 1 Ağustos 2025
-
--	HHS rolünde Üretime Geçiş Son Tarihi : 1 Eylül 2025
-
 **SÜRÜM 2.0.0 geçiş tarihleri şu şekildedir.**
   
 - Sürüm Geçiş Tarihi : 1 Ağustos 2025

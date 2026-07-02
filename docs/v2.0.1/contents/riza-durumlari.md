@@ -51,6 +51,12 @@ Benzer şekilde YÖS'ler hangi ortamlardan (web/mobil) hizmet veriyorsa, aynı o
 
 **Kural**: Bir ÖHK'nın, bir YÖS için, bir HHS'de aktif tek bir rızası olabilir.
 Bir ÖHK hem kişisel olarak hem de bir kurumun kullanıcısı olabilir. Bu durumda kurum ve kişisel rıza aynı anda mevcut olabilmelidir. Rıza nesneleri, HHS tarafından uygun şekilde yönetilmelidir.  
+Aynı kural YÖS’ün hizmet verdiği Temsilcisi için de geçerlidir. Örneğin: 
+
+Bir müşterinin bir Hesap Hizmet Sağlayıcısı (HHS) nezdinde, aynı Yetkili Ödeme Hizmeti Sağlayıcı (YÖS) veya onun temsilcisi üzerinden yalnızca bir adet aktif hesap bilgisi rızası bulunabilir.
+Bu sistematiğin temel kuralları ve uygulanması şu şekildedir:
+- Çoklu Temsilci Kısıtı: Bir YÖS, birden fazla temsilci aracılığıyla hizmet verse dahi bu kural geçerlidir. Müşteri, ilgili YÖS'ün herhangi bir temsilcisi üzerinden zaten bir HHS'de rıza vermişse, aynı YÖS'ün bir başka temsilcisi üzerinden yeni bir rıza veremez.
+- Doğrulama ve Doğrudan Engelleme: HHS, bir müşteri için ilgili YÖS'e ait zaten aktif bir rıza olup olmadığını kontrol eder. Eğer temsilcilerden biri üzerinden mevcut bir rıza varsa, aynı müşteri başka bir temsilci üzerinden mükerrer rıza oluşturmaya çalıştığında işlem sistem tarafından reddedilmeli ve hata mesajı döndürülmelidir. Aynı durum YÖS’ün kendisi için de geçerlidir. HHS, bir müşteri için ilgili YÖS'e ait zaten aktif bir rıza olup olmadığını kontrol eder. Eğer temsilcilerden biri üzerinden mevcut bir rıza varsa, aynı müşteri YÖS’ün kendisi için mükerrer rıza oluşturmaya çalıştığında işlem sistem tarafından reddedilmeli ve hata mesajı döndürülmelidir.
 
  1.	Hesap Bilgisi Rızası isteği HHS’ye iletilir.  
     a.	HHS ÖHK'ya ait içeride rıza var mı kontrol eder. Eğer yoksa **Yetki Bekleniyor - B** rıza durumu ile yeni rıza oluşturur.   
