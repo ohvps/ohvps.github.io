@@ -24,5 +24,5 @@
 | **PÖS** |Perakende Ödeme Sistemi |TCMB tarafından işletilen, işlemlerin Türk Lirası üzerinden gerçekleştiği Müşteriler Arası Türk Lirası Aktarım Sistemi | | |
 | **TR-Karekod** |TR-Karekod İlke ve Kuralları |Ulusal karekod (TR Karekod) ilke ve kurallarının belirlendiği belge | | |
 | **YÖS** |Yetkili Ödeme Hizmeti Sağlayıcısı |Ödeme emri başlatma hizmeti ve/veya hesap bilgisi hizmeti sunan tüzel kişi |Third Party Payment Service Providers  |TPP |
-| **Temsilci** |Temsilci |Kuruluş adına ve hesabına hareket eden tüzel kişidir. | | |
+| **Temsilci** |Temsilci |Kuruluş adına ve hesabına hareket eden gerçek veya tüzel kişi. | | |
 

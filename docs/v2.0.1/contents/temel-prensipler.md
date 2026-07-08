@@ -95,7 +95,7 @@ API’ler, dünya ölçeğinde yaygın bir şekilde kullanılan Temsili Durum Tr
 API sonraki aşamalarda doğabilecek gereksinimleri ve daha karmaşık kullanım durumlarını karşılamak için sürümler halinde geliştirilir ve bu durum tasarım sırasında göz önünde bulundurulur.   
 
 API v1.0.2 sürümünde ;
--	Kapsamdaki ödeme hesapları : Vadesiz TL, yabancı para hesapları (gerçek ve tüzel kişilere ait ödeme hesapları), Kredili Mevduat Hesabı 
+-	Kapsamdaki ödeme hesapları : Vadesiz TL, Döviz(yabancı para hesapları), Altın/Gümüş/ Platin/Paladyum hesapları, Kredili Mevduat Hesapları
 -	Tekil ödeme (Virman/Havale/FAST/Müşterilerarası TL Aktarım Sistemi)
     -	Virman ve havale işlemleri kapsamında yabancı para transferi yapılabilir.
 -	Hesap bilgisi hizmetleri
