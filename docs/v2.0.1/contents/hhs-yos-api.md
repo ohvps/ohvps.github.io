@@ -63,7 +63,7 @@ Hem YOS hem de HHS API için geçerli olacak; logo gönderiminde dikkat edilmesi
 4. YÖS uygulamasında gösterim esnasında logoların hızlı yüklenmesi ve düşük veri tüketmesi açısından; logo boyutu 250 KB’ın altında olmalıdır.
 5. HHS ve YÖS’lerin tüm logo türlerini (8 farklı tipte logoyu) zorunlu olarak dönmesi beklenmektedir. 
 6. Circle logo kullanılması gerektiğinde ICON_LOGO logo türü kullanılmalıdır.
-7. Logolarını güncellemek isteyen kurumların en az 3 iş günü öncesinde BKM’ye bu değişikliği GEÇİT Test/Üretim Ortamı Entegrasyon formu ile bildirmesi gereklidir.  BKM de katılımcılara HHS/YÖS API aracılığı ile güncel logonun çekilmesi gerektiğine dair bilgilendirme yapar.
+7. Logolarını güncellemek isteyen Kurumlar bu değişikliği, pys üzerinden (https://pys-preprod.bkm.com.tr, https://pys.bkm.com.tr ) güncelleyerek onaya iletmeleri gereklidir. BKM de katılımcılara HHS/YÖS API aracılığı ile güncel logonun çekilmesi gerektiğine dair bilgilendirme yapar.
 8. Logoları anlık çeken katılımcıların, herhangi bir teknik nedenden dolayı güncel logoyu alamadığı durum olabilir. Bu durumda sistemlerine kaydetmiş olduğu kuruma ait ikon logoyu göstermesi gereklidir.
 9. HHS ve YÖS’ler API aracılığı ile almış oldukları logoların formatı üzerinde değişiklik (kare, yuvarlak hale getirip resize etmek gibi) yapabilirler. Ancak logonun görsel ve yazılarını etkileyecek bir  değişiklik yapmamalıdırlar. 
 10. YÖS/HHS mobil uygulamasındaki dark mode ve light mode kullanımlarında, hangi logonun kullanılacağına uygulama sahibi karar verecektir. 

@@ -7,6 +7,9 @@
 
 <br/>
 
+**SÜRÜM 2.0.1 geçiş tarihleri şu şekildedir.**
+
+- Sürüm Geçiş Tarihi : 7 Ekim 2026
 
 **SÜRÜM 2.0.0 geçiş tarihleri şu şekildedir.**
   
