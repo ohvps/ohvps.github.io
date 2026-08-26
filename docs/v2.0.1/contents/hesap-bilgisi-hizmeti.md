@@ -804,6 +804,8 @@ KartBilgileri nesnesi ile elde edilen kart listesinde yer alan kartların işlem
 - -Rıza içerisinde kanal görüntüleme yetkisi kapatılan kart için hareket bilgisi sorgulandığında **TR.OHVPS.Business.RestrictedChannelAccess** hata kodu dönülecektir.
 - İptal statüsünde olan kart tipleri için geçmişe dönük hareket sorgulaması yapılamayacaktır. Örneğin; Kredi Kartı için -12 ile 18 arası olan dönem değeri iptal statüsünde olan kredi kartı için 0 ile 18 arasında yapılabilecektir. Tüm kart tipleri için belirtilen parametrede yer alan dönem değerinin uygun gönderilmediği durumda **”TR.OHVPS.Business.InvalidPeriodValue”** hatası dönülür.
 - Ekstre bilgisi bulunmayan sanal ve ek kredi kart bilgileri için ekstre dönemlerine özgü kart hareketleri sorgulandığında HHS'ler tarafından **TR.OHVPS.Business.NoStatementForCard** hatası dönülmelidir.
+Kredi kartı hareket sorgulamasında ilgili dönemde kart işlemi bulunmaması halinde dahi ekstre oluşturulmalı ve işlem listesi boş olarak döndürülmelidir. Hata mesajı dönülmemelidir.
+Örneğin: Nisan, Mayıs, Haziran ve Temmuz ayları için sırasıyla -4, -3, -2, -1 dönem değerleri atanmış olsun. Mayıs ayında kart üzerinde işlem bulunmaması durumunda dahi Mayıs ayına ait ekstre oluşturulur ve dönem değeri -3 olarak iletilir; işlem listesi boş olarak yanıt verilir.
 - Kartın yeni oluşması/aktif edilmesi gibi süreçlerler sonucunda ekstre bilgisi hiç oluşmamış dönem değerleri için kart hareketleri sorgulandığında HHS'ler tarafından **TR.OHVPS.Business.StatementNotCreated** hatası dönülmelidir.
 
 Yukarıdaki kontroller tamamlandıktan sonra HHS tarafından "KartHareketleri" nesnesi dönülür.
