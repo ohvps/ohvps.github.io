@@ -58,8 +58,8 @@ Bu sistematiğin temel kuralları ve uygulanması şu şekildedir:
 - Çoklu Temsilci Kısıtı: Bir YÖS, birden fazla temsilci aracılığıyla hizmet verse dahi bu kural geçerlidir. Müşteri, ilgili YÖS'ün herhangi bir temsilcisi üzerinden zaten bir HHS'de rıza vermişse, aynı YÖS'ün bir başka temsilcisi üzerinden yeni bir rıza veremez.
 - Doğrulama ve Doğrudan Engelleme: HHS, bir müşteri için ilgili YÖS'e ait zaten aktif bir rıza olup olmadığını kontrol eder. Eğer temsilcilerden biri üzerinden mevcut bir rıza varsa, aynı müşteri başka bir temsilci üzerinden mükerrer rıza oluşturmaya çalıştığında işlem sistem tarafından reddedilmeli ve hata mesajı döndürülmelidir. Aynı durum YÖS’ün kendisi için de geçerlidir. HHS, bir müşteri için ilgili YÖS'e ait zaten aktif bir rıza olup olmadığını kontrol eder. Eğer temsilcilerden biri üzerinden mevcut bir rıza varsa, aynı müşteri YÖS’ün kendisi için mükerrer rıza oluşturmaya çalıştığında işlem sistem tarafından reddedilmeli ve hata mesajı döndürülmelidir.
 
-Temsilci kendi ad ve namına müşteri edinemez. Müşterinin, YÖS’ün müşterisi olması gerekmektedir.
-Eğer temsilci, temsilci olmadan önce müşteri edinmişse, temsilci olduktan sonra ÖHVPS kapsamındaki müşterilerini YÖS’e devretmesi gerekmektedir.
+Temsilci kendi ad ve hesabına müşteri edinemez. Müşterinin, YÖS’ün müşterisi olması gerekmektedir.
+Eğer temsilci kendi sunduğu başka hizmetler kapsamındaki müşterilerini açık bankacılık (f ve g) hizmetlerinden yararlandırmak istiyorsa, söz konusu açık bankacılık hizmetlerinden yararlanmak isteyen müşterilerinin YÖS’ün de müşterisi olmalarını sağlaması gerekmektedir.
 
  1.	Hesap Bilgisi Rızası isteği HHS’ye iletilir.  
     a.	HHS ÖHK'ya ait içeride rıza var mı kontrol eder. Eğer yoksa **Yetki Bekleniyor - B** rıza durumu ile yeni rıza oluşturur.   
