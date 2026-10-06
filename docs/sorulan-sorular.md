@@ -262,3 +262,36 @@ Mevcutta 1.1.0 sürümü ile üretim ortamında hizmet veren katılımcıların 
 
 **72) Düzenli Ödeme Emri için YÖS ekranından kullanıcıdan hangi bilgiler alınmalıdır? Tutar, tarih veya transfer sıklığı (Haftalık/Aylık) seçilecek midir? Yoksa tüm bilgiler HHS üzerinden mi YÖS'lere gelecek?**
 - Talimat tutarı dahil talimata dair tüm bilgiler HHS ekranlarından alınacak olup, HHS ekranlarından güncelleme yapılabilecektir.
+
+**73) "Temsilci" nedir?** 
+- ÖHVPS Uygulama Kuralları dokümanında da belirtildiği üzere “Temsilci”, Yönetmelik'in 3'üncü maddesinin birinci fıkrasının (tt) bendinde "Kuruluş adına ve hesabına hareket eden gerçek veya tüzel kişi" olarak tanımlanmakta olup Yönetmelik'in 18'inci maddesi uyarınca Kuruluşların, ödeme hizmetlerini elektronik veya fiziki kanallar üzerinden temsilci aracılığıyla yürütebilmesi mümkün kılınmaktadır.
+
+**74) Bankalar temsilcilik hizmeti verebilir mi?** 
+- Yönetmelik'te de belirtildiği üzere sadece "Kuruluşlar" temsilcilik hizmeti verebilmektedir. Bankalar temsilcilik hizmet sunamamaktadır. 
+
+**75) Bir firma iki farklı YÖS'ten temsilcilik hizmeti alabilir mi?** 
+- Evet, alabilir. Temsilci API ile Temsilcilerin hangi YÖS’ler ile entegrasyonu olduğunu görebilirsiniz. İlgili alanı inceleyebilirsiniz -> https://ohvps.github.io/v2.0.1/contents/hhs-yos-api.html#hhs-api 
+
+**76) S2.0.1 kapsamında yayınlanan swagger dokümanına nasıl ulaşabilirim?** 
+- Swagger dokümanına Tripsit>BOSS>HHS Simülatörü v2.0 üzerinden ulaşabilirsiniz. Aynı zamanda ÖHVPS API İlke ve Kuralları dokümanında ihtiyaç duyacağınız tüm bilgiler yer almaktadır. Uri bilgilerine -> https://ohvps.github.io/v2.0.1/contents/temel-prensipler.html#_3-5-kaynak-uri-yol-yap%C4%B1s%C4%B1 erişebilirsiniz.
+
+**77) İstek başlığında iletilen "X-Agent-Code" için HHS'lerin yapması gereken bir kontrol bulunmakta mıdır?**
+- Bulunmamaktadır. HHS'lerin bu kod için herhangi bir doğrulama yapması gerekmez. Geçersiz veya hatalı kodlar zaten BKM Geçit (Gateway) üzerinde engelleneceği için HHS'ye ulaşmayacaktır.
+
+**78) HHS'ler istek başlığında X-Agent-Code gördüğünde nasıl davranmalıdır?**
+- HHS'ler, başlıkta bu alanı gördüklerinde işlemi iptal etmemeli, hata üretmemeli ve akışı normal şekilde devam ettirerek işlemi başarılı bir şekilde sonuçlandırıp yanıtlamalıdır.
+
+**79) S2.0.1 sürümü için yeni bir sertifikasyon süreci var mı?**
+- HHS'ler için herhangi bir  sertifikasyon süreci bulunmamaktadır. Ancak, Temsilcileri üzerinden hizmet vermek isteyen YÖS'ler mevcutta sertifikasyon onayı almış olsalar dahi Temsilcileri kapsamında tekrar sertifikasyona geleceklerdir.
+
+**80) X-Agent-Code için hangi test değerini kullanmalıyım ve isteği nasıl başlatırım?**
+- Test süreci için herhangi bir manuel istek oluşturmanıza gerek bulunmamaktadır. İlgili akışlar otomasyon üzerinden otomatik olarak tetiklenecektir. Otomasyon süreci tamamlandığında, tarafınıza iletilen isteklerin başlığında X-Agent-Code değeri 80000 olarak yer alacaktır. Loglarınız üzerinden bu değerle arama yaparak, gelen isteğin başarıyla karşılandığını teyit etmeniz beklenmektedir. (HHS'leri ilgilendirmektedir.)
+
+**81) HHS'ler tarafından Tek Seferlik Ödeme Emri kapsamında "İleri Tarihli" ve "Düzenli Ödeme Emri" akışları destelenmek zorunda mıdır?**
+- İlgili iş modeli YÖS'ler tarafından sunulabilmektedir. YÖS'lerden böyle bir istek geldiği durumda HHS'lerin ilgili akışı destekleyerek süreci ilerletmesi zorunludur. 
+
+**82) YÖS olarak Temsilcilik hizmeti sunmak istediğimizde ne yapmalıyız?**
+- Öncelikle Temsilci hizmetini sunmak istediğiniz kurum ile mevcutta Temsilci ilişkinizin olması beklenmektedir. Temsilcilik hizmeti kapsamında ohvps@bkm.com.tr'ye e-posta üzerinden talepte bulunmanız beklenmektedir. Sonrasında size iletilecek olan başvuru formunu doldurmanız beklenecektir. Uygun görülmesi durumunda Temsilciniz için BKM tarafından X-Agent Code değeri atanacaktır ve sertifikasyon testlerini gerçekleştirmeniz beklenecektir.
+
+**83) Temsilcilik kapsamında sertifikasyon süreci nasıl işletilmektedir?**
+- Başvurda bulunduğunuz Temsilciniz için X-Agent Code değeri atandıktan sonra PYS üzerinden Temsilci Tanımı yapmanız beklenmektedir. İlgili client'lere erişim sonrasında testlerinizi gerçekleştirmelisiniz. Ekran görseli zorunlu olan senaryolarda Temsilcinizin ekranları olmalı ve ilgili ekranlarda hizmetin YÖS tarafından sağlandığı/aracılık ettiği bilgisi müşterilere gösterilmelidir.

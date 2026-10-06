@@ -1,4 +1,4 @@
-<h1> 1.	Tanım ve Kısaltmalar</h1>  
+# 1.Tanım ve Kısaltmalar 
 
 **Tablo 1: Tanım ve Kısaltmalar**
 
