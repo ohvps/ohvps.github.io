@@ -1,7 +1,7 @@
 module.exports = [
 
     {
-        title: 'SÜRÜM 2.0.1 - Taslak Sürüm',
+        title: 'SÜRÜM 2.0.1 - Aktif Sürüm',
         path: '/v2.0.1/contents/tanim-ve-kisitlamalar',
         children: [
             {
@@ -100,7 +100,7 @@ module.exports = [
 
   
     {
-        title: 'SÜRÜM 2.0.0 - Aktif Sürüm',
+        title: 'SÜRÜM 2.0.0',
         path: '/v2.0.0/contents/tanim-ve-kisitlamalar',
         children: [
             {
