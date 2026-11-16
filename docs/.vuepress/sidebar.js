@@ -1,7 +1,7 @@
 module.exports = [
    {
         title: 'SÜRÜM 2.1.0 - Taslak Sürüm',
-        path: '/v2.0.1/contents/tanim-ve-kisitlamalar',
+        path: '/v2.1.0/contents/tanim-ve-kisitlamalar',
         children: [
             {
                 title: '1. Tanımlar ve Kısıtlamalar',
