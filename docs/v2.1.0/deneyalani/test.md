@@ -1,0 +1,3 @@
+<ClientOnly>
+  <test/>
+</ClientOnly>
