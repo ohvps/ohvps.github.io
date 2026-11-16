@@ -9,30 +9,10 @@ için geçerlidir.
 
 Kapsamda yer alan Hesap Hizmeti Sağlayıcılar için Yönetmelik ve Tebliğde ÖHVPS uyum tarihleri aşağıdaki şekilde belirlenmiştir:
 -	FAST Sistemine katılımcı olmayan ödeme hizmeti sağlayıcılarının, katılımcı olmaları halinde, katılımcı oldukları tarihten itibaren 6 ay içerisinde teknik sertifikasyonlarını başarıyla tamamlayarak GEÇİT’e bağlantı sağlamaları gerekmektedir (HHS’leri ilgilendirmektedir.).
--	FAST Sistemine katılımcı olmayan ödeme ve elektronik para kuruluşlarından her yıl ayrıca hesaplanmak üzere bir önceki takvim yılında gerçekleşen işlemlere göre ödeme hacmi bakımından ilk on arasında yer alan ve; 
+-	FAST Sistemine katılımcı olmayan ödeme ve elektronik para kuruluşlarından her yıl ayrıca hesaplanmak üzere bir önceki takvim yılında gerçekleşen işlemlere göre ödeme hacmi bakımından ilk on arasında yer aldığı TCMB tarafından belirlenen ve; 
+    - Nezdinde bulunan ödeme hesapları için müşterilerine doğrudan çevrim içi erişim imkânı sağlayan kuruluşların, içinde bulunulan yılın sonuna kadar teknik sertifikasyonlarını başarıyla tamamlayarak GEÇİT’e bağlantı sağlamaları gerekmektedir (HHS’leri ilgilendirmektedir.).
 
-    •	    Nezdinde bulunan ödeme hesapları için müşterilerine doğrudan çevrim içi erişim imkânı sağlayan kuruluşların, içinde bulunulan yılın sonuna kadar teknik sertifikasyonlarını başarıyla tamamlayarak GEÇİT’e bağlantı sağlamaları gerekmektedir (HHS’leri ilgilendirmektedir.).
-
-    •	Nezdinde bulunan ödeme hesapları için müşterilerine doğrudan çevrim içi erişim imkânı sağlamayan kuruluşların ise, içinde bulunulan yıl sonuna kadar çevrim içi erişim imkânı sağlamaları halinde çevrim içi erişim imkânı sağladıkları tarihten itibaren 6 ay içerisinde teknik sertifikasyonlarını başarıyla tamamlayarak GEÇİT’e bağlantı sağlamaları gerekmektedir (HHS’leri ilgilendirmektedir.).
-- Yönetmelik ve Tebliğde yapılan 28 Mart 2025 tarihli değişiklik itibarıyla;
-
-    •	FAST Sistemine katılımcı olan ödeme hizmeti sağlayıcılarının 31 Aralık 2025 tarihine kadar teknik sertifikasyonlarını başarıyla tamamlayarak GEÇİT’e bağlantı sağlamaları gerekmektedir (HHS’leri ilgilendirmektedir.).
-
-    •	FAST Sistemine katılımcı olmayan ve 2024 takvim yılı ödeme hacmi bakımından ilk on arasında yer alan kuruluşlardan; 
-
-     - Nezdinde bulunan ödeme hesapları için müşterilerine doğrudan çevrim içi erişim imkânı sağlayanların 31 Aralık 2025 tarihine kadar teknik sertifikasyonlarını başarıyla tamamlayarak GEÇİT’e bağlantı sağlamaları gerekmektedir (HHS’leri ilgilendirmektedir.).
-    -  Nezdinde bulunan ödeme hesapları için müşterilerine doğrudan çevrim içi erişim imkânı sağlamayanların 2025 yılı sonuna kadar çevrim içi erişim imkânı sağlamaları halinde çevrim içi erişim imkânı sağladıkları tarihten itibaren 6 ay içerisinde teknik sertifikasyonlarını başarıyla tamamlayarak GEÇİT’e bağlantı sağlamaları gerekmektedir (HHS’leri ilgilendirmektedir.).
-    - FAST Sistemine katılımcı olmayan ve 2024 takvim yılı ödeme hacmi bakımından ilk 10 arasında yer alan kuruluşlar aşağıdaki gibidir:   
-    
-        |Kuruluş Kod |Kuruluş Unvan	|
-        | --- | --- |
-        |0855	|Elekse Elektronik Para ve Ödeme Kuruluşu A.Ş.	|
-        |0853	|UPT Ödeme Hizmetleri ve Elektronik Para A.Ş.	|
-        |0850	|BPN Ödeme ve Elektronik Para Hizmetleri A.Ş.	|
-        |0830	|D Ödeme Elektronik Para ve Ödeme Hizmetleri A.Ş.	|
-        |0852	|N Kolay Ödeme ve Elektronik Para Kuruluşu A.Ş.	|
-        |0863	|Paytr Ödeme ve Elektronik Para Kuruluşu A.Ş.	|
-
+    - Nezdinde bulunan ödeme hesapları için müşterilerine doğrudan çevrim içi erişim imkânı sağlamayan kuruluşların ise, içinde bulunulan yıl sonuna kadar çevrim içi erişim imkânı sağlamaları halinde çevrim içi erişim imkânı sağladıkları tarihten itibaren 6 ay içerisinde teknik sertifikasyonlarını başarıyla tamamlayarak GEÇİT’e bağlantı sağlamaları gerekmektedir (HHS’leri ilgilendirmektedir.).
 
 -   6493 Sayılı Kanun’un Geçici 3 üncü maddesinin üçüncü fıkrası uyarınca TCMB’ye faaliyet izni başvurusunda bulunmuş olup faaliyet izni süreci devam edenler ile TCMB’den faaliyet izni almış olan Kuruluşlara teknik gereklilikleri belirlenmiş veri paylaşım hizmetleri, standart olmayan servislerle 30 Haziran 2024 tarihine kadar sunulabilir. (HHS’leri ilgilendirmektedir.)
 -	6493 Sayılı Kanun’un Geçici 3 üncü maddesinin üçüncü fıkrası uyarınca TCMB’ye faaliyet izni başvurusunda bulunmuş olup faaliyet izni değerlendirme süreci devam edenler, teknik gereklilikleri belirlenmiş veri paylaşım hizmetlerini, 30 Haziran 2024 tarihine kadar standart olmayan servisleri kullanarak verebilir. (YÖS’leri ilgilendirmektedir.)
