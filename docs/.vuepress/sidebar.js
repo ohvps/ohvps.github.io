@@ -5,91 +5,91 @@ module.exports = [
         children: [
             {
                 title: '1. Tanımlar ve Kısıtlamalar',
-                path: '/v2.0.1/contents/tanim-ve-kisitlamalar'
+                path: '/v2.1.0/contents/tanim-ve-kisitlamalar'
             },
             {
                 title: '2. Kapsam ve Dayanak',
-                path: '/v2.0.1/contents/kapsam-ve-dayanak'
+                path: '/v2.1.0/contents/kapsam-ve-dayanak'
             },
             {
                 title: '3. Temel Prensipler',
-                path: '/v2.0.1/contents/temel-prensipler'
+                path: '/v2.1.0/contents/temel-prensipler'
             },
             {
                 title: '4. Rıza Durumları',
-                path: '/v2.0.1/contents/riza-durumlari'
+                path: '/v2.1.0/contents/riza-durumlari'
             },
             {
                 title: '5. Güçlü Kimlik Doğrulama',
-                path: '/v2.0.1/contents/gkd'                
+                path: '/v2.1.0/contents/gkd'                
             },
             {
                 title: '6. Ödeme Emri Başlatma Hizmeti',
-                path: '/v2.0.1/contents/odeme-emri-baslatma-hizmeti',
+                path: '/v2.1.0/contents/odeme-emri-baslatma-hizmeti',
                
             },
             {
                 title: '7. İleri Tarihli Ödeme Emri Başlatma Hizmeti',
-                path: '/v2.0.1/contents/ileri-tarihli-odeme-emri-hizmeti',
+                path: '/v2.1.0/contents/ileri-tarihli-odeme-emri-hizmeti',
                
             },
             {
                 title: '8. Düzenli Ödeme Emri Başlatma Hizmeti',
-                path: '/v2.0.1/contents/duzenli-odeme-emri-hizmeti',
+                path: '/v2.1.0/contents/duzenli-odeme-emri-hizmeti',
                
             },
             {
                 title: '9. Hesap Bilgisi Hizmeti',
-                path: '/v2.0.1/contents/hesap-bilgisi-hizmeti',
+                path: '/v2.1.0/contents/hesap-bilgisi-hizmeti',
             
             },
             {
                 title: '10. HHS, YÖS ve Temsilcilik API',
-                path: '/v2.0.1/contents/hhs-yos-api',
+                path: '/v2.1.0/contents/hhs-yos-api',
             
             },
             {
                 title: '11. Güçlü Kimlik Doğrulama API',
-                path: '/v2.0.1/contents/erisim-belirteci',
+                path: '/v2.1.0/contents/erisim-belirteci',
             
             },
             {
                 title: '12. Olay Bildirim',
-                path: '/v2.0.1/contents/olay-bildirim',
+                path: '/v2.1.0/contents/olay-bildirim',
             
             },
             {
                 title: '13. Ekler',
-                path: '/v2.0.1/contents/ekler',
+                path: '/v2.1.0/contents/ekler',
             
             },
             {
                 title: '14. Deney Alanı',
-                path: '/v2.0.1/deneyalani/genel-bilgiler',
+                path: '/v2.1.0/deneyalani/genel-bilgiler',
                 children:[
                     {
                         title: '1. Ödeme Emri Başlatma API',
-                        path: '/v2.0.1/deneyalani/odeme-emri-api'
+                        path: '/v2.1.0/deneyalani/odeme-emri-api'
                     },
                     {
                         title: '2. İleri Tarihli Ödeme Emri Başlatma API',
-                        path: '/v2.0.1/deneyalani/ileri-tarihli-odeme-emri-api'
+                        path: '/v2.1.0/deneyalani/ileri-tarihli-odeme-emri-api'
                     },
                     {
                         title: '3. Düzenli Ödeme Emri Başlatma API',
-                        path: '/v2.0.1/deneyalani/duzenli-odeme-emri-api'
+                        path: '/v2.1.0/deneyalani/duzenli-odeme-emri-api'
                     },
                     {
                         title: '4. Hesap Bilgisi API',
-                        path: '/v2.0.1/deneyalani/hesap-bilgisi-api'
+                        path: '/v2.1.0/deneyalani/hesap-bilgisi-api'
                     },
                     {
                         title: '5. HHS - YÖS API',
-                        path: '/v2.0.1/deneyalani/hhs-yos-api'
+                        path: '/v2.1.0/deneyalani/hhs-yos-api'
                     },
                     {
                         title: '6. Olay Bildirim',
-                        path: '/v2.0.1/deneyalani/olay-bildirim-api'
+                        path: '/v2.1.0/deneyalani/olay-bildirim-api'
                     },
                     
                 ]
@@ -195,103 +195,7 @@ module.exports = [
     },
 
   
-    {
-        title: 'SÜRÜM 2.0.0',
-        path: '/v2.0.0/contents/tanim-ve-kisitlamalar',
-        children: [
-            {
-                title: '1. Tanımlar ve Kısıtlamalar',
-                path: '/v2.0.0/contents/tanim-ve-kisitlamalar'
-            },
-            {
-                title: '2. Kapsam ve Dayanak',
-                path: '/v2.0.0/contents/kapsam-ve-dayanak'
-            },
-            {
-                title: '3. Temel Prensipler',
-                path: '/v2.0.0/contents/temel-prensipler'
-            },
-            {
-                title: '4. Rıza Durumları',
-                path: '/v2.0.0/contents/riza-durumlari'
-            },
-            {
-                title: '5. Güçlü Kimlik Doğrulama',
-                path: '/v2.0.0/contents/gkd'                
-            },
-            {
-                title: '6. Ödeme Emri Başlatma Hizmeti',
-                path: '/v2.0.0/contents/odeme-emri-baslatma-hizmeti',
-               
-            },
-            {
-                title: '7. İleri Tarihli Ödeme Emri Başlatma Hizmeti',
-                path: '/v2.0.0/contents/ileri-tarihli-odeme-emri-hizmeti',
-               
-            },
-            {
-                title: '8. Düzenli Ödeme Emri Başlatma Hizmeti',
-                path: '/v2.0.0/contents/duzenli-odeme-emri-hizmeti',
-               
-            },
-            {
-                title: '9. Hesap Bilgisi Hizmeti',
-                path: '/v2.0.0/contents/hesap-bilgisi-hizmeti',
-            
-            },
-            {
-                title: '10. HHS ve YÖS API',
-                path: '/v2.0.0/contents/hhs-yos-api',
-            
-            },
-            {
-                title: '11. Güçlü Kimlik Doğrulama API',
-                path: '/v2.0.0/contents/erisim-belirteci',
-            
-            },
-            {
-                title: '12. Olay Bildirim',
-                path: '/v2.0.0/contents/olay-bildirim',
-            
-            },
-            {
-                title: '13. Ekler',
-                path: '/v2.0.0/contents/ekler',
-            
-            },
-            {
-                title: '14. Deney Alanı',
-                path: '/v2.0.0/deneyalani/genel-bilgiler',
-                children:[
-                    {
-                        title: '1. Ödeme Emri Başlatma API',
-                        path: '/v2.0.0/deneyalani/odeme-emri-api'
-                    },
-                    {
-                        title: '2. İleri Tarihli Ödeme Emri Başlatma API',
-                        path: '/v2.0.0/deneyalani/ileri-tarihli-odeme-emri-api'
-                    },
-                    {
-                        title: '3. Düzenli Ödeme Emri Başlatma API',
-                        path: '/v2.0.0/deneyalani/duzenli-odeme-emri-api'
-                    },
-                    {
-                        title: '4. Hesap Bilgisi API',
-                        path: '/v2.0.0/deneyalani/hesap-bilgisi-api'
-                    },
-                    {
-                        title: '5. HHS - YÖS API',
-                        path: '/v2.0.0/deneyalani/hhs-yos-api'
-                    },
-                    {
-                        title: '6. Olay Bildirim',
-                        path: '/v2.0.0/deneyalani/olay-bildirim-api'
-                    },
-                    
-                ]
-            }
-        ]
-    },
+   
     {
 
         title: 'Dijital Cüzdanlardan TR Karekod ile Ödeme',
@@ -481,6 +385,104 @@ module.exports = [
                         title: '4. Olay Bildirim',
                         path: '/v1.1.0/deneyalani/olay-bildirim-api'
                     },
+                ]
+            }
+        ]
+    },
+
+     {
+        title: 'SÜRÜM 2.0.0',
+        path: '/v2.0.0/contents/tanim-ve-kisitlamalar',
+        children: [
+            {
+                title: '1. Tanımlar ve Kısıtlamalar',
+                path: '/v2.0.0/contents/tanim-ve-kisitlamalar'
+            },
+            {
+                title: '2. Kapsam ve Dayanak',
+                path: '/v2.0.0/contents/kapsam-ve-dayanak'
+            },
+            {
+                title: '3. Temel Prensipler',
+                path: '/v2.0.0/contents/temel-prensipler'
+            },
+            {
+                title: '4. Rıza Durumları',
+                path: '/v2.0.0/contents/riza-durumlari'
+            },
+            {
+                title: '5. Güçlü Kimlik Doğrulama',
+                path: '/v2.0.0/contents/gkd'                
+            },
+            {
+                title: '6. Ödeme Emri Başlatma Hizmeti',
+                path: '/v2.0.0/contents/odeme-emri-baslatma-hizmeti',
+               
+            },
+            {
+                title: '7. İleri Tarihli Ödeme Emri Başlatma Hizmeti',
+                path: '/v2.0.0/contents/ileri-tarihli-odeme-emri-hizmeti',
+               
+            },
+            {
+                title: '8. Düzenli Ödeme Emri Başlatma Hizmeti',
+                path: '/v2.0.0/contents/duzenli-odeme-emri-hizmeti',
+               
+            },
+            {
+                title: '9. Hesap Bilgisi Hizmeti',
+                path: '/v2.0.0/contents/hesap-bilgisi-hizmeti',
+            
+            },
+            {
+                title: '10. HHS ve YÖS API',
+                path: '/v2.0.0/contents/hhs-yos-api',
+            
+            },
+            {
+                title: '11. Güçlü Kimlik Doğrulama API',
+                path: '/v2.0.0/contents/erisim-belirteci',
+            
+            },
+            {
+                title: '12. Olay Bildirim',
+                path: '/v2.0.0/contents/olay-bildirim',
+            
+            },
+            {
+                title: '13. Ekler',
+                path: '/v2.0.0/contents/ekler',
+            
+            },
+            {
+                title: '14. Deney Alanı',
+                path: '/v2.0.0/deneyalani/genel-bilgiler',
+                children:[
+                    {
+                        title: '1. Ödeme Emri Başlatma API',
+                        path: '/v2.0.0/deneyalani/odeme-emri-api'
+                    },
+                    {
+                        title: '2. İleri Tarihli Ödeme Emri Başlatma API',
+                        path: '/v2.0.0/deneyalani/ileri-tarihli-odeme-emri-api'
+                    },
+                    {
+                        title: '3. Düzenli Ödeme Emri Başlatma API',
+                        path: '/v2.0.0/deneyalani/duzenli-odeme-emri-api'
+                    },
+                    {
+                        title: '4. Hesap Bilgisi API',
+                        path: '/v2.0.0/deneyalani/hesap-bilgisi-api'
+                    },
+                    {
+                        title: '5. HHS - YÖS API',
+                        path: '/v2.0.0/deneyalani/hhs-yos-api'
+                    },
+                    {
+                        title: '6. Olay Bildirim',
+                        path: '/v2.0.0/deneyalani/olay-bildirim-api'
+                    },
+                    
                 ]
             }
         ]
